@@ -864,7 +864,7 @@ namespace Birds_Mangmeant
 			FormBorderStyle = FormBorderStyle.FixedDialog;
 			Name = "Login";
 			StartPosition = FormStartPosition.CenterScreen;
-			Text = "Form1";
+			Text = "Login";
 			Load += Login_Load;
 			PanelWelcomeSave.ResumeLayout(false);
 			PanelWelcomeSave.PerformLayout();
