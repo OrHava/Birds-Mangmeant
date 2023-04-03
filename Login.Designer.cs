@@ -1,7 +1,28 @@
-﻿namespace Birds_Mangmeant
+﻿
+using FireSharp.Config;
+using FireSharp.Response;
+using FireSharp.Interfaces;
+using Firebase.Auth.Requests;
+using FirebaseAdmin.Auth;
+using Firebase.Auth;
+using Firebase.Auth.Providers;
+using Firebase.Auth.Repository;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using FireSharp;
+
+namespace Birds_Mangmeant
 {
 	partial class Login
 	{
+
+		IFirebaseConfig config = new FirebaseConfig
+		{
+			AuthSecret = "X0ef9KE6sIzPgMR7rlUj52AWMITXNJXPEIMNKHF9",
+			BasePath = "https://birds-mannagemeant-default-rtdb.firebaseio.com/"
+
+		};
+		IFirebaseClient client;
+
 		/// <summary>
 		///  Required designer variable.
 		/// </summary>
@@ -68,6 +89,23 @@
 			button7 = new Button();
 			PanelLoginSave = new Panel();
 			PanelRegister = new Panel();
+			panel5 = new Panel();
+			txtRegId = new TextBox();
+			pictureBox9 = new PictureBox();
+			panel4 = new Panel();
+			txtRegRePassword = new TextBox();
+			pictureBox8 = new PictureBox();
+			panel3 = new Panel();
+			txtRegName = new TextBox();
+			pictureBox3 = new PictureBox();
+			button3 = new Button();
+			panel1 = new Panel();
+			txtRegPassword = new TextBox();
+			pictureBox1 = new PictureBox();
+			panel2 = new Panel();
+			TxtRegEmail = new TextBox();
+			pictureBox2 = new PictureBox();
+			label1 = new Label();
 			BtnReturnLogin = new Button();
 			btnRegisterSave = new Button();
 			linkLabel1Save = new LinkLabel();
@@ -77,13 +115,12 @@
 			button2Save = new Button();
 			button1Save = new Button();
 			panel4Save = new Panel();
-			textBox2Save = new TextBox();
+			txtLoginPassword = new TextBox();
 			pictureBox3Save = new PictureBox();
 			panel3Save = new Panel();
-			textBox1Save = new TextBox();
+			txtLoginUserName = new TextBox();
 			pictureBoxSave = new PictureBox();
 			labelLogin1Save = new Label();
-			CloseBtnSave = new Button();
 			PanelWelcomeSave.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBoxBirdSave).BeginInit();
 			((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -92,6 +129,16 @@
 			((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
 			PanelLoginSave.SuspendLayout();
 			PanelRegister.SuspendLayout();
+			panel5.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+			panel4.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+			panel3.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+			panel1.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+			panel2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
 			panel4Save.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox3Save).BeginInit();
 			panel3Save.SuspendLayout();
@@ -422,7 +469,6 @@
 			PanelLoginSave.Controls.Add(panel4Save);
 			PanelLoginSave.Controls.Add(panel3Save);
 			PanelLoginSave.Controls.Add(labelLogin1Save);
-			PanelLoginSave.Controls.Add(CloseBtnSave);
 			PanelLoginSave.Location = new Point(300, 0);
 			PanelLoginSave.Name = "PanelLoginSave";
 			PanelLoginSave.Size = new Size(450, 530);
@@ -431,17 +477,212 @@
 			// PanelRegister
 			// 
 			PanelRegister.BackColor = SystemColors.Control;
+			PanelRegister.Controls.Add(panel5);
+			PanelRegister.Controls.Add(panel4);
+			PanelRegister.Controls.Add(panel3);
+			PanelRegister.Controls.Add(button3);
+			PanelRegister.Controls.Add(panel1);
+			PanelRegister.Controls.Add(panel2);
+			PanelRegister.Controls.Add(label1);
 			PanelRegister.Controls.Add(BtnReturnLogin);
 			PanelRegister.Location = new Point(0, 0);
 			PanelRegister.Name = "PanelRegister";
 			PanelRegister.Size = new Size(450, 530);
 			PanelRegister.TabIndex = 13;
 			// 
+			// panel5
+			// 
+			panel5.BackColor = Color.White;
+			panel5.Controls.Add(txtRegId);
+			panel5.Controls.Add(pictureBox9);
+			panel5.Location = new Point(0, 347);
+			panel5.Name = "panel5";
+			panel5.Size = new Size(450, 51);
+			panel5.TabIndex = 20;
+			// 
+			// txtRegId
+			// 
+			txtRegId.BackColor = Color.White;
+			txtRegId.BorderStyle = BorderStyle.None;
+			txtRegId.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			txtRegId.ForeColor = Color.FromArgb(41, 128, 185);
+			txtRegId.Location = new Point(55, 15);
+			txtRegId.Name = "txtRegId";
+			txtRegId.Size = new Size(370, 21);
+			txtRegId.TabIndex = 3;
+			txtRegId.Text = "Enter ID";
+			txtRegId.Click += txtRegId_Click;
+			// 
+			// pictureBox9
+			// 
+			pictureBox9.Image = Properties.Resources.icons8_password_key_50;
+			pictureBox9.Location = new Point(15, 15);
+			pictureBox9.Name = "pictureBox9";
+			pictureBox9.Size = new Size(24, 24);
+			pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
+			pictureBox9.TabIndex = 2;
+			pictureBox9.TabStop = false;
+			// 
+			// panel4
+			// 
+			panel4.BackColor = Color.White;
+			panel4.Controls.Add(txtRegRePassword);
+			panel4.Controls.Add(pictureBox8);
+			panel4.Location = new Point(0, 290);
+			panel4.Name = "panel4";
+			panel4.Size = new Size(450, 51);
+			panel4.TabIndex = 19;
+			// 
+			// txtRegRePassword
+			// 
+			txtRegRePassword.BackColor = Color.White;
+			txtRegRePassword.BorderStyle = BorderStyle.None;
+			txtRegRePassword.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			txtRegRePassword.ForeColor = Color.FromArgb(41, 128, 185);
+			txtRegRePassword.Location = new Point(55, 15);
+			txtRegRePassword.Name = "txtRegRePassword";
+			txtRegRePassword.Size = new Size(370, 21);
+			txtRegRePassword.TabIndex = 3;
+			txtRegRePassword.Text = "Re - Enter Password";
+			txtRegRePassword.Click += textBox8_Click;
+			// 
+			// pictureBox8
+			// 
+			pictureBox8.Image = Properties.Resources.icons8_password_key_50;
+			pictureBox8.Location = new Point(15, 15);
+			pictureBox8.Name = "pictureBox8";
+			pictureBox8.Size = new Size(24, 24);
+			pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
+			pictureBox8.TabIndex = 2;
+			pictureBox8.TabStop = false;
+			// 
+			// panel3
+			// 
+			panel3.BackColor = Color.White;
+			panel3.Controls.Add(txtRegName);
+			panel3.Controls.Add(pictureBox3);
+			panel3.Location = new Point(0, 113);
+			panel3.Name = "panel3";
+			panel3.Size = new Size(450, 52);
+			panel3.TabIndex = 18;
+			// 
+			// txtRegName
+			// 
+			txtRegName.BorderStyle = BorderStyle.None;
+			txtRegName.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			txtRegName.ForeColor = Color.FromArgb(41, 128, 185);
+			txtRegName.Location = new Point(55, 15);
+			txtRegName.Name = "txtRegName";
+			txtRegName.Size = new Size(370, 21);
+			txtRegName.TabIndex = 2;
+			txtRegName.Text = "Enter UserName";
+			txtRegName.Click += textBox7_Click;
+			// 
+			// pictureBox3
+			// 
+			pictureBox3.Image = Properties.Resources.icons8_user_30;
+			pictureBox3.Location = new Point(15, 15);
+			pictureBox3.Name = "pictureBox3";
+			pictureBox3.Size = new Size(24, 24);
+			pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
+			pictureBox3.TabIndex = 1;
+			pictureBox3.TabStop = false;
+			// 
+			// button3
+			// 
+			button3.BackColor = Color.FromArgb(41, 128, 185);
+			button3.FlatStyle = FlatStyle.Flat;
+			button3.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			button3.ForeColor = Color.White;
+			button3.Location = new Point(15, 419);
+			button3.Name = "button3";
+			button3.Size = new Size(148, 35);
+			button3.TabIndex = 15;
+			button3.Text = "Sign Up";
+			button3.UseVisualStyleBackColor = false;
+			button3.Click += button3_Click;
+			// 
+			// panel1
+			// 
+			panel1.BackColor = Color.White;
+			panel1.Controls.Add(txtRegPassword);
+			panel1.Controls.Add(pictureBox1);
+			panel1.Location = new Point(0, 229);
+			panel1.Name = "panel1";
+			panel1.Size = new Size(450, 51);
+			panel1.TabIndex = 14;
+			// 
+			// txtRegPassword
+			// 
+			txtRegPassword.BackColor = Color.White;
+			txtRegPassword.BorderStyle = BorderStyle.None;
+			txtRegPassword.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			txtRegPassword.ForeColor = Color.FromArgb(41, 128, 185);
+			txtRegPassword.Location = new Point(55, 15);
+			txtRegPassword.Name = "txtRegPassword";
+			txtRegPassword.Size = new Size(370, 21);
+			txtRegPassword.TabIndex = 3;
+			txtRegPassword.Text = "Enter Password";
+			txtRegPassword.Click += textBox1_Click_1;
+			// 
+			// pictureBox1
+			// 
+			pictureBox1.Image = Properties.Resources.icons8_password_key_50;
+			pictureBox1.Location = new Point(15, 15);
+			pictureBox1.Name = "pictureBox1";
+			pictureBox1.Size = new Size(24, 24);
+			pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+			pictureBox1.TabIndex = 2;
+			pictureBox1.TabStop = false;
+			// 
+			// panel2
+			// 
+			panel2.BackColor = Color.White;
+			panel2.Controls.Add(TxtRegEmail);
+			panel2.Controls.Add(pictureBox2);
+			panel2.Location = new Point(0, 171);
+			panel2.Name = "panel2";
+			panel2.Size = new Size(450, 52);
+			panel2.TabIndex = 13;
+			// 
+			// TxtRegEmail
+			// 
+			TxtRegEmail.BorderStyle = BorderStyle.None;
+			TxtRegEmail.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			TxtRegEmail.ForeColor = Color.FromArgb(41, 128, 185);
+			TxtRegEmail.Location = new Point(55, 15);
+			TxtRegEmail.Name = "TxtRegEmail";
+			TxtRegEmail.Size = new Size(370, 21);
+			TxtRegEmail.TabIndex = 2;
+			TxtRegEmail.Text = "Enter Email";
+			TxtRegEmail.Click += textBox2_Click_1;
+			// 
+			// pictureBox2
+			// 
+			pictureBox2.Image = Properties.Resources.icons8_user_30;
+			pictureBox2.Location = new Point(15, 15);
+			pictureBox2.Name = "pictureBox2";
+			pictureBox2.Size = new Size(24, 24);
+			pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
+			pictureBox2.TabIndex = 1;
+			pictureBox2.TabStop = false;
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+			label1.ForeColor = Color.FromArgb(41, 128, 185);
+			label1.Location = new Point(38, 48);
+			label1.Name = "label1";
+			label1.Size = new Size(254, 27);
+			label1.TabIndex = 12;
+			label1.Text = "Create New Account";
+			// 
 			// BtnReturnLogin
 			// 
-			BtnReturnLogin.Location = new Point(148, 141);
+			BtnReturnLogin.Location = new Point(381, 0);
 			BtnReturnLogin.Name = "BtnReturnLogin";
-			BtnReturnLogin.Size = new Size(129, 53);
+			BtnReturnLogin.Size = new Size(69, 53);
 			BtnReturnLogin.TabIndex = 0;
 			BtnReturnLogin.Text = "hide";
 			BtnReturnLogin.UseVisualStyleBackColor = true;
@@ -520,6 +761,7 @@
 			button2Save.TabIndex = 6;
 			button2Save.Text = "Forget password ?";
 			button2Save.UseVisualStyleBackColor = false;
+			button2Save.Click += button2Save_Click;
 			// 
 			// button1Save
 			// 
@@ -533,29 +775,30 @@
 			button1Save.TabIndex = 5;
 			button1Save.Text = "LOGIN";
 			button1Save.UseVisualStyleBackColor = false;
+			button1Save.Click += button1Save_Click;
 			// 
 			// panel4Save
 			// 
 			panel4Save.BackColor = SystemColors.Control;
-			panel4Save.Controls.Add(textBox2Save);
+			panel4Save.Controls.Add(txtLoginPassword);
 			panel4Save.Controls.Add(pictureBox3Save);
 			panel4Save.Location = new Point(0, 243);
 			panel4Save.Name = "panel4Save";
 			panel4Save.Size = new Size(450, 51);
 			panel4Save.TabIndex = 4;
 			// 
-			// textBox2Save
+			// txtLoginPassword
 			// 
-			textBox2Save.BackColor = SystemColors.Control;
-			textBox2Save.BorderStyle = BorderStyle.None;
-			textBox2Save.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
-			textBox2Save.ForeColor = Color.FromArgb(41, 128, 185);
-			textBox2Save.Location = new Point(55, 15);
-			textBox2Save.Name = "textBox2Save";
-			textBox2Save.Size = new Size(370, 21);
-			textBox2Save.TabIndex = 3;
-			textBox2Save.UseSystemPasswordChar = true;
-			textBox2Save.Click += textBox2_Click;
+			txtLoginPassword.BackColor = SystemColors.Control;
+			txtLoginPassword.BorderStyle = BorderStyle.None;
+			txtLoginPassword.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
+			txtLoginPassword.ForeColor = Color.FromArgb(41, 128, 185);
+			txtLoginPassword.Location = new Point(55, 15);
+			txtLoginPassword.Name = "txtLoginPassword";
+			txtLoginPassword.Size = new Size(370, 21);
+			txtLoginPassword.TabIndex = 3;
+			txtLoginPassword.UseSystemPasswordChar = true;
+			txtLoginPassword.Click += textBox2_Click;
 			// 
 			// pictureBox3Save
 			// 
@@ -572,23 +815,23 @@
 			// panel3Save
 			// 
 			panel3Save.BackColor = Color.White;
-			panel3Save.Controls.Add(textBox1Save);
+			panel3Save.Controls.Add(txtLoginUserName);
 			panel3Save.Controls.Add(pictureBoxSave);
 			panel3Save.Location = new Point(0, 185);
 			panel3Save.Name = "panel3Save";
 			panel3Save.Size = new Size(450, 52);
 			panel3Save.TabIndex = 3;
 			// 
-			// textBox1Save
+			// txtLoginUserName
 			// 
-			textBox1Save.BorderStyle = BorderStyle.None;
-			textBox1Save.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			textBox1Save.ForeColor = Color.FromArgb(41, 128, 185);
-			textBox1Save.Location = new Point(55, 15);
-			textBox1Save.Name = "textBox1Save";
-			textBox1Save.Size = new Size(370, 25);
-			textBox1Save.TabIndex = 2;
-			textBox1Save.Click += textBox1_Click;
+			txtLoginUserName.BorderStyle = BorderStyle.None;
+			txtLoginUserName.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			txtLoginUserName.ForeColor = Color.FromArgb(41, 128, 185);
+			txtLoginUserName.Location = new Point(55, 15);
+			txtLoginUserName.Name = "txtLoginUserName";
+			txtLoginUserName.Size = new Size(370, 25);
+			txtLoginUserName.TabIndex = 2;
+			txtLoginUserName.Click += textBox1_Click;
 			// 
 			// pictureBoxSave
 			// 
@@ -611,33 +854,18 @@
 			labelLogin1Save.TabIndex = 2;
 			labelLogin1Save.Text = "Login to your account";
 			// 
-			// CloseBtnSave
-			// 
-			CloseBtnSave.Cursor = Cursors.Hand;
-			CloseBtnSave.FlatAppearance.BorderSize = 0;
-			CloseBtnSave.FlatStyle = FlatStyle.Flat;
-			CloseBtnSave.Font = new Font("Verdana", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-			CloseBtnSave.ForeColor = Color.FromArgb(41, 128, 185);
-			CloseBtnSave.Location = new Point(410, 3);
-			CloseBtnSave.Name = "CloseBtnSave";
-			CloseBtnSave.Size = new Size(40, 40);
-			CloseBtnSave.TabIndex = 0;
-			CloseBtnSave.Text = "X";
-			CloseBtnSave.UseVisualStyleBackColor = true;
-			CloseBtnSave.Click += closebtn_Click;
-			// 
 			// Login
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(750, 530);
-			ControlBox = false;
 			Controls.Add(PanelLoginSave);
 			Controls.Add(PanelWelcomeSave);
-			FormBorderStyle = FormBorderStyle.None;
+			FormBorderStyle = FormBorderStyle.FixedDialog;
 			Name = "Login";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "Form1";
+			Load += Login_Load;
 			PanelWelcomeSave.ResumeLayout(false);
 			PanelWelcomeSave.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBoxBirdSave).EndInit();
@@ -648,6 +876,22 @@
 			PanelLoginSave.ResumeLayout(false);
 			PanelLoginSave.PerformLayout();
 			PanelRegister.ResumeLayout(false);
+			PanelRegister.PerformLayout();
+			panel5.ResumeLayout(false);
+			panel5.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+			panel4.ResumeLayout(false);
+			panel4.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+			panel3.ResumeLayout(false);
+			panel3.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+			panel1.ResumeLayout(false);
+			panel1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+			panel2.ResumeLayout(false);
+			panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
 			panel4Save.ResumeLayout(false);
 			panel4Save.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox3Save).EndInit();
@@ -657,7 +901,11 @@
 			ResumeLayout(false);
 		}
 
+
+
 		#endregion
+
+
 
 		private Panel PanelWelcomeSave;
 		private PictureBox pictureBoxBirdSave;
@@ -669,12 +917,11 @@
 		private Label labelDevs4Save;
 		private Label labelDevs2Save;
 		private Label labelDevs1Save;
-		private Button CloseBtnSave;
 		private Panel panel4Save;
-		private TextBox textBox2Save;
+		private TextBox txtLoginPassword;
 		private PictureBox pictureBox3Save;
 		private Panel panel3Save;
-		private TextBox textBox1Save;
+		private TextBox txtLoginUserName;
 		private PictureBox pictureBoxSave;
 		private Label labelLogin1Save;
 		private Button button2Save;
@@ -715,5 +962,22 @@
 		private Button button10;
 		private Panel PanelRegister;
 		private Button BtnReturnLogin;
+		private Panel panel4;
+		private TextBox txtRegRePassword;
+		private PictureBox pictureBox8;
+		private Panel panel3;
+		private TextBox txtRegName;
+		private PictureBox pictureBox3;
+		private Button button3;
+		private Panel panel1;
+		private TextBox txtRegPassword;
+		private PictureBox pictureBox1;
+		private Panel panel2;
+		private TextBox TxtRegEmail;
+		private PictureBox pictureBox2;
+		private Label label1;
+		private Panel panel5;
+		private TextBox txtRegId;
+		private PictureBox pictureBox9;
 	}
 }
