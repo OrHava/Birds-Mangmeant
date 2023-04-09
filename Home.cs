@@ -17,38 +17,25 @@ namespace Birds_Mangmeant
 			InitializeComponent();
 		}
 
-		// In your main form class
-		public partial class MainForm : Form
+
+
+
+		private void button1_Click(object sender, EventArgs e)
 		{
-			// Create a list to keep track of all open forms
-			private List<Form> openForms = new List<Form>();
+			Login Lg = new Login();
+			this.Hide();
+			Lg.ShowDialog();
+		}
 
-			// Override the OnFormClosed method to remove the closed form from the list
-			protected override void OnFormClosed(FormClosedEventArgs e)
+		private void Home_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			// Check if the user clicked the exit button
+			if (e.CloseReason == CloseReason.UserClosing)
 			{
-				base.OnFormClosed(e);
-
-				openForms.Remove(this);
-			}
-
-			// Override the OnLoad method to add the main form to the list
-			protected override void OnLoad(EventArgs e)
-			{
-				base.OnLoad(e);
-
-				openForms.Add(this);
-			}
-
-			// Override the OnFormClosing method for the exit button
-			protected override void OnFormClosing(FormClosingEventArgs e)
-			{
-				base.OnFormClosing(e);
-
-				// Check if the user clicked the exit button
-				if (e.CloseReason == CloseReason.UserClosing)
+				// Close all open forms except the main form
+				foreach (Form form in Application.OpenForms)
 				{
-					// Loop through all open forms and close them
-					foreach (Form form in openForms)
+					if (form != this)
 					{
 						form.Close();
 					}
@@ -56,5 +43,11 @@ namespace Birds_Mangmeant
 			}
 		}
 
+		private void toolStripButton4_Click(object sender, EventArgs e)
+		{
+			Login Lg = new Login();
+			this.Hide();
+			Lg.ShowDialog();
+		}
 	}
 }

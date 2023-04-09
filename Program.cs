@@ -12,6 +12,9 @@ namespace Birds_Mangmeant
 			// see https://aka.ms/applicationconfiguration.
 			ApplicationConfiguration.Initialize();
 			Application.Run(new Login());
+
+
+
 		}
 	}
 }

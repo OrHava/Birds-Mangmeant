@@ -6,16 +6,33 @@ using System.Net.Mail;
 using System;
 
 using System.Text.RegularExpressions;
+using FireSharp;
+using FireSharp.Interfaces;
+using FireSharp.Exceptions;
+
 namespace Birds_Mangmeant
 {
 	public partial class Login : Form
 	{
+
+		static string currentusername = "";
+		static string currentuserpassword = "";
+
+
 		public Login()
 		{
 			InitializeComponent();
 			PanelRegister.Height = 0;
 			PanelLoginSave.Location = new Point(300, 0);
+
+			if (Properties.Settings.Default.UserName != string.Empty && Properties.Settings.Default.CheckBoxDef == "true")
+			{
+				txtLoginUserName.Text = Properties.Settings.Default.UserName;
+				txtLoginPassword.Text = Properties.Settings.Default.Password;
+				checkBoxRememberMe.Checked = true;
+			}
 		}
+
 
 
 
@@ -82,50 +99,282 @@ namespace Birds_Mangmeant
 
 		private void textBox7_Click(object sender, EventArgs e)
 		{
-			if (!textDeleted)
+
+
+			txtRegName.BackColor = Color.White;
+			panelUsername.BackColor = Color.White;
+
+			panelEmail.BackColor = SystemColors.Control;
+			TxtRegEmail.BackColor = SystemColors.Control;
+
+			if (string.IsNullOrEmpty(TxtRegEmail.Text))
+			{
+				TxtRegEmail.Text = "Enter Email";
+			}
+			if (string.IsNullOrEmpty(txtRegPassword.Text))
+			{
+				txtRegPassword.Text = "Enter Password";
+
+			}
+
+			if (string.IsNullOrEmpty(txtRegRePassword.Text))
+			{
+				txtRegRePassword.Text = "Re - Enter Password";
+			}
+			if (string.IsNullOrEmpty(txtRegId.Text))
+			{
+				txtRegId.Text = "Enter ID";
+			}
+
+
+
+
+
+
+			panelID.BackColor = SystemColors.Control;
+			txtRegId.BackColor = SystemColors.Control;
+
+
+			panelPassword.BackColor = SystemColors.Control;
+			txtRegPassword.BackColor = SystemColors.Control;
+
+			panelRePassword.BackColor = SystemColors.Control;
+			txtRegRePassword.BackColor = SystemColors.Control;
+
+
+
+			if (!textDeleted && txtRegName.Text == "Enter UserName")
 			{
 				txtRegName.Text = "";
 				textDeleted = true;
 			}
+			textDeleted = false;
 		}
 
 
 
 		private void textBox2_Click_1(object sender, EventArgs e)
 		{
-			if (!textDeleted1)
+
+
+
+			if (string.IsNullOrEmpty(txtRegName.Text))
+			{
+
+				txtRegName.Text = "Enter UserName";
+			}
+			if (string.IsNullOrEmpty(txtRegPassword.Text))
+			{
+				txtRegPassword.Text = "Enter Password";
+
+			}
+
+			if (string.IsNullOrEmpty(txtRegRePassword.Text))
+			{
+				txtRegRePassword.Text = "Re - Enter Password";
+			}
+			if (string.IsNullOrEmpty(txtRegId.Text))
+			{
+				txtRegId.Text = "Enter ID";
+			}
+
+
+
+
+
+
+
+			panelEmail.BackColor = Color.White;
+			TxtRegEmail.BackColor = Color.White;
+
+			txtRegName.BackColor = SystemColors.Control;
+			panelUsername.BackColor = SystemColors.Control;
+
+
+			panelID.BackColor = SystemColors.Control;
+			txtRegId.BackColor = SystemColors.Control;
+
+			panelPassword.BackColor = SystemColors.Control;
+			txtRegPassword.BackColor = SystemColors.Control;
+
+			panelRePassword.BackColor = SystemColors.Control;
+			txtRegRePassword.BackColor = SystemColors.Control;
+
+			if (!textDeleted1 && TxtRegEmail.Text == "Enter Email")
 			{
 				TxtRegEmail.Text = "";
 				textDeleted1 = true;
 			}
+			textDeleted1 = false;
 
 		}
 
 		private void textBox1_Click_1(object sender, EventArgs e)
+
+
 		{
-			if (!textDeleted2)
+
+			if (string.IsNullOrEmpty(txtRegName.Text))
+			{
+
+				txtRegName.Text = "Enter UserName";
+			}
+			if (string.IsNullOrEmpty(TxtRegEmail.Text))
+			{
+
+				TxtRegEmail.Text = "Enter Email";
+
+
+			}
+
+			if (string.IsNullOrEmpty(txtRegRePassword.Text))
+			{
+				txtRegRePassword.Text = "Re - Enter Password";
+			}
+			if (string.IsNullOrEmpty(txtRegId.Text))
+			{
+				txtRegId.Text = "Enter ID";
+			}
+
+
+
+
+			panelPassword.BackColor = Color.White;
+			txtRegPassword.BackColor = Color.White;
+
+
+			panelEmail.BackColor = SystemColors.Control;
+			TxtRegEmail.BackColor = SystemColors.Control;
+
+
+
+			txtRegName.BackColor = SystemColors.Control;
+			panelUsername.BackColor = SystemColors.Control;
+
+
+			panelID.BackColor = SystemColors.Control;
+			txtRegId.BackColor = SystemColors.Control;
+
+
+			panelRePassword.BackColor = SystemColors.Control;
+			txtRegRePassword.BackColor = SystemColors.Control;
+
+
+			if (!textDeleted2 && txtRegPassword.Text == "Enter Password")
 			{
 				txtRegPassword.Text = "";
 				textDeleted2 = true;
 			}
+			textDeleted2 = false;
 		}
 
 		private void textBox8_Click(object sender, EventArgs e)
 		{
-			if (!textDeleted3)
+
+
+			if (string.IsNullOrEmpty(txtRegName.Text))
+			{
+
+				txtRegName.Text = "Enter UserName";
+			}
+			if (string.IsNullOrEmpty(TxtRegEmail.Text))
+			{
+
+				TxtRegEmail.Text = "Enter Email";
+
+
+			}
+
+			if (string.IsNullOrEmpty(txtRegPassword.Text))
+			{
+				txtRegPassword.Text = "Enter Password";
+			}
+			if (string.IsNullOrEmpty(txtRegId.Text))
+			{
+				txtRegId.Text = "Enter ID";
+			}
+
+
+
+			panelRePassword.BackColor = Color.White;
+			txtRegRePassword.BackColor = Color.White;
+
+			panelEmail.BackColor = SystemColors.Control;
+			TxtRegEmail.BackColor = SystemColors.Control;
+
+			txtRegName.BackColor = SystemColors.Control;
+			panelUsername.BackColor = SystemColors.Control;
+
+
+			panelID.BackColor = SystemColors.Control;
+			txtRegId.BackColor = SystemColors.Control;
+
+			panelPassword.BackColor = SystemColors.Control;
+			txtRegPassword.BackColor = SystemColors.Control;
+
+
+			if (!textDeleted3 && txtRegRePassword.Text == "Re - Enter Password")
 			{
 				txtRegRePassword.Text = "";
 				textDeleted3 = true;
 			}
+			textDeleted3 = false;
 		}
 
 		private void txtRegId_Click(object sender, EventArgs e)
 		{
-			if (!textDeleted4)
+
+
+			if (string.IsNullOrEmpty(txtRegName.Text))
+			{
+
+				txtRegName.Text = "Enter UserName";
+			}
+			if (string.IsNullOrEmpty(TxtRegEmail.Text))
+			{
+
+				TxtRegEmail.Text = "Enter Email";
+
+
+			}
+
+			if (string.IsNullOrEmpty(txtRegPassword.Text))
+			{
+				txtRegPassword.Text = "Enter Password";
+			}
+			if (string.IsNullOrEmpty(txtRegRePassword.Text))
+			{
+
+				txtRegRePassword.Text = "Re - Enter Password";
+			}
+
+
+
+
+			panelID.BackColor = Color.White;
+			txtRegId.BackColor = Color.White;
+
+			panelEmail.BackColor = SystemColors.Control;
+			TxtRegEmail.BackColor = SystemColors.Control;
+
+
+			txtRegName.BackColor = SystemColors.Control;
+			panelUsername.BackColor = SystemColors.Control;
+
+
+
+
+			panelPassword.BackColor = SystemColors.Control;
+			txtRegPassword.BackColor = SystemColors.Control;
+
+			panelRePassword.BackColor = SystemColors.Control;
+			txtRegRePassword.BackColor = SystemColors.Control;
+			if (!textDeleted4 && txtRegId.Text == "Enter ID")
 			{
 				txtRegId.Text = "";
 				textDeleted4 = true;
 			}
+			textDeleted4 = false;
 		}
 
 		private void Login_Load(object sender, EventArgs e)
@@ -216,7 +465,7 @@ namespace Birds_Mangmeant
 			}
 			else if (count > 2)
 			{
-				MessageBox.Show("User name can only contain less then two letters");
+				MessageBox.Show("User name can only contain the most two numbers.");
 
 			}
 			else
@@ -227,6 +476,8 @@ namespace Birds_Mangmeant
 					Password = txtRegPassword.Text,
 					Email = TxtRegEmail.Text,
 					ID = txtRegId.Text,
+					RememberMe = false,
+
 				};
 				FirebaseResponse response = client.Set("users/" + txtRegName.Text, register);
 				register res = response.ResultAs<register>();
@@ -235,12 +486,59 @@ namespace Birds_Mangmeant
 					Email = TxtRegEmail.Text,
 				};
 				var setter = client.SetAsync("Rewards/" + TxtRegEmail.Top, todo);
-				MessageBox.Show("Registered succesfully");
+
+
+
+
+				string message = "Do you want to enter your account?";
+				string title = "Registered succesfully";
+				MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+				DialogResult result = MessageBox.Show(message, title, buttons);
+				if (result == DialogResult.Yes)
+				{
+
+					List<Tuple<string, string>> usernameres = new List<Tuple<string, string>>();
+					FirebaseResponse response2 = client.Get("users/");
+					Dictionary<string, register> result2 = response2.ResultAs<Dictionary<string, register>>();
+
+					foreach (var get in result2)
+					{
+
+
+						usernameres.Add(Tuple.Create(get.Value.Name, get.Value.Password));
+
+					}
+
+
+
+					if (usernameres.Contains(Tuple.Create(txtRegName.Text, txtRegPassword.Text)))
+					{
+						MessageBox.Show("Welcome " + txtRegName.Text);
+						currentusername = txtRegName.Text;
+						currentuserpassword = txtRegPassword.Text;
+						Home hm = new Home();
+						this.Hide();
+						hm.ShowDialog();
+
+					}
+					this.Close();
+
+
+				}
+				else
+				{
+					// Do something  
+
+				}
+
+
 			}
 		}
 
 		private void button1Save_Click(object sender, EventArgs e)
 		{
+
+
 
 			if (string.IsNullOrEmpty(txtLoginUserName.Text) || string.IsNullOrEmpty(txtLoginPassword.Text))
 			{
@@ -261,13 +559,69 @@ namespace Birds_Mangmeant
 
 				}
 
+				if (checkBoxRememberMe.Checked)
+				{
+					IFirebaseClient client = new FirebaseClient(config);
+
+
+
+					try
+					{
+
+						client.Set("users/" + txtLoginUserName.Text + "/RememberMe", true);
+
+					}
+					catch (FirebaseException)
+					{
+						// handle failure ...
+					}
+
+
+					Properties.Settings.Default.UserName = txtLoginUserName.Text;
+					Properties.Settings.Default.Password = txtLoginPassword.Text;
+					Properties.Settings.Default.CheckBoxDef = "true";
+					Properties.Settings.Default.Save();
+
+				}
+
+				if (!checkBoxRememberMe.Checked)
+				{
+					IFirebaseClient client = new FirebaseClient(config);
+
+
+
+					try
+					{
+
+						client.Set("users/" + txtLoginUserName.Text + "/RememberMe", false);
+
+					}
+					catch (FirebaseException)
+					{
+						// handle failure ...
+					}
+					Properties.Settings.Default.CheckBoxDef = "false";
+
+
+
+				}
+
+
+
 				if (usernameres.Contains(Tuple.Create(txtLoginUserName.Text, txtLoginPassword.Text)))
 				{
+
+					currentusername = txtLoginUserName.Text;
+					currentuserpassword = txtLoginPassword.Text;
 					MessageBox.Show("Welcome " + txtLoginUserName.Text);
 					Home hm = new Home();
 					this.Hide();
 					hm.ShowDialog();
 
+				}
+				else
+				{
+					MessageBox.Show("Username or password dont match in the system.");
 				}
 
 			}
@@ -311,7 +665,7 @@ namespace Birds_Mangmeant
 			}
 			else
 			{
-				//string usernameres = null;
+
 
 				FirebaseResponse response2 = client.Get("users/");
 				Dictionary<string, register> result = response2.ResultAs<Dictionary<string, register>>();
@@ -337,5 +691,20 @@ namespace Birds_Mangmeant
 		}
 
 
+		private void Login_FormClosed(object sender, FormClosedEventArgs e)
+		{
+			// Check if the user clicked the exit button
+			if (e.CloseReason == CloseReason.UserClosing)
+			{
+				// Close all open forms except the main form
+				foreach (Form form in Application.OpenForms)
+				{
+					if (form != this)
+					{
+						form.Close();
+					}
+				}
+			}
+		}
 	}
 }
