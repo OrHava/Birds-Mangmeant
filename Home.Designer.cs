@@ -75,10 +75,15 @@ namespace Birds_Mangmeant
 			textBoxIndexNumber = new TextBox();
 			panelHome = new Panel();
 			label8 = new Label();
+			panelAddCage = new Panel();
+			textBox1 = new TextBox();
+			label10 = new Label();
+			panelSearch = new Panel();
 			toolStrip1.SuspendLayout();
 			PanelAddBird.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
 			panelHome.SuspendLayout();
+			panelAddCage.SuspendLayout();
 			SuspendLayout();
 			// 
 			// toolStrip1
@@ -131,6 +136,7 @@ namespace Birds_Mangmeant
 			ButtonAddCage.Name = "ButtonAddCage";
 			ButtonAddCage.Size = new Size(99, 24);
 			ButtonAddCage.Text = "Add Cage";
+			ButtonAddCage.Click += ButtonAddCage_Click;
 			// 
 			// toolStripSeparator2
 			// 
@@ -405,13 +411,47 @@ namespace Birds_Mangmeant
 			label8.TabIndex = 0;
 			label8.Text = "This is Home!";
 			// 
+			// panelAddCage
+			// 
+			panelAddCage.Controls.Add(textBox1);
+			panelAddCage.Controls.Add(label10);
+			panelAddCage.Location = new Point(0, 30);
+			panelAddCage.Name = "panelAddCage";
+			panelAddCage.Size = new Size(1282, 694);
+			panelAddCage.TabIndex = 1;
+			// 
+			// textBox1
+			// 
+			textBox1.Location = new Point(154, 107);
+			textBox1.Name = "textBox1";
+			textBox1.Size = new Size(125, 27);
+			textBox1.TabIndex = 1;
+			// 
+			// label10
+			// 
+			label10.AutoSize = true;
+			label10.Location = new Point(154, 58);
+			label10.Name = "label10";
+			label10.Size = new Size(112, 20);
+			label10.TabIndex = 0;
+			label10.Text = "this is add cage";
+			// 
+			// panelSearch
+			// 
+			panelSearch.Location = new Point(0, 0);
+			panelSearch.Name = "panelSearch";
+			panelSearch.Size = new Size(1282, 721);
+			panelSearch.TabIndex = 2;
+			// 
 			// Home
 			// 
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1282, 753);
-			Controls.Add(panelHome);
 			Controls.Add(PanelAddBird);
+			Controls.Add(panelSearch);
+			Controls.Add(panelAddCage);
+			Controls.Add(panelHome);
 			Controls.Add(toolStrip1);
 			Name = "Home";
 			StartPosition = FormStartPosition.CenterScreen;
@@ -424,6 +464,8 @@ namespace Birds_Mangmeant
 			((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
 			panelHome.ResumeLayout(false);
 			panelHome.PerformLayout();
+			panelAddCage.ResumeLayout(false);
+			panelAddCage.PerformLayout();
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -467,5 +509,9 @@ namespace Birds_Mangmeant
 		private ComboBox comboBoxBreed;
 		private Panel panelHome;
 		private Label label8;
+		private Panel panelAddCage;
+		private Label label10;
+		private TextBox textBox1;
+		private Panel panelSearch;
 	}
 }

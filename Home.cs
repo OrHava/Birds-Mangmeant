@@ -394,6 +394,10 @@ namespace Birds_Mangmeant
 		{
 			panelHome.Visible = false;
 			panelHome.Hide();
+
+			panelAddCage.Visible = false;
+			panelAddCage.Hide();
+
 			PanelAddBird.Show();
 			PanelAddBird.Visible = true;
 			PanelAddBird.BringToFront();
@@ -407,9 +411,29 @@ namespace Birds_Mangmeant
 
 			PanelAddBird.Visible = false;
 			PanelAddBird.Hide();
+
+			panelAddCage.Visible = false;
+			panelAddCage.Hide();
+
+
 			panelHome.Show();
 			panelHome.Visible = true;
 			panelHome.BringToFront();
+		}
+
+		private void ButtonAddCage_Click(object sender, EventArgs e)
+		{
+
+			PanelAddBird.Visible = false;
+			PanelAddBird.Hide();
+
+			panelHome.Visible = false;
+			panelHome.Hide();
+
+			panelAddCage.Show();
+			panelAddCage.Visible = true;
+			panelAddCage.BringToFront();
+
 		}
 
 
