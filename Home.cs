@@ -397,7 +397,8 @@ namespace Birds_Mangmeant
 
 			panelAddCage.Visible = false;
 			panelAddCage.Hide();
-
+			panelSearch.Visible = false;
+			panelSearch.Hide();
 			PanelAddBird.Show();
 			PanelAddBird.Visible = true;
 			PanelAddBird.BringToFront();
@@ -414,7 +415,8 @@ namespace Birds_Mangmeant
 
 			panelAddCage.Visible = false;
 			panelAddCage.Hide();
-
+			panelSearch.Visible = false;
+			panelSearch.Hide();
 
 			panelHome.Show();
 			panelHome.Visible = true;
@@ -430,12 +432,32 @@ namespace Birds_Mangmeant
 			panelHome.Visible = false;
 			panelHome.Hide();
 
+			panelSearch.Visible = false;
+			panelSearch.Hide();
+
 			panelAddCage.Show();
 			panelAddCage.Visible = true;
 			panelAddCage.BringToFront();
 
 		}
 
+		private void ButtonSearch_Click(object sender, EventArgs e)
+		{
 
+			PanelAddBird.Visible = false;
+			PanelAddBird.Hide();
+
+			panelHome.Visible = false;
+			panelHome.Hide();
+
+
+			panelHome.Visible = false;
+			panelHome.Hide();
+
+			panelSearch.Show();
+			panelSearch.Visible = true;
+			panelSearch.BringToFront();
+
+		}
 	}
 }

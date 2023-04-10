@@ -150,6 +150,7 @@ namespace Birds_Mangmeant
 			ButtonSearch.Name = "ButtonSearch";
 			ButtonSearch.Size = new Size(77, 24);
 			ButtonSearch.Text = "Search";
+			ButtonSearch.Click += ButtonSearch_Click;
 			// 
 			// toolStripSeparator3
 			// 
@@ -438,9 +439,9 @@ namespace Birds_Mangmeant
 			// 
 			// panelSearch
 			// 
-			panelSearch.Location = new Point(0, 0);
+			panelSearch.Location = new Point(0, 30);
 			panelSearch.Name = "panelSearch";
-			panelSearch.Size = new Size(1282, 721);
+			panelSearch.Size = new Size(1282, 691);
 			panelSearch.TabIndex = 2;
 			// 
 			// Home
@@ -448,10 +449,10 @@ namespace Birds_Mangmeant
 			AutoScaleDimensions = new SizeF(8F, 20F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(1282, 753);
-			Controls.Add(PanelAddBird);
-			Controls.Add(panelSearch);
-			Controls.Add(panelAddCage);
 			Controls.Add(panelHome);
+			Controls.Add(panelSearch);
+			Controls.Add(PanelAddBird);
+			Controls.Add(panelAddCage);
 			Controls.Add(toolStrip1);
 			Name = "Home";
 			StartPosition = FormStartPosition.CenterScreen;
