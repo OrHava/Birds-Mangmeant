@@ -182,9 +182,9 @@ namespace Birds_Mangmeant
 			labelDevs4Save.ForeColor = Color.White;
 			labelDevs4Save.Location = new Point(217, 509);
 			labelDevs4Save.Name = "labelDevs4Save";
-			labelDevs4Save.Size = new Size(68, 17);
+			labelDevs4Save.Size = new Size(77, 17);
 			labelDevs4Save.TabIndex = 6;
-			labelDevs4Save.Text = "Omer Shy";
+			labelDevs4Save.Text = "Omer Shay";
 			// 
 			// labelDevs2Save
 			// 
