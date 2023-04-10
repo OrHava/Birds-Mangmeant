@@ -59,6 +59,7 @@ namespace Birds_Mangmeant
 			labelWelcomeSave1 = new Label();
 			pictureBoxBirdSave = new PictureBox();
 			PanelRegister = new Panel();
+			pictureBox10 = new PictureBox();
 			panelID = new Panel();
 			txtRegId = new TextBox();
 			pictureBox9 = new PictureBox();
@@ -76,7 +77,6 @@ namespace Birds_Mangmeant
 			TxtRegEmail = new TextBox();
 			pictureBox2 = new PictureBox();
 			label1 = new Label();
-			BtnReturnLogin = new Button();
 			btnGoBackToLogin = new Button();
 			linkLabel3 = new LinkLabel();
 			label16 = new Label();
@@ -125,6 +125,7 @@ namespace Birds_Mangmeant
 			PanelWelcomeSave.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBoxBirdSave).BeginInit();
 			PanelRegister.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
 			panelID.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
 			panelRePassword.SuspendLayout();
@@ -212,7 +213,7 @@ namespace Birds_Mangmeant
 			labelWelcomeSave3.AutoSize = true;
 			labelWelcomeSave3.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
 			labelWelcomeSave3.ForeColor = Color.White;
-			labelWelcomeSave3.Location = new Point(200, 221);
+			labelWelcomeSave3.Location = new Point(200, 229);
 			labelWelcomeSave3.Name = "labelWelcomeSave3";
 			labelWelcomeSave3.Size = new Size(90, 27);
 			labelWelcomeSave3.TabIndex = 3;
@@ -223,11 +224,11 @@ namespace Birds_Mangmeant
 			labelWelcomeSave2.AutoSize = true;
 			labelWelcomeSave2.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
 			labelWelcomeSave2.ForeColor = Color.White;
-			labelWelcomeSave2.Location = new Point(30, 194);
+			labelWelcomeSave2.Location = new Point(72, 197);
 			labelWelcomeSave2.Name = "labelWelcomeSave2";
-			labelWelcomeSave2.Size = new Size(260, 27);
+			labelWelcomeSave2.Size = new Size(218, 27);
 			labelWelcomeSave2.TabIndex = 2;
-			labelWelcomeSave2.Text = "Service Management";
+			labelWelcomeSave2.Text = "Bird Management";
 			// 
 			// labelWelcomeSave1
 			// 
@@ -253,6 +254,7 @@ namespace Birds_Mangmeant
 			// PanelRegister
 			// 
 			PanelRegister.BackColor = SystemColors.Control;
+			PanelRegister.Controls.Add(pictureBox10);
 			PanelRegister.Controls.Add(panelID);
 			PanelRegister.Controls.Add(panelRePassword);
 			PanelRegister.Controls.Add(panelUsername);
@@ -260,11 +262,21 @@ namespace Birds_Mangmeant
 			PanelRegister.Controls.Add(panelPassword);
 			PanelRegister.Controls.Add(panelEmail);
 			PanelRegister.Controls.Add(label1);
-			PanelRegister.Controls.Add(BtnReturnLogin);
 			PanelRegister.Location = new Point(0, 0);
 			PanelRegister.Name = "PanelRegister";
 			PanelRegister.Size = new Size(450, 530);
 			PanelRegister.TabIndex = 13;
+			// 
+			// pictureBox10
+			// 
+			pictureBox10.BorderStyle = BorderStyle.FixedSingle;
+			pictureBox10.Image = Properties.Resources.icons8_close_50;
+			pictureBox10.Location = new Point(397, 3);
+			pictureBox10.Name = "pictureBox10";
+			pictureBox10.Size = new Size(50, 50);
+			pictureBox10.TabIndex = 21;
+			pictureBox10.TabStop = false;
+			pictureBox10.Click += pictureBox10_Click;
 			// 
 			// panelID
 			// 
@@ -291,7 +303,7 @@ namespace Birds_Mangmeant
 			// 
 			// pictureBox9
 			// 
-			pictureBox9.Image = Properties.Resources.icons8_password_key_50;
+			pictureBox9.Image = Properties.Resources.icons8_checked_identification_documents_50;
 			pictureBox9.Location = new Point(15, 15);
 			pictureBox9.Name = "pictureBox9";
 			pictureBox9.Size = new Size(24, 24);
@@ -324,7 +336,7 @@ namespace Birds_Mangmeant
 			// 
 			// pictureBox8
 			// 
-			pictureBox8.Image = Properties.Resources.icons8_password_key_50;
+			pictureBox8.Image = Properties.Resources.icons8_password_key_50__1_;
 			pictureBox8.Location = new Point(15, 15);
 			pictureBox8.Name = "pictureBox8";
 			pictureBox8.Size = new Size(24, 24);
@@ -437,7 +449,7 @@ namespace Birds_Mangmeant
 			// 
 			// pictureBox2
 			// 
-			pictureBox2.Image = Properties.Resources.icons8_user_30;
+			pictureBox2.Image = Properties.Resources.icons8_mail_50;
 			pictureBox2.Location = new Point(15, 15);
 			pictureBox2.Name = "pictureBox2";
 			pictureBox2.Size = new Size(24, 24);
@@ -455,16 +467,6 @@ namespace Birds_Mangmeant
 			label1.Size = new Size(254, 27);
 			label1.TabIndex = 12;
 			label1.Text = "Create New Account";
-			// 
-			// BtnReturnLogin
-			// 
-			BtnReturnLogin.Location = new Point(381, 0);
-			BtnReturnLogin.Name = "BtnReturnLogin";
-			BtnReturnLogin.Size = new Size(69, 53);
-			BtnReturnLogin.TabIndex = 0;
-			BtnReturnLogin.Text = "hide";
-			BtnReturnLogin.UseVisualStyleBackColor = true;
-			BtnReturnLogin.Click += BtnReturnLogin_Click_1;
 			// 
 			// btnGoBackToLogin
 			// 
@@ -715,7 +717,7 @@ namespace Birds_Mangmeant
 			btnRegisterSave.TabIndex = 11;
 			btnRegisterSave.Text = "Register";
 			btnRegisterSave.UseVisualStyleBackColor = false;
-			btnRegisterSave.Click += btnRegisterSave_Click;
+			btnRegisterSave.Click += btnRegisterSave_Click_1;
 			// 
 			// linkLabel1Save
 			// 
@@ -886,6 +888,7 @@ namespace Birds_Mangmeant
 			((System.ComponentModel.ISupportInitialize)pictureBoxBirdSave).EndInit();
 			PanelRegister.ResumeLayout(false);
 			PanelRegister.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
 			panelID.ResumeLayout(false);
 			panelID.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
@@ -976,7 +979,6 @@ namespace Birds_Mangmeant
 		private Label label19;
 		private Button button10;
 		private Panel PanelRegister;
-		private Button BtnReturnLogin;
 		private Panel panelRePassword;
 		private TextBox txtRegRePassword;
 		private PictureBox pictureBox8;
@@ -995,5 +997,6 @@ namespace Birds_Mangmeant
 		private TextBox txtRegId;
 		private PictureBox pictureBox9;
 		private CheckBox checkBoxRememberMe;
+		private PictureBox pictureBox10;
 	}
 }

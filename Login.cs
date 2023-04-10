@@ -15,7 +15,7 @@ namespace Birds_Mangmeant
 	public partial class Login : Form
 	{
 
-		static string currentusername = "";
+		public static string currentusername { get => currentusername1; set => currentusername1 = value; }
 		static string currentuserpassword = "";
 
 
@@ -73,13 +73,9 @@ namespace Birds_Mangmeant
 		private void btnRegisterSave_Click(object sender, EventArgs e)
 		{
 
-
 			PanelRegister.Height = PanelLoginSave.Height;
 
 			PanelLoginSave.Location = new Point(300, 0);
-
-
-
 		}
 
 
@@ -392,7 +388,7 @@ namespace Birds_Mangmeant
 
 		public static string email;
 		public static string coins;
-
+		private static string currentusername1;
 
 		private void button3_Click(object sender, EventArgs e)
 		{
@@ -705,6 +701,23 @@ namespace Birds_Mangmeant
 					}
 				}
 			}
+		}
+
+		private void pictureBox10_Click(object sender, EventArgs e)
+		{
+			PanelRegister.Height = 0;
+
+			PanelLoginSave.Location = new Point(300, 0);
+		}
+
+		private void btnRegisterSave_Click_1(object sender, EventArgs e)
+		{
+
+
+			PanelRegister.Height = PanelLoginSave.Height;
+
+			PanelLoginSave.Location = new Point(300, 0);
+
 		}
 	}
 }
