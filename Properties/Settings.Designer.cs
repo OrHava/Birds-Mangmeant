@@ -58,5 +58,17 @@ namespace Birds_Mangmeant.Properties {
                 this["CheckBoxDef"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PictureProfile {
+            get {
+                return ((string)(this["PictureProfile"]));
+            }
+            set {
+                this["PictureProfile"] = value;
+            }
+        }
     }
 }
