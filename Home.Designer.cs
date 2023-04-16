@@ -39,6 +39,7 @@ namespace Birds_Mangmeant
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             toolStrip1 = new ToolStrip();
             toolStripSeparator1 = new ToolStripSeparator();
             ButtonHome = new ToolStripButton();
@@ -81,9 +82,9 @@ namespace Birds_Mangmeant
             labelId = new Label();
             labelUserName = new Label();
             panelHome = new Panel();
-            label11 = new Label();
             pictureBoxBirdFly = new PictureBox();
             panel7 = new Panel();
+            label11 = new Label();
             panel6 = new Panel();
             pictureBoxRefresh = new PictureBox();
             label14 = new Label();
@@ -125,6 +126,7 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
             panelHome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBirdFly).BeginInit();
+            panel7.SuspendLayout();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
@@ -567,7 +569,6 @@ namespace Birds_Mangmeant
             // panelHome
             // 
             panelHome.BackColor = Color.FromArgb(46, 51, 73);
-            panelHome.Controls.Add(label11);
             panelHome.Controls.Add(pictureBoxBirdFly);
             panelHome.Controls.Add(panel7);
             panelHome.Controls.Add(panel6);
@@ -576,21 +577,11 @@ namespace Birds_Mangmeant
             panelHome.Controls.Add(panel3);
             panelHome.Controls.Add(panel2);
             panelHome.Controls.Add(panel1);
-            panelHome.Location = new Point(192, 22);
+            panelHome.Location = new Point(189, 20);
             panelHome.Margin = new Padding(3, 2, 3, 2);
             panelHome.Name = "panelHome";
-            panelHome.Size = new Size(930, 545);
+            panelHome.Size = new Size(933, 547);
             panelHome.TabIndex = 0;
-            // 
-            // label11
-            // 
-            label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(422, 455);
-            label11.Name = "label11";
-            label11.Size = new Size(356, 68);
-            label11.TabIndex = 4;
-            label11.Text = "1: North America 2: Center America 3: South America 4: Eastren Europe 5: Western Europe 6: Australian Center 7: Australian City Beaches";
             // 
             // pictureBoxBirdFly
             // 
@@ -606,11 +597,22 @@ namespace Birds_Mangmeant
             // panel7
             // 
             panel7.BackColor = Color.FromArgb(37, 42, 64);
+            panel7.Controls.Add(label11);
             panel7.Location = new Point(419, 455);
             panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
             panel7.Size = new Size(359, 68);
             panel7.TabIndex = 8;
+            // 
+            // label11
+            // 
+            label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(3, 0);
+            label11.Name = "label11";
+            label11.Size = new Size(356, 68);
+            label11.TabIndex = 4;
+            label11.Text = "1: North America 2: Center America 3: South America 4: Eastren Europe 5: Western Europe 6: Australian Center 7: Australian City Beaches";
             // 
             // panel6
             // 
@@ -1012,6 +1014,7 @@ namespace Birds_Mangmeant
             Controls.Add(panelSearch);
             Controls.Add(panelAddCage);
             Controls.Add(toolStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "Home";
             StartPosition = FormStartPosition.CenterScreen;
@@ -1028,6 +1031,7 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
             panelHome.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBoxBirdFly).EndInit();
+            panel7.ResumeLayout(false);
             panel6.ResumeLayout(false);
             panel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).EndInit();

@@ -49,6 +49,7 @@ namespace Birds_Mangmeant
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             PanelWelcomeSave = new Panel();
             labelDevs3Save = new Label();
             labelDevs4Save = new Label();
@@ -276,7 +277,7 @@ namespace Birds_Mangmeant
             pictureBox10.Location = new Point(347, 2);
             pictureBox10.Margin = new Padding(3, 2, 3, 2);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(44, 38);
+            pictureBox10.Size = new Size(44, 46);
             pictureBox10.TabIndex = 21;
             pictureBox10.TabStop = false;
             pictureBox10.Click += pictureBox10_Click;
@@ -909,6 +910,7 @@ namespace Birds_Mangmeant
             Controls.Add(PanelLoginSave);
             Controls.Add(PanelWelcomeSave);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
