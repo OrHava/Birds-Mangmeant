@@ -74,6 +74,18 @@ namespace Birds_Mangmeant
             label1 = new Label();
             textBoxIndexNumber = new TextBox();
             panelHome = new Panel();
+            pictureBoxBirdFly = new PictureBox();
+            panel7 = new Panel();
+            label11 = new Label();
+            panel6 = new Panel();
+            pictureBoxRefresh = new PictureBox();
+            label14 = new Label();
+            pictureBox6 = new PictureBox();
+            plotSurface2d1 = new NPlot.Windows.PlotSurface2D();
+            panel4 = new Panel();
+            pictureBox5 = new PictureBox();
+            label8 = new Label();
+            labelAmountUsers = new Label();
             panel3 = new Panel();
             textBoxListOfChores = new TextBox();
             pictureBoxSaveList = new PictureBox();
@@ -88,6 +100,9 @@ namespace Birds_Mangmeant
             label12 = new Label();
             labelTypeOfBirds = new Label();
             panelUser = new Panel();
+            labelBirdAnim = new Label();
+            pictureBoxAnim = new PictureBox();
+            labelEmail = new Label();
             pictureBoxProfile = new PictureBox();
             labelId = new Label();
             labelUserName = new Label();
@@ -96,11 +111,23 @@ namespace Birds_Mangmeant
             label10 = new Label();
             panelSearch = new Panel();
             panelHelp = new Panel();
-            label11 = new Label();
+            dataGridViewQA = new DataGridView();
+            panel5 = new Panel();
+            textBoxQuestion = new TextBox();
+            pictureBoxSubmitQuestion = new PictureBox();
+            pictureBox7 = new PictureBox();
+            labelSubmitHelp = new Label();
             toolStrip1.SuspendLayout();
             PanelAddBird.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelHome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBirdFly).BeginInit();
+            panel7.SuspendLayout();
+            panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSaveList).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -109,13 +136,19 @@ namespace Birds_Mangmeant
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panelUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAnim).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
             panelAddCage.SuspendLayout();
             panelHelp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQA).BeginInit();
+            panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
             // 
+            toolStrip1.BackColor = Color.FromArgb(46, 51, 73);
             toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, ButtonHome, toolStripSeparator5, ButtonAddBird, toolStripSeparator6, ButtonAddCage, toolStripSeparator2, ButtonSearch, toolStripSeparator3, ButtonHelp, toolStripSeparator4, ButtonSignOut });
             toolStrip1.Location = new Point(0, 0);
@@ -131,7 +164,8 @@ namespace Birds_Mangmeant
             // 
             // ButtonHome
             // 
-            ButtonHome.Image = Properties.Resources.icons8_home_page_48;
+            ButtonHome.ForeColor = Color.White;
+            ButtonHome.Image = Properties.Resources.icons8_home_24;
             ButtonHome.ImageTransparentColor = Color.Magenta;
             ButtonHome.Name = "ButtonHome";
             ButtonHome.Size = new Size(74, 24);
@@ -145,7 +179,8 @@ namespace Birds_Mangmeant
             // 
             // ButtonAddBird
             // 
-            ButtonAddBird.Image = Properties.Resources.icons8_puffin_bird_50;
+            ButtonAddBird.ForeColor = Color.White;
+            ButtonAddBird.Image = Properties.Resources.icons8_bird_24;
             ButtonAddBird.ImageTransparentColor = Color.Magenta;
             ButtonAddBird.Name = "ButtonAddBird";
             ButtonAddBird.Size = new Size(92, 24);
@@ -159,7 +194,8 @@ namespace Birds_Mangmeant
             // 
             // ButtonAddCage
             // 
-            ButtonAddCage.Image = Properties.Resources.icons8_cage_of_a_bird_50;
+            ButtonAddCage.ForeColor = Color.White;
+            ButtonAddCage.Image = Properties.Resources.icons8_cage_of_a_bird_24;
             ButtonAddCage.ImageTransparentColor = Color.Magenta;
             ButtonAddCage.Name = "ButtonAddCage";
             ButtonAddCage.Size = new Size(99, 24);
@@ -173,7 +209,8 @@ namespace Birds_Mangmeant
             // 
             // ButtonSearch
             // 
-            ButtonSearch.Image = Properties.Resources.icons8_search_50;
+            ButtonSearch.ForeColor = Color.White;
+            ButtonSearch.Image = Properties.Resources.icons8_search_24;
             ButtonSearch.ImageTransparentColor = Color.Magenta;
             ButtonSearch.Name = "ButtonSearch";
             ButtonSearch.Size = new Size(77, 24);
@@ -187,7 +224,8 @@ namespace Birds_Mangmeant
             // 
             // ButtonHelp
             // 
-            ButtonHelp.Image = Properties.Resources.icons8_help_60;
+            ButtonHelp.ForeColor = Color.White;
+            ButtonHelp.Image = Properties.Resources.icons8_help_24;
             ButtonHelp.ImageTransparentColor = Color.Magenta;
             ButtonHelp.Name = "ButtonHelp";
             ButtonHelp.Size = new Size(65, 24);
@@ -201,7 +239,8 @@ namespace Birds_Mangmeant
             // 
             // ButtonSignOut
             // 
-            ButtonSignOut.Image = Properties.Resources.icons8_enter_60;
+            ButtonSignOut.ForeColor = Color.White;
+            ButtonSignOut.Image = Properties.Resources.icons8_logout_rounded_24;
             ButtonSignOut.ImageTransparentColor = Color.Magenta;
             ButtonSignOut.Name = "ButtonSignOut";
             ButtonSignOut.Size = new Size(90, 24);
@@ -210,6 +249,7 @@ namespace Birds_Mangmeant
             // 
             // PanelAddBird
             // 
+            PanelAddBird.BackColor = Color.FromArgb(46, 51, 73);
             PanelAddBird.Controls.Add(comboBoxSubspecies);
             PanelAddBird.Controls.Add(comboBoxBreed);
             PanelAddBird.Controls.Add(listViewBirds);
@@ -229,9 +269,10 @@ namespace Birds_Mangmeant
             PanelAddBird.Controls.Add(label2);
             PanelAddBird.Controls.Add(label1);
             PanelAddBird.Controls.Add(textBoxIndexNumber);
-            PanelAddBird.Location = new Point(0, 30);
+            PanelAddBird.ForeColor = Color.Cornsilk;
+            PanelAddBird.Location = new Point(0, 26);
             PanelAddBird.Name = "PanelAddBird";
-            PanelAddBird.Size = new Size(1282, 724);
+            PanelAddBird.Size = new Size(1282, 733);
             PanelAddBird.TabIndex = 2;
             // 
             // comboBoxSubspecies
@@ -258,7 +299,9 @@ namespace Birds_Mangmeant
             // 
             // listViewBirds
             // 
+            listViewBirds.BackColor = Color.FromArgb(37, 42, 64);
             listViewBirds.BorderStyle = BorderStyle.None;
+            listViewBirds.ForeColor = Color.White;
             listViewBirds.Location = new Point(633, 49);
             listViewBirds.Name = "listViewBirds";
             listViewBirds.Size = new Size(585, 398);
@@ -266,6 +309,7 @@ namespace Birds_Mangmeant
             listViewBirds.UseCompatibleStateImageBehavior = false;
             listViewBirds.View = View.SmallIcon;
             listViewBirds.SelectedIndexChanged += listViewBirds_SelectedIndexChanged;
+            listViewBirds.MouseDoubleClick += listViewBirds_MouseDoubleClick;
             // 
             // checkBoxFemale
             // 
@@ -304,10 +348,11 @@ namespace Birds_Mangmeant
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.icons8_add_new_100;
-            pictureBox1.Location = new Point(201, 403);
+            pictureBox1.Image = Properties.Resources.icons8_add_new_50;
+            pictureBox1.Location = new Point(225, 396);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(103, 99);
+            pictureBox1.Size = new Size(108, 93);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 19;
             pictureBox1.TabStop = false;
             pictureBox1.Click += pictureBox1_Click;
@@ -427,14 +472,158 @@ namespace Birds_Mangmeant
             // panelHome
             // 
             panelHome.BackColor = Color.FromArgb(46, 51, 73);
+            panelHome.Controls.Add(pictureBoxBirdFly);
+            panelHome.Controls.Add(panel7);
+            panelHome.Controls.Add(panel6);
+            panelHome.Controls.Add(plotSurface2d1);
+            panelHome.Controls.Add(panel4);
             panelHome.Controls.Add(panel3);
             panelHome.Controls.Add(panel2);
             panelHome.Controls.Add(panel1);
             panelHome.Controls.Add(panelUser);
-            panelHome.Location = new Point(0, 30);
+            panelHome.Location = new Point(0, 26);
             panelHome.Name = "panelHome";
-            panelHome.Size = new Size(1282, 727);
+            panelHome.Size = new Size(1282, 736);
             panelHome.TabIndex = 0;
+            // 
+            // pictureBoxBirdFly
+            // 
+            pictureBoxBirdFly.Image = Properties.Resources.giphy;
+            pictureBoxBirdFly.Location = new Point(1183, 23);
+            pictureBoxBirdFly.Name = "pictureBoxBirdFly";
+            pictureBoxBirdFly.Size = new Size(54, 39);
+            pictureBoxBirdFly.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxBirdFly.TabIndex = 9;
+            pictureBoxBirdFly.TabStop = false;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(37, 42, 64);
+            panel7.Controls.Add(label11);
+            panel7.Location = new Point(762, 597);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(410, 91);
+            panel7.TabIndex = 8;
+            // 
+            // label11
+            // 
+            label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.White;
+            label11.Location = new Point(3, 9);
+            label11.Name = "label11";
+            label11.Size = new Size(407, 91);
+            label11.TabIndex = 4;
+            label11.Text = "1: North America 2: Center America 3: South America 4: Eastren Europe 5: Western Europe 6: Australian Center 7: Australian City Beaches";
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(37, 42, 64);
+            panel6.Controls.Add(pictureBoxRefresh);
+            panel6.Controls.Add(label14);
+            panel6.Controls.Add(pictureBox6);
+            panel6.Location = new Point(762, 223);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(410, 44);
+            panel6.TabIndex = 7;
+            // 
+            // pictureBoxRefresh
+            // 
+            pictureBoxRefresh.Image = Properties.Resources.icons8_refresh_24;
+            pictureBoxRefresh.Location = new Point(0, 0);
+            pictureBoxRefresh.Name = "pictureBoxRefresh";
+            pictureBoxRefresh.Size = new Size(35, 33);
+            pictureBoxRefresh.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxRefresh.TabIndex = 10;
+            pictureBoxRefresh.TabStop = false;
+            pictureBoxRefresh.Click += pictureBoxRefresh_Click;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.ForeColor = Color.White;
+            label14.Location = new Point(103, 12);
+            label14.Name = "label14";
+            label14.Size = new Size(207, 20);
+            label14.TabIndex = 9;
+            label14.Text = "Graph of Breed Amount";
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = Properties.Resources.icons8_combo_chart_24;
+            pictureBox6.Location = new Point(372, 3);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(35, 33);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 9;
+            pictureBox6.TabStop = false;
+            // 
+            // plotSurface2d1
+            // 
+            plotSurface2d1.AutoScaleAutoGeneratedAxes = false;
+            plotSurface2d1.AutoScaleTitle = false;
+            plotSurface2d1.BackColor = Color.FromArgb(37, 42, 64);
+            plotSurface2d1.DateTimeToolTip = false;
+            plotSurface2d1.Legend = null;
+            plotSurface2d1.LegendZOrder = -1;
+            plotSurface2d1.Location = new Point(762, 269);
+            plotSurface2d1.Name = "plotSurface2d1";
+            plotSurface2d1.RightMenu = null;
+            plotSurface2d1.ShowCoordinates = true;
+            plotSurface2d1.Size = new Size(410, 340);
+            plotSurface2d1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+            plotSurface2d1.TabIndex = 6;
+            plotSurface2d1.Text = "plotSurface2d1";
+            plotSurface2d1.Title = "";
+            plotSurface2d1.TitleFont = new Font("Arial", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
+            plotSurface2d1.XAxis1 = null;
+            plotSurface2d1.XAxis2 = null;
+            plotSurface2d1.YAxis1 = null;
+            plotSurface2d1.YAxis2 = null;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.FromArgb(37, 42, 64);
+            panel4.Controls.Add(pictureBox5);
+            panel4.Controls.Add(label8);
+            panel4.Controls.Add(labelAmountUsers);
+            panel4.Location = new Point(968, 74);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(250, 125);
+            panel4.TabIndex = 5;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = Properties.Resources.icons8_users_64;
+            pictureBox5.Location = new Point(215, 1);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(35, 33);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 4;
+            pictureBox5.TabStop = false;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.White;
+            label8.Location = new Point(45, 19);
+            label8.Name = "label8";
+            label8.Size = new Size(150, 20);
+            label8.TabIndex = 3;
+            label8.Text = "Amount of Users";
+            // 
+            // labelAmountUsers
+            // 
+            labelAmountUsers.Dock = DockStyle.Fill;
+            labelAmountUsers.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
+            labelAmountUsers.ForeColor = Color.White;
+            labelAmountUsers.Location = new Point(0, 0);
+            labelAmountUsers.Name = "labelAmountUsers";
+            labelAmountUsers.Size = new Size(250, 125);
+            labelAmountUsers.TabIndex = 2;
+            labelAmountUsers.Text = "Number";
+            labelAmountUsers.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
@@ -443,7 +632,7 @@ namespace Birds_Mangmeant
             panel3.Controls.Add(pictureBoxSaveList);
             panel3.Controls.Add(pictureBox4);
             panel3.Controls.Add(label15);
-            panel3.Location = new Point(339, 249);
+            panel3.Location = new Point(339, 223);
             panel3.Name = "panel3";
             panel3.Size = new Size(250, 448);
             panel3.TabIndex = 4;
@@ -581,6 +770,9 @@ namespace Birds_Mangmeant
             // panelUser
             // 
             panelUser.BackColor = Color.FromArgb(24, 30, 54);
+            panelUser.Controls.Add(labelBirdAnim);
+            panelUser.Controls.Add(pictureBoxAnim);
+            panelUser.Controls.Add(labelEmail);
             panelUser.Controls.Add(pictureBoxProfile);
             panelUser.Controls.Add(labelId);
             panelUser.Controls.Add(labelUserName);
@@ -589,10 +781,42 @@ namespace Birds_Mangmeant
             panelUser.Size = new Size(233, 757);
             panelUser.TabIndex = 1;
             // 
+            // labelBirdAnim
+            // 
+            labelBirdAnim.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            labelBirdAnim.ForeColor = Color.White;
+            labelBirdAnim.Location = new Point(3, 336);
+            labelBirdAnim.Name = "labelBirdAnim";
+            labelBirdAnim.Size = new Size(227, 57);
+            labelBirdAnim.TabIndex = 5;
+            labelBirdAnim.Text = "Birds";
+            // 
+            // pictureBoxAnim
+            // 
+            pictureBoxAnim.BackColor = Color.FromArgb(46, 51, 73);
+            pictureBoxAnim.Location = new Point(17, 396);
+            pictureBoxAnim.Name = "pictureBoxAnim";
+            pictureBoxAnim.Size = new Size(195, 215);
+            pictureBoxAnim.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxAnim.TabIndex = 4;
+            pictureBoxAnim.TabStop = false;
+            // 
+            // labelEmail
+            // 
+            labelEmail.AutoSize = true;
+            labelEmail.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold, GraphicsUnit.Point);
+            labelEmail.ForeColor = Color.White;
+            labelEmail.Location = new Point(3, 238);
+            labelEmail.Name = "labelEmail";
+            labelEmail.Size = new Size(83, 16);
+            labelEmail.TabIndex = 3;
+            labelEmail.Text = "User Email";
+            labelEmail.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // pictureBoxProfile
             // 
             pictureBoxProfile.Image = Properties.Resources.icons8_user_67;
-            pictureBoxProfile.Location = new Point(45, 49);
+            pictureBoxProfile.Location = new Point(38, 49);
             pictureBoxProfile.Name = "pictureBoxProfile";
             pictureBoxProfile.Size = new Size(132, 111);
             pictureBoxProfile.SizeMode = PictureBoxSizeMode.Zoom;
@@ -603,11 +827,11 @@ namespace Birds_Mangmeant
             // labelId
             // 
             labelId.AutoSize = true;
-            labelId.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            labelId.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold, GraphicsUnit.Point);
             labelId.ForeColor = Color.White;
-            labelId.Location = new Point(61, 215);
+            labelId.Location = new Point(3, 215);
             labelId.Name = "labelId";
-            labelId.Size = new Size(74, 20);
+            labelId.Size = new Size(59, 16);
             labelId.TabIndex = 2;
             labelId.Text = "User ID";
             labelId.TextAlign = ContentAlignment.MiddleCenter;
@@ -617,7 +841,7 @@ namespace Birds_Mangmeant
             labelUserName.AutoSize = true;
             labelUserName.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             labelUserName.ForeColor = Color.FromArgb(0, 156, 249);
-            labelUserName.Location = new Point(32, 184);
+            labelUserName.Location = new Point(0, 178);
             labelUserName.Name = "labelUserName";
             labelUserName.Size = new Size(103, 20);
             labelUserName.TabIndex = 1;
@@ -626,11 +850,12 @@ namespace Birds_Mangmeant
             // 
             // panelAddCage
             // 
+            panelAddCage.BackColor = Color.FromArgb(46, 51, 73);
             panelAddCage.Controls.Add(textBox1);
             panelAddCage.Controls.Add(label10);
-            panelAddCage.Location = new Point(0, 30);
+            panelAddCage.Location = new Point(0, 26);
             panelAddCage.Name = "panelAddCage";
-            panelAddCage.Size = new Size(1282, 694);
+            panelAddCage.Size = new Size(1282, 727);
             panelAddCage.TabIndex = 1;
             // 
             // textBox1
@@ -651,27 +876,91 @@ namespace Birds_Mangmeant
             // 
             // panelSearch
             // 
-            panelSearch.Location = new Point(0, 30);
+            panelSearch.BackColor = Color.FromArgb(46, 51, 73);
+            panelSearch.Location = new Point(0, 26);
             panelSearch.Name = "panelSearch";
-            panelSearch.Size = new Size(1282, 691);
+            panelSearch.Size = new Size(1282, 730);
             panelSearch.TabIndex = 2;
             // 
             // panelHelp
             // 
-            panelHelp.Controls.Add(label11);
-            panelHelp.Location = new Point(0, 30);
+            panelHelp.BackColor = Color.FromArgb(46, 51, 73);
+            panelHelp.Controls.Add(dataGridViewQA);
+            panelHelp.Controls.Add(panel5);
+            panelHelp.Location = new Point(0, 26);
             panelHelp.Name = "panelHelp";
-            panelHelp.Size = new Size(1282, 697);
+            panelHelp.Size = new Size(1282, 733);
             panelHelp.TabIndex = 1;
             // 
-            // label11
+            // dataGridViewQA
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(142, 87);
-            label11.Name = "label11";
-            label11.Size = new Size(79, 20);
-            label11.TabIndex = 0;
-            label11.Text = "this is help";
+            dataGridViewQA.AllowUserToAddRows = false;
+            dataGridViewQA.AllowUserToDeleteRows = false;
+            dataGridViewQA.BackgroundColor = Color.FromArgb(37, 42, 64);
+            dataGridViewQA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewQA.Location = new Point(471, 0);
+            dataGridViewQA.Name = "dataGridViewQA";
+            dataGridViewQA.ReadOnly = true;
+            dataGridViewQA.RowHeadersWidth = 51;
+            dataGridViewQA.RowTemplate.Height = 29;
+            dataGridViewQA.Size = new Size(811, 727);
+            dataGridViewQA.TabIndex = 6;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(37, 42, 64);
+            panel5.Controls.Add(textBoxQuestion);
+            panel5.Controls.Add(pictureBoxSubmitQuestion);
+            panel5.Controls.Add(pictureBox7);
+            panel5.Controls.Add(labelSubmitHelp);
+            panel5.Location = new Point(0, 3);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(468, 694);
+            panel5.TabIndex = 5;
+            // 
+            // textBoxQuestion
+            // 
+            textBoxQuestion.BackColor = Color.FromArgb(46, 51, 73);
+            textBoxQuestion.BorderStyle = BorderStyle.None;
+            textBoxQuestion.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxQuestion.ForeColor = Color.White;
+            textBoxQuestion.Location = new Point(17, 115);
+            textBoxQuestion.Multiline = true;
+            textBoxQuestion.Name = "textBoxQuestion";
+            textBoxQuestion.Size = new Size(427, 465);
+            textBoxQuestion.TabIndex = 7;
+            // 
+            // pictureBoxSubmitQuestion
+            // 
+            pictureBoxSubmitQuestion.Image = Properties.Resources.icons8_submit_58;
+            pictureBoxSubmitQuestion.Location = new Point(181, 603);
+            pictureBoxSubmitQuestion.Name = "pictureBoxSubmitQuestion";
+            pictureBoxSubmitQuestion.Size = new Size(49, 39);
+            pictureBoxSubmitQuestion.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxSubmitQuestion.TabIndex = 5;
+            pictureBoxSubmitQuestion.TabStop = false;
+            pictureBoxSubmitQuestion.Click += pictureBoxSubmitQuestion_Click;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = Properties.Resources.icons8_help_50;
+            pictureBox7.Location = new Point(430, 3);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(35, 33);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 6;
+            pictureBox7.TabStop = false;
+            // 
+            // labelSubmitHelp
+            // 
+            labelSubmitHelp.AutoSize = true;
+            labelSubmitHelp.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            labelSubmitHelp.ForeColor = Color.White;
+            labelSubmitHelp.Location = new Point(142, 70);
+            labelSubmitHelp.Name = "labelSubmitHelp";
+            labelSubmitHelp.Size = new Size(154, 20);
+            labelSubmitHelp.TabIndex = 3;
+            labelSubmitHelp.Text = "Submit Question:";
             // 
             // Home
             // 
@@ -679,9 +968,9 @@ namespace Birds_Mangmeant
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1282, 753);
             Controls.Add(panelHome);
+            Controls.Add(PanelAddBird);
             Controls.Add(panelHelp);
             Controls.Add(panelSearch);
-            Controls.Add(PanelAddBird);
             Controls.Add(panelAddCage);
             Controls.Add(toolStrip1);
             Name = "Home";
@@ -694,6 +983,15 @@ namespace Birds_Mangmeant
             PanelAddBird.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelHome.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBirdFly).EndInit();
+            panel7.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSaveList).EndInit();
@@ -706,18 +1004,23 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panelUser.ResumeLayout(false);
             panelUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAnim).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
             panelAddCage.ResumeLayout(false);
             panelAddCage.PerformLayout();
             panelHelp.ResumeLayout(false);
-            panelHelp.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQA).EndInit();
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+
         private ToolStrip toolStrip1;
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton ButtonHome;
@@ -758,7 +1061,6 @@ namespace Birds_Mangmeant
         private TextBox textBox1;
         private Panel panelSearch;
         private Panel panelHelp;
-        private Label label11;
         private Panel panelUser;
         private Label labelUserName;
         private PictureBox pictureBoxProfile;
@@ -776,5 +1078,26 @@ namespace Birds_Mangmeant
         private PictureBox pictureBox4;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private Panel panel4;
+        private PictureBox pictureBox5;
+        private Label label8;
+        private Label labelAmountUsers;
+        private Label labelEmail;
+        private Panel panel5;
+        private TextBox textBoxQuestion;
+        private PictureBox pictureBoxSubmitQuestion;
+        private PictureBox pictureBox7;
+        private Label labelSubmitHelp;
+        private DataGridView dataGridViewQA;
+        private NPlot.Windows.PlotSurface2D plotSurface2d1;
+        private Panel panel7;
+        private Label label11;
+        private Panel panel6;
+        private Label label14;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBoxRefresh;
+        private PictureBox pictureBoxAnim;
+        private Label labelBirdAnim;
+        private PictureBox pictureBoxBirdFly;
     }
 }

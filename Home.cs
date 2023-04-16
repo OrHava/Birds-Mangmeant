@@ -19,19 +19,42 @@ using Image = System.Drawing.Image;
 using FireSharp.Response;
 using System.Text.RegularExpressions;
 using System.Configuration;
+using System.Runtime.Intrinsics.X86;
+using Google.Apis.Util;
+using System.Windows.Forms;
+
+using NPlot;
+using RestSharp.Extensions;
+using System.Collections;
+using System.Timers;
+using System.Diagnostics;
 
 namespace Birds_Mangmeant
 {
     public partial class Home : Form
     {
         List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdList = new List<Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
-
-
+        private System.Timers.Timer timer = new System.Timers.Timer();
+        private int frameIndex = 0;
 
         public Home()
         {
             InitializeComponent();
-            loadBirdsList();
+
+
+
+
+
+
+
+            // start the timer for birds image
+            timer.Interval = 1000; // update every 100ms
+            timer.Elapsed += Timer_Elapsed;
+            timer.AutoReset = true;
+            timer.Enabled = true;
+
+
+
 
             pictureBoxProfile.ImageLocation = Properties.Settings.Default.PictureProfile;
 
@@ -40,27 +63,176 @@ namespace Birds_Mangmeant
             {
                 labelUserName.Text = "User Name: " + Login.currentusername;
             }
-            if (amountofBirds != null)
-            {
-                labelTypeOfBirds.Text = amountofBirds().ToString();
-            }
 
-            if (userId() != null)
-            {
-                labelId.Text = "User ID: " + userId();
-            }
-            if (getChores() != null)
-            {
-                textBoxListOfChores.Text = getChores();
-            }
-
-
-
+            labelTypeOfBirds.Text = amountofBirds().ToString();
+            labelId.Text = "User ID: " + userId();
+            labelEmail.Text = "User Email: " + userEmail();
+            textBoxListOfChores.Text = getChores();
+            labelAmountUsers.Text = amountofUsers().ToString();
+            loadQAList();
+            createGraph();
 
 
 
         }
 
+
+
+
+
+        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            // increment the frame index and wrap around
+            frameIndex = (frameIndex + 1) % 7;
+
+            // get the image and bird name for the current frame index
+            (string birdName, Image image) = GetFrame(frameIndex);
+
+            // update the image and bird name in the picture box and label
+            pictureBoxAnim.Image = image;
+            labelBirdAnim.Text = "Bird Name: " + birdName;
+        }
+
+        // get the image and bird name for the given frame index
+        private (string, Image) GetFrame(int index)
+        {
+            Image image = null;
+            string birdName = "";
+
+            switch (index)
+            {
+                case 0:
+                    image = Properties.Resources.CentrelAmerica;
+                    birdName = "Central America";
+                    break;
+                case 1:
+                    image = Properties.Resources.NorthAmerica;
+                    birdName = "North America";
+                    break;
+                case 2:
+                    image = Properties.Resources.South_America;
+                    birdName = "South America";
+                    break;
+                case 3:
+                    image = Properties.Resources.Eastren_Europe;
+                    birdName = "Eastern Europe";
+                    break;
+                case 4:
+                    image = Properties.Resources.Western_Europe;
+                    birdName = "Western Europe";
+                    break;
+                case 5:
+                    image = Properties.Resources.Australian_Center;
+                    birdName = "Australian Center";
+                    break;
+                case 6:
+                    image = Properties.Resources.Australian_City_Beachs;
+                    birdName = "Australian City Beaches";
+                    break;
+                default:
+                    break;
+            }
+
+            return (birdName, image);
+        }
+
+
+
+
+        public void createGraph()
+        {
+
+            plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
+            plotSurface2d1.Enabled = false;
+
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check Your connection!");
+            }
+
+
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
+            Dictionary<string, Bird> data = response2.ResultAs<Dictionary<string, Bird>>();
+
+
+            if (data != null)
+            {
+                List<Bird> birds = data.Values.ToList();
+
+                int northAmericaCount = 0;
+                int centerAmericaCount = 0;
+                int southAmericaCount = 0;
+                int easternEuropeCount = 0;
+                int westernEuropeCount = 0;
+                int australianCenterCount = 0;
+                int australianCityBeachesCount = 0;
+
+                foreach (var bird in birds)
+                {
+
+
+                    if (bird.Subspecies == "North America")
+                    {
+                        northAmericaCount++;
+                    }
+                    else if (bird.Subspecies == "Center America")
+                    {
+                        centerAmericaCount++;
+                    }
+                    else if (bird.Subspecies == "South America")
+                    {
+                        southAmericaCount++;
+                    }
+                    else if (bird.Subspecies == "Eastren Europe")
+                    {
+                        easternEuropeCount++;
+                    }
+                    else if (bird.Subspecies == "Western Europe")
+                    {
+                        westernEuropeCount++;
+                    }
+                    else if (bird.Subspecies == "Australian Center")
+                    {
+                        australianCenterCount++;
+                    }
+                    else if (bird.Subspecies == "Australian City Beaches")
+                    {
+                        australianCityBeachesCount++;
+                    }
+
+                }
+
+
+
+                string[] birdBreeds2 = { "1", "2", "3", "4", "5", "6", "7" };
+                int[] birdAmounts = { northAmericaCount, centerAmericaCount, southAmericaCount, easternEuropeCount, westernEuropeCount, australianCenterCount, australianCityBeachesCount };
+                int[] birdAmounts2 = { 1, 2, 3, 4, 5, 6, 7 };
+
+
+
+
+                LinePlot birdPlot = new LinePlot();
+
+                birdPlot.AbscissaData = birdBreeds2;
+                birdPlot.OrdinateData = birdAmounts;
+                birdPlot.Pen = new Pen(Color.FromArgb(37, 42, 64), 5);
+
+
+                plotSurface2d1.Clear();
+                plotSurface2d1.Add(birdPlot);
+                plotSurface2d1.XAxis1.Color = Color.White;
+                plotSurface2d1.YAxis1.Color = Color.White;
+
+                plotSurface2d1.Refresh();
+            }
+
+
+        }
 
         public string userId()
         {
@@ -82,6 +254,28 @@ namespace Birds_Mangmeant
 
         }
 
+        public string userEmail()
+        {
+
+            string Email = "";
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check Your connection!");
+            }
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Email");
+
+
+            Email = response2.ResultAs<String>();
+            return Email;
+
+
+        }
+
         public string getChores()
         {
 
@@ -95,9 +289,19 @@ namespace Birds_Mangmeant
                 MessageBox.Show(ex.Message + "Check Your connection!");
             }
 
-            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Chores");
 
-            chores = response2.ResultAs<String>();
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Chores");
+            if (response2 != null && response2.ResultAs<string>() != null)
+            {
+
+
+                // rest of the code
+                chores = response2.ResultAs<String>();
+            }
+
+
+
+
             return chores;
 
         }
@@ -114,12 +318,149 @@ namespace Birds_Mangmeant
             }
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
+            if (response2 != null && response2.ResultAs<Dictionary<string, object>>() != null)
+            {
 
-            childCount = response2.ResultAs<Dictionary<string, object>>().Count;
+
+                // rest of the code
+                childCount = response2.ResultAs<Dictionary<string, object>>().Count;
+            }
+
+
+
+
             return childCount;
 
 
 
+        }
+
+        public int amountofUsers()
+        {
+            int childCount = 0;
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check Your connection!");
+            }
+            FirebaseResponse response2 = client.Get("users/");
+            if (response2 != null && response2.ResultAs<Dictionary<string, object>>() != null)
+            {
+
+                // rest of the code
+                childCount = response2.ResultAs<Dictionary<string, object>>().Count;
+            }
+
+
+
+
+            return childCount;
+
+
+
+        }
+
+
+        private void loadQAList()
+        {
+
+
+
+            dataGridViewQA.AutoGenerateColumns = false;
+            dataGridViewQA.RowHeadersVisible = false;
+            dataGridViewQA.MultiSelect = false;
+            dataGridViewQA.ColumnHeadersVisible = false;
+            dataGridViewQA.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewQA.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridViewQA.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataGridViewQA.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Questions",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                FillWeight = 25
+            });
+            dataGridViewQA.Columns.Add(new DataGridViewTextBoxColumn()
+            {
+                HeaderText = "Answers",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+                FillWeight = 75
+            });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 1: What are Gouldian birds?",
+                             "Answer 1: Gouldian birds, also known as Gouldian finches, are a species of small, brightly colored birds native to Australia." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 2: What are the different breeds of Gouldian birds?",
+                             "Answer 2: There are three recognized breeds of Gouldian birds: black-headed, red-headed, and yellow-headed." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 3: What is the difference between the three breeds of Gouldian birds?",
+                             "Answer 3: The primary difference between the three breeds of Gouldian birds is the color of their head feathers. Black-headed Gouldian birds have a black head, red-headed Gouldian birds have a red head, and yellow-headed Gouldian birds have a yellow head." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 4: What is the average lifespan of a Gouldian bird?",
+                             "Answer 4: The average lifespan of a Gouldian bird is approximately 6-8 years." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 5: What is the ideal diet for Gouldian birds?",
+                             "Answer 5: The ideal diet for Gouldian birds consists of a high-quality seed mix, fresh fruits and vegetables, and a source of protein such as boiled eggs or mealworms." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 6: How many eggs does a Gouldian bird lay at a time?",
+                             "Answer 6:  Gouldian birds typically lay 4-6 eggs in each clutch." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 7: What is the incubation period for Gouldian bird eggs?",
+                             "Answer 7: The incubation period for Gouldian bird eggs is approximately 14 days." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 8: Can Gouldian birds be kept in cages with other bird species?",
+                             "Answer 8: Gouldian birds can be kept in cages with other bird species as long as they are of similar size and temperament." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 9: What is the best type of cage for Gouldian birds?",
+                             "Answer 9: he best type of cage for Gouldian birds is a large, spacious cage that allows them to fly and exercise." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 10: How can you tell the gender of a Gouldian bird?",
+                             "Answer 10: The gender of a Gouldian bird can be determined by the color of their beak. Males have a darker, more vibrant color than females." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 11: What is the name of the program for managing Gouldian birds?",
+                             "Answer 11: The name of the program for managing Gouldian birds is Birds Mangmeant." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 12: What are the main features of the Gouldian Manager program?",
+                             "Answer 12: The main features of the Gouldian Manager program include the ability to add and manage information about Gouldian birds and their cages, track breeding cycles and clutch information, and generate reports and analytics." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 13: s the Gouldian Manager program easy to use?",
+                             "Answer 13: Yes, the Gouldian Manager program is designed to be user-friendly and easy to navigate." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 14: s the Gouldian Manager program available for both Windows and Mac operating systems?",
+                             "Answer 14: No, the Gouldian Manager program is available for Windows only and not to Mac operating systems." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 15: Can the Gouldian Manager program be used on mobile devices?",
+                             "Answer 15: No, the Gouldian Manager program is not currently available for use on mobile devices." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 16: Is the Gouldian Manager program free to download and use?",
+                             "Answer 16: No, the Gouldian Manager program is not free. It is available for purchase on the developer's website." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 17: Can multiple users access the Gouldian Manager program at the same time?",
+                             "Answer 17: Yes, the Gouldian Manager program supports multiple user accounts and can be accessed by multiple users simultaneously." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 18: Is the Gouldian Manager program customizable?",
+                             "Answer 18: Yes, the Gouldian Manager program is highly customizable and can be tailored to meet the specific needs of the user." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 19: Is technical support available for the Gouldian Manager program?",
+                             "Answer 19: Yes, technical support is available for the Gouldian Manager program through the developer's website and help form." });
+
+            dataGridViewQA.Rows.Add(new String[] { "Question 20: Can the Gouldian Manager program be integrated with other software programs?",
+                             "Answer 20: No, as of now." });
+
+
+            foreach (DataGridViewRow row in dataGridViewQA.Rows)
+            {
+                foreach (DataGridViewColumn col in dataGridViewQA.Columns)
+                {
+                    dataGridViewQA.Rows[row.Index].Cells[col.Index].Style.BackColor = Color.FromArgb(37, 42, 64);
+                    dataGridViewQA.Rows[row.Index].Cells[col.Index].Style.ForeColor = Color.White;
+
+                }
+            }
         }
 
 
@@ -159,7 +500,7 @@ namespace Birds_Mangmeant
 
                         get.Value.IndexNumber,
                         get.Value.Breed_of_Bird,
-                        get.Value.Subspecies,
+                        item3: get.Value.Subspecies,
                         get.Value.HatchDate,
                         get.Value.IndexCage,
                         get.Value.IndexMother,
@@ -468,6 +809,8 @@ namespace Birds_Mangmeant
 
 
             }
+
+
         }
 
         private void ButtonAddBird_Click(object sender, EventArgs e)
@@ -490,6 +833,8 @@ namespace Birds_Mangmeant
             PanelAddBird.Visible = true;
             PanelAddBird.BringToFront();
             PanelAddBird.Enabled = true;
+            loadBirdsList();
+
 
 
         }
@@ -520,6 +865,8 @@ namespace Birds_Mangmeant
             panelHome.Show();
             panelHome.Visible = true;
             panelHome.BringToFront();
+            labelTypeOfBirds.Text = amountofBirds().ToString();
+            createGraph();
         }
 
         private void ButtonAddCage_Click(object sender, EventArgs e)
@@ -596,6 +943,8 @@ namespace Birds_Mangmeant
 
 
 
+
+
         }
 
 
@@ -626,7 +975,7 @@ namespace Birds_Mangmeant
             {
 
                 client.Set("users/" + Login.currentusername + "/Chores", textBoxListOfChores.Text);
-                MessageBox.Show("You saved Succefully Chores: " + textBoxIndexNumber.Text);
+                MessageBox.Show("You saved Succefully Chores.");
 
                 this.ActiveControl = null;
             }
@@ -635,6 +984,91 @@ namespace Birds_Mangmeant
                 // handle failure ...
             }
         }
+
+        private void pictureBoxSubmitQuestion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff"); // generate a unique timestamp
+                client.Set("QuestionsFromUsers/" + Login.currentusername + "/" + timestamp, textBoxQuestion.Text); // use the timestamp as part of the key
+                MessageBox.Show("You submit Succefully a question: " + textBoxQuestion.Text);
+
+                this.ActiveControl = null;
+                textBoxQuestion.Clear();
+            }
+            catch (FirebaseException)
+            {
+                // handle failure ...
+            }
+
+        }
+
+        private void pictureBoxRefresh_Click(object sender, EventArgs e)
+        {
+            createGraph();
+        }
+
+        private void listViewBirds_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+
+            string message = "Do you want to remove this bird?";
+            string title = "Delete Bird";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+
+                try
+                {
+                    client = new FireSharp.FirebaseClient(config);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "Check Your connection!");
+                    return; // stop execution if client couldn't be created
+                }
+
+                if (listViewBirds.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("No bird selected!");
+                    return; // stop execution if no bird is selected
+                }
+
+                int index = listViewBirds.FocusedItem.Index;
+                if (index >= BirdList.Count)
+                {
+                    MessageBox.Show("Invalid bird index!");
+                    return; // stop execution if index is out of range
+                }
+
+                string indexBird = BirdList[index].Item1;
+
+                if (client != null)
+                {
+                    FirebaseResponse response2 = client.Delete("users/" + Login.currentusername + "/Birds/" + indexBird);
+                    loadBirdsList();
+                }
+                else
+                {
+                    MessageBox.Show("Firebase client is null!");
+                }
+
+
+
+
+
+            }
+
+            else
+            {
+                // Do something  
+
+            }
+
+        }
+
+
     }
 }
+
 
