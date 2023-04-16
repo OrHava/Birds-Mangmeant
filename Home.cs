@@ -268,7 +268,8 @@ namespace Birds_Mangmeant
 
                 string[] birdBreeds2 = { "1", "2", "3", "4", "5", "6", "7" };
                 int[] birdAmounts = { northAmericaCount, centerAmericaCount, southAmericaCount, easternEuropeCount, westernEuropeCount, australianCenterCount, australianCityBeachesCount };
-                int[] birdAmounts2 = { 1, 2, 3, 4, 5, 6, 7 };
+            
+
 
 
 
