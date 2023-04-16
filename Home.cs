@@ -37,9 +37,32 @@ namespace Birds_Mangmeant
         private System.Timers.Timer timer = new System.Timers.Timer();
         private int frameIndex = 0;
 
+
+        private System.Timers.Timer timer1;
+        private int x;
+
         public Home()
         {
             InitializeComponent();
+
+
+
+
+
+
+            // Set up the timer for bird gif
+            timer1 = new System.Timers.Timer();
+            timer1.Interval = 50; // Change this value to adjust the speed of the animation
+            timer1.Elapsed += Timer1_Elapsed;
+
+            // Start the timer
+            timer1.Start();
+
+
+
+
+
+
 
 
 
@@ -77,6 +100,40 @@ namespace Birds_Mangmeant
         }
 
 
+        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            // Move the bird to the left by changing its X coordinate
+            x -= 5; // Change this value to adjust the distance the bird moves each tick
+
+            // If the bird goes off the left edge of the screen, wrap it around to the right edge
+            if (x + pictureBoxBirdFly.Width < 0)
+            {
+                if (pictureBoxBirdFly.Parent == panelUser) // Check if pictureBoxBirdFly is on panelUser
+                {
+                    x = panelUser.Width - pictureBoxBirdFly.Width; // Set x to the right edge of panelUser
+                }
+                else // If pictureBoxBirdFly is not on panelUser, wrap it around to the right edge of the form
+                {
+                    x = this.ClientSize.Width;
+                }
+            }
+
+            // Update the bird's position on the UI thread
+            Task.Run(() =>
+            {
+                if (pictureBoxBirdFly.InvokeRequired)
+                {
+                    pictureBoxBirdFly.Invoke(new Action(() =>
+                    {
+                        pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
+                    }));
+                }
+                else
+                {
+                    pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
+                }
+            });
+        }
 
 
 
@@ -829,6 +886,7 @@ namespace Birds_Mangmeant
 
             panelUser.Visible = false;
             panelUser.Hide();
+
             PanelAddBird.Show();
             PanelAddBird.Visible = true;
             PanelAddBird.BringToFront();
@@ -853,18 +911,18 @@ namespace Birds_Mangmeant
             panelHelp.Visible = false;
             panelHelp.Hide();
 
-            panelUser.Visible = false;
-            panelUser.Hide();
+
 
 
             panelUser.Show();
             panelUser.Visible = true;
             panelUser.BringToFront();
-
+            panelUser.Enabled = true;
 
             panelHome.Show();
             panelHome.Visible = true;
             panelHome.BringToFront();
+            panelHome.Enabled = true;
             labelTypeOfBirds.Text = amountofBirds().ToString();
             createGraph();
         }
@@ -883,6 +941,8 @@ namespace Birds_Mangmeant
 
             panelHelp.Visible = false;
             panelHelp.Hide();
+
+
 
             panelUser.Visible = false;
             panelUser.Hide();
@@ -910,6 +970,7 @@ namespace Birds_Mangmeant
 
             panelUser.Visible = false;
             panelUser.Hide();
+
 
             panelSearch.Show();
             panelSearch.Visible = true;

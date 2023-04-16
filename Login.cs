@@ -387,7 +387,7 @@ namespace Birds_Mangmeant
         }
 
         public static string? email;
- 
+
         private static string? currentusername1;
 
         private void button3_Click(object sender, EventArgs e)
@@ -481,7 +481,7 @@ namespace Birds_Mangmeant
                 {
                     Email = TxtRegEmail.Text,
                 };
-          
+
 
 
 
@@ -675,7 +675,7 @@ namespace Birds_Mangmeant
                 foreach (var get in result)
                 {
 
-                    if (get.Value.Name == txtLoginUserName.Text && get.Value.Email!=null && get.Value.Password!=null)
+                    if (get.Value.Name == txtLoginUserName.Text && get.Value.Email != null && get.Value.Password != null)
                     {
 
 
