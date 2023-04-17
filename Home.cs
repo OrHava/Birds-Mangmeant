@@ -136,7 +136,6 @@ namespace Birds_Mangmeant
         }
 
 
-
         private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             // increment the frame index and wrap around
@@ -146,9 +145,24 @@ namespace Birds_Mangmeant
             (string birdName, Image image) = GetFrame(frameIndex);
 
             // update the image and bird name in the picture box and label
-            pictureBoxAnim.Image = image;
-            labelBirdAnim.Text = "Bird Name: " + birdName;
+            if (pictureBoxAnim.IsHandleCreated)
+            {
+                pictureBoxAnim.Invoke(new Action(() =>
+                {
+                    pictureBoxAnim.Image = image;
+                }));
+            }
+
+            if (labelBirdAnim.IsHandleCreated)
+            {
+                labelBirdAnim.Invoke(new Action(() =>
+                {
+                    labelBirdAnim.Text = "Bird Name: " + birdName;
+                }));
+            }
         }
+
+
 
         // get the image and bird name for the given frame index
         private (string, Image) GetFrame(int index)
@@ -692,14 +706,20 @@ namespace Birds_Mangmeant
             this.Hide();
             Lg.ShowDialog();
         }
-
         private void Home_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Check if the user clicked the exit button
             if (e.CloseReason == CloseReason.UserClosing)
             {
-                // Close all open forms except the main form
+                // Create a copy of the collection of open forms
+                List<Form> openForms = new List<Form>(System.Windows.Forms.Application.OpenForms.Count);
                 foreach (Form form in System.Windows.Forms.Application.OpenForms)
+                {
+                    openForms.Add(form);
+                }
+
+                // Close all open forms except the main form
+                foreach (Form form in openForms)
                 {
                     if (form != this)
                     {
