@@ -92,9 +92,17 @@ namespace Birds_Mangmeant
             labelEmail.Text = "User Email: " + userEmail();
             textBoxListOfChores.Text = getChores();
             labelAmountUsers.Text = amountofUsers().ToString();
+
+
+
+        }
+
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
             loadQAList();
             createGraph();
-
 
 
         }
@@ -213,6 +221,7 @@ namespace Birds_Mangmeant
         public void createGraph()
         {
 
+
             plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
             plotSurface2d1.Enabled = false;
 
@@ -282,7 +291,7 @@ namespace Birds_Mangmeant
 
                 string[] birdBreeds2 = { "1", "2", "3", "4", "5", "6", "7" };
                 int[] birdAmounts = { northAmericaCount, centerAmericaCount, southAmericaCount, easternEuropeCount, westernEuropeCount, australianCenterCount, australianCityBeachesCount };
-            
+
 
 
 
@@ -302,6 +311,11 @@ namespace Birds_Mangmeant
 
                 plotSurface2d1.Refresh();
             }
+
+
+
+
+
 
 
         }
@@ -736,9 +750,8 @@ namespace Birds_Mangmeant
             Lg.ShowDialog();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
 
-
+        private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
             bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
@@ -833,8 +846,8 @@ namespace Birds_Mangmeant
             }
 
 
-
         }
+
 
         private void checkBoxMale_CheckedChanged(object sender, EventArgs e)
         {
@@ -891,8 +904,85 @@ namespace Birds_Mangmeant
 
         }
 
-        private void ButtonAddBird_Click(object sender, EventArgs e)
+
+
+        private void ButtonHelp_Click_1(object sender, EventArgs e)
         {
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+
+            panelHelp.Show();
+            panelHelp.Visible = true;
+            panelHelp.BringToFront();
+
+
+        }
+
+        private void ButtonSearch_Click_1(object sender, EventArgs e)
+        {
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+
+            panelSearch.Show();
+            panelSearch.Visible = true;
+            panelSearch.BringToFront();
+        }
+
+        private void ButtonAddCage_Click_1(object sender, EventArgs e)
+        {
+
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+            panelAddCage.Show();
+            panelAddCage.Visible = true;
+            panelAddCage.BringToFront();
+        }
+
+        private void ButtonAddBird_Click_1(object sender, EventArgs e)
+        {
+
             panelHome.Visible = false;
             panelHome.Hide();
 
@@ -915,12 +1005,10 @@ namespace Birds_Mangmeant
             loadBirdsList();
 
 
-
         }
 
-        private void ButtonHome_Click(object sender, EventArgs e)
+        private void ButtonHome_Click_1(object sender, EventArgs e)
         {
-
             PanelAddBird.Visible = false;
             PanelAddBird.Hide();
 
@@ -948,92 +1036,22 @@ namespace Birds_Mangmeant
             createGraph();
         }
 
-        private void ButtonAddCage_Click(object sender, EventArgs e)
+        private void ButtonSignOut_Click(object sender, EventArgs e)
         {
 
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
+            Login hm = new Login();
+            this.Hide();
 
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelSearch.Visible = false;
-            panelSearch.Hide();
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-
-
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-            panelAddCage.Show();
-            panelAddCage.Visible = true;
-            panelAddCage.BringToFront();
-
-        }
-
-        private void ButtonSearch_Click(object sender, EventArgs e)
-        {
-
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-
-            panelSearch.Show();
-            panelSearch.Visible = true;
-            panelSearch.BringToFront();
-
-        }
-
-        private void ButtonHelp_Click(object sender, EventArgs e)
-        {
-
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelSearch.Visible = false;
-            panelSearch.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-
-            panelHelp.Show();
-            panelHelp.Visible = true;
-            panelHelp.BringToFront();
-
-
-
-
+            hm.ShowDialog();
+            this.Close();
 
         }
 
 
 
-        private void ButtonAddImage(object sender, EventArgs e)
-        {
 
+        private void pictureBoxProfile_Click(object sender, EventArgs e)
+        {
             using (var openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
@@ -1046,6 +1064,9 @@ namespace Birds_Mangmeant
                 }
             }
         }
+
+
+
 
         private void pictureBoxSaveList_Click(object sender, EventArgs e)
         {
@@ -1067,7 +1088,9 @@ namespace Birds_Mangmeant
             }
         }
 
-        private void pictureBoxSubmitQuestion_Click(object sender, EventArgs e)
+
+
+        private void pictureBoxSubmitQuestion_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -1082,17 +1105,16 @@ namespace Birds_Mangmeant
             {
                 // handle failure ...
             }
-
         }
 
-        private void pictureBoxRefresh_Click(object sender, EventArgs e)
+
+
+        private void pictureBoxRefresh_Click_1(object sender, EventArgs e)
         {
             createGraph();
         }
-
-        private void listViewBirds_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listViewBirds_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
-
             string message = "Do you want to remove this bird?";
             string title = "Delete Bird";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -1146,7 +1168,6 @@ namespace Birds_Mangmeant
                 // Do something  
 
             }
-
         }
 
 

@@ -514,7 +514,9 @@ namespace Birds_Mangmeant
                         currentuserpassword = txtRegPassword.Text;
                         Home hm = new Home();
                         this.Hide();
+                      
                         hm.ShowDialog();
+                        this.Close();
 
                     }
                     this.Close();
@@ -618,7 +620,9 @@ namespace Birds_Mangmeant
 
                     Home hm = new Home();
                     this.Hide();
+                  
                     hm.ShowDialog();
+                    this.Close();
 
                 }
                 else
@@ -694,13 +698,36 @@ namespace Birds_Mangmeant
         }
 
 
+        //private void Login_FormClosed(object sender, FormClosedEventArgs e)
+        //{
+        //    // Check if the user clicked the exit button
+        //    if (e.CloseReason == CloseReason.UserClosing)
+        //    {
+        //        // Close all open forms except the main form
+        //        foreach (Form form in Application.OpenForms)
+        //        {
+        //            if (form != this)
+        //            {
+        //                form.Close();
+        //            }
+        //        }
+        //    }
+        //}
+
         private void Login_FormClosed(object sender, FormClosedEventArgs e)
         {
             // Check if the user clicked the exit button
             if (e.CloseReason == CloseReason.UserClosing)
             {
+                // Create a copy of the collection of open forms
+                List<Form> openForms = new List<Form>(System.Windows.Forms.Application.OpenForms.Count);
+                foreach (Form form in System.Windows.Forms.Application.OpenForms)
+                {
+                    openForms.Add(form);
+                }
+
                 // Close all open forms except the main form
-                foreach (Form form in Application.OpenForms)
+                foreach (Form form in openForms)
                 {
                     if (form != this)
                     {
