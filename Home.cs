@@ -92,9 +92,17 @@ namespace Birds_Mangmeant
             labelEmail.Text = "User Email: " + userEmail();
             textBoxListOfChores.Text = getChores();
             labelAmountUsers.Text = amountofUsers().ToString();
+
+
+
+        }
+
+
+        private void Home_Load(object sender, EventArgs e)
+        {
+
             loadQAList();
             createGraph();
-
 
 
         }
@@ -213,13 +221,9 @@ namespace Birds_Mangmeant
         public void createGraph()
         {
 
-            if (plotSurface2d1 != null)
-            {
-                plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
-                plotSurface2d1.Enabled = false;
-            }
 
-
+            plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
+            plotSurface2d1.Enabled = false;
 
             try
             {
@@ -307,6 +311,11 @@ namespace Birds_Mangmeant
 
                 plotSurface2d1.Refresh();
             }
+
+
+
+
+
 
 
         }
@@ -741,9 +750,8 @@ namespace Birds_Mangmeant
             Lg.ShowDialog();
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
 
-
+        private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
             bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
@@ -838,8 +846,8 @@ namespace Birds_Mangmeant
             }
 
 
-
         }
+
 
         private void checkBoxMale_CheckedChanged(object sender, EventArgs e)
         {
@@ -1033,7 +1041,7 @@ namespace Birds_Mangmeant
 
             Login hm = new Login();
             this.Hide();
-         
+
             hm.ShowDialog();
             this.Close();
 
@@ -1042,12 +1050,8 @@ namespace Birds_Mangmeant
 
 
 
-
-
-
-        private void ButtonAddImage(object sender, EventArgs e)
+        private void pictureBoxProfile_Click(object sender, EventArgs e)
         {
-
             using (var openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
@@ -1060,6 +1064,9 @@ namespace Birds_Mangmeant
                 }
             }
         }
+
+
+
 
         private void pictureBoxSaveList_Click(object sender, EventArgs e)
         {
@@ -1081,7 +1088,9 @@ namespace Birds_Mangmeant
             }
         }
 
-        private void pictureBoxSubmitQuestion_Click(object sender, EventArgs e)
+
+
+        private void pictureBoxSubmitQuestion_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -1096,17 +1105,16 @@ namespace Birds_Mangmeant
             {
                 // handle failure ...
             }
-
         }
 
-        private void pictureBoxRefresh_Click(object sender, EventArgs e)
+
+
+        private void pictureBoxRefresh_Click_1(object sender, EventArgs e)
         {
             createGraph();
         }
-
-        private void listViewBirds_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void listViewBirds_MouseDoubleClick_1(object sender, MouseEventArgs e)
         {
-
             string message = "Do you want to remove this bird?";
             string title = "Delete Bird";
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -1160,7 +1168,6 @@ namespace Birds_Mangmeant
                 // Do something  
 
             }
-
         }
 
 
