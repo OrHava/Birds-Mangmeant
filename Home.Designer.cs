@@ -867,9 +867,9 @@ namespace Birds_Mangmeant
             // panelHelp
             // 
             this.panelHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.panelHelp.Controls.Add(this.dataGridViewQA);
             this.panelHelp.Controls.Add(this.panel5);
-            this.panelHelp.Location = new System.Drawing.Point(0, 27);
+            this.panelHelp.Controls.Add(this.dataGridViewQA);
+            this.panelHelp.Location = new System.Drawing.Point(0, 0);
             this.panelHelp.Name = "panelHelp";
             this.panelHelp.Size = new System.Drawing.Size(1282, 733);
             this.panelHelp.TabIndex = 1;
@@ -949,13 +949,13 @@ namespace Birds_Mangmeant
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
             this.ClientSize = new System.Drawing.Size(1282, 753);
-            this.Controls.Add(this.panelHome);
-            this.Controls.Add(this.panelUser);
-            this.Controls.Add(this.PanelAddBird);
-            this.Controls.Add(this.panelHelp);
-            this.Controls.Add(this.panelSearch);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panelUser);
+            this.Controls.Add(this.panelHome);
+            this.Controls.Add(this.panelSearch);
+            this.Controls.Add(this.panelHelp);
             this.Controls.Add(this.panelAddCage);
+            this.Controls.Add(this.PanelAddBird);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Home";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
