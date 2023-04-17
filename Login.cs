@@ -514,7 +514,7 @@ namespace Birds_Mangmeant
                         currentuserpassword = txtRegPassword.Text;
                         Home hm = new Home();
                         this.Hide();
-                      
+
                         hm.ShowDialog();
                         this.Close();
 
@@ -620,7 +620,7 @@ namespace Birds_Mangmeant
 
                     Home hm = new Home();
                     this.Hide();
-                  
+
                     hm.ShowDialog();
                     this.Close();
 

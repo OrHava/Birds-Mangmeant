@@ -79,17 +79,6 @@ namespace Birds_Mangmeant
 
 
 
-         
-
-
-        }
-
-
-        private void Home_Load(object sender, EventArgs e)
-        {
-
-            loadQAList();
-            createGraph();
             pictureBoxProfile.ImageLocation = Properties.Settings.Default.PictureProfile;
 
 
@@ -103,9 +92,14 @@ namespace Birds_Mangmeant
             labelEmail.Text = "User Email: " + userEmail();
             textBoxListOfChores.Text = getChores();
             labelAmountUsers.Text = amountofUsers().ToString();
+            loadQAList();
+            createGraph();
 
 
         }
+
+
+
 
 
         private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
