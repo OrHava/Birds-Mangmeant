@@ -40,1025 +40,966 @@ namespace Birds_Mangmeant
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            toolStrip1 = new ToolStrip();
-            toolStripSeparator1 = new ToolStripSeparator();
-            ButtonHome = new ToolStripButton();
-            toolStripSeparator5 = new ToolStripSeparator();
-            ButtonAddBird = new ToolStripButton();
-            toolStripSeparator6 = new ToolStripSeparator();
-            ButtonAddCage = new ToolStripButton();
-            toolStripSeparator2 = new ToolStripSeparator();
-            ButtonSearch = new ToolStripButton();
-            toolStripSeparator3 = new ToolStripSeparator();
-            ButtonHelp = new ToolStripButton();
-            toolStripSeparator4 = new ToolStripSeparator();
-            ButtonSignOut = new ToolStripButton();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            PanelAddBird = new Panel();
-            listViewBirds = new ListView();
-            comboBoxSubspecies = new ComboBox();
-            comboBoxBreed = new ComboBox();
-            checkBoxFemale = new CheckBox();
-            checkBoxMale = new CheckBox();
-            dateTimePicker1 = new DateTimePicker();
-            pictureBox1 = new PictureBox();
-            textBoxIndexFatherofBird = new TextBox();
-            textBoxIndexMotherofBird = new TextBox();
-            textBoxIndexCage = new TextBox();
-            label9 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            textBoxIndexNumber = new TextBox();
-            panelUser = new Panel();
-            labelBirdAnim = new Label();
-            pictureBoxAnim = new PictureBox();
-            labelEmail = new Label();
-            pictureBoxProfile = new PictureBox();
-            labelId = new Label();
-            labelUserName = new Label();
-            panelHome = new Panel();
-            pictureBoxBirdFly = new PictureBox();
-            panel7 = new Panel();
-            label11 = new Label();
-            panel6 = new Panel();
-            pictureBoxRefresh = new PictureBox();
-            label14 = new Label();
-            pictureBox6 = new PictureBox();
-            plotSurface2d1 = new NPlot.Windows.PlotSurface2D();
-            panel4 = new Panel();
-            pictureBox5 = new PictureBox();
-            label8 = new Label();
-            labelAmountUsers = new Label();
-            panel3 = new Panel();
-            textBoxListOfChores = new TextBox();
-            pictureBoxSaveList = new PictureBox();
-            pictureBox4 = new PictureBox();
-            label15 = new Label();
-            panel2 = new Panel();
-            pictureBox2 = new PictureBox();
-            label13 = new Label();
-            labelNumCages = new Label();
-            panel1 = new Panel();
-            pictureBox3 = new PictureBox();
-            label12 = new Label();
-            labelTypeOfBirds = new Label();
-            panelAddCage = new Panel();
-            textBox1 = new TextBox();
-            label10 = new Label();
-            panelSearch = new Panel();
-            panelHelp = new Panel();
-            dataGridViewQA = new DataGridView();
-            panel5 = new Panel();
-            textBoxQuestion = new TextBox();
-            pictureBoxSubmitQuestion = new PictureBox();
-            pictureBox7 = new PictureBox();
-            labelSubmitHelp = new Label();
-            toolStrip1.SuspendLayout();
-            PanelAddBird.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelUser.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAnim).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).BeginInit();
-            panelHome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBirdFly).BeginInit();
-            panel7.SuspendLayout();
-            panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxSaveList).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panelAddCage.SuspendLayout();
-            panelHelp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewQA).BeginInit();
-            panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            SuspendLayout();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonHome = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonAddBird = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonAddCage = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonSearch = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonHelp = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.ButtonSignOut = new System.Windows.Forms.ToolStripButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.PanelAddBird = new System.Windows.Forms.Panel();
+            this.listViewBirds = new System.Windows.Forms.ListView();
+            this.comboBoxSubspecies = new System.Windows.Forms.ComboBox();
+            this.comboBoxBreed = new System.Windows.Forms.ComboBox();
+            this.checkBoxFemale = new System.Windows.Forms.CheckBox();
+            this.checkBoxMale = new System.Windows.Forms.CheckBox();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBoxIndexFatherofBird = new System.Windows.Forms.TextBox();
+            this.textBoxIndexMotherofBird = new System.Windows.Forms.TextBox();
+            this.textBoxIndexCage = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxIndexNumber = new System.Windows.Forms.TextBox();
+            this.panelUser = new System.Windows.Forms.Panel();
+            this.labelBirdAnim = new System.Windows.Forms.Label();
+            this.pictureBoxAnim = new System.Windows.Forms.PictureBox();
+            this.labelEmail = new System.Windows.Forms.Label();
+            this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
+            this.labelId = new System.Windows.Forms.Label();
+            this.labelUserName = new System.Windows.Forms.Label();
+            this.panelHome = new System.Windows.Forms.Panel();
+            this.pictureBoxBirdFly = new System.Windows.Forms.PictureBox();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.pictureBoxRefresh = new System.Windows.Forms.PictureBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.labelAmountUsers = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.textBoxListOfChores = new System.Windows.Forms.TextBox();
+            this.pictureBoxSaveList = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.labelNumCages = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.labelTypeOfBirds = new System.Windows.Forms.Label();
+            this.panelAddCage = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panelSearch = new System.Windows.Forms.Panel();
+            this.panelHelp = new System.Windows.Forms.Panel();
+            this.dataGridViewQA = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.textBoxQuestion = new System.Windows.Forms.TextBox();
+            this.pictureBoxSubmitQuestion = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.labelSubmitHelp = new System.Windows.Forms.Label();
+            this.toolStrip1.SuspendLayout();
+            this.PanelAddBird.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelUser.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnim)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
+            this.panelHome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBirdFly)).BeginInit();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSaveList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panelAddCage.SuspendLayout();
+            this.panelHelp.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQA)).BeginInit();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubmitQuestion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            toolStrip1.BackColor = Color.FromArgb(46, 51, 73);
-            toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, ButtonHome, toolStripSeparator5, ButtonAddBird, toolStripSeparator6, ButtonAddCage, toolStripSeparator2, ButtonSearch, toolStripSeparator3, ButtonHelp, toolStripSeparator4, ButtonSignOut });
-            toolStrip1.Location = new Point(0, 0);
-            toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1122, 27);
-            toolStrip1.TabIndex = 1;
-            toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1,
+            this.ButtonHome,
+            this.toolStripSeparator5,
+            this.ButtonAddBird,
+            this.toolStripSeparator6,
+            this.ButtonAddCage,
+            this.toolStripSeparator2,
+            this.ButtonSearch,
+            this.toolStripSeparator3,
+            this.ButtonHelp,
+            this.toolStripSeparator4,
+            this.ButtonSignOut});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1282, 27);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripSeparator1
             // 
-            toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 27);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // ButtonHome
             // 
-            ButtonHome.ForeColor = Color.White;
-            ButtonHome.Image = Properties.Resources.icons8_home_24;
-            ButtonHome.ImageTransparentColor = Color.Magenta;
-            ButtonHome.Name = "ButtonHome";
-            ButtonHome.Size = new Size(64, 24);
-            ButtonHome.Text = "Home";
-            ButtonHome.Click += ButtonHome_Click;
+            this.ButtonHome.ForeColor = System.Drawing.Color.White;
+            this.ButtonHome.Image = global::Birds_Mangmeant.Properties.Resources.icons8_home_24;
+            this.ButtonHome.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonHome.Name = "ButtonHome";
+            this.ButtonHome.Size = new System.Drawing.Size(74, 24);
+            this.ButtonHome.Text = "Home";
             // 
             // toolStripSeparator5
             // 
-            toolStripSeparator5.Name = "toolStripSeparator5";
-            toolStripSeparator5.Size = new Size(6, 27);
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 27);
             // 
             // ButtonAddBird
             // 
-            ButtonAddBird.ForeColor = Color.White;
-            ButtonAddBird.Image = Properties.Resources.icons8_bird_24;
-            ButtonAddBird.ImageTransparentColor = Color.Magenta;
-            ButtonAddBird.Name = "ButtonAddBird";
-            ButtonAddBird.Size = new Size(77, 24);
-            ButtonAddBird.Text = "Add Bird";
-            ButtonAddBird.Click += ButtonAddBird_Click;
+            this.ButtonAddBird.ForeColor = System.Drawing.Color.White;
+            this.ButtonAddBird.Image = global::Birds_Mangmeant.Properties.Resources.icons8_bird_24;
+            this.ButtonAddBird.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonAddBird.Name = "ButtonAddBird";
+            this.ButtonAddBird.Size = new System.Drawing.Size(92, 24);
+            this.ButtonAddBird.Text = "Add Bird";
             // 
             // toolStripSeparator6
             // 
-            toolStripSeparator6.Name = "toolStripSeparator6";
-            toolStripSeparator6.Size = new Size(6, 27);
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 27);
             // 
             // ButtonAddCage
             // 
-            ButtonAddCage.ForeColor = Color.White;
-            ButtonAddCage.Image = Properties.Resources.icons8_cage_of_a_bird_24;
-            ButtonAddCage.ImageTransparentColor = Color.Magenta;
-            ButtonAddCage.Name = "ButtonAddCage";
-            ButtonAddCage.Size = new Size(83, 24);
-            ButtonAddCage.Text = "Add Cage";
-            ButtonAddCage.Click += ButtonAddCage_Click;
+            this.ButtonAddCage.ForeColor = System.Drawing.Color.White;
+            this.ButtonAddCage.Image = global::Birds_Mangmeant.Properties.Resources.icons8_cage_of_a_bird_24;
+            this.ButtonAddCage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonAddCage.Name = "ButtonAddCage";
+            this.ButtonAddCage.Size = new System.Drawing.Size(99, 24);
+            this.ButtonAddCage.Text = "Add Cage";
             // 
             // toolStripSeparator2
             // 
-            toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 27);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // ButtonSearch
             // 
-            ButtonSearch.ForeColor = Color.White;
-            ButtonSearch.Image = Properties.Resources.icons8_search_24;
-            ButtonSearch.ImageTransparentColor = Color.Magenta;
-            ButtonSearch.Name = "ButtonSearch";
-            ButtonSearch.Size = new Size(66, 24);
-            ButtonSearch.Text = "Search";
-            ButtonSearch.Click += ButtonSearch_Click;
+            this.ButtonSearch.ForeColor = System.Drawing.Color.White;
+            this.ButtonSearch.Image = global::Birds_Mangmeant.Properties.Resources.icons8_search_24;
+            this.ButtonSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonSearch.Name = "ButtonSearch";
+            this.ButtonSearch.Size = new System.Drawing.Size(77, 24);
+            this.ButtonSearch.Text = "Search";
             // 
             // toolStripSeparator3
             // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 27);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
             // 
             // ButtonHelp
             // 
-            ButtonHelp.ForeColor = Color.White;
-            ButtonHelp.Image = Properties.Resources.icons8_help_24;
-            ButtonHelp.ImageTransparentColor = Color.Magenta;
-            ButtonHelp.Name = "ButtonHelp";
-            ButtonHelp.Size = new Size(56, 24);
-            ButtonHelp.Text = "Help";
-            ButtonHelp.Click += ButtonHelp_Click;
+            this.ButtonHelp.ForeColor = System.Drawing.Color.White;
+            this.ButtonHelp.Image = global::Birds_Mangmeant.Properties.Resources.icons8_help_24;
+            this.ButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonHelp.Name = "ButtonHelp";
+            this.ButtonHelp.Size = new System.Drawing.Size(65, 24);
+            this.ButtonHelp.Text = "Help";
             // 
             // toolStripSeparator4
             // 
-            toolStripSeparator4.Name = "toolStripSeparator4";
-            toolStripSeparator4.Size = new Size(6, 27);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 27);
             // 
             // ButtonSignOut
             // 
-            ButtonSignOut.ForeColor = Color.White;
-            ButtonSignOut.Image = Properties.Resources.icons8_logout_rounded_24;
-            ButtonSignOut.ImageTransparentColor = Color.Magenta;
-            ButtonSignOut.Name = "ButtonSignOut";
-            ButtonSignOut.Size = new Size(77, 24);
-            ButtonSignOut.Text = "Sign Out";
-            ButtonSignOut.Click += toolStripButton4_Click;
+            this.ButtonSignOut.ForeColor = System.Drawing.Color.White;
+            this.ButtonSignOut.Image = global::Birds_Mangmeant.Properties.Resources.icons8_logout_rounded_24;
+            this.ButtonSignOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ButtonSignOut.Name = "ButtonSignOut";
+            this.ButtonSignOut.Size = new System.Drawing.Size(90, 24);
+            this.ButtonSignOut.Text = "Sign Out";
             // 
             // PanelAddBird
             // 
-            PanelAddBird.BackColor = Color.FromArgb(46, 51, 73);
-            PanelAddBird.Controls.Add(listViewBirds);
-            PanelAddBird.Controls.Add(comboBoxSubspecies);
-            PanelAddBird.Controls.Add(comboBoxBreed);
-            PanelAddBird.Controls.Add(checkBoxFemale);
-            PanelAddBird.Controls.Add(checkBoxMale);
-            PanelAddBird.Controls.Add(dateTimePicker1);
-            PanelAddBird.Controls.Add(pictureBox1);
-            PanelAddBird.Controls.Add(textBoxIndexFatherofBird);
-            PanelAddBird.Controls.Add(textBoxIndexMotherofBird);
-            PanelAddBird.Controls.Add(textBoxIndexCage);
-            PanelAddBird.Controls.Add(label9);
-            PanelAddBird.Controls.Add(label7);
-            PanelAddBird.Controls.Add(label6);
-            PanelAddBird.Controls.Add(label5);
-            PanelAddBird.Controls.Add(label4);
-            PanelAddBird.Controls.Add(label3);
-            PanelAddBird.Controls.Add(label2);
-            PanelAddBird.Controls.Add(label1);
-            PanelAddBird.Controls.Add(textBoxIndexNumber);
-            PanelAddBird.ForeColor = Color.Cornsilk;
-            PanelAddBird.Location = new Point(0, 20);
-            PanelAddBird.Margin = new Padding(3, 2, 3, 2);
-            PanelAddBird.Name = "PanelAddBird";
-            PanelAddBird.Size = new Size(1122, 550);
-            PanelAddBird.TabIndex = 2;
+            this.PanelAddBird.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.PanelAddBird.Controls.Add(this.listViewBirds);
+            this.PanelAddBird.Controls.Add(this.comboBoxSubspecies);
+            this.PanelAddBird.Controls.Add(this.comboBoxBreed);
+            this.PanelAddBird.Controls.Add(this.checkBoxFemale);
+            this.PanelAddBird.Controls.Add(this.checkBoxMale);
+            this.PanelAddBird.Controls.Add(this.dateTimePicker1);
+            this.PanelAddBird.Controls.Add(this.pictureBox1);
+            this.PanelAddBird.Controls.Add(this.textBoxIndexFatherofBird);
+            this.PanelAddBird.Controls.Add(this.textBoxIndexMotherofBird);
+            this.PanelAddBird.Controls.Add(this.textBoxIndexCage);
+            this.PanelAddBird.Controls.Add(this.label9);
+            this.PanelAddBird.Controls.Add(this.label7);
+            this.PanelAddBird.Controls.Add(this.label6);
+            this.PanelAddBird.Controls.Add(this.label5);
+            this.PanelAddBird.Controls.Add(this.label4);
+            this.PanelAddBird.Controls.Add(this.label3);
+            this.PanelAddBird.Controls.Add(this.label2);
+            this.PanelAddBird.Controls.Add(this.label1);
+            this.PanelAddBird.Controls.Add(this.textBoxIndexNumber);
+            this.PanelAddBird.ForeColor = System.Drawing.Color.Cornsilk;
+            this.PanelAddBird.Location = new System.Drawing.Point(0, 27);
+            this.PanelAddBird.Name = "PanelAddBird";
+            this.PanelAddBird.Size = new System.Drawing.Size(1282, 733);
+            this.PanelAddBird.TabIndex = 2;
             // 
             // listViewBirds
             // 
-            listViewBirds.BackColor = Color.FromArgb(37, 42, 64);
-            listViewBirds.BorderStyle = BorderStyle.None;
-            listViewBirds.ForeColor = Color.White;
-            listViewBirds.Location = new Point(585, 29);
-            listViewBirds.Margin = new Padding(3, 2, 3, 2);
-            listViewBirds.Name = "listViewBirds";
-            listViewBirds.Size = new Size(512, 298);
-            listViewBirds.TabIndex = 23;
-            listViewBirds.UseCompatibleStateImageBehavior = false;
-            listViewBirds.View = View.SmallIcon;
-            listViewBirds.SelectedIndexChanged += listViewBirds_SelectedIndexChanged;
-            listViewBirds.MouseDoubleClick += listViewBirds_MouseDoubleClick;
+            this.listViewBirds.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.listViewBirds.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewBirds.ForeColor = System.Drawing.Color.White;
+            this.listViewBirds.Location = new System.Drawing.Point(669, 39);
+            this.listViewBirds.Name = "listViewBirds";
+            this.listViewBirds.Size = new System.Drawing.Size(585, 397);
+            this.listViewBirds.TabIndex = 23;
+            this.listViewBirds.UseCompatibleStateImageBehavior = false;
+            this.listViewBirds.View = System.Windows.Forms.View.SmallIcon;
             // 
             // comboBoxSubspecies
             // 
-            comboBoxSubspecies.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxSubspecies.FormattingEnabled = true;
-            comboBoxSubspecies.Items.AddRange(new object[] { "North America", "Center America", "South America", "Eastren Europe", "Western Europe", "Australian Center", "Australian City Beaches" });
-            comboBoxSubspecies.Location = new Point(42, 193);
-            comboBoxSubspecies.Margin = new Padding(3, 2, 3, 2);
-            comboBoxSubspecies.Name = "comboBoxSubspecies";
-            comboBoxSubspecies.Size = new Size(176, 29);
-            comboBoxSubspecies.TabIndex = 25;
-            comboBoxSubspecies.Text = "Select Subspecies";
+            this.comboBoxSubspecies.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBoxSubspecies.FormattingEnabled = true;
+            this.comboBoxSubspecies.Items.AddRange(new object[] {
+            "North America",
+            "Center America",
+            "South America",
+            "Eastren Europe",
+            "Western Europe",
+            "Australian Center",
+            "Australian City Beaches"});
+            this.comboBoxSubspecies.Location = new System.Drawing.Point(48, 257);
+            this.comboBoxSubspecies.Name = "comboBoxSubspecies";
+            this.comboBoxSubspecies.Size = new System.Drawing.Size(201, 31);
+            this.comboBoxSubspecies.TabIndex = 25;
+            this.comboBoxSubspecies.Text = "Select Subspecies";
             // 
             // comboBoxBreed
             // 
-            comboBoxBreed.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxBreed.FormattingEnabled = true;
-            comboBoxBreed.Items.AddRange(new object[] { "American gouldian", "European gouldian", "Australian gouldian" });
-            comboBoxBreed.Location = new Point(42, 136);
-            comboBoxBreed.Margin = new Padding(3, 2, 3, 2);
-            comboBoxBreed.Name = "comboBoxBreed";
-            comboBoxBreed.Size = new Size(176, 29);
-            comboBoxBreed.TabIndex = 24;
-            comboBoxBreed.Text = "Select Breed";
+            this.comboBoxBreed.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.comboBoxBreed.FormattingEnabled = true;
+            this.comboBoxBreed.Items.AddRange(new object[] {
+            "American gouldian",
+            "European gouldian",
+            "Australian gouldian"});
+            this.comboBoxBreed.Location = new System.Drawing.Point(48, 181);
+            this.comboBoxBreed.Name = "comboBoxBreed";
+            this.comboBoxBreed.Size = new System.Drawing.Size(201, 31);
+            this.comboBoxBreed.TabIndex = 24;
+            this.comboBoxBreed.Text = "Select Breed";
             // 
             // checkBoxFemale
             // 
-            checkBoxFemale.AutoSize = true;
-            checkBoxFemale.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxFemale.Location = new Point(349, 64);
-            checkBoxFemale.Margin = new Padding(3, 2, 3, 2);
-            checkBoxFemale.Name = "checkBoxFemale";
-            checkBoxFemale.Size = new Size(86, 25);
-            checkBoxFemale.TabIndex = 22;
-            checkBoxFemale.Text = "Female";
-            checkBoxFemale.UseVisualStyleBackColor = true;
-            checkBoxFemale.CheckedChanged += checkBoxFemale_CheckedChanged;
+            this.checkBoxFemale.AutoSize = true;
+            this.checkBoxFemale.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.checkBoxFemale.Location = new System.Drawing.Point(399, 85);
+            this.checkBoxFemale.Name = "checkBoxFemale";
+            this.checkBoxFemale.Size = new System.Drawing.Size(106, 27);
+            this.checkBoxFemale.TabIndex = 22;
+            this.checkBoxFemale.Text = "Female";
+            this.checkBoxFemale.UseVisualStyleBackColor = true;
             // 
             // checkBoxMale
             // 
-            checkBoxMale.AutoSize = true;
-            checkBoxMale.Checked = true;
-            checkBoxMale.CheckState = CheckState.Checked;
-            checkBoxMale.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            checkBoxMale.Location = new Point(273, 64);
-            checkBoxMale.Margin = new Padding(3, 2, 3, 2);
-            checkBoxMale.Name = "checkBoxMale";
-            checkBoxMale.Size = new Size(68, 25);
-            checkBoxMale.TabIndex = 21;
-            checkBoxMale.Text = "Male";
-            checkBoxMale.UseVisualStyleBackColor = true;
-            checkBoxMale.CheckedChanged += checkBoxMale_CheckedChanged;
+            this.checkBoxMale.AutoSize = true;
+            this.checkBoxMale.Checked = true;
+            this.checkBoxMale.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxMale.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.checkBoxMale.Location = new System.Drawing.Point(312, 85);
+            this.checkBoxMale.Name = "checkBoxMale";
+            this.checkBoxMale.Size = new System.Drawing.Size(81, 27);
+            this.checkBoxMale.TabIndex = 21;
+            this.checkBoxMale.Text = "Male";
+            this.checkBoxMale.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(42, 252);
-            dateTimePicker1.Margin = new Padding(3, 2, 3, 2);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(176, 27);
-            dateTimePicker1.TabIndex = 20;
+            this.dateTimePicker1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(48, 336);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(201, 32);
+            this.dateTimePicker1.TabIndex = 20;
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.icons8_add_new_50;
-            pictureBox1.Location = new Point(197, 297);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(94, 70);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 19;
-            pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            this.pictureBox1.Image = global::Birds_Mangmeant.Properties.Resources.icons8_add_new_50;
+            this.pictureBox1.Location = new System.Drawing.Point(225, 396);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(107, 93);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
             // 
             // textBoxIndexFatherofBird
             // 
-            textBoxIndexFatherofBird.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexFatherofBird.Location = new Point(274, 252);
-            textBoxIndexFatherofBird.Margin = new Padding(3, 2, 3, 2);
-            textBoxIndexFatherofBird.Name = "textBoxIndexFatherofBird";
-            textBoxIndexFatherofBird.Size = new Size(176, 27);
-            textBoxIndexFatherofBird.TabIndex = 16;
+            this.textBoxIndexFatherofBird.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxIndexFatherofBird.Location = new System.Drawing.Point(313, 336);
+            this.textBoxIndexFatherofBird.Name = "textBoxIndexFatherofBird";
+            this.textBoxIndexFatherofBird.Size = new System.Drawing.Size(201, 32);
+            this.textBoxIndexFatherofBird.TabIndex = 16;
             // 
             // textBoxIndexMotherofBird
             // 
-            textBoxIndexMotherofBird.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexMotherofBird.Location = new Point(274, 193);
-            textBoxIndexMotherofBird.Margin = new Padding(3, 2, 3, 2);
-            textBoxIndexMotherofBird.Name = "textBoxIndexMotherofBird";
-            textBoxIndexMotherofBird.Size = new Size(176, 27);
-            textBoxIndexMotherofBird.TabIndex = 15;
+            this.textBoxIndexMotherofBird.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxIndexMotherofBird.Location = new System.Drawing.Point(313, 257);
+            this.textBoxIndexMotherofBird.Name = "textBoxIndexMotherofBird";
+            this.textBoxIndexMotherofBird.Size = new System.Drawing.Size(201, 32);
+            this.textBoxIndexMotherofBird.TabIndex = 15;
             // 
             // textBoxIndexCage
             // 
-            textBoxIndexCage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexCage.Location = new Point(274, 134);
-            textBoxIndexCage.Margin = new Padding(3, 2, 3, 2);
-            textBoxIndexCage.Name = "textBoxIndexCage";
-            textBoxIndexCage.Size = new Size(176, 27);
-            textBoxIndexCage.TabIndex = 14;
+            this.textBoxIndexCage.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxIndexCage.Location = new System.Drawing.Point(313, 179);
+            this.textBoxIndexCage.Name = "textBoxIndexCage";
+            this.textBoxIndexCage.Size = new System.Drawing.Size(201, 32);
+            this.textBoxIndexCage.TabIndex = 14;
             // 
             // label9
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(274, 29);
-            label9.Name = "label9";
-            label9.Size = new Size(125, 21);
-            label9.TabIndex = 10;
-            label9.Text = "Gender of Bird:";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label9.Location = new System.Drawing.Point(313, 39);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(155, 23);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Gender of Bird:";
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(271, 226);
-            label7.Name = "label7";
-            label7.Size = new Size(162, 21);
-            label7.TabIndex = 8;
-            label7.Text = "index Father of Bird:";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(310, 301);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(200, 23);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "index Father of Bird:";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(273, 167);
-            label6.Name = "label6";
-            label6.Size = new Size(174, 21);
-            label6.TabIndex = 7;
-            label6.Text = "Index Mother Of Bird:";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(312, 223);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(212, 23);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Index Mother Of Bird:";
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(274, 103);
-            label5.Name = "label5";
-            label5.Size = new Size(107, 21);
-            label5.TabIndex = 6;
-            label5.Text = "Index Cage:";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(313, 137);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(131, 23);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Index Cage:";
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(42, 226);
-            label4.Name = "label4";
-            label4.Size = new Size(106, 21);
-            label4.TabIndex = 5;
-            label4.Text = "Hatch date:";
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label4.Location = new System.Drawing.Point(48, 301);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(129, 23);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Hatch date:";
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(41, 167);
-            label3.Name = "label3";
-            label3.Size = new Size(99, 21);
-            label3.TabIndex = 4;
-            label3.Text = "Subspecies:";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label3.Location = new System.Drawing.Point(47, 223);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(123, 23);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Subspecies:";
             // 
             // label2
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(41, 103);
-            label2.Name = "label2";
-            label2.Size = new Size(110, 21);
-            label2.TabIndex = 3;
-            label2.Text = "Breed of Bird:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.Location = new System.Drawing.Point(47, 137);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(137, 23);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Breed of Bird:";
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(41, 29);
-            label1.Name = "label1";
-            label1.Size = new Size(125, 21);
-            label1.TabIndex = 2;
-            label1.Text = "Index Number:";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(47, 39);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(154, 23);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Index Number:";
             // 
             // textBoxIndexNumber
             // 
-            textBoxIndexNumber.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexNumber.Location = new Point(42, 60);
-            textBoxIndexNumber.Margin = new Padding(3, 2, 3, 2);
-            textBoxIndexNumber.Name = "textBoxIndexNumber";
-            textBoxIndexNumber.Size = new Size(176, 27);
-            textBoxIndexNumber.TabIndex = 0;
+            this.textBoxIndexNumber.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxIndexNumber.Location = new System.Drawing.Point(48, 80);
+            this.textBoxIndexNumber.Name = "textBoxIndexNumber";
+            this.textBoxIndexNumber.Size = new System.Drawing.Size(201, 32);
+            this.textBoxIndexNumber.TabIndex = 0;
             // 
             // panelUser
             // 
-            panelUser.BackColor = Color.FromArgb(24, 30, 54);
-            panelUser.Controls.Add(labelBirdAnim);
-            panelUser.Controls.Add(pictureBoxAnim);
-            panelUser.Controls.Add(labelEmail);
-            panelUser.Controls.Add(pictureBoxProfile);
-            panelUser.Controls.Add(labelId);
-            panelUser.Controls.Add(labelUserName);
-            panelUser.Location = new Point(2, 22);
-            panelUser.Margin = new Padding(3, 2, 3, 2);
-            panelUser.Name = "panelUser";
-            panelUser.Size = new Size(191, 546);
-            panelUser.TabIndex = 1;
+            this.panelUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(30)))), ((int)(((byte)(54)))));
+            this.panelUser.Controls.Add(this.labelBirdAnim);
+            this.panelUser.Controls.Add(this.pictureBoxAnim);
+            this.panelUser.Controls.Add(this.labelEmail);
+            this.panelUser.Controls.Add(this.pictureBoxProfile);
+            this.panelUser.Controls.Add(this.labelId);
+            this.panelUser.Controls.Add(this.labelUserName);
+            this.panelUser.Location = new System.Drawing.Point(2, 29);
+            this.panelUser.Name = "panelUser";
+            this.panelUser.Size = new System.Drawing.Size(218, 728);
+            this.panelUser.TabIndex = 1;
             // 
             // labelBirdAnim
             // 
-            labelBirdAnim.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            labelBirdAnim.ForeColor = Color.White;
-            labelBirdAnim.Location = new Point(3, 252);
-            labelBirdAnim.Name = "labelBirdAnim";
-            labelBirdAnim.Size = new Size(199, 43);
-            labelBirdAnim.TabIndex = 5;
-            labelBirdAnim.Text = "Birds";
+            this.labelBirdAnim.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelBirdAnim.ForeColor = System.Drawing.Color.White;
+            this.labelBirdAnim.Location = new System.Drawing.Point(3, 336);
+            this.labelBirdAnim.Name = "labelBirdAnim";
+            this.labelBirdAnim.Size = new System.Drawing.Size(227, 57);
+            this.labelBirdAnim.TabIndex = 5;
+            this.labelBirdAnim.Text = "Birds";
             // 
             // pictureBoxAnim
             // 
-            pictureBoxAnim.BackColor = Color.FromArgb(46, 51, 73);
-            pictureBoxAnim.Location = new Point(10, 297);
-            pictureBoxAnim.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxAnim.Name = "pictureBoxAnim";
-            pictureBoxAnim.Size = new Size(171, 161);
-            pictureBoxAnim.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxAnim.TabIndex = 4;
-            pictureBoxAnim.TabStop = false;
+            this.pictureBoxAnim.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.pictureBoxAnim.Location = new System.Drawing.Point(11, 396);
+            this.pictureBoxAnim.Name = "pictureBoxAnim";
+            this.pictureBoxAnim.Size = new System.Drawing.Size(195, 215);
+            this.pictureBoxAnim.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxAnim.TabIndex = 4;
+            this.pictureBoxAnim.TabStop = false;
             // 
             // labelEmail
             // 
-            labelEmail.AutoSize = true;
-            labelEmail.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold, GraphicsUnit.Point);
-            labelEmail.ForeColor = Color.White;
-            labelEmail.Location = new Point(3, 178);
-            labelEmail.Name = "labelEmail";
-            labelEmail.Size = new Size(67, 13);
-            labelEmail.TabIndex = 3;
-            labelEmail.Text = "User Email";
-            labelEmail.TextAlign = ContentAlignment.MiddleCenter;
+            this.labelEmail.AutoSize = true;
+            this.labelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelEmail.ForeColor = System.Drawing.Color.White;
+            this.labelEmail.Location = new System.Drawing.Point(3, 237);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(83, 16);
+            this.labelEmail.TabIndex = 3;
+            this.labelEmail.Text = "User Email";
+            this.labelEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBoxProfile
             // 
-            pictureBoxProfile.Image = Properties.Resources.icons8_user_67;
-            pictureBoxProfile.Location = new Point(33, 37);
-            pictureBoxProfile.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxProfile.Name = "pictureBoxProfile";
-            pictureBoxProfile.Size = new Size(116, 83);
-            pictureBoxProfile.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxProfile.TabIndex = 0;
-            pictureBoxProfile.TabStop = false;
-            pictureBoxProfile.Click += ButtonAddImage;
+            this.pictureBoxProfile.Image = global::Birds_Mangmeant.Properties.Resources.icons8_user_67;
+            this.pictureBoxProfile.Location = new System.Drawing.Point(38, 49);
+            this.pictureBoxProfile.Name = "pictureBoxProfile";
+            this.pictureBoxProfile.Size = new System.Drawing.Size(133, 111);
+            this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxProfile.TabIndex = 0;
+            this.pictureBoxProfile.TabStop = false;
             // 
             // labelId
             // 
-            labelId.AutoSize = true;
-            labelId.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold, GraphicsUnit.Point);
-            labelId.ForeColor = Color.White;
-            labelId.Location = new Point(3, 161);
-            labelId.Name = "labelId";
-            labelId.Size = new Size(50, 13);
-            labelId.TabIndex = 2;
-            labelId.Text = "User ID";
-            labelId.TextAlign = ContentAlignment.MiddleCenter;
+            this.labelId.AutoSize = true;
+            this.labelId.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelId.ForeColor = System.Drawing.Color.White;
+            this.labelId.Location = new System.Drawing.Point(3, 215);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(59, 16);
+            this.labelId.TabIndex = 2;
+            this.labelId.Text = "User ID";
+            this.labelId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelUserName
             // 
-            labelUserName.AutoSize = true;
-            labelUserName.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            labelUserName.ForeColor = Color.FromArgb(0, 156, 249);
-            labelUserName.Location = new Point(0, 134);
-            labelUserName.Name = "labelUserName";
-            labelUserName.Size = new Size(88, 17);
-            labelUserName.TabIndex = 1;
-            labelUserName.Text = "User Name";
-            labelUserName.TextAlign = ContentAlignment.MiddleCenter;
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelUserName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(249)))));
+            this.labelUserName.Location = new System.Drawing.Point(0, 179);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(103, 20);
+            this.labelUserName.TabIndex = 1;
+            this.labelUserName.Text = "User Name";
+            this.labelUserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelHome
             // 
-            panelHome.BackColor = Color.FromArgb(46, 51, 73);
-            panelHome.Controls.Add(pictureBoxBirdFly);
-            panelHome.Controls.Add(panel7);
-            panelHome.Controls.Add(panel6);
-            panelHome.Controls.Add(plotSurface2d1);
-            panelHome.Controls.Add(panel4);
-            panelHome.Controls.Add(panel3);
-            panelHome.Controls.Add(panel2);
-            panelHome.Controls.Add(panel1);
-            panelHome.Location = new Point(189, 20);
-            panelHome.Margin = new Padding(3, 2, 3, 2);
-            panelHome.Name = "panelHome";
-            panelHome.Size = new Size(933, 547);
-            panelHome.TabIndex = 0;
+            this.panelHome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.panelHome.Controls.Add(this.pictureBoxBirdFly);
+            this.panelHome.Controls.Add(this.panel7);
+            this.panelHome.Controls.Add(this.panel6);
+            this.panelHome.Controls.Add(this.panel4);
+            this.panelHome.Controls.Add(this.panel3);
+            this.panelHome.Controls.Add(this.panel2);
+            this.panelHome.Controls.Add(this.panel1);
+            this.panelHome.Location = new System.Drawing.Point(216, 27);
+            this.panelHome.Name = "panelHome";
+            this.panelHome.Size = new System.Drawing.Size(1066, 729);
+            this.panelHome.TabIndex = 0;
             // 
             // pictureBoxBirdFly
             // 
-            pictureBoxBirdFly.Image = Properties.Resources.giphy;
-            pictureBoxBirdFly.Location = new Point(875, 9);
-            pictureBoxBirdFly.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxBirdFly.Name = "pictureBoxBirdFly";
-            pictureBoxBirdFly.Size = new Size(47, 29);
-            pictureBoxBirdFly.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxBirdFly.TabIndex = 9;
-            pictureBoxBirdFly.TabStop = false;
+            this.pictureBoxBirdFly.Image = global::Birds_Mangmeant.Properties.Resources.giphy;
+            this.pictureBoxBirdFly.Location = new System.Drawing.Point(1000, 12);
+            this.pictureBoxBirdFly.Name = "pictureBoxBirdFly";
+            this.pictureBoxBirdFly.Size = new System.Drawing.Size(54, 39);
+            this.pictureBoxBirdFly.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxBirdFly.TabIndex = 9;
+            this.pictureBoxBirdFly.TabStop = false;
             // 
             // panel7
             // 
-            panel7.BackColor = Color.FromArgb(37, 42, 64);
-            panel7.Controls.Add(label11);
-            panel7.Location = new Point(419, 455);
-            panel7.Margin = new Padding(3, 2, 3, 2);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(359, 68);
-            panel7.TabIndex = 8;
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel7.Controls.Add(this.label11);
+            this.panel7.Location = new System.Drawing.Point(479, 607);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(410, 91);
+            this.panel7.TabIndex = 8;
             // 
             // label11
             // 
-            label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(3, 0);
-            label11.Name = "label11";
-            label11.Size = new Size(356, 68);
-            label11.TabIndex = 4;
-            label11.Text = "1: North America 2: Center America 3: South America 4: Eastren Europe 5: Western Europe 6: Australian Center 7: Australian City Beaches";
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(407, 91);
+            this.label11.TabIndex = 4;
+            this.label11.Text = "1: North America 2: Center America 3: South America 4: Eastren Europe 5: Western " +
+    "Europe 6: Australian Center 7: Australian City Beaches";
             // 
             // panel6
             // 
-            panel6.BackColor = Color.FromArgb(37, 42, 64);
-            panel6.Controls.Add(pictureBoxRefresh);
-            panel6.Controls.Add(label14);
-            panel6.Controls.Add(pictureBox6);
-            panel6.Location = new Point(419, 170);
-            panel6.Margin = new Padding(3, 2, 3, 2);
-            panel6.Name = "panel6";
-            panel6.Size = new Size(359, 33);
-            panel6.TabIndex = 7;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel6.Controls.Add(this.pictureBoxRefresh);
+            this.panel6.Controls.Add(this.label14);
+            this.panel6.Controls.Add(this.pictureBox6);
+            this.panel6.Location = new System.Drawing.Point(479, 227);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(410, 44);
+            this.panel6.TabIndex = 7;
             // 
             // pictureBoxRefresh
             // 
-            pictureBoxRefresh.Image = Properties.Resources.icons8_refresh_24;
-            pictureBoxRefresh.Location = new Point(0, 0);
-            pictureBoxRefresh.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxRefresh.Name = "pictureBoxRefresh";
-            pictureBoxRefresh.Size = new Size(31, 25);
-            pictureBoxRefresh.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxRefresh.TabIndex = 10;
-            pictureBoxRefresh.TabStop = false;
-            pictureBoxRefresh.Click += pictureBoxRefresh_Click;
+            this.pictureBoxRefresh.Image = global::Birds_Mangmeant.Properties.Resources.icons8_refresh_24;
+            this.pictureBoxRefresh.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxRefresh.Name = "pictureBoxRefresh";
+            this.pictureBoxRefresh.Size = new System.Drawing.Size(35, 33);
+            this.pictureBoxRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxRefresh.TabIndex = 10;
+            this.pictureBoxRefresh.TabStop = false;
             // 
             // label14
             // 
-            label14.AutoSize = true;
-            label14.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label14.ForeColor = Color.White;
-            label14.Location = new Point(90, 9);
-            label14.Name = "label14";
-            label14.Size = new Size(179, 17);
-            label14.TabIndex = 9;
-            label14.Text = "Graph of Breed Amount";
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(103, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(207, 20);
+            this.label14.TabIndex = 9;
+            this.label14.Text = "Graph of Breed Amount";
             // 
             // pictureBox6
             // 
-            pictureBox6.Image = Properties.Resources.icons8_combo_chart_24;
-            pictureBox6.Location = new Point(326, 2);
-            pictureBox6.Margin = new Padding(3, 2, 3, 2);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(31, 25);
-            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox6.TabIndex = 9;
-            pictureBox6.TabStop = false;
-            // 
-            // plotSurface2d1
-            // 
-            plotSurface2d1.AutoScaleAutoGeneratedAxes = false;
-            plotSurface2d1.AutoScaleTitle = false;
-            plotSurface2d1.BackColor = Color.FromArgb(37, 42, 64);
-            plotSurface2d1.DateTimeToolTip = false;
-            plotSurface2d1.Legend = null;
-            plotSurface2d1.LegendZOrder = -1;
-            plotSurface2d1.Location = new Point(419, 198);
-            plotSurface2d1.Margin = new Padding(3, 2, 3, 2);
-            plotSurface2d1.Name = "plotSurface2d1";
-            plotSurface2d1.RightMenu = null;
-            plotSurface2d1.ShowCoordinates = true;
-            plotSurface2d1.Size = new Size(359, 255);
-            plotSurface2d1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            plotSurface2d1.TabIndex = 6;
-            plotSurface2d1.Text = "plotSurface2d1";
-            plotSurface2d1.Title = "";
-            plotSurface2d1.TitleFont = new Font("Arial", 14F, FontStyle.Regular, GraphicsUnit.Pixel);
-            plotSurface2d1.XAxis1 = null;
-            plotSurface2d1.XAxis2 = null;
-            plotSurface2d1.YAxis1 = null;
-            plotSurface2d1.YAxis2 = null;
+            this.pictureBox6.Image = global::Birds_Mangmeant.Properties.Resources.icons8_combo_chart_24;
+            this.pictureBox6.Location = new System.Drawing.Point(373, 3);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox6.TabIndex = 9;
+            this.pictureBox6.TabStop = false;
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(37, 42, 64);
-            panel4.Controls.Add(pictureBox5);
-            panel4.Controls.Add(label8);
-            panel4.Controls.Add(labelAmountUsers);
-            panel4.Location = new Point(627, 52);
-            panel4.Margin = new Padding(3, 2, 3, 2);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(219, 94);
-            panel4.TabIndex = 5;
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel4.Controls.Add(this.pictureBox5);
+            this.panel4.Controls.Add(this.label8);
+            this.panel4.Controls.Add(this.labelAmountUsers);
+            this.panel4.Location = new System.Drawing.Point(717, 69);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(250, 125);
+            this.panel4.TabIndex = 5;
             // 
             // pictureBox5
             // 
-            pictureBox5.Image = Properties.Resources.icons8_users_64;
-            pictureBox5.Location = new Point(188, 1);
-            pictureBox5.Margin = new Padding(3, 2, 3, 2);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(31, 25);
-            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox5.TabIndex = 4;
-            pictureBox5.TabStop = false;
+            this.pictureBox5.Image = global::Birds_Mangmeant.Properties.Resources.icons8_users_64;
+            this.pictureBox5.Location = new System.Drawing.Point(215, 1);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 4;
+            this.pictureBox5.TabStop = false;
             // 
             // label8
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.White;
-            label8.Location = new Point(39, 14);
-            label8.Name = "label8";
-            label8.Size = new Size(128, 17);
-            label8.TabIndex = 3;
-            label8.Text = "Amount of Users";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(45, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(150, 20);
+            this.label8.TabIndex = 3;
+            this.label8.Text = "Amount of Users";
             // 
             // labelAmountUsers
             // 
-            labelAmountUsers.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            labelAmountUsers.ForeColor = Color.White;
-            labelAmountUsers.Location = new Point(3, 2);
-            labelAmountUsers.Name = "labelAmountUsers";
-            labelAmountUsers.Size = new Size(219, 94);
-            labelAmountUsers.TabIndex = 2;
-            labelAmountUsers.Text = "Number";
-            labelAmountUsers.TextAlign = ContentAlignment.MiddleCenter;
+            this.labelAmountUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelAmountUsers.ForeColor = System.Drawing.Color.White;
+            this.labelAmountUsers.Location = new System.Drawing.Point(3, 3);
+            this.labelAmountUsers.Name = "labelAmountUsers";
+            this.labelAmountUsers.Size = new System.Drawing.Size(250, 125);
+            this.labelAmountUsers.TabIndex = 2;
+            this.labelAmountUsers.Text = "Number";
+            this.labelAmountUsers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(37, 42, 64);
-            panel3.Controls.Add(textBoxListOfChores);
-            panel3.Controls.Add(pictureBoxSaveList);
-            panel3.Controls.Add(pictureBox4);
-            panel3.Controls.Add(label15);
-            panel3.Location = new Point(83, 172);
-            panel3.Margin = new Padding(3, 2, 3, 2);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(219, 336);
-            panel3.TabIndex = 4;
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel3.Controls.Add(this.textBoxListOfChores);
+            this.panel3.Controls.Add(this.pictureBoxSaveList);
+            this.panel3.Controls.Add(this.pictureBox4);
+            this.panel3.Controls.Add(this.label15);
+            this.panel3.Location = new System.Drawing.Point(95, 229);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(250, 448);
+            this.panel3.TabIndex = 4;
             // 
             // textBoxListOfChores
             // 
-            textBoxListOfChores.BackColor = Color.FromArgb(46, 51, 73);
-            textBoxListOfChores.BorderStyle = BorderStyle.None;
-            textBoxListOfChores.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxListOfChores.ForeColor = Color.White;
-            textBoxListOfChores.Location = new Point(24, 58);
-            textBoxListOfChores.Margin = new Padding(3, 2, 3, 2);
-            textBoxListOfChores.Multiline = true;
-            textBoxListOfChores.Name = "textBoxListOfChores";
-            textBoxListOfChores.Size = new Size(173, 230);
-            textBoxListOfChores.TabIndex = 7;
+            this.textBoxListOfChores.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.textBoxListOfChores.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxListOfChores.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxListOfChores.ForeColor = System.Drawing.Color.White;
+            this.textBoxListOfChores.Location = new System.Drawing.Point(27, 77);
+            this.textBoxListOfChores.Multiline = true;
+            this.textBoxListOfChores.Name = "textBoxListOfChores";
+            this.textBoxListOfChores.Size = new System.Drawing.Size(198, 307);
+            this.textBoxListOfChores.TabIndex = 7;
             // 
             // pictureBoxSaveList
             // 
-            pictureBoxSaveList.Image = Properties.Resources.icons8_save_50;
-            pictureBoxSaveList.Location = new Point(88, 300);
-            pictureBoxSaveList.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxSaveList.Name = "pictureBoxSaveList";
-            pictureBoxSaveList.Size = new Size(43, 29);
-            pictureBoxSaveList.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxSaveList.TabIndex = 5;
-            pictureBoxSaveList.TabStop = false;
-            pictureBoxSaveList.Click += pictureBoxSaveList_Click;
+            this.pictureBoxSaveList.Image = global::Birds_Mangmeant.Properties.Resources.icons8_save_50;
+            this.pictureBoxSaveList.Location = new System.Drawing.Point(101, 400);
+            this.pictureBoxSaveList.Name = "pictureBoxSaveList";
+            this.pictureBoxSaveList.Size = new System.Drawing.Size(49, 39);
+            this.pictureBoxSaveList.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSaveList.TabIndex = 5;
+            this.pictureBoxSaveList.TabStop = false;
             // 
             // pictureBox4
             // 
-            pictureBox4.Image = Properties.Resources.icons8_notes_64;
-            pictureBox4.Location = new Point(188, 0);
-            pictureBox4.Margin = new Padding(3, 2, 3, 2);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(31, 25);
-            pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox4.TabIndex = 6;
-            pictureBox4.TabStop = false;
+            this.pictureBox4.Image = global::Birds_Mangmeant.Properties.Resources.icons8_notes_64;
+            this.pictureBox4.Location = new System.Drawing.Point(215, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 6;
+            this.pictureBox4.TabStop = false;
             // 
             // label15
             // 
-            label15.AutoSize = true;
-            label15.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label15.ForeColor = Color.White;
-            label15.Location = new Point(52, 15);
-            label15.Name = "label15";
-            label15.Size = new Size(109, 17);
-            label15.TabIndex = 3;
-            label15.Text = "List of Chores";
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(59, 20);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(129, 20);
+            this.label15.TabIndex = 3;
+            this.label15.Text = "List of Chores";
             // 
             // panel2
             // 
-            panel2.BackColor = Color.FromArgb(37, 42, 64);
-            panel2.Controls.Add(pictureBox2);
-            panel2.Controls.Add(label13);
-            panel2.Controls.Add(labelNumCages);
-            panel2.Location = new Point(355, 54);
-            panel2.Margin = new Padding(3, 2, 3, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(219, 94);
-            panel2.TabIndex = 3;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Controls.Add(this.label13);
+            this.panel2.Controls.Add(this.labelNumCages);
+            this.panel2.Location = new System.Drawing.Point(406, 72);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(250, 125);
+            this.panel2.TabIndex = 3;
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = Properties.Resources.icons8_cage_of_a_bird_50__1_;
-            pictureBox2.Location = new Point(188, 1);
-            pictureBox2.Margin = new Padding(3, 2, 3, 2);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(31, 25);
-            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox2.TabIndex = 4;
-            pictureBox2.TabStop = false;
+            this.pictureBox2.Image = global::Birds_Mangmeant.Properties.Resources.icons8_cage_of_a_bird_50__1_;
+            this.pictureBox2.Location = new System.Drawing.Point(215, 1);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
             // 
             // label13
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label13.ForeColor = Color.White;
-            label13.Location = new Point(39, 14);
-            label13.Name = "label13";
-            label13.Size = new Size(131, 17);
-            label13.TabIndex = 3;
-            label13.Text = "Amount of Cages";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(45, 19);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(153, 20);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "Amount of Cages";
             // 
             // labelNumCages
             // 
-            labelNumCages.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            labelNumCages.ForeColor = Color.FromArgb(0, 156, 249);
-            labelNumCages.Location = new Point(54, 35);
-            labelNumCages.Name = "labelNumCages";
-            labelNumCages.Size = new Size(105, 24);
-            labelNumCages.TabIndex = 2;
-            labelNumCages.Text = "Number";
+            this.labelNumCages.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelNumCages.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(249)))));
+            this.labelNumCages.Location = new System.Drawing.Point(62, 47);
+            this.labelNumCages.Name = "labelNumCages";
+            this.labelNumCages.Size = new System.Drawing.Size(120, 32);
+            this.labelNumCages.TabIndex = 2;
+            this.labelNumCages.Text = "Number";
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(37, 42, 64);
-            panel1.Controls.Add(pictureBox3);
-            panel1.Controls.Add(label12);
-            panel1.Controls.Add(labelTypeOfBirds);
-            panel1.Location = new Point(83, 54);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(219, 94);
-            panel1.TabIndex = 2;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel1.Controls.Add(this.pictureBox3);
+            this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.labelTypeOfBirds);
+            this.panel1.Location = new System.Drawing.Point(95, 72);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(250, 125);
+            this.panel1.TabIndex = 2;
             // 
             // pictureBox3
             // 
-            pictureBox3.Image = Properties.Resources.icons8_quail_50;
-            pictureBox3.Location = new Point(186, 2);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(31, 25);
-            pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox3.TabIndex = 5;
-            pictureBox3.TabStop = false;
+            this.pictureBox3.Image = global::Birds_Mangmeant.Properties.Resources.icons8_quail_50;
+            this.pictureBox3.Location = new System.Drawing.Point(213, 3);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 5;
+            this.pictureBox3.TabStop = false;
             // 
             // label12
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.ForeColor = Color.White;
-            label12.Location = new Point(38, 14);
-            label12.Name = "label12";
-            label12.Size = new Size(123, 17);
-            label12.TabIndex = 3;
-            label12.Text = "Amount of Birds";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(43, 19);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(145, 20);
+            this.label12.TabIndex = 3;
+            this.label12.Text = "Amount of Birds";
             // 
             // labelTypeOfBirds
             // 
-            labelTypeOfBirds.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
-            labelTypeOfBirds.ForeColor = Color.FromArgb(0, 156, 249);
-            labelTypeOfBirds.Location = new Point(0, 0);
-            labelTypeOfBirds.Name = "labelTypeOfBirds";
-            labelTypeOfBirds.Size = new Size(219, 94);
-            labelTypeOfBirds.TabIndex = 2;
-            labelTypeOfBirds.Text = "Number";
-            labelTypeOfBirds.TextAlign = ContentAlignment.MiddleCenter;
+            this.labelTypeOfBirds.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelTypeOfBirds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(249)))));
+            this.labelTypeOfBirds.Location = new System.Drawing.Point(0, 0);
+            this.labelTypeOfBirds.Name = "labelTypeOfBirds";
+            this.labelTypeOfBirds.Size = new System.Drawing.Size(250, 125);
+            this.labelTypeOfBirds.TabIndex = 2;
+            this.labelTypeOfBirds.Text = "Number";
+            this.labelTypeOfBirds.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelAddCage
             // 
-            panelAddCage.BackColor = Color.FromArgb(46, 51, 73);
-            panelAddCage.Controls.Add(textBox1);
-            panelAddCage.Controls.Add(label10);
-            panelAddCage.Location = new Point(0, 20);
-            panelAddCage.Margin = new Padding(3, 2, 3, 2);
-            panelAddCage.Name = "panelAddCage";
-            panelAddCage.Size = new Size(1122, 545);
-            panelAddCage.TabIndex = 1;
+            this.panelAddCage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.panelAddCage.Controls.Add(this.textBox1);
+            this.panelAddCage.Controls.Add(this.label10);
+            this.panelAddCage.Location = new System.Drawing.Point(0, 0);
+            this.panelAddCage.Name = "panelAddCage";
+            this.panelAddCage.Size = new System.Drawing.Size(1282, 727);
+            this.panelAddCage.TabIndex = 1;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(135, 80);
-            textBox1.Margin = new Padding(3, 2, 3, 2);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(110, 23);
-            textBox1.TabIndex = 1;
+            this.textBox1.Location = new System.Drawing.Point(154, 107);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(125, 27);
+            this.textBox1.TabIndex = 1;
             // 
             // label10
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(135, 44);
-            label10.Name = "label10";
-            label10.Size = new Size(88, 15);
-            label10.TabIndex = 0;
-            label10.Text = "this is add cage";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(154, 59);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(112, 20);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "this is add cage";
             // 
             // panelSearch
             // 
-            panelSearch.BackColor = Color.FromArgb(46, 51, 73);
-            panelSearch.Location = new Point(0, 20);
-            panelSearch.Margin = new Padding(3, 2, 3, 2);
-            panelSearch.Name = "panelSearch";
-            panelSearch.Size = new Size(1122, 548);
-            panelSearch.TabIndex = 2;
+            this.panelSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.panelSearch.Location = new System.Drawing.Point(0, 27);
+            this.panelSearch.Name = "panelSearch";
+            this.panelSearch.Size = new System.Drawing.Size(1282, 731);
+            this.panelSearch.TabIndex = 2;
             // 
             // panelHelp
             // 
-            panelHelp.BackColor = Color.FromArgb(46, 51, 73);
-            panelHelp.Controls.Add(dataGridViewQA);
-            panelHelp.Controls.Add(panel5);
-            panelHelp.Location = new Point(0, 20);
-            panelHelp.Margin = new Padding(3, 2, 3, 2);
-            panelHelp.Name = "panelHelp";
-            panelHelp.Size = new Size(1122, 550);
-            panelHelp.TabIndex = 1;
+            this.panelHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.panelHelp.Controls.Add(this.dataGridViewQA);
+            this.panelHelp.Controls.Add(this.panel5);
+            this.panelHelp.Location = new System.Drawing.Point(0, 27);
+            this.panelHelp.Name = "panelHelp";
+            this.panelHelp.Size = new System.Drawing.Size(1282, 733);
+            this.panelHelp.TabIndex = 1;
             // 
             // dataGridViewQA
             // 
-            dataGridViewQA.AllowUserToAddRows = false;
-            dataGridViewQA.AllowUserToDeleteRows = false;
-            dataGridViewQA.BackgroundColor = Color.FromArgb(37, 42, 64);
-            dataGridViewQA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewQA.Location = new Point(412, 0);
-            dataGridViewQA.Margin = new Padding(3, 2, 3, 2);
-            dataGridViewQA.Name = "dataGridViewQA";
-            dataGridViewQA.ReadOnly = true;
-            dataGridViewQA.RowHeadersWidth = 51;
-            dataGridViewQA.RowTemplate.Height = 29;
-            dataGridViewQA.Size = new Size(710, 545);
-            dataGridViewQA.TabIndex = 6;
+            this.dataGridViewQA.AllowUserToAddRows = false;
+            this.dataGridViewQA.AllowUserToDeleteRows = false;
+            this.dataGridViewQA.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.dataGridViewQA.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewQA.Location = new System.Drawing.Point(471, 0);
+            this.dataGridViewQA.Name = "dataGridViewQA";
+            this.dataGridViewQA.ReadOnly = true;
+            this.dataGridViewQA.RowHeadersWidth = 51;
+            this.dataGridViewQA.RowTemplate.Height = 29;
+            this.dataGridViewQA.Size = new System.Drawing.Size(811, 727);
+            this.dataGridViewQA.TabIndex = 6;
             // 
             // panel5
             // 
-            panel5.BackColor = Color.FromArgb(37, 42, 64);
-            panel5.Controls.Add(textBoxQuestion);
-            panel5.Controls.Add(pictureBoxSubmitQuestion);
-            panel5.Controls.Add(pictureBox7);
-            panel5.Controls.Add(labelSubmitHelp);
-            panel5.Location = new Point(0, 2);
-            panel5.Margin = new Padding(3, 2, 3, 2);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(410, 520);
-            panel5.TabIndex = 5;
+            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
+            this.panel5.Controls.Add(this.textBoxQuestion);
+            this.panel5.Controls.Add(this.pictureBoxSubmitQuestion);
+            this.panel5.Controls.Add(this.pictureBox7);
+            this.panel5.Controls.Add(this.labelSubmitHelp);
+            this.panel5.Location = new System.Drawing.Point(0, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(469, 693);
+            this.panel5.TabIndex = 5;
             // 
             // textBoxQuestion
             // 
-            textBoxQuestion.BackColor = Color.FromArgb(46, 51, 73);
-            textBoxQuestion.BorderStyle = BorderStyle.None;
-            textBoxQuestion.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxQuestion.ForeColor = Color.White;
-            textBoxQuestion.Location = new Point(15, 86);
-            textBoxQuestion.Margin = new Padding(3, 2, 3, 2);
-            textBoxQuestion.Multiline = true;
-            textBoxQuestion.Name = "textBoxQuestion";
-            textBoxQuestion.Size = new Size(374, 349);
-            textBoxQuestion.TabIndex = 7;
+            this.textBoxQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.textBoxQuestion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxQuestion.ForeColor = System.Drawing.Color.White;
+            this.textBoxQuestion.Location = new System.Drawing.Point(17, 115);
+            this.textBoxQuestion.Multiline = true;
+            this.textBoxQuestion.Name = "textBoxQuestion";
+            this.textBoxQuestion.Size = new System.Drawing.Size(427, 465);
+            this.textBoxQuestion.TabIndex = 7;
             // 
             // pictureBoxSubmitQuestion
             // 
-            pictureBoxSubmitQuestion.Image = Properties.Resources.icons8_submit_58;
-            pictureBoxSubmitQuestion.Location = new Point(158, 452);
-            pictureBoxSubmitQuestion.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxSubmitQuestion.Name = "pictureBoxSubmitQuestion";
-            pictureBoxSubmitQuestion.Size = new Size(43, 29);
-            pictureBoxSubmitQuestion.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxSubmitQuestion.TabIndex = 5;
-            pictureBoxSubmitQuestion.TabStop = false;
-            pictureBoxSubmitQuestion.Click += pictureBoxSubmitQuestion_Click;
+            this.pictureBoxSubmitQuestion.Image = global::Birds_Mangmeant.Properties.Resources.icons8_submit_58;
+            this.pictureBoxSubmitQuestion.Location = new System.Drawing.Point(181, 603);
+            this.pictureBoxSubmitQuestion.Name = "pictureBoxSubmitQuestion";
+            this.pictureBoxSubmitQuestion.Size = new System.Drawing.Size(49, 39);
+            this.pictureBoxSubmitQuestion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxSubmitQuestion.TabIndex = 5;
+            this.pictureBoxSubmitQuestion.TabStop = false;
             // 
             // pictureBox7
             // 
-            pictureBox7.Image = Properties.Resources.icons8_help_50;
-            pictureBox7.Location = new Point(376, 2);
-            pictureBox7.Margin = new Padding(3, 2, 3, 2);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(31, 25);
-            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox7.TabIndex = 6;
-            pictureBox7.TabStop = false;
+            this.pictureBox7.Image = global::Birds_Mangmeant.Properties.Resources.icons8_help_50;
+            this.pictureBox7.Location = new System.Drawing.Point(430, 3);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(35, 33);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 6;
+            this.pictureBox7.TabStop = false;
             // 
             // labelSubmitHelp
             // 
-            labelSubmitHelp.AutoSize = true;
-            labelSubmitHelp.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
-            labelSubmitHelp.ForeColor = Color.White;
-            labelSubmitHelp.Location = new Point(124, 52);
-            labelSubmitHelp.Name = "labelSubmitHelp";
-            labelSubmitHelp.Size = new Size(132, 17);
-            labelSubmitHelp.TabIndex = 3;
-            labelSubmitHelp.Text = "Submit Question:";
+            this.labelSubmitHelp.AutoSize = true;
+            this.labelSubmitHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.labelSubmitHelp.ForeColor = System.Drawing.Color.White;
+            this.labelSubmitHelp.Location = new System.Drawing.Point(142, 69);
+            this.labelSubmitHelp.Name = "labelSubmitHelp";
+            this.labelSubmitHelp.Size = new System.Drawing.Size(154, 20);
+            this.labelSubmitHelp.TabIndex = 3;
+            this.labelSubmitHelp.Text = "Submit Question:";
             // 
             // Home
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(46, 51, 73);
-            ClientSize = new Size(1122, 565);
-            Controls.Add(panelUser);
-            Controls.Add(panelHome);
-            Controls.Add(PanelAddBird);
-            Controls.Add(panelHelp);
-            Controls.Add(panelSearch);
-            Controls.Add(panelAddCage);
-            Controls.Add(toolStrip1);
-            Icon = (Icon)resources.GetObject("$this.Icon");
-            Margin = new Padding(3, 2, 3, 2);
-            Name = "Home";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Home";
-            FormClosed += Home_FormClosed;
-            toolStrip1.ResumeLayout(false);
-            toolStrip1.PerformLayout();
-            PanelAddBird.ResumeLayout(false);
-            PanelAddBird.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelUser.ResumeLayout(false);
-            panelUser.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxAnim).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
-            panelHome.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBoxBirdFly).EndInit();
-            panel7.ResumeLayout(false);
-            panel6.ResumeLayout(false);
-            panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            panel4.ResumeLayout(false);
-            panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxSaveList).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panelAddCage.ResumeLayout(false);
-            panelAddCage.PerformLayout();
-            panelHelp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridViewQA).EndInit();
-            panel5.ResumeLayout(false);
-            panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
+            this.ClientSize = new System.Drawing.Size(1282, 753);
+            this.Controls.Add(this.panelHome);
+            this.Controls.Add(this.panelUser);
+            this.Controls.Add(this.PanelAddBird);
+            this.Controls.Add(this.panelHelp);
+            this.Controls.Add(this.panelSearch);
+            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panelAddCage);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Home";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Home";
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.PanelAddBird.ResumeLayout(false);
+            this.PanelAddBird.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelUser.ResumeLayout(false);
+            this.panelUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnim)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
+            this.panelHome.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBirdFly)).EndInit();
+            this.panel7.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSaveList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panelAddCage.ResumeLayout(false);
+            this.panelAddCage.PerformLayout();
+            this.panelHelp.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQA)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubmitQuestion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
