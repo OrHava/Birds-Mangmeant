@@ -213,8 +213,13 @@ namespace Birds_Mangmeant
         public void createGraph()
         {
 
-            plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
-            plotSurface2d1.Enabled = false;
+            if (plotSurface2d1 != null)
+            {
+                plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
+                plotSurface2d1.Enabled = false;
+            }
+
+
 
             try
             {
@@ -282,7 +287,7 @@ namespace Birds_Mangmeant
 
                 string[] birdBreeds2 = { "1", "2", "3", "4", "5", "6", "7" };
                 int[] birdAmounts = { northAmericaCount, centerAmericaCount, southAmericaCount, easternEuropeCount, westernEuropeCount, australianCenterCount, australianCityBeachesCount };
-            
+
 
 
 
@@ -891,8 +896,85 @@ namespace Birds_Mangmeant
 
         }
 
-        private void ButtonAddBird_Click(object sender, EventArgs e)
+
+
+        private void ButtonHelp_Click_1(object sender, EventArgs e)
         {
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+
+            panelHelp.Show();
+            panelHelp.Visible = true;
+            panelHelp.BringToFront();
+
+
+        }
+
+        private void ButtonSearch_Click_1(object sender, EventArgs e)
+        {
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+
+            panelSearch.Show();
+            panelSearch.Visible = true;
+            panelSearch.BringToFront();
+        }
+
+        private void ButtonAddCage_Click_1(object sender, EventArgs e)
+        {
+
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+            panelAddCage.Show();
+            panelAddCage.Visible = true;
+            panelAddCage.BringToFront();
+        }
+
+        private void ButtonAddBird_Click_1(object sender, EventArgs e)
+        {
+
             panelHome.Visible = false;
             panelHome.Hide();
 
@@ -915,12 +997,10 @@ namespace Birds_Mangmeant
             loadBirdsList();
 
 
-
         }
 
-        private void ButtonHome_Click(object sender, EventArgs e)
+        private void ButtonHome_Click_1(object sender, EventArgs e)
         {
-
             PanelAddBird.Visible = false;
             PanelAddBird.Hide();
 
@@ -948,86 +1028,20 @@ namespace Birds_Mangmeant
             createGraph();
         }
 
-        private void ButtonAddCage_Click(object sender, EventArgs e)
+        private void ButtonSignOut_Click(object sender, EventArgs e)
         {
 
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelSearch.Visible = false;
-            panelSearch.Hide();
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-
-
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-            panelAddCage.Show();
-            panelAddCage.Visible = true;
-            panelAddCage.BringToFront();
+            Login hm = new Login();
+            this.Hide();
+         
+            hm.ShowDialog();
+            this.Close();
 
         }
 
-        private void ButtonSearch_Click(object sender, EventArgs e)
-        {
-
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-
-            panelSearch.Show();
-            panelSearch.Visible = true;
-            panelSearch.BringToFront();
-
-        }
-
-        private void ButtonHelp_Click(object sender, EventArgs e)
-        {
-
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelSearch.Visible = false;
-            panelSearch.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-
-            panelHelp.Show();
-            panelHelp.Visible = true;
-            panelHelp.BringToFront();
 
 
 
-
-
-        }
 
 
 
