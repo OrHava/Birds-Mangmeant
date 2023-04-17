@@ -745,7 +745,337 @@ namespace Birds_Mangmeant
         }
 
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
+
+
+
+        private void checkBoxMale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxMale.Checked == true)
+            {
+                checkBoxFemale.Checked = false;
+            }
+        }
+
+        private void checkBoxFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxFemale.Checked == true)
+            {
+                checkBoxMale.Checked = false;
+            }
+
+        }
+
+
+        private void listViewBirds_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int index = listViewBirds.FocusedItem.Index;
+            if (!BirdList[index].Equals(null))
+            {
+
+                textBoxIndexNumber.Text = BirdList[index].Item1;
+                comboBoxBreed.Text = BirdList[index].Item2;
+                comboBoxSubspecies.Text = BirdList[index].Item3;
+                dateTimePicker1.Text = BirdList[index].Item4;
+                textBoxIndexCage.Text = BirdList[index].Item5;
+                textBoxIndexMotherofBird.Text = BirdList[index].Item6;
+                textBoxIndexFatherofBird.Text = BirdList[index].Item7;
+
+                if (BirdList[index].Rest.Item1 == "Male")
+                {
+                    checkBoxMale.Checked = true;
+                }
+                else
+                {
+                    checkBoxMale.Checked = false;
+                }
+
+                if (BirdList[index].Rest.Item1 == "Female")
+                {
+                    checkBoxFemale.Checked = true;
+                }
+                else
+                {
+                    checkBoxFemale.Checked = false;
+                }
+
+
+            }
+        }
+
+
+
+        private void ButtonAddBird_Click(object sender, EventArgs e)
+        {
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelAddCage.Visible = false;
+            panelAddCage.Hide();
+            panelSearch.Visible = false;
+
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+            panelSearch.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+            PanelAddBird.Show();
+            PanelAddBird.Visible = true;
+            PanelAddBird.BringToFront();
+            PanelAddBird.Enabled = true;
+            loadBirdsList();
+
+        }
+
+        private void ButtonHelp_Click(object sender, EventArgs e)
+        {
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+
+            panelHelp.Show();
+            panelHelp.Visible = true;
+            panelHelp.BringToFront();
+        }
+
+        private void ButtonSignOut_Click_1(object sender, EventArgs e)
+        {
+            Login hm = new Login();
+            this.Hide();
+
+            hm.ShowDialog();
+            this.Close();
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+
+            panelSearch.Show();
+            panelSearch.Visible = true;
+            panelSearch.BringToFront();
+        }
+
+        private void ButtonAddCage_Click(object sender, EventArgs e)
+        {
+
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+            panelAddCage.Show();
+            panelAddCage.Visible = true;
+            panelAddCage.BringToFront();
+        }
+
+        private void ButtonHome_Click(object sender, EventArgs e)
+        {
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelAddCage.Visible = false;
+            panelAddCage.Hide();
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+
+
+
+            panelUser.Show();
+            panelUser.Visible = true;
+            panelUser.BringToFront();
+            panelUser.Enabled = true;
+
+            panelHome.Show();
+            panelHome.Visible = true;
+            panelHome.BringToFront();
+            panelHome.Enabled = true;
+            labelTypeOfBirds.Text = amountofBirds().ToString();
+            createGraph();
+        }
+
+
+
+
+
+
+
+        private void pictureBoxProfile_Click_1(object sender, EventArgs e)
+        {
+            using (var openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBoxProfile.ImageLocation = openFileDialog.FileName;
+
+                    Properties.Settings.Default.PictureProfile = openFileDialog.FileName;
+                }
+            }
+        }
+
+
+
+
+
+
+
+        private void pictureBoxSaveList_Click_1(object sender, EventArgs e)
+        {
+            IFirebaseClient client = new FirebaseClient(config);
+
+
+
+            try
+            {
+
+                client.Set("users/" + Login.currentusername + "/Chores", textBoxListOfChores.Text);
+                MessageBox.Show("You saved Succefully Chores.");
+
+                this.ActiveControl = null;
+            }
+            catch (FirebaseException)
+            {
+                // handle failure ...
+            }
+        }
+
+
+        private void pictureBoxSubmitQuestion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff"); // generate a unique timestamp
+                client.Set("QuestionsFromUsers/" + Login.currentusername + "/" + timestamp, textBoxQuestion.Text); // use the timestamp as part of the key
+                MessageBox.Show("You submit Succefully a question: " + textBoxQuestion.Text);
+
+                this.ActiveControl = null;
+                textBoxQuestion.Clear();
+            }
+            catch (FirebaseException)
+            {
+                // handle failure ...
+            }
+        }
+
+
+        private void pictureBoxRefresh_Click(object sender, EventArgs e)
+        {
+            createGraph();
+        }
+
+
+
+        private void listViewBirds_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string message = "Do you want to remove this bird?";
+            string title = "Delete Bird";
+            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(message, title, buttons);
+            if (result == DialogResult.Yes)
+            {
+
+                try
+                {
+                    client = new FireSharp.FirebaseClient(config);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message + "Check Your connection!");
+                    return; // stop execution if client couldn't be created
+                }
+
+                if (listViewBirds.SelectedItems.Count == 0)
+                {
+                    MessageBox.Show("No bird selected!");
+                    return; // stop execution if no bird is selected
+                }
+
+                int index = listViewBirds.FocusedItem.Index;
+                if (index >= BirdList.Count)
+                {
+                    MessageBox.Show("Invalid bird index!");
+                    return; // stop execution if index is out of range
+                }
+
+                string indexBird = BirdList[index].Item1;
+
+                if (client != null)
+                {
+                    FirebaseResponse response2 = client.Delete("users/" + Login.currentusername + "/Birds/" + indexBird);
+                    loadBirdsList();
+                }
+                else
+                {
+                    MessageBox.Show("Firebase client is null!");
+                }
+
+
+
+
+
+            }
+
+            else
+            {
+                // Do something  
+
+            }
+        }
+
+
+
+
+
+
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
             bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
@@ -836,330 +1166,6 @@ namespace Birds_Mangmeant
                 {
                     // handle failure ...
                 }
-
-            }
-
-
-        }
-
-
-        private void checkBoxMale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxMale.Checked == true)
-            {
-                checkBoxFemale.Checked = false;
-            }
-        }
-
-        private void checkBoxFemale_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxFemale.Checked == true)
-            {
-                checkBoxMale.Checked = false;
-            }
-
-        }
-
-        private void listViewBirds_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int index = listViewBirds.FocusedItem.Index;
-            if (!BirdList[index].Equals(null))
-            {
-
-                textBoxIndexNumber.Text = BirdList[index].Item1;
-                comboBoxBreed.Text = BirdList[index].Item2;
-                comboBoxSubspecies.Text = BirdList[index].Item3;
-                dateTimePicker1.Text = BirdList[index].Item4;
-                textBoxIndexCage.Text = BirdList[index].Item5;
-                textBoxIndexMotherofBird.Text = BirdList[index].Item6;
-                textBoxIndexFatherofBird.Text = BirdList[index].Item7;
-
-                if (BirdList[index].Rest.Item1 == "Male")
-                {
-                    checkBoxMale.Checked = true;
-                }
-                else
-                {
-                    checkBoxMale.Checked = false;
-                }
-
-                if (BirdList[index].Rest.Item1 == "Female")
-                {
-                    checkBoxFemale.Checked = true;
-                }
-                else
-                {
-                    checkBoxFemale.Checked = false;
-                }
-
-
-            }
-
-
-        }
-
-
-
-        private void ButtonHelp_Click_1(object sender, EventArgs e)
-        {
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelSearch.Visible = false;
-            panelSearch.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-
-            panelHelp.Show();
-            panelHelp.Visible = true;
-            panelHelp.BringToFront();
-
-
-        }
-
-        private void ButtonSearch_Click_1(object sender, EventArgs e)
-        {
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-
-            panelSearch.Show();
-            panelSearch.Visible = true;
-            panelSearch.BringToFront();
-        }
-
-        private void ButtonAddCage_Click_1(object sender, EventArgs e)
-        {
-
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelSearch.Visible = false;
-            panelSearch.Hide();
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-
-
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-            panelAddCage.Show();
-            panelAddCage.Visible = true;
-            panelAddCage.BringToFront();
-        }
-
-        private void ButtonAddBird_Click_1(object sender, EventArgs e)
-        {
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelAddCage.Visible = false;
-            panelAddCage.Hide();
-            panelSearch.Visible = false;
-
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-            panelSearch.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-            PanelAddBird.Show();
-            PanelAddBird.Visible = true;
-            PanelAddBird.BringToFront();
-            PanelAddBird.Enabled = true;
-            loadBirdsList();
-
-
-        }
-
-        private void ButtonHome_Click_1(object sender, EventArgs e)
-        {
-            PanelAddBird.Visible = false;
-            PanelAddBird.Hide();
-
-            panelAddCage.Visible = false;
-            panelAddCage.Hide();
-            panelSearch.Visible = false;
-            panelSearch.Hide();
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-
-
-
-
-            panelUser.Show();
-            panelUser.Visible = true;
-            panelUser.BringToFront();
-            panelUser.Enabled = true;
-
-            panelHome.Show();
-            panelHome.Visible = true;
-            panelHome.BringToFront();
-            panelHome.Enabled = true;
-            labelTypeOfBirds.Text = amountofBirds().ToString();
-            createGraph();
-        }
-
-        private void ButtonSignOut_Click(object sender, EventArgs e)
-        {
-
-            Login hm = new Login();
-            this.Hide();
-
-            hm.ShowDialog();
-            this.Close();
-
-        }
-
-
-
-
-        private void pictureBoxProfile_Click(object sender, EventArgs e)
-        {
-            using (var openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    pictureBoxProfile.ImageLocation = openFileDialog.FileName;
-
-                    Properties.Settings.Default.PictureProfile = openFileDialog.FileName;
-                }
-            }
-        }
-
-
-
-
-        private void pictureBoxSaveList_Click(object sender, EventArgs e)
-        {
-            IFirebaseClient client = new FirebaseClient(config);
-
-
-
-            try
-            {
-
-                client.Set("users/" + Login.currentusername + "/Chores", textBoxListOfChores.Text);
-                MessageBox.Show("You saved Succefully Chores.");
-
-                this.ActiveControl = null;
-            }
-            catch (FirebaseException)
-            {
-                // handle failure ...
-            }
-        }
-
-
-
-        private void pictureBoxSubmitQuestion_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                string timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff"); // generate a unique timestamp
-                client.Set("QuestionsFromUsers/" + Login.currentusername + "/" + timestamp, textBoxQuestion.Text); // use the timestamp as part of the key
-                MessageBox.Show("You submit Succefully a question: " + textBoxQuestion.Text);
-
-                this.ActiveControl = null;
-                textBoxQuestion.Clear();
-            }
-            catch (FirebaseException)
-            {
-                // handle failure ...
-            }
-        }
-
-
-
-        private void pictureBoxRefresh_Click_1(object sender, EventArgs e)
-        {
-            createGraph();
-        }
-        private void listViewBirds_MouseDoubleClick_1(object sender, MouseEventArgs e)
-        {
-            string message = "Do you want to remove this bird?";
-            string title = "Delete Bird";
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show(message, title, buttons);
-            if (result == DialogResult.Yes)
-            {
-
-                try
-                {
-                    client = new FireSharp.FirebaseClient(config);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message + "Check Your connection!");
-                    return; // stop execution if client couldn't be created
-                }
-
-                if (listViewBirds.SelectedItems.Count == 0)
-                {
-                    MessageBox.Show("No bird selected!");
-                    return; // stop execution if no bird is selected
-                }
-
-                int index = listViewBirds.FocusedItem.Index;
-                if (index >= BirdList.Count)
-                {
-                    MessageBox.Show("Invalid bird index!");
-                    return; // stop execution if index is out of range
-                }
-
-                string indexBird = BirdList[index].Item1;
-
-                if (client != null)
-                {
-                    FirebaseResponse response2 = client.Delete("users/" + Login.currentusername + "/Birds/" + indexBird);
-                    loadBirdsList();
-                }
-                else
-                {
-                    MessageBox.Show("Firebase client is null!");
-                }
-
-
-
-
-
-            }
-
-            else
-            {
-                // Do something  
 
             }
         }
