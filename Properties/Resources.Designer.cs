@@ -473,6 +473,16 @@ namespace Birds_Mangmeant.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_search_80 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-search-80", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_secure_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-secure-24", resourceCulture);
