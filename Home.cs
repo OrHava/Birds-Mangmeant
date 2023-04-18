@@ -747,102 +747,7 @@ namespace Birds_Mangmeant
         }
 
 
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-            bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
-            bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
-            bool isNumeric3 = Regex.IsMatch(textBoxIndexMotherofBird.Text, @"^\d+$");
 
-            if (!isNumeric)
-            {
-                MessageBox.Show("Index Number of Bird can only contain numbers.");
-            }
-            else if (!isNumeric2)
-            {
-                MessageBox.Show("Index Number of Father of Bird can only contain numbers.");
-            }
-            else if (!isNumeric3)
-            {
-                MessageBox.Show("Index Number of Mother of Bird can only contain numbers.");
-            }
-
-
-            else if (comboBoxBreed.Text == "American gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "Australian Center" || comboBoxSubspecies.Text == "Australian City Beaches"))
-            {
-                MessageBox.Show("Breed and Subspecies Dont match.");
-            }
-
-            else if (comboBoxBreed.Text != "American gouldian" && comboBoxBreed.Text != "European gouldian" && comboBoxBreed.Text != "Australian gouldian")
-            {
-                MessageBox.Show("Please Select Breed.");
-            }
-
-            else if (comboBoxSubspecies.Text != "Eastren Europe" && comboBoxSubspecies.Text != "Western Europe" && comboBoxSubspecies.Text != "Australian Center" && comboBoxSubspecies.Text != "Australian City Beaches" && comboBoxSubspecies.Text != "North America" && comboBoxSubspecies.Text != "Center America" && comboBoxSubspecies.Text != "South America")
-            {
-                MessageBox.Show("Please Select Subspecies.");
-            }
-            else if (comboBoxBreed.Text == "Select Breed" && comboBoxSubspecies.Text == "Select Subspecies")
-            {
-                MessageBox.Show("Please Select Breed and Subspecies.");
-            }
-
-
-            else if (comboBoxBreed.Text == "European gouldian" && (comboBoxSubspecies.Text == "North America" || comboBoxSubspecies.Text == "Center America" || comboBoxSubspecies.Text == "South America" || comboBoxSubspecies.Text == "Australian Center" || comboBoxSubspecies.Text == "Australian City Beaches"))
-            {
-                MessageBox.Show("Breed and Subspecies Dont match.");
-            }
-
-
-            else if (comboBoxBreed.Text == "Australian gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "North America" || comboBoxSubspecies.Text == "Center America" || comboBoxSubspecies.Text == "South America"))
-            {
-                MessageBox.Show("Breed and Subspecies Dont match.");
-            }
-
-            else
-            {
-
-                string maleorfemale = "Male";
-
-                if (checkBoxMale.Checked == true)
-                {
-                    maleorfemale = "Male";
-                }
-                else if (checkBoxFemale.Checked == true)
-                {
-                    maleorfemale = "Female";
-                }
-                IFirebaseClient client = new FirebaseClient(config);
-                var Bird = new Bird
-                {
-                    IndexNumber = textBoxIndexNumber.Text,
-                    Breed_of_Bird = comboBoxBreed.Text,
-                    Subspecies = comboBoxSubspecies.Text,
-                    HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
-                    IndexCage = textBoxIndexCage.Text,
-                    IndexMother = textBoxIndexMotherofBird.Text,
-                    IndexFather = textBoxIndexFatherofBird.Text,
-                    Gender = maleorfemale,
-
-                };
-
-
-                try
-                {
-
-                    client.Set("users/" + Login.currentusername + "/Birds/" + textBoxIndexNumber.Text, Bird);
-                    MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
-                    loadBirdsList();
-
-                }
-                catch (FirebaseException)
-                {
-                    // handle failure ...
-                }
-
-            }
-
-
-        }
 
 
         private void checkBoxMale_CheckedChanged(object sender, EventArgs e)
@@ -862,7 +767,8 @@ namespace Birds_Mangmeant
 
         }
 
-        private void listViewBirds_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void listViewBirds_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             int index = listViewBirds.FocusedItem.Index;
             if (!BirdList[index].Equals(null))
@@ -896,13 +802,36 @@ namespace Birds_Mangmeant
 
 
             }
-
-
         }
 
 
 
-        private void ButtonHelp_Click_1(object sender, EventArgs e)
+        private void ButtonAddBird_Click(object sender, EventArgs e)
+        {
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelAddCage.Visible = false;
+            panelAddCage.Hide();
+            panelSearch.Visible = false;
+
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+            panelSearch.Hide();
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+            PanelAddBird.Show();
+            PanelAddBird.Visible = true;
+            PanelAddBird.BringToFront();
+            PanelAddBird.Enabled = true;
+            loadBirdsList();
+
+        }
+
+        private void ButtonHelp_Click(object sender, EventArgs e)
         {
             PanelAddBird.Visible = false;
             PanelAddBird.Hide();
@@ -924,11 +853,18 @@ namespace Birds_Mangmeant
             panelHelp.Show();
             panelHelp.Visible = true;
             panelHelp.BringToFront();
-
-
         }
 
-        private void ButtonSearch_Click_1(object sender, EventArgs e)
+        private void ButtonSignOut_Click_1(object sender, EventArgs e)
+        {
+            Login hm = new Login();
+            this.Hide();
+
+            hm.ShowDialog();
+            this.Close();
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
         {
             PanelAddBird.Visible = false;
             PanelAddBird.Hide();
@@ -952,7 +888,7 @@ namespace Birds_Mangmeant
             panelSearch.BringToFront();
         }
 
-        private void ButtonAddCage_Click_1(object sender, EventArgs e)
+        private void ButtonAddCage_Click(object sender, EventArgs e)
         {
 
             PanelAddBird.Visible = false;
@@ -976,34 +912,7 @@ namespace Birds_Mangmeant
             panelAddCage.BringToFront();
         }
 
-        private void ButtonAddBird_Click_1(object sender, EventArgs e)
-        {
-
-            panelHome.Visible = false;
-            panelHome.Hide();
-
-            panelAddCage.Visible = false;
-            panelAddCage.Hide();
-            panelSearch.Visible = false;
-
-
-            panelHelp.Visible = false;
-            panelHelp.Hide();
-            panelSearch.Hide();
-
-            panelUser.Visible = false;
-            panelUser.Hide();
-
-            PanelAddBird.Show();
-            PanelAddBird.Visible = true;
-            PanelAddBird.BringToFront();
-            PanelAddBird.Enabled = true;
-            loadBirdsList();
-
-
-        }
-
-        private void ButtonHome_Click_1(object sender, EventArgs e)
+        private void ButtonHome_Click(object sender, EventArgs e)
         {
             PanelAddBird.Visible = false;
             PanelAddBird.Hide();
@@ -1032,21 +941,13 @@ namespace Birds_Mangmeant
             createGraph();
         }
 
-        private void ButtonSignOut_Click(object sender, EventArgs e)
-        {
-
-            Login hm = new Login();
-            this.Hide();
-
-            hm.ShowDialog();
-            this.Close();
-
-        }
 
 
 
 
-        private void pictureBoxProfile_Click(object sender, EventArgs e)
+
+
+        private void pictureBoxProfile_Click_1(object sender, EventArgs e)
         {
             using (var openFileDialog = new OpenFileDialog())
             {
@@ -1064,7 +965,10 @@ namespace Birds_Mangmeant
 
 
 
-        private void pictureBoxSaveList_Click(object sender, EventArgs e)
+
+
+
+        private void pictureBoxSaveList_Click_1(object sender, EventArgs e)
         {
             IFirebaseClient client = new FirebaseClient(config);
 
@@ -1085,8 +989,7 @@ namespace Birds_Mangmeant
         }
 
 
-
-        private void pictureBoxSubmitQuestion_Click_1(object sender, EventArgs e)
+        private void pictureBoxSubmitQuestion_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1104,12 +1007,14 @@ namespace Birds_Mangmeant
         }
 
 
-
-        private void pictureBoxRefresh_Click_1(object sender, EventArgs e)
+        private void pictureBoxRefresh_Click(object sender, EventArgs e)
         {
             createGraph();
         }
-        private void listViewBirds_MouseDoubleClick_1(object sender, MouseEventArgs e)
+
+
+
+        private void listViewBirds_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             string message = "Do you want to remove this bird?";
             string title = "Delete Bird";
@@ -1166,7 +1071,7 @@ namespace Birds_Mangmeant
             }
         }
 
-
+       
     }
 }
 
