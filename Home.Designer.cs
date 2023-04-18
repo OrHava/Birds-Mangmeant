@@ -112,12 +112,12 @@ namespace Birds_Mangmeant
             label10 = new Label();
             panelSearch = new Panel();
             panelHelp = new Panel();
-            dataGridViewQA = new DataGridView();
             panel5 = new Panel();
             textBoxQuestion = new TextBox();
             pictureBoxSubmitQuestion = new PictureBox();
             pictureBox7 = new PictureBox();
             labelSubmitHelp = new Label();
+            dataGridViewQA = new DataGridView();
             toolStrip1.SuspendLayout();
             PanelAddBird.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -141,10 +141,10 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panelAddCage.SuspendLayout();
             panelHelp.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridViewQA).BeginInit();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQA).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -653,7 +653,7 @@ namespace Birds_Mangmeant
             // pictureBox6
             // 
             pictureBox6.Image = Properties.Resources.icons8_combo_chart_24;
-            pictureBox6.Location = new Point(373, 3);
+            pictureBox6.Location = new Point(372, 0);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(35, 33);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
@@ -879,15 +879,6 @@ namespace Birds_Mangmeant
             // 
             // panelHelp
             // 
-
-            this.panelHelp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.panelHelp.Controls.Add(this.panel5);
-            this.panelHelp.Controls.Add(this.dataGridViewQA);
-            this.panelHelp.Location = new System.Drawing.Point(0, 0);
-            this.panelHelp.Name = "panelHelp";
-            this.panelHelp.Size = new System.Drawing.Size(1282, 733);
-            this.panelHelp.TabIndex = 1;
-
             panelHelp.BackColor = Color.FromArgb(46, 51, 73);
             panelHelp.Controls.Add(dataGridViewQA);
             panelHelp.Controls.Add(panel5);
@@ -895,20 +886,6 @@ namespace Birds_Mangmeant
             panelHelp.Name = "panelHelp";
             panelHelp.Size = new Size(1282, 733);
             panelHelp.TabIndex = 1;
-            // 
-            // dataGridViewQA
-            // 
-            dataGridViewQA.AllowUserToAddRows = false;
-            dataGridViewQA.AllowUserToDeleteRows = false;
-            dataGridViewQA.BackgroundColor = Color.FromArgb(37, 42, 64);
-            dataGridViewQA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewQA.Location = new Point(471, 0);
-            dataGridViewQA.Name = "dataGridViewQA";
-            dataGridViewQA.ReadOnly = true;
-            dataGridViewQA.RowHeadersWidth = 51;
-            dataGridViewQA.RowTemplate.Height = 29;
-            dataGridViewQA.Size = new Size(811, 727);
-            dataGridViewQA.TabIndex = 6;
             // 
             // panel5
             // 
@@ -966,63 +943,76 @@ namespace Birds_Mangmeant
             labelSubmitHelp.TabIndex = 3;
             labelSubmitHelp.Text = "Submit Question:";
             // 
+            // dataGridViewQA
+            // 
+            dataGridViewQA.AllowUserToAddRows = false;
+            dataGridViewQA.AllowUserToDeleteRows = false;
+            dataGridViewQA.BackgroundColor = Color.FromArgb(37, 42, 64);
+            dataGridViewQA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewQA.Location = new Point(471, 0);
+            dataGridViewQA.Name = "dataGridViewQA";
+            dataGridViewQA.ReadOnly = true;
+            dataGridViewQA.RowHeadersWidth = 51;
+            dataGridViewQA.RowTemplate.Height = 29;
+            dataGridViewQA.Size = new Size(811, 727);
+            dataGridViewQA.TabIndex = 6;
+            // 
             // Home
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(51)))), ((int)(((byte)(73)))));
-            this.ClientSize = new System.Drawing.Size(1282, 753);
-            this.Controls.Add(this.panelHome);
-            this.Controls.Add(this.panelUser);
-            this.Controls.Add(this.PanelAddBird);
-            this.Controls.Add(this.panelHelp);
-            this.Controls.Add(this.panelSearch);
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.panelAddCage);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Home";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Home";
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.PanelAddBird.ResumeLayout(false);
-            this.PanelAddBird.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelUser.ResumeLayout(false);
-            this.panelUser.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAnim)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
-            this.panelHome.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxBirdFly)).EndInit();
-            this.panel7.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRefresh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSaveList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.panelAddCage.ResumeLayout(false);
-            this.panelAddCage.PerformLayout();
-            this.panelHelp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewQA)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSubmitQuestion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(46, 51, 73);
+            ClientSize = new Size(1282, 753);
+            Controls.Add(panelHome);
+            Controls.Add(panelUser);
+            Controls.Add(PanelAddBird);
+            Controls.Add(panelHelp);
+            Controls.Add(panelSearch);
+            Controls.Add(toolStrip1);
+            Controls.Add(panelAddCage);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "Home";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Home";
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
+            PanelAddBird.ResumeLayout(false);
+            PanelAddBird.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelUser.ResumeLayout(false);
+            panelUser.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxAnim).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxProfile).EndInit();
+            panelHome.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBoxBirdFly).EndInit();
+            panel7.ResumeLayout(false);
+            panel6.ResumeLayout(false);
+            panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxRefresh).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            panel4.ResumeLayout(false);
+            panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSaveList).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            panelAddCage.ResumeLayout(false);
+            panelAddCage.PerformLayout();
+            panelHelp.ResumeLayout(false);
+            panel5.ResumeLayout(false);
+            panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridViewQA).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
