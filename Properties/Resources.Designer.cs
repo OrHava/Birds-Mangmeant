@@ -473,6 +473,16 @@ namespace Birds_Mangmeant.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_search_80 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-search-80", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_secure_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-secure-24", resourceCulture);
@@ -553,9 +563,29 @@ namespace Birds_Mangmeant.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ironcage {
+            get {
+                object obj = ResourceManager.GetObject("ironcage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NorthAmerica {
             get {
                 object obj = ResourceManager.GetObject("NorthAmerica", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plasticcage {
+            get {
+                object obj = ResourceManager.GetObject("plasticcage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -576,6 +606,16 @@ namespace Birds_Mangmeant.Properties {
         internal static System.Drawing.Bitmap Western_Europe {
             get {
                 object obj = ResourceManager.GetObject("Western Europe", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Woodcage {
+            get {
+                object obj = ResourceManager.GetObject("Woodcage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

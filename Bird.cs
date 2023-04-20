@@ -8,19 +8,29 @@ using System.Threading.Tasks;
 namespace Birds_Mangmeant
 {
 
-    [JsonObject]
-    public class Bird
+    [JsonObject(MemberSerialization.OptIn)]
+    public  class Bird
 	{
-		public string?	 IndexNumber { get; set; }
-		public string?	 Breed_of_Bird { get; set; }
-		public string?	 Subspecies { get; set; }
-		public string?	 HatchDate { get; set; }
 
-		public string?	 IndexCage { get; set; }
+        [JsonProperty]
+        public string?	 IndexNumber { get; set; }
 
-		public string?	 IndexMother { get; set; }
-		public string?	 IndexFather{ get; set; }
+        [JsonProperty]
+        public string?	 Breed_of_Bird { get; set; }
+        [JsonProperty]
+        public string?	 Subspecies { get; set; }
+        [JsonProperty]
+        public string?	 HatchDate { get; set; }
+        [JsonProperty]
 
-		public string?	 Gender { get; set; }
+        public string?	 IndexCage { get; set; }
+        [JsonProperty]
+
+        public string?	 IndexMother { get; set; }
+        [JsonProperty]
+        public string?	 IndexFather{ get; set; }
+        [JsonProperty]
+
+        public string?	 Gender { get; set; }
 	}
 }

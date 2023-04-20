@@ -28,6 +28,7 @@ using RestSharp.Extensions;
 using System.Collections;
 using System.Timers;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Birds_Mangmeant
 {
@@ -36,6 +37,10 @@ namespace Birds_Mangmeant
         List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdList = new List<Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
         private System.Timers.Timer timer = new System.Timers.Timer();
         private int frameIndex = 0;
+
+        List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdListSearch = new List<Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
+
+        List<Tuple<string, string, string, string, string, int>> CageList = new List<Tuple<string, string, string, string, string, int>>();
 
 
         private System.Timers.Timer timer1;
@@ -92,6 +97,7 @@ namespace Birds_Mangmeant
             labelEmail.Text = "User Email: " + userEmail();
             textBoxListOfChores.Text = getChores();
             labelAmountUsers.Text = amountofUsers().ToString();
+            labelNumCages.Text = amountofCages().ToString();
             loadQAList();
             createGraph();
 
@@ -102,7 +108,7 @@ namespace Birds_Mangmeant
 
 
 
-        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void Timer1_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
             // Move the bird to the left by changing its X coordinate
             x -= 5; // Change this value to adjust the distance the bird moves each tick
@@ -138,7 +144,7 @@ namespace Birds_Mangmeant
         }
 
 
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
             // increment the frame index and wrap around
             frameIndex = (frameIndex + 1) % 7;
@@ -169,7 +175,7 @@ namespace Birds_Mangmeant
         // get the image and bird name for the given frame index
         private (string, Image) GetFrame(int index)
         {
-            Image image = null;
+            Image? image = null;
             string birdName = "";
 
             switch (index)
@@ -229,83 +235,93 @@ namespace Birds_Mangmeant
             }
 
 
-
-            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
-            Dictionary<string, Bird> data = response2.ResultAs<Dictionary<string, Bird>>();
-
-
-            if (data != null)
+            try
             {
-                List<Bird> birds = data.Values.ToList();
+                FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
+                Dictionary<string, Bird> data = response2.ResultAs<Dictionary<string, Bird>>();
 
-                int northAmericaCount = 0;
-                int centerAmericaCount = 0;
-                int southAmericaCount = 0;
-                int easternEuropeCount = 0;
-                int westernEuropeCount = 0;
-                int australianCenterCount = 0;
-                int australianCityBeachesCount = 0;
 
-                foreach (var bird in birds)
+                if (data != null)
                 {
+                    List<Bird> birds = data.Values.ToList();
+
+                    int northAmericaCount = 0;
+                    int centerAmericaCount = 0;
+                    int southAmericaCount = 0;
+                    int easternEuropeCount = 0;
+                    int westernEuropeCount = 0;
+                    int australianCenterCount = 0;
+                    int australianCityBeachesCount = 0;
+
+                    foreach (var bird in birds)
+                    {
 
 
-                    if (bird.Subspecies == "North America")
-                    {
-                        northAmericaCount++;
-                    }
-                    else if (bird.Subspecies == "Center America")
-                    {
-                        centerAmericaCount++;
-                    }
-                    else if (bird.Subspecies == "South America")
-                    {
-                        southAmericaCount++;
-                    }
-                    else if (bird.Subspecies == "Eastren Europe")
-                    {
-                        easternEuropeCount++;
-                    }
-                    else if (bird.Subspecies == "Western Europe")
-                    {
-                        westernEuropeCount++;
-                    }
-                    else if (bird.Subspecies == "Australian Center")
-                    {
-                        australianCenterCount++;
-                    }
-                    else if (bird.Subspecies == "Australian City Beaches")
-                    {
-                        australianCityBeachesCount++;
+                        if (bird.Subspecies == "North America")
+                        {
+                            northAmericaCount++;
+                        }
+                        else if (bird.Subspecies == "Center America")
+                        {
+                            centerAmericaCount++;
+                        }
+                        else if (bird.Subspecies == "South America")
+                        {
+                            southAmericaCount++;
+                        }
+                        else if (bird.Subspecies == "Eastren Europe")
+                        {
+                            easternEuropeCount++;
+                        }
+                        else if (bird.Subspecies == "Western Europe")
+                        {
+                            westernEuropeCount++;
+                        }
+                        else if (bird.Subspecies == "Australian Center")
+                        {
+                            australianCenterCount++;
+                        }
+                        else if (bird.Subspecies == "Australian City Beaches")
+                        {
+                            australianCityBeachesCount++;
+                        }
+
                     }
 
+
+
+                    string[] birdBreeds2 = { "1", "2", "3", "4", "5", "6", "7" };
+                    int[] birdAmounts = { northAmericaCount, centerAmericaCount, southAmericaCount, easternEuropeCount, westernEuropeCount, australianCenterCount, australianCityBeachesCount };
+
+
+
+
+
+
+                    LinePlot birdPlot = new LinePlot();
+
+                    birdPlot.AbscissaData = birdBreeds2;
+                    birdPlot.OrdinateData = birdAmounts;
+                    birdPlot.Pen = new Pen(Color.FromArgb(37, 42, 64), 5);
+
+
+                    plotSurface2d1.Clear();
+                    plotSurface2d1.Add(birdPlot);
+                    plotSurface2d1.XAxis1.Color = Color.White;
+                    plotSurface2d1.YAxis1.Color = Color.White;
+
+                    plotSurface2d1.Refresh();
                 }
 
 
 
-                string[] birdBreeds2 = { "1", "2", "3", "4", "5", "6", "7" };
-                int[] birdAmounts = { northAmericaCount, centerAmericaCount, southAmericaCount, easternEuropeCount, westernEuropeCount, australianCenterCount, australianCityBeachesCount };
 
 
-
-
-
-
-                LinePlot birdPlot = new LinePlot();
-
-                birdPlot.AbscissaData = birdBreeds2;
-                birdPlot.OrdinateData = birdAmounts;
-                birdPlot.Pen = new Pen(Color.FromArgb(37, 42, 64), 5);
-
-
-                plotSurface2d1.Clear();
-                plotSurface2d1.Add(birdPlot);
-                plotSurface2d1.XAxis1.Color = Color.White;
-                plotSurface2d1.YAxis1.Color = Color.White;
-
-                plotSurface2d1.Refresh();
             }
-
+            catch (Exception ex)
+            {
+                Console.Write(ex);
+            }
 
 
 
@@ -385,7 +401,7 @@ namespace Birds_Mangmeant
             return chores;
 
         }
-        public int amountofBirds()
+        public  int amountofBirds()
         {
             int childCount = 0;
             try
@@ -397,14 +413,32 @@ namespace Birds_Mangmeant
                 MessageBox.Show(ex.Message + "Check Your connection!");
             }
 
-            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
-            if (response2 != null && response2.ResultAs<Dictionary<string, object>>() != null)
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
+
+            if (response2.Body != null)
             {
-
-
                 // rest of the code
-                childCount = response2.ResultAs<Dictionary<string, object>>().Count;
+                var birdsDict = response2.ResultAs<Dictionary<string, Bird>>();
+                if (birdsDict != null)
+                {
+                    childCount = birdsDict.Count;
+                }
             }
+            else
+            {
+                // handle the case where there is no data in the Firebase path
+            }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -414,6 +448,56 @@ namespace Birds_Mangmeant
 
 
         }
+
+        public int amountofCages()
+        {
+            int childCount = 0;
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check Your connection!");
+            }
+
+
+            try
+            {
+                FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
+                if (response2.Body != null)
+                {
+                    var birdsDict = response2.ResultAs<Dictionary<string, Cage>>();
+                    if (birdsDict != null)
+                    {
+                        childCount = birdsDict.Count;
+                    }
+                 
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
+
+
+
+
+
+
+
+
+
+
+            return childCount;
+
+
+
+        }
+
+
+
+
 
         public int amountofUsers()
         {
@@ -550,6 +634,7 @@ namespace Birds_Mangmeant
             listViewBirds.Clear();
             BirdList.Clear();
 
+
             try
             {
                 client = new FireSharp.FirebaseClient(config);
@@ -560,17 +645,25 @@ namespace Birds_Mangmeant
             }
 
 
-            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
-            Dictionary<string, Bird> result2;
-            try
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
+            string json = response2.Body;
+            Dictionary<string, Bird>? result2 = new Dictionary<string, Bird>(); // initialize to empty dictionary
+            if (json != null)
             {
-                result2 = response2.ResultAs<Dictionary<string, Bird>>();
+                result2 = JsonConvert.DeserializeObject<Dictionary<string, Bird>>(json);
             }
-            catch (Newtonsoft.Json.JsonSerializationException ex)
-            {
-                MessageBox.Show("Error deserializing JSON string: " + ex.Message);
-                result2 = new Dictionary<string, Bird>();
-            }
+
+
+
+            //try
+            //{
+            //    result2 = response2.ResultAs<Dictionary<string, Bird>>();
+            //}
+            //catch (Newtonsoft.Json.JsonSerializationException ex)
+            //{
+            //    MessageBox.Show("Error deserializing JSON string: " + ex.Message);
+            //    result2 = new Dictionary<string, Bird>();
+            //}
 
             if (result2 != null)
             {
@@ -580,7 +673,7 @@ namespace Birds_Mangmeant
 
                         get.Value.IndexNumber,
                         get.Value.Breed_of_Bird,
-                        item3: get.Value.Subspecies,
+                        get.Value.Subspecies,
                         get.Value.HatchDate,
                         get.Value.IndexCage,
                         get.Value.IndexMother,
@@ -594,6 +687,7 @@ namespace Birds_Mangmeant
                 }
 
             }
+
 
 
 
@@ -706,6 +800,189 @@ namespace Birds_Mangmeant
 
             listViewBirds.GridLines = true;
         }
+
+
+
+
+        private void ShowCagesListinBird()
+        {
+
+
+
+
+
+
+
+            textBoxIndexCage.Items.Clear();
+
+
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check Your connection!");
+            }
+
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
+            Dictionary<string, Bird> result2;
+            try
+            {
+                result2 = response2.ResultAs<Dictionary<string, Bird>>();
+            }
+            catch (Newtonsoft.Json.JsonSerializationException ex)
+            {
+                MessageBox.Show("Error deserializing JSON string: " + ex.Message);
+                result2 = new Dictionary<string, Bird>();
+            }
+
+
+
+            if (result2 != null)
+            {
+                foreach (var get in result2)
+                {
+
+                    //CageIndexs.Add(  get.Value.IndexNumber );
+
+                    textBoxIndexCage.Items.Add(get.Value.IndexNumber);
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+        }
+        private void loadCagesList()
+        {
+            cage_listview.Clear();
+            CageList.Clear();
+
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check Your connection!");
+            }
+
+
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages/");
+            string json = response2.Body;
+            if (!string.IsNullOrEmpty(json))
+            {
+                Dictionary<string, Cage>?  result2 = JsonConvert.DeserializeObject<Dictionary<string, Cage>>(json);
+                // rest of the code
+
+                if (result2 != null)
+                {
+                    foreach (var get in result2)
+                    {
+                        int birdCount = get.Value.BirdsOfCage == null ? 0 : get.Value.BirdsOfCage.Count;
+                        CageList.Add(Tuple.Create(
+                            get.Value.IndexNumber,
+                            get.Value.Length,
+                            get.Value.Width,
+                            get.Value.Height,
+                            get.Value.Material,
+                           birdCount
+                        ));
+                    }
+
+                }
+
+            }
+            else
+            {
+                // handle null or empty JSON string
+            }
+
+
+
+
+
+            // Load the image from resources
+
+            Image image = Resources.Woodcage;
+            Image image2 = Resources.ironcage;
+            Image image3 = Resources.plasticcage;
+
+            // Add the image to the ImageList control
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(32, 32); // Set the size of the images in the list
+
+
+            int i = 0;
+            // Example of how to access the items in CagesList
+
+            if (CageList != null)
+            {
+                foreach (var CageTuple in CageList)
+                {
+                    string indexNumber = CageTuple.Item1;
+                    string Length = CageTuple.Item2;
+                    string Width = CageTuple.Item3;
+                    string Height = CageTuple.Item4;
+                    string Material = CageTuple.Item5;
+                    int Count = CageTuple.Item6;
+
+
+                    // Do something with the cageTuple items...
+
+                    if (Material == "Wood")
+                    {
+
+                        imageList.Images.Add(image);
+                    }
+                    else if (Material == "Iron")
+                    {
+                        imageList.Images.Add(image2);
+                    }
+
+                    else if (Material == "Plastic")
+                    {
+                        imageList.Images.Add(image3);
+                    }
+                    else
+                    {
+                        imageList.Images.Add(image);
+                    }
+
+
+
+
+
+                    cage_listview.SmallImageList = imageList;
+
+                    // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", length: " + Length + ", width: " + Width + ", height: " + Height + ", material: " + Material + ",Amount Of Birds: " + Count);
+                    item.ImageIndex = i;
+                    i++;
+                    // Add the ListViewItem to the ListView control
+                    cage_listview.Items.Add(item);
+                }
+
+            }
+
+
+
+
+
+
+            cage_listview.GridLines = true;
+        }
+
+
 
 
         private void button1_Click(object sender, EventArgs e)
@@ -826,6 +1103,7 @@ namespace Birds_Mangmeant
             PanelAddBird.BringToFront();
             PanelAddBird.Enabled = true;
             loadBirdsList();
+            ShowCagesListinBird();
 
         }
 
@@ -908,6 +1186,7 @@ namespace Birds_Mangmeant
             panelAddCage.Show();
             panelAddCage.Visible = true;
             panelAddCage.BringToFront();
+            loadCagesList();
         }
 
         private void ButtonHome_Click(object sender, EventArgs e)
@@ -936,6 +1215,7 @@ namespace Birds_Mangmeant
             panelHome.BringToFront();
             panelHome.Enabled = true;
             labelTypeOfBirds.Text = amountofBirds().ToString();
+            labelNumCages.Text = amountofCages().ToString();
             createGraph();
         }
 
@@ -1073,13 +1353,19 @@ namespace Birds_Mangmeant
 
 
 
-
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBoxAddBird_Click(object sender, EventArgs e)
         {
             bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
             bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
             bool isNumeric3 = Regex.IsMatch(textBoxIndexMotherofBird.Text, @"^\d+$");
+
+
+            bool isAlphanumeric = Regex.IsMatch(textBoxIndexCage.Text, "^[a-zA-Z0-9]+$");
+
+            bool containsOnlyLetters = Regex.IsMatch(textBoxIndexCage.Text, @"^[a-zA-Z]+$");
+            bool containsOnlyNumbers = Regex.IsMatch(textBoxIndexCage.Text, @"^[0-9]+$");
+
+
 
             if (!isNumeric)
             {
@@ -1092,6 +1378,12 @@ namespace Birds_Mangmeant
             else if (!isNumeric3)
             {
                 MessageBox.Show("Index Number of Mother of Bird can only contain numbers.");
+            }
+
+            else if (containsOnlyLetters || !isAlphanumeric || containsOnlyNumbers)
+            {
+                MessageBox.Show("Index Cage should contain numbers and letters.");
+
             }
 
 
@@ -1120,7 +1412,9 @@ namespace Birds_Mangmeant
                 MessageBox.Show("Breed and Subspecies Dont match.");
             }
 
-
+            else if (textBoxIndexCage.SelectedIndex == -1) {
+                MessageBox.Show("Chooce Option of Cage.");
+            }
             else if (comboBoxBreed.Text == "Australian gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "North America" || comboBoxSubspecies.Text == "Center America" || comboBoxSubspecies.Text == "South America"))
             {
                 MessageBox.Show("Breed and Subspecies Dont match.");
@@ -1140,6 +1434,7 @@ namespace Birds_Mangmeant
                     maleorfemale = "Female";
                 }
                 IFirebaseClient client = new FirebaseClient(config);
+                IFirebaseClient client2 = new FirebaseClient(config);
                 var Bird = new Bird
                 {
                     IndexNumber = textBoxIndexNumber.Text,
@@ -1158,8 +1453,10 @@ namespace Birds_Mangmeant
                 {
 
                     client.Set("users/" + Login.currentusername + "/Birds/" + textBoxIndexNumber.Text, Bird);
+                    client2.Set("users/" + Login.currentusername + "/Cages/" + textBoxIndexCage.Text + "/BirdsOfCage/" + textBoxIndexNumber.Text, Bird);
                     MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
                     loadBirdsList();
+
 
                 }
                 catch (FirebaseException)
@@ -1170,8 +1467,255 @@ namespace Birds_Mangmeant
             }
         }
 
+        private void pictureBoxSearchBird_Click(object sender, EventArgs e)
+        {
+            listViewSearch.Clear();
+            BirdListSearch.Clear();
+
+            try
+            {
+                client = new FireSharp.FirebaseClient(config);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "Check Your connection!");
+            }
+
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
+            Dictionary<string, Bird> result2;
+            try
+            {
+                result2 = response2.ResultAs<Dictionary<string, Bird>>();
+            }
+            catch (Newtonsoft.Json.JsonSerializationException ex)
+            {
+                MessageBox.Show("Error deserializing JSON string: " + ex.Message);
+                result2 = new Dictionary<string, Bird>();
+            }
+
+
+
+            if (result2 != null)
+            {
+                foreach (var get in result2)
+                {
+
+                    if (textBoxIndexSearch.Text == get.Value.IndexNumber && textBoxGenderSearch.Text == get.Value.Gender && comboBoxSubSpeciesSearch.Text == get.Value.Subspecies && dateTimePicker2.Value.ToString("yyyy-MM-dd") == get.Value.HatchDate)
+                    {
+
+                        BirdListSearch.Add(Tuple.Create(
+
+                            get.Value.IndexNumber,
+                            get.Value.Breed_of_Bird,
+                            get.Value.Subspecies,
+                            get.Value.HatchDate,
+                            get.Value.IndexCage,
+                            get.Value.IndexMother,
+                            get.Value.IndexFather,
+                            get.Value.Gender
+
+
+
+
+                        ));
+                    }
+
+
+
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+            // Load the image from resources
+
+            Image image = Resources.icons8_puffin_bird_50;
+            Image image1 = Resources.CentrelAmerica;
+            Image image2 = Resources.NorthAmerica;
+            Image image3 = Resources.South_America;
+            Image image4 = Resources.Eastren_Europe;
+            Image image5 = Resources.Western_Europe;
+            Image image6 = Resources.Australian_City_Beachs;
+            Image image7 = Resources.Australian_Center;
+            // Add the image to the ImageList control
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(32, 32); // Set the size of the images in the list
+
+
+            int i = 0;
+            // Example of how to access the items in BirdsList
+
+            if (BirdListSearch != null)
+            {
+                foreach (var birdTuple in BirdListSearch)
+                {
+                    string indexNumber = birdTuple.Item1;
+                    string breedOfBird = birdTuple.Item2;
+                    string subspecies = birdTuple.Item3;
+                    string hatchDate = birdTuple.Item4;
+                    string indexCage = birdTuple.Item5;
+                    string indexMother = birdTuple.Item6;
+                    string indexFather = birdTuple.Item7;
+                    string gender = birdTuple.Rest.Item1;
+
+                    // Do something with the birdTuple items...
+
+
+
+
+
+
+
+
+                    if (subspecies == "North America")
+                    {
+
+                        imageList.Images.Add(image2);
+                    }
+                    else if (subspecies == "Center America")
+                    {
+                        imageList.Images.Add(image1);
+                    }
+
+                    else if (subspecies == "South America")
+                    {
+                        imageList.Images.Add(image3);
+                    }
+
+                    else if (subspecies == "Eastren Europe")
+                    {
+                        imageList.Images.Add(image4);
+                    }
+
+                    else if (subspecies == "Western Europe")
+                    {
+                        imageList.Images.Add(image5);
+                    }
+                    else if (subspecies == "Australian Center")
+                    {
+                        imageList.Images.Add(image7);
+                    }
+
+                    else if (subspecies == "Australian City Beaches")
+                    {
+                        imageList.Images.Add(image6);
+                    }
+                    else
+                    {
+                        imageList.Images.Add(image);
+                    }
+
+
+
+
+
+                    listViewSearch.SmallImageList = imageList;
+
+                    // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender);
+                    item.ImageIndex = i;
+                    i++;
+                    // Add the ListViewItem to the ListView control
+                    listViewSearch.Items.Add(item);
+                }
+
+            }
+
+
+
+
+
+
+            listViewSearch.GridLines = true;
+        }
+
+        private void pictureBoxAddCage_Click(object sender, EventArgs e)
+        {
+
+            bool isAlphanumeric = Regex.IsMatch(enter_index_cage.Text, "^[a-zA-Z0-9]+$");
+
+            bool containsOnlyLetters = Regex.IsMatch(enter_index_cage.Text, @"^[a-zA-Z]+$");
+            bool containsOnlyNumbers = Regex.IsMatch(enter_index_cage.Text, @"^[0-9]+$");
+
+            bool containsOnlyNumbers2 = Regex.IsMatch(enter_length.Text, @"^[0-9]+$");
+
+            bool containsOnlyNumbers3 = Regex.IsMatch(enter_width.Text, @"^[0-9]+$");
+
+            bool containsOnlyNumbers4 = Regex.IsMatch(enter_height.Text, @"^[0-9]+$");
+            if (containsOnlyLetters || !isAlphanumeric || containsOnlyNumbers)
+            {
+                MessageBox.Show("Index Cage should contain numbers and letters.");
+
+            }
+
+            else if (!containsOnlyNumbers2)
+            {
+                MessageBox.Show("Length can only be numbers.");
+
+            }
+            else if (!containsOnlyNumbers3)
+            {
+                MessageBox.Show("Width can only be numbers.");
+            }
+            else if (!containsOnlyNumbers4)
+            {
+                MessageBox.Show("Height can only be numbers.");
+            }
+
+            else if (!(material_cage_list.Text == "Iron" || material_cage_list.Text == "Wood" || material_cage_list.Text == "Plastic"))
+            {
+                MessageBox.Show("U can only choose Iron,Wood,Plastic from the list");
+            }
+
+            else
+            {
+
+
+                
+
+                IFirebaseClient client = new FirebaseClient(config);
+                var Cage = new Cage
+                {
+                    IndexNumber = enter_index_cage.Text,
+                    Length = enter_length.Text,
+                    Width = enter_width.Text,
+                    Height = enter_height.Text,
+                    Material = material_cage_list.Text,
+                    BirdsOfCage = new List<Bird>(),
+                };
+
+
+
+
+                try
+                {
+
+                    client.Set("users/" + Login.currentusername + "/Cages/" + enter_index_cage.Text, Cage);
+                    MessageBox.Show("You Add Succefully Cage Number Index: " + enter_index_cage.Text);
+                    loadCagesList();
+
+                }
+                catch (FirebaseException)
+                {
+                    // handle failure ...
+                }
+
+            }
+
+
+        }
+
 
     }
 }
-
 
