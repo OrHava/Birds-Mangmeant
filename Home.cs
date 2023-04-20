@@ -422,7 +422,7 @@ namespace Birds_Mangmeant
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "Check Your connection!");
+             
 
             }
 
@@ -462,7 +462,7 @@ namespace Birds_Mangmeant
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "Check Your connection!");
+               
             }
 
 
