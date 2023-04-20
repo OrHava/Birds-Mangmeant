@@ -108,7 +108,7 @@ namespace Birds_Mangmeant
 
 
 
-        private void Timer1_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void Timer1_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
             // Move the bird to the left by changing its X coordinate
             x -= 5; // Change this value to adjust the distance the bird moves each tick
@@ -144,7 +144,7 @@ namespace Birds_Mangmeant
         }
 
 
-        private void Timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
         {
             // increment the frame index and wrap around
             frameIndex = (frameIndex + 1) % 7;
@@ -175,7 +175,7 @@ namespace Birds_Mangmeant
         // get the image and bird name for the given frame index
         private (string, Image) GetFrame(int index)
         {
-            Image image = null;
+            Image? image = null;
             string birdName = "";
 
             switch (index)
@@ -320,7 +320,7 @@ namespace Birds_Mangmeant
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "Check Your connection!");
+                Console.Write(ex);
             }
 
 
@@ -401,7 +401,7 @@ namespace Birds_Mangmeant
             return chores;
 
         }
-        public int amountofBirds()
+        public  int amountofBirds()
         {
             int childCount = 0;
             try
@@ -414,17 +414,25 @@ namespace Birds_Mangmeant
             }
 
 
-            try
-            {
-                FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
-                // rest of the code
-                childCount = response2.ResultAs<Dictionary<string, object>>().Count;
-            }
-            catch (Exception ex)
-            {
-             
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
 
+            if (response2.Body != null)
+            {
+                // rest of the code
+                var birdsDict = response2.ResultAs<Dictionary<string, Bird>>();
+                if (birdsDict != null)
+                {
+                    childCount = birdsDict.Count;
+                }
             }
+            else
+            {
+                // handle the case where there is no data in the Firebase path
+            }
+
+
+
+
 
 
 
@@ -457,12 +465,19 @@ namespace Birds_Mangmeant
             try
             {
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
-                // rest of the code
-                childCount = response2.ResultAs<Dictionary<string, object>>().Count;
+                if (response2.Body != null)
+                {
+                    var birdsDict = response2.ResultAs<Dictionary<string, Cage>>();
+                    if (birdsDict != null)
+                    {
+                        childCount = birdsDict.Count;
+                    }
+                 
+                }
             }
             catch (Exception ex)
             {
-               
+                Console.WriteLine(ex);
             }
 
 
@@ -630,8 +645,15 @@ namespace Birds_Mangmeant
             }
 
 
-            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
-            Dictionary<string, Bird> result2 = response2.ResultAs<Dictionary<string, Bird>>();
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
+            string json = response2.Body;
+            Dictionary<string, Bird>? result2 = new Dictionary<string, Bird>(); // initialize to empty dictionary
+            if (json != null)
+            {
+                result2 = JsonConvert.DeserializeObject<Dictionary<string, Bird>>(json);
+            }
+
+
 
             //try
             //{
@@ -857,27 +879,37 @@ namespace Birds_Mangmeant
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages/");
             string json = response2.Body;
-            Dictionary<string, Cage> result2 = JsonConvert.DeserializeObject<Dictionary<string, Cage>>(json);
-
-
-
-
-            if (result2 != null)
+            if (!string.IsNullOrEmpty(json))
             {
-                foreach (var get in result2)
+                Dictionary<string, Cage>?  result2 = JsonConvert.DeserializeObject<Dictionary<string, Cage>>(json);
+                // rest of the code
+
+                if (result2 != null)
                 {
-                    int birdCount = get.Value.BirdsOfCage == null ? 0 : get.Value.BirdsOfCage.Count;
-                    CageList.Add(Tuple.Create(
-                        get.Value.IndexNumber,
-                        get.Value.Length,
-                        get.Value.Width,
-                        get.Value.Height,
-                        get.Value.Material,
-                       birdCount
-                    ));
+                    foreach (var get in result2)
+                    {
+                        int birdCount = get.Value.BirdsOfCage == null ? 0 : get.Value.BirdsOfCage.Count;
+                        CageList.Add(Tuple.Create(
+                            get.Value.IndexNumber,
+                            get.Value.Length,
+                            get.Value.Width,
+                            get.Value.Height,
+                            get.Value.Material,
+                           birdCount
+                        ));
+                    }
+
                 }
 
             }
+            else
+            {
+                // handle null or empty JSON string
+            }
+
+
+
+
 
             // Load the image from resources
 
