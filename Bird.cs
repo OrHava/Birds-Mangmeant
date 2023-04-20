@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 namespace Birds_Mangmeant
 {
 
-    [JsonObject]
-    public class Bird
+    //[JsonObject]
+   public  class Bird
 	{
 		public string?	 IndexNumber { get; set; }
 		public string?	 Breed_of_Bird { get; set; }
