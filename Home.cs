@@ -22,29 +22,36 @@ using System.Configuration;
 using System.Runtime.Intrinsics.X86;
 using Google.Apis.Util;
 using System.Windows.Forms;
-
+using System.Collections.Generic;
+using System.Linq;
 using NPlot;
 using RestSharp.Extensions;
 using System.Collections;
 using System.Timers;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using FireSharp.Config;
+using System.Reflection;
 
 namespace Birds_Mangmeant
 {
     public partial class Home : Form
     {
-        List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdList = new List<Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
+        Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdList = new Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
         private System.Timers.Timer timer = new System.Timers.Timer();
         private int frameIndex = 0;
 
         List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdListSearch = new List<Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
 
-        List<Tuple<string, string, string, string, string, int>> CageList = new List<Tuple<string, string, string, string, string, int>>();
+        List<Tuple<string, string, string, string, string, int, string, Tuple<string>>> CageListSearch = new List<Tuple<string, string, string, string, string, int, string, Tuple<string>>>();
 
 
-        private System.Timers.Timer timer1;
-        private int x;
+        List<Tuple<string, string, string, string, string, int, Dictionary<string, Bird>?, Tuple<string>>> CageList = new List<Tuple<string, string, string, string, string, int, Dictionary<string, Bird>?, Tuple<string>>>();
+        List<Tuple<string, string, string, string, string, int, string, Tuple<string>>> sortedList = new List<Tuple<string, string, string, string, string, int, string, Tuple<string>>>();
+
+        //private System.Timers.Timer timer1;
+        //private int x;
+        private static FirebaseClient client;
 
         public Home()
         {
@@ -52,16 +59,24 @@ namespace Birds_Mangmeant
 
 
 
+            // Initialize Firebase client
+            var config = new FirebaseConfig
+            {
+                AuthSecret = "X0ef9KE6sIzPgMR7rlUj52AWMITXNJXPEIMNKHF9",
+                BasePath = "https://birds-mannagemeant-default-rtdb.firebaseio.com/"
+
+            };
+
+            client = new FirebaseClient(config);
 
 
+            //// Set up the timer for bird gif but make code very slow in the start
+            //timer1 = new System.Timers.Timer();
+            //timer1.Interval = 50; // Change this value to adjust the speed of the animation
+            //timer1.Elapsed += Timer1_Elapsed;
 
-            // Set up the timer for bird gif
-            timer1 = new System.Timers.Timer();
-            timer1.Interval = 50; // Change this value to adjust the speed of the animation
-            timer1.Elapsed += Timer1_Elapsed;
-
-            // Start the timer
-            timer1.Start();
+            //// Start the timer
+            //timer1.Start();
 
 
 
@@ -93,8 +108,8 @@ namespace Birds_Mangmeant
             }
 
             labelTypeOfBirds.Text = amountofBirds().ToString();
-            labelId.Text = "User ID: " + userId();
-            labelEmail.Text = "User Email: " + userEmail();
+            labelId.Text = "User ID: " + UserId();
+            labelEmail.Text = "User Email: " + UserEmail();
             textBoxListOfChores.Text = getChores();
             labelAmountUsers.Text = amountofUsers().ToString();
             labelNumCages.Text = amountofCages().ToString();
@@ -108,40 +123,40 @@ namespace Birds_Mangmeant
 
 
 
-        private void Timer1_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
-        {
-            // Move the bird to the left by changing its X coordinate
-            x -= 5; // Change this value to adjust the distance the bird moves each tick
+        //private void Timer1_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
+        //{
+        //    // Move the bird to the left by changing its X coordinate
+        //    x -= 5; // Change this value to adjust the distance the bird moves each tick
 
-            // If the bird goes off the left edge of the screen, wrap it around to the right edge
-            if (x + pictureBoxBirdFly.Width < 0)
-            {
-                if (pictureBoxBirdFly.Parent == panelUser) // Check if pictureBoxBirdFly is on panelUser
-                {
-                    x = panelUser.Width - pictureBoxBirdFly.Width; // Set x to the right edge of panelUser
-                }
-                else // If pictureBoxBirdFly is not on panelUser, wrap it around to the right edge of the form
-                {
-                    x = this.ClientSize.Width;
-                }
-            }
+        //    // If the bird goes off the left edge of the screen, wrap it around to the right edge
+        //    if (x + pictureBoxBirdFly.Width < 0)
+        //    {
+        //        if (pictureBoxBirdFly.Parent == panelUser) // Check if pictureBoxBirdFly is on panelUser
+        //        {
+        //            x = panelUser.Width - pictureBoxBirdFly.Width; // Set x to the right edge of panelUser
+        //        }
+        //        else // If pictureBoxBirdFly is not on panelUser, wrap it around to the right edge of the form
+        //        {
+        //            x = this.ClientSize.Width;
+        //        }
+        //    }
 
-            // Update the bird's position on the UI thread
-            Task.Run(() =>
-            {
-                if (pictureBoxBirdFly.InvokeRequired)
-                {
-                    pictureBoxBirdFly.Invoke(new Action(() =>
-                    {
-                        pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
-                    }));
-                }
-                else
-                {
-                    pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
-                }
-            });
-        }
+        //    // Update the bird's position on the UI thread
+        //    Task.Run(() =>
+        //    {
+        //        if (pictureBoxBirdFly.InvokeRequired)
+        //        {
+        //            pictureBoxBirdFly.Invoke(new Action(() =>
+        //            {
+        //                pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
+        //            }));
+        //        }
+        //        else
+        //        {
+        //            pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
+        //        }
+        //    });
+        //}
 
 
         private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
@@ -150,7 +165,7 @@ namespace Birds_Mangmeant
             frameIndex = (frameIndex + 1) % 7;
 
             // get the image and bird name for the current frame index
-            (string birdName, Image image) = GetFrame(frameIndex);
+            (string? birdName, Image? image) = GetFrame(frameIndex);
 
             // update the image and bird name in the picture box and label
             if (pictureBoxAnim.IsHandleCreated)
@@ -173,7 +188,7 @@ namespace Birds_Mangmeant
 
 
         // get the image and bird name for the given frame index
-        private (string, Image) GetFrame(int index)
+        private (string?, Image?) GetFrame(int index)
         {
             Image? image = null;
             string birdName = "";
@@ -225,14 +240,14 @@ namespace Birds_Mangmeant
             plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
             plotSurface2d1.Enabled = false;
 
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+            //try
+            //{
+            //    client = new FireSharp.FirebaseClient(config);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message + "Check Your connection!");
+            //}
 
 
             try
@@ -298,11 +313,12 @@ namespace Birds_Mangmeant
 
 
 
-                    LinePlot birdPlot = new LinePlot();
-
-                    birdPlot.AbscissaData = birdBreeds2;
-                    birdPlot.OrdinateData = birdAmounts;
-                    birdPlot.Pen = new Pen(Color.FromArgb(37, 42, 64), 5);
+                    LinePlot birdPlot = new LinePlot
+                    {
+                        AbscissaData = birdBreeds2,
+                        OrdinateData = birdAmounts,
+                        Pen = new Pen(Color.FromArgb(37, 42, 64), 5)
+                    };
 
 
                     plotSurface2d1.Clear();
@@ -330,43 +346,39 @@ namespace Birds_Mangmeant
 
         }
 
-        public string userId()
+        public string UserId()
         {
-
-            string id = "";
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+            //try
+            //{
+            //    client = new FireSharp.FirebaseClient(config);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message + "Check Your connection!");
+            //}
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/ID");
 
-            id = response2.ResultAs<String>();
+            string id = response2.ResultAs<string>();
             return id;
 
         }
 
-        public string userEmail()
+        public string UserEmail()
         {
-
-            string Email = "";
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+            //try
+            //{
+            //    client = new FireSharp.FirebaseClient(config);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message + "Check Your connection!");
+            //}
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Email");
 
 
-            Email = response2.ResultAs<String>();
+            string Email = response2.ResultAs<string>();
             return Email;
 
 
@@ -376,14 +388,14 @@ namespace Birds_Mangmeant
         {
 
             string chores = "";
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+            //try
+            //{
+            //    client = new FireSharp.FirebaseClient(config);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message + "Check Your connection!");
+            //}
 
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Chores");
@@ -401,36 +413,38 @@ namespace Birds_Mangmeant
             return chores;
 
         }
-        public  int amountofBirds()
+        public int amountofBirds()
         {
             int childCount = 0;
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
 
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
 
-            if (response2.Body != null)
+            if (!string.IsNullOrEmpty(response2.Body))
             {
-                // rest of the code
-                var birdsDict = response2.ResultAs<Dictionary<string, Bird>>();
-                if (birdsDict != null)
+                if (response2.Body.StartsWith("["))
                 {
-                    childCount = birdsDict.Count;
+                    // handle the case where the response body is an array
+                    var birdsList = JsonConvert.DeserializeObject<List<Bird>>(response2.Body);
+                    if (birdsList != null)
+                    {
+                        childCount = birdsList.Count;
+                    }
+                }
+                else
+                {
+                    // handle the case where the response body is an object
+                    var birdsDict = response2.ResultAs<Dictionary<string, Bird>>();
+                    if (birdsDict != null)
+                    {
+                        childCount = birdsDict.Count;
+                    }
                 }
             }
             else
             {
                 // handle the case where there is no data in the Firebase path
             }
-
-
 
 
 
@@ -452,14 +466,14 @@ namespace Birds_Mangmeant
         public int amountofCages()
         {
             int childCount = 0;
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+            //try
+            //{
+            //    client = new FireSharp.FirebaseClient(config);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message + "Check Your connection!");
+            //}
 
 
             try
@@ -472,7 +486,7 @@ namespace Birds_Mangmeant
                     {
                         childCount = birdsDict.Count;
                     }
-                 
+
                 }
             }
             catch (Exception ex)
@@ -504,24 +518,25 @@ namespace Birds_Mangmeant
             int childCount = 0;
             try
             {
-                client = new FireSharp.FirebaseClient(config);
+                //client = new FireSharp.FirebaseClient(config);
+                FirebaseResponse response2 = client.Get("users/");
+
+                if (response2.Body != "null" && response2.ResultAs<Dictionary<string, object>>() != null)
+                {
+                    childCount = response2.ResultAs<Dictionary<string, object>>().Count;
+                }
+                else
+                {
+                    // handle the case where there is no data in the Firebase path
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message + "Check Your connection!");
             }
-            FirebaseResponse response2 = client.Get("users/");
-            if (response2 != null && response2.ResultAs<Dictionary<string, object>>() != null)
-            {
-
-                // rest of the code
-                childCount = response2.ResultAs<Dictionary<string, object>>().Count;
-            }
-
-
-
 
             return childCount;
+
 
 
 
@@ -634,60 +649,48 @@ namespace Birds_Mangmeant
             listViewBirds.Clear();
             BirdList.Clear();
 
-
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
 
 
-            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
+
+
+
+
             string json = response2.Body;
-            Dictionary<string, Bird>? result2 = new Dictionary<string, Bird>(); // initialize to empty dictionary
-            if (json != null)
+
+            if (!string.IsNullOrEmpty(json) && json != null)
             {
-                result2 = JsonConvert.DeserializeObject<Dictionary<string, Bird>>(json);
-            }
+                Dictionary<string, Bird>? result2 = JsonConvert.DeserializeObject<Dictionary<string, Bird>>(json);
 
+                // rest of the code
 
-
-            //try
-            //{
-            //    result2 = response2.ResultAs<Dictionary<string, Bird>>();
-            //}
-            //catch (Newtonsoft.Json.JsonSerializationException ex)
-            //{
-            //    MessageBox.Show("Error deserializing JSON string: " + ex.Message);
-            //    result2 = new Dictionary<string, Bird>();
-            //}
-
-            if (result2 != null)
-            {
-                foreach (var get in result2)
+                if (result2 != null)
                 {
-                    BirdList.Add(Tuple.Create(
+                    foreach (var get in result2)
+                    {
 
-                        get.Value.IndexNumber,
-                        get.Value.Breed_of_Bird,
-                        get.Value.Subspecies,
-                        get.Value.HatchDate,
-                        get.Value.IndexCage,
-                        get.Value.IndexMother,
-                        get.Value.IndexFather,
-                        get.Value.Gender
+                        BirdList.Add(get.Key, Tuple.Create(
+
+                            get.Value.IndexNumber!,
+                            get.Value.Breed_of_Bird!,
+                            get.Value.Subspecies!,
+                            get.Value.HatchDate!,
+                            get.Value.IndexCage!,
+                            get.Value.IndexMother!,
+                            get.Value.IndexFather!,
+                            get.Value.Gender!
 
 
 
 
-                    ));
+                        ));
+                    }
+
                 }
 
-            }
 
+
+            }
 
 
 
@@ -710,8 +713,10 @@ namespace Birds_Mangmeant
             Image image6 = Resources.Australian_City_Beachs;
             Image image7 = Resources.Australian_Center;
             // Add the image to the ImageList control
-            ImageList imageList = new ImageList();
-            imageList.ImageSize = new Size(32, 32); // Set the size of the images in the list
+            ImageList imageList = new ImageList
+            {
+                ImageSize = new Size(32, 32) // Set the size of the images in the list
+            };
 
 
             int i = 0;
@@ -721,14 +726,14 @@ namespace Birds_Mangmeant
             {
                 foreach (var birdTuple in BirdList)
                 {
-                    string indexNumber = birdTuple.Item1;
-                    string breedOfBird = birdTuple.Item2;
-                    string subspecies = birdTuple.Item3;
-                    string hatchDate = birdTuple.Item4;
-                    string indexCage = birdTuple.Item5;
-                    string indexMother = birdTuple.Item6;
-                    string indexFather = birdTuple.Item7;
-                    string gender = birdTuple.Rest.Item1;
+                    string indexNumber = birdTuple.Value.Item1;
+                    string breedOfBird = birdTuple.Value.Item2;
+                    string subspecies = birdTuple.Value.Item3;
+                    string hatchDate = birdTuple.Value.Item4;
+                    string indexCage = birdTuple.Value.Item5;
+                    string indexMother = birdTuple.Value.Item6;
+                    string indexFather = birdTuple.Value.Item7;
+                    string gender = birdTuple.Value.Rest.Item1;
 
                     // Do something with the birdTuple items...
 
@@ -784,8 +789,10 @@ namespace Birds_Mangmeant
                     listViewBirds.SmallImageList = imageList;
 
                     // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
-                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender);
-                    item.ImageIndex = i;
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender)
+                    {
+                        ImageIndex = i
+                    };
                     i++;
                     // Add the ListViewItem to the ListView control
                     listViewBirds.Items.Add(item);
@@ -813,17 +820,10 @@ namespace Birds_Mangmeant
 
 
 
-            textBoxIndexCage.Items.Clear();
+            ContainerBoxIndexCage.Items.Clear();
 
 
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+
 
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
@@ -842,12 +842,28 @@ namespace Birds_Mangmeant
 
             if (result2 != null)
             {
+                ContainerBoxIndexCage.Items.Clear();
                 foreach (var get in result2)
                 {
 
-                    //CageIndexs.Add(  get.Value.IndexNumber );
 
-                    textBoxIndexCage.Items.Add(get.Value.IndexNumber);
+
+                    if (get.Value != null && get.Key != null && get.Value.IndexNumber!=null)
+                    {
+                        string indexNumber = get.Value.IndexNumber;
+                        string keyValue = get.Key;
+
+                        // Create a new ContainerBoxItem object with the first value
+                        var item = new ContainerBoxItem { DisplayText = indexNumber, HiddenValue = keyValue };
+
+                        // Add the ContainerBoxItem object to the container box
+                        ContainerBoxIndexCage.Items.Add(item);
+                    }
+
+
+
+
+
                 }
 
             }
@@ -861,42 +877,100 @@ namespace Birds_Mangmeant
 
 
         }
+        public class ContainerBoxItem
+        {
+            public string DisplayText { get; set; } = "";
+            public string HiddenValue { get; set; } = "";
+
+            public override string ToString()
+            {
+                return DisplayText;
+            }
+        }
+        public string GetBirdsInfoAsString(Dictionary<string, Bird>? Birds)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine($"Number of birds in cage: {(Birds?.Count ?? 0)}");
+            sb.AppendLine();
+
+            if (Birds != null)
+            {
+                foreach (var bird in Birds.Values.OrderBy(b =>
+                {
+                    if (string.IsNullOrEmpty(b.IndexNumber))
+                    {
+                        return 0; // Or any other default value you want to use
+                    }
+                    else
+                    {
+                        return int.Parse(b.IndexNumber);
+                    }
+                }))
+                {
+                    sb.AppendLine($"{bird.GetBirdInfoAsString()}");
+                    sb.AppendLine();
+                }
+
+            }
+
+            return sb.ToString();
+        }
+
+
+
+
         private void loadCagesList()
         {
             cage_listview.Clear();
             CageList.Clear();
 
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
+
 
 
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages/");
+
+
+
+
+
+
+
             string json = response2.Body;
             if (!string.IsNullOrEmpty(json))
             {
-                Dictionary<string, Cage>?  result2 = JsonConvert.DeserializeObject<Dictionary<string, Cage>>(json);
+                Dictionary<string, Cage>? result2 = JsonConvert.DeserializeObject<Dictionary<string, Cage>>(json);
                 // rest of the code
 
                 if (result2 != null)
                 {
                     foreach (var get in result2)
                     {
-                        int birdCount = get.Value.BirdsOfCage == null ? 0 : get.Value.BirdsOfCage.Count;
+
+                        FirebaseResponse response3 = client.Get("/users/" + Login.currentusername + "/Cages/" + get.Key! + "/BirdsOfCage");
+                        string json2 = response3.Body;
+                        Dictionary<string, Bird>? result3 = JsonConvert.DeserializeObject<Dictionary<string, Bird>>(json2);
+                        int count = 0;
+                        if (result3 != null)
+                        {
+                            count = result3.Count;
+                        }
+
+
                         CageList.Add(Tuple.Create(
-                            get.Value.IndexNumber,
-                            get.Value.Length,
-                            get.Value.Width,
-                            get.Value.Height,
-                            get.Value.Material,
-                           birdCount
+                            get.Value.IndexNumber!,
+                            get.Value.Length!,
+                            get.Value.Width!,
+                            get.Value.Height!,
+                            get.Value.Material!,
+                            count,
+                           result3,
+                           get.Key
+
+
+
                         ));
+
                     }
 
                 }
@@ -918,8 +992,10 @@ namespace Birds_Mangmeant
             Image image3 = Resources.plasticcage;
 
             // Add the image to the ImageList control
-            ImageList imageList = new ImageList();
-            imageList.ImageSize = new Size(32, 32); // Set the size of the images in the list
+            ImageList imageList = new ImageList
+            {
+                ImageSize = new Size(32, 32) // Set the size of the images in the list
+            };
 
 
             int i = 0;
@@ -934,7 +1010,7 @@ namespace Birds_Mangmeant
                     string Width = CageTuple.Item3;
                     string Height = CageTuple.Item4;
                     string Material = CageTuple.Item5;
-                    int Count = CageTuple.Item6;
+                    string Count = CageTuple.Item6.ToString();
 
 
                     // Do something with the cageTuple items...
@@ -965,8 +1041,10 @@ namespace Birds_Mangmeant
                     cage_listview.SmallImageList = imageList;
 
                     // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
-                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", length: " + Length + ", width: " + Width + ", height: " + Height + ", material: " + Material + ",Amount Of Birds: " + Count);
-                    item.ImageIndex = i;
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", length: " + Length + ", width: " + Width + ", height: " + Height + ", material: " + Material + ", Birds Amount: " + Count)
+                    {
+                        ImageIndex = i
+                    };
                     i++;
                     // Add the ListViewItem to the ListView control
                     cage_listview.Items.Add(item);
@@ -1014,7 +1092,7 @@ namespace Birds_Mangmeant
             }
         }
 
-        private void toolStripButton4_Click(object sender, EventArgs e)
+        private void ToolStripButton4_Click(object sender, EventArgs e)
         {
             Login Lg = new Login();
             this.Hide();
@@ -1045,19 +1123,23 @@ namespace Birds_Mangmeant
 
         private void listViewBirds_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+
+
+
             int index = listViewBirds.FocusedItem.Index;
-            if (!BirdList[index].Equals(null))
+
+            if (!BirdList.ElementAt(index).Equals(null))
             {
 
-                textBoxIndexNumber.Text = BirdList[index].Item1;
-                comboBoxBreed.Text = BirdList[index].Item2;
-                comboBoxSubspecies.Text = BirdList[index].Item3;
-                dateTimePicker1.Text = BirdList[index].Item4;
-                textBoxIndexCage.Text = BirdList[index].Item5;
-                textBoxIndexMotherofBird.Text = BirdList[index].Item6;
-                textBoxIndexFatherofBird.Text = BirdList[index].Item7;
+                textBoxIndexNumber.Text = BirdList.ElementAt(index).Value.Item1;
+                comboBoxBreed.Text = BirdList.ElementAt(index).Value.Item2;
+                comboBoxSubspecies.Text = BirdList.ElementAt(index).Value.Item3;
+                dateTimePicker1.Text = BirdList.ElementAt(index).Value.Item4;
+                ContainerBoxIndexCage.Text = BirdList.ElementAt(index).Value.Item5;
+                textBoxIndexMotherofBird.Text = BirdList.ElementAt(index).Value.Item6;
+                textBoxIndexFatherofBird.Text = BirdList.ElementAt(index).Value.Item7;
 
-                if (BirdList[index].Rest.Item1 == "Male")
+                if (BirdList.ElementAt(index).Value.Rest.Item1 == "Male")
                 {
                     checkBoxMale.Checked = true;
                 }
@@ -1066,7 +1148,7 @@ namespace Birds_Mangmeant
                     checkBoxMale.Checked = false;
                 }
 
-                if (BirdList[index].Rest.Item1 == "Female")
+                if (BirdList.ElementAt(index).Value.Rest.Item1 == "Female")
                 {
                     checkBoxFemale.Checked = true;
                 }
@@ -1077,6 +1159,9 @@ namespace Birds_Mangmeant
 
 
             }
+
+
+
         }
 
 
@@ -1090,7 +1175,8 @@ namespace Birds_Mangmeant
             panelAddCage.Hide();
             panelSearch.Visible = false;
 
-
+            panelSearchCages.Visible = false;
+            panelSearchCages.Hide();
             panelHelp.Visible = false;
             panelHelp.Hide();
             panelSearch.Hide();
@@ -1125,7 +1211,8 @@ namespace Birds_Mangmeant
             panelUser.Visible = false;
             panelUser.Hide();
 
-
+            panelSearchCages.Visible = false;
+            panelSearchCages.Hide();
             panelHelp.Show();
             panelHelp.Visible = true;
             panelHelp.BringToFront();
@@ -1157,7 +1244,8 @@ namespace Birds_Mangmeant
 
             panelUser.Visible = false;
             panelUser.Hide();
-
+            panelSearchCages.Visible = false;
+            panelSearchCages.Hide();
 
             panelSearch.Show();
             panelSearch.Visible = true;
@@ -1179,10 +1267,13 @@ namespace Birds_Mangmeant
             panelHelp.Visible = false;
             panelHelp.Hide();
 
-
+            panelSearchCages.Visible = false;
+            panelSearchCages.Hide();
 
             panelUser.Visible = false;
             panelUser.Hide();
+
+
             panelAddCage.Show();
             panelAddCage.Visible = true;
             panelAddCage.BringToFront();
@@ -1202,7 +1293,8 @@ namespace Birds_Mangmeant
             panelHelp.Visible = false;
             panelHelp.Hide();
 
-
+            panelSearchCages.Visible = false;
+            panelSearchCages.Hide();
 
 
             panelUser.Show();
@@ -1221,7 +1313,34 @@ namespace Birds_Mangmeant
 
 
 
+        private void ToolStripButtonSearchCages_Click(object sender, EventArgs e)
+        {
 
+            PanelAddBird.Visible = false;
+            PanelAddBird.Hide();
+
+            panelHome.Visible = false;
+            panelHome.Hide();
+
+            panelSearch.Visible = false;
+            panelSearch.Hide();
+
+            panelHelp.Visible = false;
+            panelHelp.Hide();
+
+
+
+            panelUser.Visible = false;
+            panelUser.Hide();
+
+
+
+
+            panelSearchCages.Show();
+            panelSearchCages.Visible = true;
+            panelSearchCages.BringToFront();
+            panelSearchCages.Enabled = true;
+        }
 
 
 
@@ -1248,7 +1367,7 @@ namespace Birds_Mangmeant
 
         private void pictureBoxSaveList_Click_1(object sender, EventArgs e)
         {
-            IFirebaseClient client = new FirebaseClient(config);
+            //IFirebaseClient client = new FirebaseClient(config);
 
 
 
@@ -1267,7 +1386,7 @@ namespace Birds_Mangmeant
         }
 
 
-        private void pictureBoxSubmitQuestion_Click(object sender, EventArgs e)
+        private void PictureBoxSubmitQuestion_Click(object sender, EventArgs e)
         {
             try
             {
@@ -1301,15 +1420,7 @@ namespace Birds_Mangmeant
             if (result == DialogResult.Yes)
             {
 
-                try
-                {
-                    client = new FireSharp.FirebaseClient(config);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message + "Check Your connection!");
-                    return; // stop execution if client couldn't be created
-                }
+
 
                 if (listViewBirds.SelectedItems.Count == 0)
                 {
@@ -1324,11 +1435,23 @@ namespace Birds_Mangmeant
                     return; // stop execution if index is out of range
                 }
 
-                string indexBird = BirdList[index].Item1;
+                // string indexBird = BirdList.[index].Item1;
 
+                var selectedItem = ContainerBoxIndexCage.Items
+                       .Cast<ContainerBoxItem>()
+                        .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
+
+                string hiddenValue = selectedItem?.HiddenValue?? "";
+
+
+
+
+                string indexBird = BirdList.ElementAt(index).Key;
                 if (client != null)
                 {
                     FirebaseResponse response2 = client.Delete("users/" + Login.currentusername + "/Birds/" + indexBird);
+                    FirebaseResponse response3 = client.Delete("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + indexBird);
+
                     loadBirdsList();
                 }
                 else
@@ -1360,10 +1483,10 @@ namespace Birds_Mangmeant
             bool isNumeric3 = Regex.IsMatch(textBoxIndexMotherofBird.Text, @"^\d+$");
 
 
-            bool isAlphanumeric = Regex.IsMatch(textBoxIndexCage.Text, "^[a-zA-Z0-9]+$");
+            bool isAlphanumeric = Regex.IsMatch(ContainerBoxIndexCage.Text, "^[a-zA-Z0-9]+$");
 
-            bool containsOnlyLetters = Regex.IsMatch(textBoxIndexCage.Text, @"^[a-zA-Z]+$");
-            bool containsOnlyNumbers = Regex.IsMatch(textBoxIndexCage.Text, @"^[0-9]+$");
+            bool containsOnlyLetters = Regex.IsMatch(ContainerBoxIndexCage.Text, @"^[a-zA-Z]+$");
+            bool containsOnlyNumbers = Regex.IsMatch(ContainerBoxIndexCage.Text, @"^[0-9]+$");
 
 
 
@@ -1371,6 +1494,7 @@ namespace Birds_Mangmeant
             {
                 MessageBox.Show("Index Number of Bird can only contain numbers.");
             }
+
             else if (!isNumeric2)
             {
                 MessageBox.Show("Index Number of Father of Bird can only contain numbers.");
@@ -1412,7 +1536,8 @@ namespace Birds_Mangmeant
                 MessageBox.Show("Breed and Subspecies Dont match.");
             }
 
-            else if (textBoxIndexCage.SelectedIndex == -1) {
+            else if (ContainerBoxIndexCage.SelectedIndex == -1)
+            {
                 MessageBox.Show("Chooce Option of Cage.");
             }
             else if (comboBoxBreed.Text == "Australian gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "North America" || comboBoxSubspecies.Text == "Center America" || comboBoxSubspecies.Text == "South America"))
@@ -1433,18 +1558,21 @@ namespace Birds_Mangmeant
                 {
                     maleorfemale = "Female";
                 }
-                IFirebaseClient client = new FirebaseClient(config);
-                IFirebaseClient client2 = new FirebaseClient(config);
+
+
+
+
+
                 var Bird = new Bird
                 {
                     IndexNumber = textBoxIndexNumber.Text,
                     Breed_of_Bird = comboBoxBreed.Text,
                     Subspecies = comboBoxSubspecies.Text,
                     HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
-                    IndexCage = textBoxIndexCage.Text,
+                    IndexCage = ContainerBoxIndexCage.Text,
                     IndexMother = textBoxIndexMotherofBird.Text,
                     IndexFather = textBoxIndexFatherofBird.Text,
-                    Gender = maleorfemale,
+                    Gender = maleorfemale
 
                 };
 
@@ -1452,10 +1580,32 @@ namespace Birds_Mangmeant
                 try
                 {
 
-                    client.Set("users/" + Login.currentusername + "/Birds/" + textBoxIndexNumber.Text, Bird);
-                    client2.Set("users/" + Login.currentusername + "/Cages/" + textBoxIndexCage.Text + "/BirdsOfCage/" + textBoxIndexNumber.Text, Bird);
-                    MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
-                    loadBirdsList();
+                    string birdId = Guid.NewGuid().ToString();
+                    Bird.IndexKey = birdId;
+
+                    var selectedItem = ContainerBoxIndexCage.Items
+                          .Cast<ContainerBoxItem>()
+                           .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
+
+
+                    if (selectedItem != null)
+                    {
+                        string hiddenValue = selectedItem.HiddenValue;
+
+                        client.Set("users/" + Login.currentusername + "/Birds/" + birdId, Bird);
+                        client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, Bird);
+                        MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
+                        loadBirdsList();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cage not found");
+                    }
+
+
+
+
+
 
 
                 }
@@ -1472,14 +1622,6 @@ namespace Birds_Mangmeant
             listViewSearch.Clear();
             BirdListSearch.Clear();
 
-            try
-            {
-                client = new FireSharp.FirebaseClient(config);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "Check Your connection!");
-            }
 
 
             FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
@@ -1498,32 +1640,50 @@ namespace Birds_Mangmeant
 
             if (result2 != null)
             {
+                string maleorfemale = "Male";
+                if (checkBoxSearchMale.Checked == true && checkBoxSearchFemale.Checked == false)
+                {
+                    maleorfemale = "Male";
+                }
+                else if (checkBoxSearchFemale.Checked == true && checkBoxSearchMale.Checked == false)
+                {
+                    maleorfemale = "Female";
+                }
+
                 foreach (var get in result2)
                 {
+                    bool match = true;
 
-                    if (textBoxIndexSearch.Text == get.Value.IndexNumber && textBoxGenderSearch.Text == get.Value.Gender && comboBoxSubSpeciesSearch.Text == get.Value.Subspecies && dateTimePicker2.Value.ToString("yyyy-MM-dd") == get.Value.HatchDate)
+                    if (checkBoxSearchByIndex.Checked && textBoxIndexSearch.Text != get.Value.IndexNumber)
+                        match = false;
+
+                    if (checkBoxSearchByGender.Checked && maleorfemale != get.Value.Gender)
+                        match = false;
+
+                    if (checkBoxSearchByHatchDate.Checked && dateTimePicker2.Value.ToString("yyyy-MM-dd") != get.Value.HatchDate)
+                        match = false;
+
+                    if (checkBoxSearchBySubSpecie.Checked && comboBoxSubSpeciesSearch.Text != get.Value.Subspecies)
+                        match = false;
+
+                    if (match)
                     {
+                        var valuesToAdd = Tuple.Create(
+                            get.Value.IndexNumber!,
+                            get.Value.Breed_of_Bird!,
+                            get.Value.Subspecies!,
+                            get.Value.HatchDate!,
+                            get.Value.IndexCage!,
+                            get.Value.IndexMother!,
+                            get.Value.IndexFather!,
+                            get.Value.Gender!
+                        );
 
-                        BirdListSearch.Add(Tuple.Create(
-
-                            get.Value.IndexNumber,
-                            get.Value.Breed_of_Bird,
-                            get.Value.Subspecies,
-                            get.Value.HatchDate,
-                            get.Value.IndexCage,
-                            get.Value.IndexMother,
-                            get.Value.IndexFather,
-                            get.Value.Gender
-
-
-
-
-                        ));
+                        BirdListSearch.Add(valuesToAdd);
                     }
-
-
-
                 }
+
+
 
             }
 
@@ -1536,6 +1696,7 @@ namespace Birds_Mangmeant
 
 
 
+            List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> sortedList = BirdListSearch.OrderBy(b => int.Parse(b.Item1)).ToList();
 
             // Load the image from resources
 
@@ -1548,16 +1709,18 @@ namespace Birds_Mangmeant
             Image image6 = Resources.Australian_City_Beachs;
             Image image7 = Resources.Australian_Center;
             // Add the image to the ImageList control
-            ImageList imageList = new ImageList();
-            imageList.ImageSize = new Size(32, 32); // Set the size of the images in the list
+            ImageList imageList = new ImageList
+            {
+                ImageSize = new Size(32, 32) // Set the size of the images in the list
+            };
 
 
             int i = 0;
             // Example of how to access the items in BirdsList
 
-            if (BirdListSearch != null)
+            if (sortedList != null)
             {
-                foreach (var birdTuple in BirdListSearch)
+                foreach (var birdTuple in sortedList)
                 {
                     string indexNumber = birdTuple.Item1;
                     string breedOfBird = birdTuple.Item2;
@@ -1622,8 +1785,10 @@ namespace Birds_Mangmeant
                     listViewSearch.SmallImageList = imageList;
 
                     // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
-                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender);
-                    item.ImageIndex = i;
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender)
+                    {
+                        ImageIndex = i
+                    };
                     i++;
                     // Add the ListViewItem to the ListView control
                     listViewSearch.Items.Add(item);
@@ -1681,9 +1846,9 @@ namespace Birds_Mangmeant
             {
 
 
-                
 
-                IFirebaseClient client = new FirebaseClient(config);
+
+                //IFirebaseClient client = new FirebaseClient(config);
                 var Cage = new Cage
                 {
                     IndexNumber = enter_index_cage.Text,
@@ -1691,7 +1856,7 @@ namespace Birds_Mangmeant
                     Width = enter_width.Text,
                     Height = enter_height.Text,
                     Material = material_cage_list.Text,
-                    BirdsOfCage = new List<Bird>(),
+                    BirdsOfCage = new Dictionary<string,Bird>(),
                 };
 
 
@@ -1699,8 +1864,9 @@ namespace Birds_Mangmeant
 
                 try
                 {
-
-                    client.Set("users/" + Login.currentusername + "/Cages/" + enter_index_cage.Text, Cage);
+                    string cageId = Guid.NewGuid().ToString();
+                    Cage.IndexKey = cageId; 
+                    client.Set("users/" + Login.currentusername + "/Cages/" + cageId, Cage);
                     MessageBox.Show("You Add Succefully Cage Number Index: " + enter_index_cage.Text);
                     loadCagesList();
 
@@ -1715,7 +1881,521 @@ namespace Birds_Mangmeant
 
         }
 
+        private void cage_listview_MouseClick(object sender, MouseEventArgs e)
+        {
 
+            int index = cage_listview.FocusedItem.Index;
+
+            string BirdInfo = GetBirdsInfoAsString(CageList[index].Item7);
+
+
+            // DialogResult result = MessageBox.Show(BirdInfo, title);
+
+            // Show a custom MessageBox
+            ShowBirds messageBox = new ShowBirds(BirdInfo);
+
+            // Show the form as a dialog and check the DialogResult
+            if (messageBox.ShowDialog() == DialogResult.OK)
+            {
+                // User clicked the OK button
+            }
+            else
+            {
+                // User clicked the Cancel button or closed the form
+            }
+
+        }
+
+        private void checkBoxSearchMale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSearchMale.Checked)
+            {
+                checkBoxSearchFemale.Checked = false;
+            }
+        }
+
+        private void checkBoxSearchFemale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSearchFemale.Checked)
+            {
+                checkBoxSearchMale.Checked = false;
+            }
+        }
+
+        private void checkBoxMale_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBoxMale.Checked)
+            {
+                checkBoxFemale.Checked = false;
+            }
+        }
+
+        private void checkBoxFemale_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBoxFemale.Checked)
+            {
+                checkBoxMale.Checked = false;
+            }
+        }
+
+        private void PictureBoxSearchCages_Click(object sender, EventArgs e)
+        {
+            listViewSearchCages.Clear();
+            CageListSearch.Clear();
+
+
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
+            Dictionary<string, Cage> result2;
+            try
+            {
+                result2 = response2.ResultAs<Dictionary<string, Cage>>();
+            }
+            catch (Newtonsoft.Json.JsonSerializationException ex)
+            {
+                MessageBox.Show("Error deserializing JSON string: " + ex.Message);
+                result2 = new Dictionary<string, Cage>();
+            }
+
+
+
+            if (result2 != null)
+            {
+
+
+
+
+
+
+                foreach (var get in result2)
+                {
+                    FirebaseResponse response3 = client.Get("/users/" + Login.currentusername + "/Cages/" + get.Key! + "/BirdsOfCage");
+                    string json2 = response3.Body;
+                    Dictionary<string, Bird>? result3 = JsonConvert.DeserializeObject<Dictionary<string, Bird>>(json2);
+                    int count = 0;
+                    if (result3 != null)
+                    {
+                        count = result3.Count;
+                    }
+
+
+                    bool match = true;
+
+                    if (checkBoxSearchIndexCage.Checked && textBoxSearchCageIndex.Text != get.Value.IndexNumber)
+                        match = false;
+
+                    if (checkBoxSearchCageMaterial.Checked && comboBoxSearchCageMaterial.Text != get.Value.Material)
+                        match = false;
+
+
+
+                    if (match)
+                    {
+                        var valuesToAdd = Tuple.Create(
+                          get.Value.IndexNumber!,
+                          get.Value.Length!,
+                          get.Value.Width!,
+                          get.Value.Height!,
+                          get.Value.Material!,
+                           count,
+                           GetBirdsInfoAsString(result3),
+                            get.Key
+
+
+                        );
+
+                        CageListSearch.Add(valuesToAdd);
+                    }
+                }
+
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+            sortedList = CageListSearch.OrderBy(b =>
+              {
+                  string indexStr = new string(b.Item1.Where(char.IsDigit).ToArray()); // extract only digits from the index string
+                  return int.TryParse(indexStr, out int index) ? index : int.MaxValue; // try to parse the numeric value, return int.MaxValue if parsing fails
+              }).ToList();
+
+
+            // Load the image from resources
+
+            Image image = Resources.Woodcage;
+            Image image2 = Resources.ironcage;
+            Image image3 = Resources.plasticcage;
+
+            // Add the image to the ImageList control
+            ImageList imageList = new ImageList
+            {
+                ImageSize = new Size(32, 32) // Set the size of the images in the list
+            };
+
+
+            int i = 0;
+            // Example of how to access the items in CagesList
+
+            if (sortedList != null)
+            {
+                foreach (var CageTuple in sortedList)
+                {
+                    string indexNumber = CageTuple.Item1;
+                    string Length = CageTuple.Item2;
+                    string Width = CageTuple.Item3;
+                    string Height = CageTuple.Item4;
+                    string Material = CageTuple.Item5;
+                    string Count = CageTuple.Item6.ToString();
+
+
+                    // Do something with the cageTuple items...
+
+                    if (Material == "Wood")
+                    {
+
+                        imageList.Images.Add(image);
+                    }
+                    else if (Material == "Iron")
+                    {
+                        imageList.Images.Add(image2);
+                    }
+
+                    else if (Material == "Plastic")
+                    {
+                        imageList.Images.Add(image3);
+                    }
+                    else
+                    {
+                        imageList.Images.Add(image);
+                    }
+
+
+
+
+
+                    listViewSearchCages.SmallImageList = imageList;
+
+                    // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", length: " + Length + ", width: " + Width + ", height: " + Height + ", material: " + Material + ", Birds Amount: " + Count)
+                    {
+                        ImageIndex = i
+                    };
+                    i++;
+                    // Add the ListViewItem to the ListView control
+                    listViewSearchCages.Items.Add(item);
+                }
+
+            }
+
+
+
+
+            listViewSearch.GridLines = true;
+        }
+
+        private void listViewSearchCages_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = listViewSearchCages.FocusedItem.Index;
+
+            if (sortedList[index] != null)
+            {
+                string BirdInfo = sortedList[index].Item7;
+
+                // DialogResult result = MessageBox.Show(BirdInfo, title);
+
+                // Show a custom MessageBox
+                ShowBirds messageBox = new ShowBirds(BirdInfo);
+
+                // Show the form as a dialog and check the DialogResult
+                if (messageBox.ShowDialog() == DialogResult.OK)
+                {
+                    // User clicked the OK button
+                }
+               
+            }
+            else
+            {
+                // handle the case where sortedList[index] is null
+            }
+
+
+        }
+
+        private void pictureBoxEditBird_Click(object sender, EventArgs e)
+        {
+            bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
+            bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
+            bool isNumeric3 = Regex.IsMatch(textBoxIndexMotherofBird.Text, @"^\d+$");
+
+
+            bool isAlphanumeric = Regex.IsMatch(ContainerBoxIndexCage.Text, "^[a-zA-Z0-9]+$");
+
+            bool containsOnlyLetters = Regex.IsMatch(ContainerBoxIndexCage.Text, @"^[a-zA-Z]+$");
+            bool containsOnlyNumbers = Regex.IsMatch(ContainerBoxIndexCage.Text, @"^[0-9]+$");
+
+
+
+            if (!isNumeric)
+            {
+                MessageBox.Show("Index Number of Bird can only contain numbers.");
+            }
+
+            else if (!isNumeric2)
+            {
+                MessageBox.Show("Index Number of Father of Bird can only contain numbers.");
+            }
+            else if (!isNumeric3)
+            {
+                MessageBox.Show("Index Number of Mother of Bird can only contain numbers.");
+            }
+
+            else if (containsOnlyLetters || !isAlphanumeric || containsOnlyNumbers)
+            {
+                MessageBox.Show("Index Cage should contain numbers and letters.");
+
+            }
+
+
+            else if (comboBoxBreed.Text == "American gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "Australian Center" || comboBoxSubspecies.Text == "Australian City Beaches"))
+            {
+                MessageBox.Show("Breed and Subspecies Dont match.");
+            }
+
+            else if (comboBoxBreed.Text != "American gouldian" && comboBoxBreed.Text != "European gouldian" && comboBoxBreed.Text != "Australian gouldian")
+            {
+                MessageBox.Show("Please Select Breed.");
+            }
+
+            else if (comboBoxSubspecies.Text != "Eastren Europe" && comboBoxSubspecies.Text != "Western Europe" && comboBoxSubspecies.Text != "Australian Center" && comboBoxSubspecies.Text != "Australian City Beaches" && comboBoxSubspecies.Text != "North America" && comboBoxSubspecies.Text != "Center America" && comboBoxSubspecies.Text != "South America")
+            {
+                MessageBox.Show("Please Select Subspecies.");
+            }
+            else if (comboBoxBreed.Text == "Select Breed" && comboBoxSubspecies.Text == "Select Subspecies")
+            {
+                MessageBox.Show("Please Select Breed and Subspecies.");
+            }
+
+
+            else if (comboBoxBreed.Text == "European gouldian" && (comboBoxSubspecies.Text == "North America" || comboBoxSubspecies.Text == "Center America" || comboBoxSubspecies.Text == "South America" || comboBoxSubspecies.Text == "Australian Center" || comboBoxSubspecies.Text == "Australian City Beaches"))
+            {
+                MessageBox.Show("Breed and Subspecies Dont match.");
+            }
+
+            else if (ContainerBoxIndexCage.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chooce Option of Cage.");
+            }
+            else if (comboBoxBreed.Text == "Australian gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "North America" || comboBoxSubspecies.Text == "Center America" || comboBoxSubspecies.Text == "South America"))
+            {
+                MessageBox.Show("Breed and Subspecies Dont match.");
+            }
+
+            else
+            {
+
+                string maleorfemale = "Male";
+
+                if (checkBoxMale.Checked == true)
+                {
+                    maleorfemale = "Male";
+                }
+                else if (checkBoxFemale.Checked == true)
+                {
+                    maleorfemale = "Female";
+                }
+
+
+
+
+
+                var Bird = new Bird
+                {
+                    IndexNumber = textBoxIndexNumber.Text,
+                    Breed_of_Bird = comboBoxBreed.Text,
+                    Subspecies = comboBoxSubspecies.Text,
+                    HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
+                    IndexCage = ContainerBoxIndexCage.Text,
+                    IndexMother = textBoxIndexMotherofBird.Text,
+                    IndexFather = textBoxIndexFatherofBird.Text,
+                    Gender = maleorfemale,
+
+                };
+
+
+                try
+                {
+
+                    if (listViewBirds.FocusedItem != null && listViewBirds.FocusedItem.Focused)
+                    {
+                        // The focused item is currently focused
+                        int index = listViewBirds.FocusedItem.Index;
+
+                        string birdId = BirdList.ElementAt(index).Key;
+
+
+                        Bird.IndexKey = birdId;
+
+                        var selectedItem = ContainerBoxIndexCage.Items
+                              .Cast<ContainerBoxItem>()
+                               .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
+
+
+                        if (selectedItem != null)
+                        {
+                            string hiddenValue = selectedItem.HiddenValue;
+
+                            client.Set("users/" + Login.currentusername + "/Birds/" + birdId, Bird);
+                            client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, Bird);
+                            MessageBox.Show("You Edit Succefully Bird Number Index: " + textBoxIndexNumber.Text);
+                            loadBirdsList();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cage not found");
+                        }
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chooce Bird to Edit.");
+                    }
+
+
+
+
+
+
+
+
+
+                }
+                catch (FirebaseException)
+                {
+                    // handle failure ...
+                }
+
+            }
+        }
+
+        private void cage_listview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+
+            int index = cage_listview.FocusedItem.Index;
+
+            if (!CageList.ElementAt(index).Equals(null))
+            {
+
+                enter_index_cage.Text = CageList.ElementAt(index).Item1;
+                enter_length.Text = CageList.ElementAt(index).Item2;
+                enter_width.Text = CageList.ElementAt(index).Item3;
+                enter_height.Text = CageList.ElementAt(index).Item4;
+                material_cage_list.Text = CageList.ElementAt(index).Item5;
+
+
+
+            }
+
+        }
+
+        private void pictureBoxEditCage_Click(object sender, EventArgs e)
+        {
+            bool isAlphanumeric = Regex.IsMatch(enter_index_cage.Text, "^[a-zA-Z0-9]+$");
+
+            bool containsOnlyLetters = Regex.IsMatch(enter_index_cage.Text, @"^[a-zA-Z]+$");
+            bool containsOnlyNumbers = Regex.IsMatch(enter_index_cage.Text, @"^[0-9]+$");
+
+            bool containsOnlyNumbers2 = Regex.IsMatch(enter_length.Text, @"^[0-9]+$");
+
+            bool containsOnlyNumbers3 = Regex.IsMatch(enter_width.Text, @"^[0-9]+$");
+
+            bool containsOnlyNumbers4 = Regex.IsMatch(enter_height.Text, @"^[0-9]+$");
+            if (containsOnlyLetters || !isAlphanumeric || containsOnlyNumbers)
+            {
+                MessageBox.Show("Index Cage should contain numbers and letters.");
+
+            }
+
+            else if (!containsOnlyNumbers2)
+            {
+                MessageBox.Show("Length can only be numbers.");
+
+            }
+            else if (!containsOnlyNumbers3)
+            {
+                MessageBox.Show("Width can only be numbers.");
+            }
+            else if (!containsOnlyNumbers4)
+            {
+                MessageBox.Show("Height can only be numbers.");
+            }
+
+            else if (!(material_cage_list.Text == "Iron" || material_cage_list.Text == "Wood" || material_cage_list.Text == "Plastic"))
+            {
+                MessageBox.Show("U can only choose Iron,Wood,Plastic from the list");
+            }
+
+            else
+            {
+
+
+
+
+                //IFirebaseClient client = new FirebaseClient(config);
+                var Cage = new Cage
+                {
+                    IndexNumber = enter_index_cage.Text,
+                    Length = enter_length.Text,
+                    Width = enter_width.Text,
+                    Height = enter_height.Text,
+                    Material = material_cage_list.Text,
+                };
+
+
+
+
+
+                if (cage_listview.FocusedItem != null && cage_listview.FocusedItem.Focused)
+                {
+                    // The focused item is currently focused
+                    int index = cage_listview.FocusedItem.Index;
+
+                    string cageid = CageList.ElementAt(index).Rest.Item1;
+
+
+                    Cage.IndexKey = cageid;
+                    Cage.BirdsOfCage = CageList.ElementAt(index).Item7;
+
+
+
+
+
+
+                    client.Set("users/" + Login.currentusername + "/Cages/" + cageid, Cage);
+                    MessageBox.Show("You Edit Succefully Cage Number Index: " + enter_index_cage.Text);
+                    loadCagesList();
+
+
+
+                }
+                else
+                {
+                    MessageBox.Show("Chooce Cage to Edit.");
+                }
+
+
+             
+
+            }
+        }
     }
 }
-

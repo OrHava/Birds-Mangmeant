@@ -547,15 +547,33 @@ namespace Birds_Mangmeant
                 //string usernameres = null;
                 List<Tuple<string, string>> usernameres = new List<Tuple<string, string>>();
                 FirebaseResponse response = client.Get("users/");
-                Dictionary<string, register> result = response.ResultAs<Dictionary<string, register>>();
+              //  Dictionary<string, register> result = response.ResultAs<Dictionary<string, register>>();
+                Dictionary<string, register> result;
 
-                foreach (var get in result)
+                if (response.Body != null)
                 {
+                    // rest of the code
+                    var birdsDict = response.ResultAs<Dictionary<string, register>>();
+                    if (birdsDict != null)
+                    {
+                        result = birdsDict;
+
+                        foreach (var get in result)
+                        {
 
 
-                    usernameres.Add(Tuple.Create(get.Value.Name, get.Value.Password));
+                            usernameres.Add(Tuple.Create(get.Value.Name, get.Value.Password));
 
+                        }
+                    }
                 }
+                else
+                {
+                    // handle the case where there is no data in the Firebase path
+                }
+
+
+
 
                 if (checkBoxRememberMe.Checked)
                 {

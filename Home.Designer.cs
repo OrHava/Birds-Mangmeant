@@ -10,13 +10,13 @@ namespace Birds_Mangmeant
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        IFirebaseConfig config = new FirebaseConfig
-        {
-            AuthSecret = "X0ef9KE6sIzPgMR7rlUj52AWMITXNJXPEIMNKHF9",
-            BasePath = "https://birds-mannagemeant-default-rtdb.firebaseio.com/"
+        //IFirebaseConfig config = new FirebaseConfig
+        //{
+        //    AuthSecret = "X0ef9KE6sIzPgMR7rlUj52AWMITXNJXPEIMNKHF9",
+        //    BasePath = "https://birds-mannagemeant-default-rtdb.firebaseio.com/"
 
-        };
-        IFirebaseClient client;
+        //};
+        //IFirebaseClient client;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -49,13 +49,16 @@ namespace Birds_Mangmeant
             ButtonAddCage = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
             ButtonSearch = new ToolStripButton();
+            toolStripSeparator7 = new ToolStripSeparator();
+            toolStripButtonSearchCages = new ToolStripButton();
             toolStripSeparator3 = new ToolStripSeparator();
             ButtonHelp = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             ButtonSignOut = new ToolStripButton();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             PanelAddBird = new Panel();
-            textBoxIndexCage = new ComboBox();
+            pictureBoxEditBird = new PictureBox();
+            ContainerBoxIndexCage = new ComboBox();
             listViewBirds = new ListView();
             comboBoxSubspecies = new ComboBox();
             comboBoxBreed = new ComboBox();
@@ -121,11 +124,17 @@ namespace Birds_Mangmeant
             enter_index_cage = new TextBox();
             cage_listview = new ListView();
             panelSearch = new Panel();
+            checkBoxSearchMale = new CheckBox();
+            label24 = new Label();
+            checkBoxSearchFemale = new CheckBox();
+            checkBoxSearchByGender = new CheckBox();
+            checkBoxSearchByHatchDate = new CheckBox();
+            checkBoxSearchBySubSpecie = new CheckBox();
+            checkBoxSearchByIndex = new CheckBox();
             dateTimePicker2 = new DateTimePicker();
             listViewSearch = new ListView();
             comboBoxSubSpeciesSearch = new ComboBox();
             pictureBoxSearchBird = new PictureBox();
-            textBoxGenderSearch = new TextBox();
             label23 = new Label();
             label22 = new Label();
             label21 = new Label();
@@ -138,8 +147,20 @@ namespace Birds_Mangmeant
             pictureBoxSubmitQuestion = new PictureBox();
             pictureBox7 = new PictureBox();
             labelSubmitHelp = new Label();
+            panelSearchCages = new Panel();
+            pictureBoxSearchCages = new PictureBox();
+            comboBoxSearchCageMaterial = new ComboBox();
+            label25 = new Label();
+            checkBoxSearchCageMaterial = new CheckBox();
+            checkBoxSearchIndexCage = new CheckBox();
+            listViewSearchCages = new ListView();
+            label28 = new Label();
+            label29 = new Label();
+            textBoxSearchCageIndex = new TextBox();
+            pictureBoxEditCage = new PictureBox();
             toolStrip1.SuspendLayout();
             PanelAddBird.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditBird).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAddBird).BeginInit();
             panelUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAnim).BeginInit();
@@ -168,6 +189,9 @@ namespace Birds_Mangmeant
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            panelSearchCages.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -175,7 +199,7 @@ namespace Birds_Mangmeant
             toolStrip1.BackColor = Color.FromArgb(46, 51, 73);
             toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.ImeMode = ImeMode.On;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, ButtonHome, toolStripSeparator5, ButtonAddBird, toolStripSeparator6, ButtonAddCage, toolStripSeparator2, ButtonSearch, toolStripSeparator3, ButtonHelp, toolStripSeparator4, ButtonSignOut });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, ButtonHome, toolStripSeparator5, ButtonAddBird, toolStripSeparator6, ButtonAddCage, toolStripSeparator2, ButtonSearch, toolStripSeparator7, toolStripButtonSearchCages, toolStripSeparator3, ButtonHelp, toolStripSeparator4, ButtonSignOut });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1282, 27);
@@ -238,9 +262,24 @@ namespace Birds_Mangmeant
             ButtonSearch.Image = Properties.Resources.icons8_search_24;
             ButtonSearch.ImageTransparentColor = Color.Magenta;
             ButtonSearch.Name = "ButtonSearch";
-            ButtonSearch.Size = new Size(77, 24);
-            ButtonSearch.Text = "Search";
+            ButtonSearch.Size = new Size(114, 24);
+            ButtonSearch.Text = "Search Birds";
             ButtonSearch.Click += ButtonSearch_Click;
+            // 
+            // toolStripSeparator7
+            // 
+            toolStripSeparator7.Name = "toolStripSeparator7";
+            toolStripSeparator7.Size = new Size(6, 27);
+            // 
+            // toolStripButtonSearchCages
+            // 
+            toolStripButtonSearchCages.ForeColor = Color.White;
+            toolStripButtonSearchCages.Image = Properties.Resources.icons8_search_80;
+            toolStripButtonSearchCages.ImageTransparentColor = Color.Magenta;
+            toolStripButtonSearchCages.Name = "toolStripButtonSearchCages";
+            toolStripButtonSearchCages.Size = new Size(121, 24);
+            toolStripButtonSearchCages.Text = "Search Cages";
+            toolStripButtonSearchCages.Click += ToolStripButtonSearchCages_Click;
             // 
             // toolStripSeparator3
             // 
@@ -275,7 +314,8 @@ namespace Birds_Mangmeant
             // PanelAddBird
             // 
             PanelAddBird.BackColor = Color.FromArgb(46, 51, 73);
-            PanelAddBird.Controls.Add(textBoxIndexCage);
+            PanelAddBird.Controls.Add(pictureBoxEditBird);
+            PanelAddBird.Controls.Add(ContainerBoxIndexCage);
             PanelAddBird.Controls.Add(listViewBirds);
             PanelAddBird.Controls.Add(comboBoxSubspecies);
             PanelAddBird.Controls.Add(comboBoxBreed);
@@ -301,16 +341,28 @@ namespace Birds_Mangmeant
             PanelAddBird.Size = new Size(1282, 724);
             PanelAddBird.TabIndex = 2;
             // 
-            // textBoxIndexCage
+            // pictureBoxEditBird
             // 
-            textBoxIndexCage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexCage.FormattingEnabled = true;
-            textBoxIndexCage.Location = new Point(304, 184);
-            textBoxIndexCage.Margin = new Padding(3, 2, 3, 2);
-            textBoxIndexCage.Name = "textBoxIndexCage";
-            textBoxIndexCage.Size = new Size(176, 31);
-            textBoxIndexCage.TabIndex = 26;
-            textBoxIndexCage.Text = "Select Cage";
+            pictureBoxEditBird.Image = Properties.Resources.icons8_create_100;
+            pictureBoxEditBird.Location = new Point(547, 210);
+            pictureBoxEditBird.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxEditBird.Name = "pictureBoxEditBird";
+            pictureBoxEditBird.Size = new Size(94, 70);
+            pictureBoxEditBird.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxEditBird.TabIndex = 27;
+            pictureBoxEditBird.TabStop = false;
+            pictureBoxEditBird.Click += pictureBoxEditBird_Click;
+            // 
+            // ContainerBoxIndexCage
+            // 
+            ContainerBoxIndexCage.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            ContainerBoxIndexCage.FormattingEnabled = true;
+            ContainerBoxIndexCage.Location = new Point(304, 184);
+            ContainerBoxIndexCage.Margin = new Padding(3, 2, 3, 2);
+            ContainerBoxIndexCage.Name = "ContainerBoxIndexCage";
+            ContainerBoxIndexCage.Size = new Size(176, 31);
+            ContainerBoxIndexCage.TabIndex = 26;
+            ContainerBoxIndexCage.Text = "Select Cage";
             // 
             // listViewBirds
             // 
@@ -362,6 +414,7 @@ namespace Birds_Mangmeant
             checkBoxFemale.TabIndex = 22;
             checkBoxFemale.Text = "Female";
             checkBoxFemale.UseVisualStyleBackColor = true;
+            checkBoxFemale.CheckedChanged += checkBoxFemale_CheckedChanged_1;
             // 
             // checkBoxMale
             // 
@@ -376,6 +429,7 @@ namespace Birds_Mangmeant
             checkBoxMale.TabIndex = 21;
             checkBoxMale.Text = "Male";
             checkBoxMale.UseVisualStyleBackColor = true;
+            checkBoxMale.CheckedChanged += checkBoxMale_CheckedChanged_1;
             // 
             // dateTimePicker1
             // 
@@ -390,7 +444,7 @@ namespace Birds_Mangmeant
             // pictureBoxAddBird
             // 
             pictureBoxAddBird.Image = Properties.Resources.icons8_add_new_50;
-            pictureBoxAddBird.Location = new Point(228, 345);
+            pictureBoxAddBird.Location = new Point(544, 95);
             pictureBoxAddBird.Margin = new Padding(3, 2, 3, 2);
             pictureBoxAddBird.Name = "pictureBoxAddBird";
             pictureBoxAddBird.Size = new Size(94, 70);
@@ -902,6 +956,7 @@ namespace Birds_Mangmeant
             // panelAddCage
             // 
             panelAddCage.BackColor = Color.FromArgb(46, 51, 73);
+            panelAddCage.Controls.Add(pictureBoxEditCage);
             panelAddCage.Controls.Add(pictureBoxAddCage);
             panelAddCage.Controls.Add(label19);
             panelAddCage.Controls.Add(material_cage_list);
@@ -923,7 +978,7 @@ namespace Birds_Mangmeant
             // pictureBoxAddCage
             // 
             pictureBoxAddCage.Image = Properties.Resources.icons8_add_new_50;
-            pictureBoxAddCage.Location = new Point(258, 374);
+            pictureBoxAddCage.Location = new Point(350, 374);
             pictureBoxAddCage.Margin = new Padding(3, 2, 3, 2);
             pictureBoxAddCage.Name = "pictureBoxAddCage";
             pictureBoxAddCage.Size = new Size(94, 70);
@@ -1047,15 +1102,23 @@ namespace Birds_Mangmeant
             cage_listview.TabIndex = 24;
             cage_listview.UseCompatibleStateImageBehavior = false;
             cage_listview.View = View.SmallIcon;
+            cage_listview.SelectedIndexChanged += cage_listview_SelectedIndexChanged;
+            cage_listview.MouseClick += cage_listview_MouseClick;
             // 
             // panelSearch
             // 
             panelSearch.BackColor = Color.FromArgb(46, 51, 73);
+            panelSearch.Controls.Add(checkBoxSearchMale);
+            panelSearch.Controls.Add(label24);
+            panelSearch.Controls.Add(checkBoxSearchFemale);
+            panelSearch.Controls.Add(checkBoxSearchByGender);
+            panelSearch.Controls.Add(checkBoxSearchByHatchDate);
+            panelSearch.Controls.Add(checkBoxSearchBySubSpecie);
+            panelSearch.Controls.Add(checkBoxSearchByIndex);
             panelSearch.Controls.Add(dateTimePicker2);
             panelSearch.Controls.Add(listViewSearch);
             panelSearch.Controls.Add(comboBoxSubSpeciesSearch);
             panelSearch.Controls.Add(pictureBoxSearchBird);
-            panelSearch.Controls.Add(textBoxGenderSearch);
             panelSearch.Controls.Add(label23);
             panelSearch.Controls.Add(label22);
             panelSearch.Controls.Add(label21);
@@ -1066,6 +1129,82 @@ namespace Birds_Mangmeant
             panelSearch.Name = "panelSearch";
             panelSearch.Size = new Size(1282, 722);
             panelSearch.TabIndex = 2;
+            // 
+            // checkBoxSearchMale
+            // 
+            checkBoxSearchMale.AutoSize = true;
+            checkBoxSearchMale.Checked = true;
+            checkBoxSearchMale.CheckState = CheckState.Checked;
+            checkBoxSearchMale.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSearchMale.ForeColor = Color.White;
+            checkBoxSearchMale.Location = new Point(121, 340);
+            checkBoxSearchMale.Name = "checkBoxSearchMale";
+            checkBoxSearchMale.Size = new Size(81, 27);
+            checkBoxSearchMale.TabIndex = 36;
+            checkBoxSearchMale.Text = "Male";
+            checkBoxSearchMale.UseVisualStyleBackColor = true;
+            checkBoxSearchMale.CheckedChanged += checkBoxSearchMale_CheckedChanged;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.BackColor = Color.FromArgb(46, 51, 73);
+            label24.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label24.ForeColor = Color.White;
+            label24.Location = new Point(302, 60);
+            label24.Name = "label24";
+            label24.Size = new Size(142, 19);
+            label24.TabIndex = 35;
+            label24.Text = "Search Conditions: ";
+            // 
+            // checkBoxSearchFemale
+            // 
+            checkBoxSearchFemale.AutoSize = true;
+            checkBoxSearchFemale.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            checkBoxSearchFemale.ForeColor = Color.White;
+            checkBoxSearchFemale.Location = new Point(203, 341);
+            checkBoxSearchFemale.Name = "checkBoxSearchFemale";
+            checkBoxSearchFemale.Size = new Size(106, 27);
+            checkBoxSearchFemale.TabIndex = 34;
+            checkBoxSearchFemale.Text = "Female";
+            checkBoxSearchFemale.UseVisualStyleBackColor = true;
+            checkBoxSearchFemale.CheckedChanged += checkBoxSearchFemale_CheckedChanged;
+            // 
+            // checkBoxSearchByGender
+            // 
+            checkBoxSearchByGender.AutoSize = true;
+            checkBoxSearchByGender.Location = new Point(356, 348);
+            checkBoxSearchByGender.Name = "checkBoxSearchByGender";
+            checkBoxSearchByGender.Size = new Size(18, 17);
+            checkBoxSearchByGender.TabIndex = 32;
+            checkBoxSearchByGender.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSearchByHatchDate
+            // 
+            checkBoxSearchByHatchDate.AutoSize = true;
+            checkBoxSearchByHatchDate.Location = new Point(356, 259);
+            checkBoxSearchByHatchDate.Name = "checkBoxSearchByHatchDate";
+            checkBoxSearchByHatchDate.Size = new Size(18, 17);
+            checkBoxSearchByHatchDate.TabIndex = 31;
+            checkBoxSearchByHatchDate.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSearchBySubSpecie
+            // 
+            checkBoxSearchBySubSpecie.AutoSize = true;
+            checkBoxSearchBySubSpecie.Location = new Point(356, 180);
+            checkBoxSearchBySubSpecie.Name = "checkBoxSearchBySubSpecie";
+            checkBoxSearchBySubSpecie.Size = new Size(18, 17);
+            checkBoxSearchBySubSpecie.TabIndex = 30;
+            checkBoxSearchBySubSpecie.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSearchByIndex
+            // 
+            checkBoxSearchByIndex.AutoSize = true;
+            checkBoxSearchByIndex.Location = new Point(356, 97);
+            checkBoxSearchByIndex.Name = "checkBoxSearchByIndex";
+            checkBoxSearchByIndex.Size = new Size(18, 17);
+            checkBoxSearchByIndex.TabIndex = 29;
+            checkBoxSearchByIndex.UseVisualStyleBackColor = true;
             // 
             // dateTimePicker2
             // 
@@ -1114,16 +1253,6 @@ namespace Birds_Mangmeant
             pictureBoxSearchBird.TabStop = false;
             pictureBoxSearchBird.Click += pictureBoxSearchBird_Click;
             // 
-            // textBoxGenderSearch
-            // 
-            textBoxGenderSearch.BackColor = Color.White;
-            textBoxGenderSearch.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxGenderSearch.ForeColor = Color.Black;
-            textBoxGenderSearch.Location = new Point(118, 335);
-            textBoxGenderSearch.Name = "textBoxGenderSearch";
-            textBoxGenderSearch.Size = new Size(181, 32);
-            textBoxGenderSearch.TabIndex = 10;
-            // 
             // label23
             // 
             label23.AutoSize = true;
@@ -1142,9 +1271,9 @@ namespace Birds_Mangmeant
             label22.ForeColor = Color.White;
             label22.Location = new Point(143, 213);
             label22.Name = "label22";
-            label22.Size = new Size(134, 23);
+            label22.Size = new Size(129, 23);
             label22.TabIndex = 6;
-            label22.Text = "Date of Birth:";
+            label22.Text = "Hatch date:";
             // 
             // label21
             // 
@@ -1240,7 +1369,7 @@ namespace Birds_Mangmeant
             pictureBoxSubmitQuestion.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxSubmitQuestion.TabIndex = 5;
             pictureBoxSubmitQuestion.TabStop = false;
-            pictureBoxSubmitQuestion.Click += pictureBoxSubmitQuestion_Click;
+            pictureBoxSubmitQuestion.Click += PictureBoxSubmitQuestion_Click;
             // 
             // pictureBox7
             // 
@@ -1264,17 +1393,149 @@ namespace Birds_Mangmeant
             labelSubmitHelp.TabIndex = 3;
             labelSubmitHelp.Text = "Submit Question:";
             // 
+            // panelSearchCages
+            // 
+            panelSearchCages.BackColor = Color.FromArgb(46, 51, 73);
+            panelSearchCages.Controls.Add(pictureBoxSearchCages);
+            panelSearchCages.Controls.Add(comboBoxSearchCageMaterial);
+            panelSearchCages.Controls.Add(label25);
+            panelSearchCages.Controls.Add(checkBoxSearchCageMaterial);
+            panelSearchCages.Controls.Add(checkBoxSearchIndexCage);
+            panelSearchCages.Controls.Add(listViewSearchCages);
+            panelSearchCages.Controls.Add(label28);
+            panelSearchCages.Controls.Add(label29);
+            panelSearchCages.Controls.Add(textBoxSearchCageIndex);
+            panelSearchCages.Location = new Point(0, 29);
+            panelSearchCages.Margin = new Padding(3, 2, 3, 2);
+            panelSearchCages.Name = "panelSearchCages";
+            panelSearchCages.Size = new Size(1282, 722);
+            panelSearchCages.TabIndex = 3;
+            // 
+            // pictureBoxSearchCages
+            // 
+            pictureBoxSearchCages.Image = Properties.Resources.icons8_search_80;
+            pictureBoxSearchCages.Location = new Point(165, 238);
+            pictureBoxSearchCages.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxSearchCages.Name = "pictureBoxSearchCages";
+            pictureBoxSearchCages.Size = new Size(94, 70);
+            pictureBoxSearchCages.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxSearchCages.TabIndex = 37;
+            pictureBoxSearchCages.TabStop = false;
+            pictureBoxSearchCages.Click += PictureBoxSearchCages_Click;
+            // 
+            // comboBoxSearchCageMaterial
+            // 
+            comboBoxSearchCageMaterial.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxSearchCageMaterial.FormattingEnabled = true;
+            comboBoxSearchCageMaterial.Items.AddRange(new object[] { "Iron", "Wood", "Plastic" });
+            comboBoxSearchCageMaterial.Location = new Point(118, 170);
+            comboBoxSearchCageMaterial.Margin = new Padding(3, 2, 3, 2);
+            comboBoxSearchCageMaterial.Name = "comboBoxSearchCageMaterial";
+            comboBoxSearchCageMaterial.Size = new Size(181, 31);
+            comboBoxSearchCageMaterial.TabIndex = 36;
+            comboBoxSearchCageMaterial.Text = "Select Material";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.BackColor = Color.FromArgb(46, 51, 73);
+            label25.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label25.ForeColor = Color.White;
+            label25.Location = new Point(302, 60);
+            label25.Name = "label25";
+            label25.Size = new Size(142, 19);
+            label25.TabIndex = 35;
+            label25.Text = "Search Conditions: ";
+            // 
+            // checkBoxSearchCageMaterial
+            // 
+            checkBoxSearchCageMaterial.AutoSize = true;
+            checkBoxSearchCageMaterial.Location = new Point(356, 180);
+            checkBoxSearchCageMaterial.Name = "checkBoxSearchCageMaterial";
+            checkBoxSearchCageMaterial.Size = new Size(18, 17);
+            checkBoxSearchCageMaterial.TabIndex = 30;
+            checkBoxSearchCageMaterial.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSearchIndexCage
+            // 
+            checkBoxSearchIndexCage.AutoSize = true;
+            checkBoxSearchIndexCage.Location = new Point(356, 97);
+            checkBoxSearchIndexCage.Name = "checkBoxSearchIndexCage";
+            checkBoxSearchIndexCage.Size = new Size(18, 17);
+            checkBoxSearchIndexCage.TabIndex = 29;
+            checkBoxSearchIndexCage.UseVisualStyleBackColor = true;
+            // 
+            // listViewSearchCages
+            // 
+            listViewSearchCages.BackColor = Color.FromArgb(37, 42, 64);
+            listViewSearchCages.BorderStyle = BorderStyle.None;
+            listViewSearchCages.ForeColor = Color.White;
+            listViewSearchCages.Location = new Point(508, 44);
+            listViewSearchCages.Margin = new Padding(3, 2, 3, 2);
+            listViewSearchCages.Name = "listViewSearchCages";
+            listViewSearchCages.Size = new Size(719, 590);
+            listViewSearchCages.TabIndex = 27;
+            listViewSearchCages.UseCompatibleStateImageBehavior = false;
+            listViewSearchCages.View = View.SmallIcon;
+            listViewSearchCages.MouseDoubleClick += listViewSearchCages_MouseDoubleClick;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label28.ForeColor = Color.White;
+            label28.Location = new Point(165, 132);
+            label28.Name = "label28";
+            label28.Size = new Size(94, 23);
+            label28.TabIndex = 5;
+            label28.Text = "Material:";
+            // 
+            // label29
+            // 
+            label29.AutoSize = true;
+            label29.BackColor = Color.FromArgb(46, 51, 73);
+            label29.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label29.ForeColor = Color.White;
+            label29.Location = new Point(140, 58);
+            label29.Name = "label29";
+            label29.Size = new Size(156, 23);
+            label29.TabIndex = 4;
+            label29.Text = "Index of Cage:";
+            // 
+            // textBoxSearchCageIndex
+            // 
+            textBoxSearchCageIndex.BackColor = Color.White;
+            textBoxSearchCageIndex.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxSearchCageIndex.ForeColor = Color.Black;
+            textBoxSearchCageIndex.Location = new Point(118, 91);
+            textBoxSearchCageIndex.Name = "textBoxSearchCageIndex";
+            textBoxSearchCageIndex.Size = new Size(181, 32);
+            textBoxSearchCageIndex.TabIndex = 0;
+            // 
+            // pictureBoxEditCage
+            // 
+            pictureBoxEditCage.Image = Properties.Resources.icons8_create_100;
+            pictureBoxEditCage.Location = new Point(165, 371);
+            pictureBoxEditCage.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxEditCage.Name = "pictureBoxEditCage";
+            pictureBoxEditCage.Size = new Size(94, 70);
+            pictureBoxEditCage.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxEditCage.TabIndex = 36;
+            pictureBoxEditCage.TabStop = false;
+            pictureBoxEditCage.Click += pictureBoxEditCage_Click;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 73);
             ClientSize = new Size(1282, 753);
+            Controls.Add(panelAddCage);
+            Controls.Add(PanelAddBird);
+            Controls.Add(panelSearchCages);
+            Controls.Add(panelSearch);
             Controls.Add(panelUser);
             Controls.Add(panelHome);
-            Controls.Add(PanelAddBird);
-            Controls.Add(panelAddCage);
-            Controls.Add(panelSearch);
             Controls.Add(panelHelp);
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -1285,6 +1546,7 @@ namespace Birds_Mangmeant
             toolStrip1.PerformLayout();
             PanelAddBird.ResumeLayout(false);
             PanelAddBird.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditBird).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAddBird).EndInit();
             panelUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBoxAnim).EndInit();
@@ -1321,6 +1583,10 @@ namespace Birds_Mangmeant
             panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSubmitQuestion).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            panelSearchCages.ResumeLayout(false);
+            panelSearchCages.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1419,12 +1685,39 @@ namespace Birds_Mangmeant
         private ListView listViewSearch;
         private ComboBox comboBoxSubSpeciesSearch;
         private PictureBox pictureBoxSearchBird;
-        private TextBox textBoxGenderSearch;
         private Label label23;
         private Label label22;
         private Label label21;
         private Label label20;
         private TextBox textBoxIndexSearch;
-        private ComboBox textBoxIndexCage;
+        private ComboBox ContainerBoxIndexCage;
+        private CheckBox checkBoxSearchMale;
+        private Label label24;
+        private CheckBox checkBoxSearchFemale;
+        private CheckBox checkBoxSearchByGender;
+        private CheckBox checkBoxSearchByHatchDate;
+        private CheckBox checkBoxSearchBySubSpecie;
+        private CheckBox checkBoxSearchByIndex;
+        private ToolStripSeparator toolStripSeparator7;
+        private ToolStripButton toolStripButtonSearchCages;
+        private Panel panelSearchCages;
+        private CheckBox checkBox1;
+        private Label label25;
+        private CheckBox checkBox2;
+        private CheckBox checkBox4;
+        private CheckBox checkBoxSearchCageMaterial;
+        private CheckBox checkBoxSearchIndexCage;
+     
+        private ListView listViewSearchCages;
+
+       
+    
+        private Label label28;
+        private Label label29;
+        private TextBox textBoxSearchCageIndex;
+        private ComboBox comboBoxSearchCageMaterial;
+        private PictureBox pictureBoxSearchCages;
+        private PictureBox pictureBoxEditBird;
+        private PictureBox pictureBoxEditCage;
     }
 }
