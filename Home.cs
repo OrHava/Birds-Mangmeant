@@ -37,11 +37,11 @@ namespace Birds_Mangmeant
 {
     public partial class Home : Form
     {
-        Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdList = new Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
+        Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string,string,string,string>> >> BirdList = new Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>> >>();
         private System.Timers.Timer timer = new System.Timers.Timer();
         private int frameIndex = 0;
 
-        List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> BirdListSearch = new List<Tuple<string, string, string, string, string, string, string, Tuple<string>>>();
+        List<Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>>>> BirdListSearch = new List<Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>>>>();
 
         List<Tuple<string, string, string, string, string, int, string, Tuple<string>>> CageListSearch = new List<Tuple<string, string, string, string, string, int, string, Tuple<string>>>();
 
@@ -240,14 +240,7 @@ namespace Birds_Mangmeant
             plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
             plotSurface2d1.Enabled = false;
 
-            //try
-            //{
-            //    client = new FireSharp.FirebaseClient(config);
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message + "Check Your connection!");
-            //}
+          
 
 
             try
@@ -678,10 +671,12 @@ namespace Birds_Mangmeant
                             get.Value.IndexCage!,
                             get.Value.IndexMother!,
                             get.Value.IndexFather!,
-                            get.Value.Gender!
-
-
-
+                                Tuple.Create(
+                               get.Value.Gender!,
+                               get.Value.ColorHead!,
+                               get.Value.ColorBreast!,
+                               get.Value.ColorBody!
+                               )
 
                         ));
                     }
@@ -733,13 +728,15 @@ namespace Birds_Mangmeant
                     string indexCage = birdTuple.Value.Item5;
                     string indexMother = birdTuple.Value.Item6;
                     string indexFather = birdTuple.Value.Item7;
-                    string gender = birdTuple.Value.Rest.Item1;
-
+                    string gender = birdTuple.Value.Rest.Item1.Item1;
+                    string headcolor = birdTuple.Value.Rest.Item1.Item1;
+                    string breastcolor = birdTuple.Value.Rest.Item1.Item2;
+                    string bodycolor = birdTuple.Value.Rest.Item1.Item3;
                     // Do something with the birdTuple items...
 
 
 
-
+                    
 
 
 
@@ -789,7 +786,7 @@ namespace Birds_Mangmeant
                     listViewBirds.SmallImageList = imageList;
 
                     // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
-                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender)
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender + ", Head color: " + headcolor + ", Breast Color: " + breastcolor + ", Body Color: " + bodycolor)
                     {
                         ImageIndex = i
                     };
@@ -1139,7 +1136,7 @@ namespace Birds_Mangmeant
                 textBoxIndexMotherofBird.Text = BirdList.ElementAt(index).Value.Item6;
                 textBoxIndexFatherofBird.Text = BirdList.ElementAt(index).Value.Item7;
 
-                if (BirdList.ElementAt(index).Value.Rest.Item1 == "Male")
+                if (BirdList.ElementAt(index).Value.Rest.Item1.Item1 == "Male")
                 {
                     checkBoxMale.Checked = true;
                 }
@@ -1148,7 +1145,7 @@ namespace Birds_Mangmeant
                     checkBoxMale.Checked = false;
                 }
 
-                if (BirdList.ElementAt(index).Value.Rest.Item1 == "Female")
+                if (BirdList.ElementAt(index).Value.Rest.Item1.Item1 == "Female")
                 {
                     checkBoxFemale.Checked = true;
                 }
@@ -1160,7 +1157,7 @@ namespace Birds_Mangmeant
 
             }
 
-
+            ShowBirdsListToMate();
 
         }
 
@@ -1540,6 +1537,21 @@ namespace Birds_Mangmeant
             {
                 MessageBox.Show("Chooce Option of Cage.");
             }
+
+            else if (comboBoxHeadColor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chooce Option of Head Color.");
+            }
+
+            else if (comboBoxBreastColor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chooce Option of Breast Color.");
+            }
+
+            else if (comboBoxBodyColor.SelectedIndex == -1)
+            {
+                MessageBox.Show("Chooce Option of Body Color.");
+            }
             else if (comboBoxBreed.Text == "Australian gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "North America" || comboBoxSubspecies.Text == "Center America" || comboBoxSubspecies.Text == "South America"))
             {
                 MessageBox.Show("Breed and Subspecies Dont match.");
@@ -1572,7 +1584,10 @@ namespace Birds_Mangmeant
                     IndexCage = ContainerBoxIndexCage.Text,
                     IndexMother = textBoxIndexMotherofBird.Text,
                     IndexFather = textBoxIndexFatherofBird.Text,
-                    Gender = maleorfemale
+                    Gender = maleorfemale,
+                    ColorBody = comboBoxBodyColor.Text,
+                    ColorBreast = comboBoxBreastColor.Text,   
+                    ColorHead = comboBoxHeadColor.Text
 
                 };
 
@@ -1668,18 +1683,24 @@ namespace Birds_Mangmeant
 
                     if (match)
                     {
-                        var valuesToAdd = Tuple.Create(
-                            get.Value.IndexNumber!,
-                            get.Value.Breed_of_Bird!,
-                            get.Value.Subspecies!,
-                            get.Value.HatchDate!,
-                            get.Value.IndexCage!,
-                            get.Value.IndexMother!,
-                            get.Value.IndexFather!,
-                            get.Value.Gender!
-                        );
+                        BirdListSearch.Add( Tuple.Create(
 
-                        BirdListSearch.Add(valuesToAdd);
+                             get.Value.IndexNumber!,
+                             get.Value.Breed_of_Bird!,
+                             get.Value.Subspecies!,
+                             get.Value.HatchDate!,
+                             get.Value.IndexCage!,
+                             get.Value.IndexMother!,
+                             get.Value.IndexFather!,
+                                 Tuple.Create(
+                                get.Value.Gender!,
+                                get.Value.ColorHead!,
+                                get.Value.ColorBreast!,
+                                get.Value.ColorBody!
+                                )
+
+                         ));
+                        //BirdListSearch.Add(valuesToAdd);
                     }
                 }
 
@@ -1696,7 +1717,7 @@ namespace Birds_Mangmeant
 
 
 
-            List<Tuple<string, string, string, string, string, string, string, Tuple<string>>> sortedList = BirdListSearch.OrderBy(b => int.Parse(b.Item1)).ToList();
+            List<Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>>>> sortedList = BirdListSearch.OrderBy(b => int.Parse(b.Item1)).ToList();
 
             // Load the image from resources
 
@@ -1729,8 +1750,10 @@ namespace Birds_Mangmeant
                     string indexCage = birdTuple.Item5;
                     string indexMother = birdTuple.Item6;
                     string indexFather = birdTuple.Item7;
-                    string gender = birdTuple.Rest.Item1;
-
+                    string gender = birdTuple.Rest.Item1.Item1;
+                    string headcolor = birdTuple.Rest.Item1.Item1;
+                    string breastcolor = birdTuple.Rest.Item1.Item2;
+                    string bodycolor = birdTuple.Rest.Item1.Item3;
                     // Do something with the birdTuple items...
 
 
@@ -1785,7 +1808,7 @@ namespace Birds_Mangmeant
                     listViewSearch.SmallImageList = imageList;
 
                     // Create a new ListViewItem and set its ImageIndex property to the index of the image in the ImageList
-                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender)
+                    ListViewItem item = new ListViewItem("indexNumber: " + indexNumber + ", breedOfBird: " + breedOfBird + ", subspecies: " + subspecies + ", hatchDate: " + hatchDate + ", indexCage: " + indexCage + ", indexMother: " + indexMother + ", indexFather: " + indexFather + ", Gender: " + gender + ", Head color: " + headcolor + ", Breast Color: " + breastcolor + ", Body Color: " + bodycolor)
                     {
                         ImageIndex = i
                     };
@@ -2395,6 +2418,197 @@ namespace Birds_Mangmeant
 
 
 
+            }
+        }
+
+        private void ShowBirdsListToMate()
+        {
+
+            comboBoxChooceBirdToMate.Items.Clear();
+
+
+
+            FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
+            Dictionary<string, Bird> result2;
+            try
+            {
+                result2 = response2.ResultAs<Dictionary<string, Bird>>();
+            }
+            catch (Newtonsoft.Json.JsonSerializationException ex)
+            {
+                MessageBox.Show("Error deserializing JSON string: " + ex.Message);
+                result2 = new Dictionary<string, Bird>();
+            }
+
+
+
+            if (result2 != null)
+            {
+                string maleorfemale = "Male";
+                if (checkBoxMale.Checked == true && checkBoxFemale.Checked == false)
+                {
+                    maleorfemale = "Male";
+                }
+                else if (checkBoxFemale.Checked == true && checkBoxMale.Checked == false)
+                {
+                    maleorfemale = "Female";
+                }
+
+                foreach (var get in result2)
+                {
+                    bool match = true;
+
+                    if (textBoxIndexNumber.Text == get.Value.IndexNumber)
+                        match = false;
+
+                    if (maleorfemale == get.Value.Gender)
+                        match = false;
+
+
+                    if (comboBoxSubspecies.Text != get.Value.Subspecies)
+                        match = false;
+
+                    if (ContainerBoxIndexCage.Text != get.Value.IndexCage)
+                        match = false;
+
+                    if (match)
+                    {
+                        var valuesToAdd = Tuple.Create(
+                            get.Value.IndexNumber!,
+                            get.Value.Breed_of_Bird!,
+                            get.Value.Subspecies!,
+                            get.Value.HatchDate!,
+                            get.Value.IndexCage!,
+                            get.Value.IndexMother!,
+                            get.Value.IndexFather!,
+                            get.Value.Gender!
+                        );
+
+                        comboBoxChooceBirdToMate.Items.Add(valuesToAdd);
+                    }
+                }
+            }
+
+
+
+
+
+
+
+
+        }
+
+        private void pictureBoxAddNewOffspring_Click(object sender, EventArgs e)
+        {
+
+            string maleorfemale = "Male";
+            string indexOfFirstParent;
+            string today = DateTime.Now.ToString("yyyy-MM-dd");
+            string indexOfSecondParent;
+            // Get the selected item index
+            int selectedIndex = comboBoxChooceBirdToMate.FindStringExact(comboBoxChooceBirdToMate.Text);
+
+            if (selectedIndex != -1)
+            {
+                // Get the selected item tuple
+                var selectedItem = (Tuple<string, string, string, string, string, string, string, Tuple<string>>)comboBoxChooceBirdToMate.Items[selectedIndex];
+
+
+
+                if (checkBoxMale.Checked == true && checkBoxFemale.Checked == false)
+                {
+                    // Get the index of the mother
+                    indexOfSecondParent = selectedItem.Item1;
+                    maleorfemale = "Male";
+                    indexOfFirstParent = textBoxIndexNumber.Text;
+                    var Bird = new Bird
+                    {
+                        IndexNumber = textBoxIndexNumberOffSpring.Text,
+                        Breed_of_Bird = comboBoxBreed.Text,
+                        Subspecies = comboBoxSubspecies.Text,
+                        HatchDate = today,
+                        IndexCage = ContainerBoxIndexCage.Text,
+                        IndexMother = indexOfSecondParent,
+                        IndexFather = indexOfFirstParent,
+                        Gender = maleorfemale
+
+                    };
+                    addBird(Bird);
+                    loadBirdsList();
+                }
+                else if (checkBoxFemale.Checked == true && checkBoxMale.Checked == false)
+                {
+                    maleorfemale = "Female";
+                    indexOfFirstParent = textBoxIndexNumber.Text;
+                    // Get the index of the father
+                    indexOfSecondParent = selectedItem.Item1;
+                    var Bird = new Bird
+                    {
+                        IndexNumber = textBoxIndexNumberOffSpring.Text,
+                        Breed_of_Bird = comboBoxBreed.Text,
+                        Subspecies = comboBoxSubspecies.Text,
+                        HatchDate = today,
+                        IndexCage = ContainerBoxIndexCage.Text,
+                        IndexMother = indexOfFirstParent,
+                        IndexFather = indexOfSecondParent,
+                        Gender = maleorfemale
+
+                    };
+                    addBird(Bird);
+                    loadBirdsList();
+                }
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+        public void addBird(Bird bird)
+        {
+            try
+            {
+
+                string birdId = Guid.NewGuid().ToString();
+                bird.IndexKey = birdId;
+
+                var selectedItem = ContainerBoxIndexCage.Items
+                      .Cast<ContainerBoxItem>()
+                       .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
+
+
+                if (selectedItem != null)
+                {
+                    string hiddenValue = selectedItem.HiddenValue;
+
+                    client.Set("users/" + Login.currentusername + "/Birds/" + birdId, bird);
+                    client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, bird);
+                    MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
+                    loadBirdsList();
+                }
+                else
+                {
+                    MessageBox.Show("Cage not found");
+                }
+
+
+
+
+
+
+
+            }
+            catch (FirebaseException)
+            {
+                // handle failure ...
             }
         }
     }

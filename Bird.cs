@@ -36,6 +36,15 @@ namespace Birds_Mangmeant
         [JsonProperty]
         public string? IndexKey { get; set; }
 
+        [JsonProperty]
+        public string? ColorHead { get; set; }
+
+        [JsonProperty]
+        public string? ColorBreast { get; set; }
+
+        [JsonProperty]
+        public string? ColorBody { get; set; }
+
         public string GetBirdInfoAsString()
         {
             var sb = new System.Text.StringBuilder();
@@ -47,6 +56,9 @@ namespace Birds_Mangmeant
             sb.AppendLine($"Index Mother: {IndexMother}");
             sb.AppendLine($"Index Father: {IndexFather}");
             sb.AppendLine($"Gender: {Gender}");
+            sb.AppendLine($"ColorHead: {ColorHead}");
+            sb.AppendLine($"ColorBreast: {ColorBreast}");
+            sb.AppendLine($"ColorBody: {ColorBody}");
             return sb.ToString();
         }
 
