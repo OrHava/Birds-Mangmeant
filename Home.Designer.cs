@@ -160,6 +160,7 @@ namespace Birds_Mangmeant
             label28 = new Label();
             label29 = new Label();
             textBoxSearchCageIndex = new TextBox();
+            pictureBoxEditCage = new PictureBox();
             toolStrip1.SuspendLayout();
             PanelAddBird.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -195,6 +196,7 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panelSearchCages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -1550,14 +1552,26 @@ namespace Birds_Mangmeant
             textBoxSearchCageIndex.Size = new Size(181, 32);
             textBoxSearchCageIndex.TabIndex = 0;
             // 
+            // pictureBoxEditCage
+            // 
+            pictureBoxEditCage.Image = Properties.Resources.icons8_create_100;
+            pictureBoxEditCage.Location = new Point(165, 371);
+            pictureBoxEditCage.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxEditCage.Name = "pictureBoxEditCage";
+            pictureBoxEditCage.Size = new Size(94, 70);
+            pictureBoxEditCage.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxEditCage.TabIndex = 36;
+            pictureBoxEditCage.TabStop = false;
+            pictureBoxEditCage.Click += pictureBoxEditCage_Click;
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 73);
             ClientSize = new Size(1282, 753);
-            Controls.Add(PanelAddBird);
             Controls.Add(panelAddCage);
+            Controls.Add(PanelAddBird);
             Controls.Add(panelSearchCages);
             Controls.Add(panelSearch);
             Controls.Add(panelUser);
@@ -1614,6 +1628,7 @@ namespace Birds_Mangmeant
             panelSearchCages.ResumeLayout(false);
             panelSearchCages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
