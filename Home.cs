@@ -848,7 +848,7 @@ namespace Birds_Mangmeant
 
 
 
-                    if (get.Value != null && get.Key != null && get.Value.IndexNumber!=null)
+                    if (get.Value != null && get.Key != null && get.Value.IndexNumber != null)
                     {
                         string indexNumber = get.Value.IndexNumber;
                         string keyValue = get.Key;
@@ -1441,7 +1441,7 @@ namespace Birds_Mangmeant
                        .Cast<ContainerBoxItem>()
                         .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
 
-                string hiddenValue = selectedItem?.HiddenValue?? "";
+                string hiddenValue = selectedItem?.HiddenValue ?? "";
 
 
 
@@ -1856,7 +1856,7 @@ namespace Birds_Mangmeant
                     Width = enter_width.Text,
                     Height = enter_height.Text,
                     Material = material_cage_list.Text,
-                    BirdsOfCage = new Dictionary<string,Bird>(),
+                    BirdsOfCage = new Dictionary<string, Bird>(),
                 };
 
 
@@ -1865,7 +1865,7 @@ namespace Birds_Mangmeant
                 try
                 {
                     string cageId = Guid.NewGuid().ToString();
-                    Cage.IndexKey = cageId; 
+                    Cage.IndexKey = cageId;
                     client.Set("users/" + Login.currentusername + "/Cages/" + cageId, Cage);
                     MessageBox.Show("You Add Succefully Cage Number Index: " + enter_index_cage.Text);
                     loadCagesList();
@@ -2119,7 +2119,7 @@ namespace Birds_Mangmeant
                 {
                     // User clicked the OK button
                 }
-               
+
             }
             else
             {
@@ -2393,7 +2393,7 @@ namespace Birds_Mangmeant
                 }
 
 
-             
+
 
             }
         }
