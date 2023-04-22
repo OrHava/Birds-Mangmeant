@@ -37,7 +37,7 @@ namespace Birds_Mangmeant
 {
     public partial class Home : Form
     {
-        Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string,string,string,string>> >> BirdList = new Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>> >>();
+        Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>>>> BirdList = new Dictionary<string, Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>>>>();
         private System.Timers.Timer timer = new System.Timers.Timer();
         private int frameIndex = 0;
 
@@ -240,7 +240,7 @@ namespace Birds_Mangmeant
             plotSurface2d1.Title = "You dont have birds yet to show their breeds and amount.";
             plotSurface2d1.Enabled = false;
 
-          
+
 
 
             try
@@ -736,7 +736,7 @@ namespace Birds_Mangmeant
 
 
 
-                    
+
 
 
 
@@ -1586,7 +1586,7 @@ namespace Birds_Mangmeant
                     IndexFather = textBoxIndexFatherofBird.Text,
                     Gender = maleorfemale,
                     ColorBody = comboBoxBodyColor.Text,
-                    ColorBreast = comboBoxBreastColor.Text,   
+                    ColorBreast = comboBoxBreastColor.Text,
                     ColorHead = comboBoxHeadColor.Text
 
                 };
@@ -1683,7 +1683,7 @@ namespace Birds_Mangmeant
 
                     if (match)
                     {
-                        BirdListSearch.Add( Tuple.Create(
+                        BirdListSearch.Add(Tuple.Create(
 
                              get.Value.IndexNumber!,
                              get.Value.Breed_of_Bird!,
@@ -2045,10 +2045,10 @@ namespace Birds_Mangmeant
 
 
             sortedList = CageListSearch.OrderBy(b =>
-              {
-                  string indexStr = new string(b.Item1.Where(char.IsDigit).ToArray()); // extract only digits from the index string
-                  return int.TryParse(indexStr, out int index) ? index : int.MaxValue; // try to parse the numeric value, return int.MaxValue if parsing fails
-              }).ToList();
+            {
+                string indexStr = new string(b.Item1.Where(char.IsDigit).ToArray()); // extract only digits from the index string
+                return int.TryParse(indexStr, out int index) ? index : int.MaxValue; // try to parse the numeric value, return int.MaxValue if parsing fails
+            }).ToList();
 
 
             // Load the image from resources
