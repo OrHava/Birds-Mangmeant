@@ -111,6 +111,7 @@ namespace Birds_Mangmeant
             label12 = new Label();
             labelTypeOfBirds = new Label();
             panelAddCage = new Panel();
+            pictureBoxEditCage = new PictureBox();
             pictureBoxAddCage = new PictureBox();
             label19 = new Label();
             material_cage_list = new ComboBox();
@@ -157,7 +158,8 @@ namespace Birds_Mangmeant
             label28 = new Label();
             label29 = new Label();
             textBoxSearchCageIndex = new TextBox();
-            pictureBoxEditCage = new PictureBox();
+            label26 = new Label();
+            pictureBox1 = new PictureBox();
             toolStrip1.SuspendLayout();
             PanelAddBird.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxEditBird).BeginInit();
@@ -181,6 +183,7 @@ namespace Birds_Mangmeant
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             panelAddCage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAddCage).BeginInit();
             panelSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearchBird).BeginInit();
@@ -191,7 +194,7 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panelSearchCages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // toolStrip1
@@ -314,6 +317,8 @@ namespace Birds_Mangmeant
             // PanelAddBird
             // 
             PanelAddBird.BackColor = Color.FromArgb(46, 51, 73);
+            PanelAddBird.Controls.Add(pictureBox1);
+            PanelAddBird.Controls.Add(label26);
             PanelAddBird.Controls.Add(pictureBoxEditBird);
             PanelAddBird.Controls.Add(ContainerBoxIndexCage);
             PanelAddBird.Controls.Add(listViewBirds);
@@ -975,6 +980,18 @@ namespace Birds_Mangmeant
             panelAddCage.Size = new Size(1282, 722);
             panelAddCage.TabIndex = 1;
             // 
+            // pictureBoxEditCage
+            // 
+            pictureBoxEditCage.Image = Properties.Resources.icons8_create_100;
+            pictureBoxEditCage.Location = new Point(165, 371);
+            pictureBoxEditCage.Margin = new Padding(3, 2, 3, 2);
+            pictureBoxEditCage.Name = "pictureBoxEditCage";
+            pictureBoxEditCage.Size = new Size(94, 70);
+            pictureBoxEditCage.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxEditCage.TabIndex = 36;
+            pictureBoxEditCage.TabStop = false;
+            pictureBoxEditCage.Click += pictureBoxEditCage_Click;
+            // 
             // pictureBoxAddCage
             // 
             pictureBoxAddCage.Image = Properties.Resources.icons8_add_new_50;
@@ -1512,17 +1529,26 @@ namespace Birds_Mangmeant
             textBoxSearchCageIndex.Size = new Size(181, 32);
             textBoxSearchCageIndex.TabIndex = 0;
             // 
-            // pictureBoxEditCage
+            // label26
             // 
-            pictureBoxEditCage.Image = Properties.Resources.icons8_create_100;
-            pictureBoxEditCage.Location = new Point(165, 371);
-            pictureBoxEditCage.Margin = new Padding(3, 2, 3, 2);
-            pictureBoxEditCage.Name = "pictureBoxEditCage";
-            pictureBoxEditCage.Size = new Size(94, 70);
-            pictureBoxEditCage.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxEditCage.TabIndex = 36;
-            pictureBoxEditCage.TabStop = false;
-            pictureBoxEditCage.Click += pictureBoxEditCage_Click;
+            label26.AutoSize = true;
+            label26.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label26.Location = new Point(72, 446);
+            label26.Name = "label26";
+            label26.Size = new Size(226, 23);
+            label26.TabIndex = 28;
+            label26.Text = "Add OffSprings To Bird:";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.icons8_incubator_80;
+            pictureBox1.Location = new Point(407, 505);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(94, 70);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 29;
+            pictureBox1.TabStop = false;
             // 
             // Home
             // 
@@ -1530,8 +1556,8 @@ namespace Birds_Mangmeant
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 73);
             ClientSize = new Size(1282, 753);
-            Controls.Add(panelAddCage);
             Controls.Add(PanelAddBird);
+            Controls.Add(panelAddCage);
             Controls.Add(panelSearchCages);
             Controls.Add(panelSearch);
             Controls.Add(panelUser);
@@ -1573,6 +1599,7 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             panelAddCage.ResumeLayout(false);
             panelAddCage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAddCage).EndInit();
             panelSearch.ResumeLayout(false);
             panelSearch.PerformLayout();
@@ -1586,7 +1613,7 @@ namespace Birds_Mangmeant
             panelSearchCages.ResumeLayout(false);
             panelSearchCages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxEditCage).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1701,17 +1728,17 @@ namespace Birds_Mangmeant
         private ToolStripSeparator toolStripSeparator7;
         private ToolStripButton toolStripButtonSearchCages;
         private Panel panelSearchCages;
-        private CheckBox checkBox1;
+
         private Label label25;
-        private CheckBox checkBox2;
+
         private CheckBox checkBox4;
         private CheckBox checkBoxSearchCageMaterial;
         private CheckBox checkBoxSearchIndexCage;
-     
+
         private ListView listViewSearchCages;
 
-       
-    
+
+
         private Label label28;
         private Label label29;
         private TextBox textBoxSearchCageIndex;
@@ -1719,5 +1746,7 @@ namespace Birds_Mangmeant
         private PictureBox pictureBoxSearchCages;
         private PictureBox pictureBoxEditBird;
         private PictureBox pictureBoxEditCage;
+        private Label label26;
+        private PictureBox pictureBox1;
     }
 }
