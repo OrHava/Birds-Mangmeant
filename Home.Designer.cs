@@ -487,7 +487,7 @@ namespace Birds_Mangmeant
             // pictureBoxAddNewOffspring
             // 
             pictureBoxAddNewOffspring.Image = Properties.Resources.icons8_incubator_80;
-            pictureBoxAddNewOffspring.Location = new Point(479, 426);
+            pictureBoxAddNewOffspring.Location = new Point(479, 414);
             pictureBoxAddNewOffspring.Margin = new Padding(3, 2, 3, 2);
             pictureBoxAddNewOffspring.Name = "pictureBoxAddNewOffspring";
             pictureBoxAddNewOffspring.Size = new Size(82, 52);
