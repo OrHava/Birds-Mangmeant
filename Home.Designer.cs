@@ -57,6 +57,12 @@ namespace Birds_Mangmeant
             ButtonSignOut = new ToolStripButton();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             PanelAddBird = new Panel();
+            comboBoxBodyColor = new ComboBox();
+            comboBoxBreastColor = new ComboBox();
+            comboBoxHeadColor = new ComboBox();
+            label34 = new Label();
+            label33 = new Label();
+            label32 = new Label();
             textBoxIndexNumberOffSpring = new TextBox();
             label31 = new Label();
             comboBoxChooceBirdToMate = new ComboBox();
@@ -165,12 +171,6 @@ namespace Birds_Mangmeant
             label28 = new Label();
             label29 = new Label();
             textBoxSearchCageIndex = new TextBox();
-            label32 = new Label();
-            label33 = new Label();
-            label34 = new Label();
-            comboBoxHeadColor = new ComboBox();
-            comboBoxBreastColor = new ComboBox();
-            comboBoxBodyColor = new ComboBox();
             toolStrip1.SuspendLayout();
             PanelAddBird.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAddNewOffspring).BeginInit();
@@ -368,6 +368,72 @@ namespace Birds_Mangmeant
             PanelAddBird.Size = new Size(1122, 543);
             PanelAddBird.TabIndex = 2;
             // 
+            // comboBoxBodyColor
+            // 
+            comboBoxBodyColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxBodyColor.FormattingEnabled = true;
+            comboBoxBodyColor.Items.AddRange(new object[] { "Green", "Yellow", "Blue", "Silver", "Diluted", "Pastel" });
+            comboBoxBodyColor.Location = new Point(374, 288);
+            comboBoxBodyColor.Margin = new Padding(3, 2, 3, 2);
+            comboBoxBodyColor.Name = "comboBoxBodyColor";
+            comboBoxBodyColor.Size = new Size(143, 25);
+            comboBoxBodyColor.TabIndex = 40;
+            comboBoxBodyColor.Text = "Select Body Color";
+            // 
+            // comboBoxBreastColor
+            // 
+            comboBoxBreastColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxBreastColor.FormattingEnabled = true;
+            comboBoxBreastColor.Items.AddRange(new object[] { "Purple", "Lilac", "White" });
+            comboBoxBreastColor.Location = new Point(204, 287);
+            comboBoxBreastColor.Margin = new Padding(3, 2, 3, 2);
+            comboBoxBreastColor.Name = "comboBoxBreastColor";
+            comboBoxBreastColor.Size = new Size(143, 25);
+            comboBoxBreastColor.TabIndex = 39;
+            comboBoxBreastColor.Text = "Select Breast Color";
+            // 
+            // comboBoxHeadColor
+            // 
+            comboBoxHeadColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxHeadColor.FormattingEnabled = true;
+            comboBoxHeadColor.Items.AddRange(new object[] { "Red ", "Yellow", "Black" });
+            comboBoxHeadColor.Location = new Point(27, 287);
+            comboBoxHeadColor.Margin = new Padding(3, 2, 3, 2);
+            comboBoxHeadColor.Name = "comboBoxHeadColor";
+            comboBoxHeadColor.Size = new Size(143, 25);
+            comboBoxHeadColor.TabIndex = 38;
+            comboBoxHeadColor.Text = "Select Head Color";
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label34.Location = new Point(373, 265);
+            label34.Name = "label34";
+            label34.Size = new Size(97, 21);
+            label34.TabIndex = 37;
+            label34.Text = "Body Color:";
+            // 
+            // label33
+            // 
+            label33.AutoSize = true;
+            label33.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.Location = new Point(204, 265);
+            label33.Name = "label33";
+            label33.Size = new Size(107, 21);
+            label33.TabIndex = 36;
+            label33.Text = "Breast Color:";
+            // 
+            // label32
+            // 
+            label32.AutoSize = true;
+            label32.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label32.Location = new Point(23, 265);
+            label32.Name = "label32";
+            label32.Size = new Size(102, 21);
+            label32.TabIndex = 35;
+            label32.Text = "Head Color:";
+            // 
             // textBoxIndexNumberOffSpring
             // 
             textBoxIndexNumberOffSpring.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
@@ -421,7 +487,7 @@ namespace Birds_Mangmeant
             // pictureBoxAddNewOffspring
             // 
             pictureBoxAddNewOffspring.Image = Properties.Resources.icons8_incubator_80;
-            pictureBoxAddNewOffspring.Location = new Point(479, 414);
+            pictureBoxAddNewOffspring.Location = new Point(479, 482);
             pictureBoxAddNewOffspring.Margin = new Padding(3, 2, 3, 2);
             pictureBoxAddNewOffspring.Name = "pictureBoxAddNewOffspring";
             pictureBoxAddNewOffspring.Size = new Size(82, 52);
@@ -1634,72 +1700,6 @@ namespace Birds_Mangmeant
             textBoxSearchCageIndex.Name = "textBoxSearchCageIndex";
             textBoxSearchCageIndex.Size = new Size(159, 27);
             textBoxSearchCageIndex.TabIndex = 0;
-            // 
-            // label32
-            // 
-            label32.AutoSize = true;
-            label32.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label32.Location = new Point(23, 265);
-            label32.Name = "label32";
-            label32.Size = new Size(102, 21);
-            label32.TabIndex = 35;
-            label32.Text = "Head Color:";
-            // 
-            // label33
-            // 
-            label33.AutoSize = true;
-            label33.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label33.Location = new Point(204, 265);
-            label33.Name = "label33";
-            label33.Size = new Size(107, 21);
-            label33.TabIndex = 36;
-            label33.Text = "Breast Color:";
-            // 
-            // label34
-            // 
-            label34.AutoSize = true;
-            label34.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label34.Location = new Point(373, 265);
-            label34.Name = "label34";
-            label34.Size = new Size(97, 21);
-            label34.TabIndex = 37;
-            label34.Text = "Body Color:";
-            // 
-            // comboBoxHeadColor
-            // 
-            comboBoxHeadColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxHeadColor.FormattingEnabled = true;
-            comboBoxHeadColor.Items.AddRange(new object[] { "Red ", "Yellow", "Black" });
-            comboBoxHeadColor.Location = new Point(27, 287);
-            comboBoxHeadColor.Margin = new Padding(3, 2, 3, 2);
-            comboBoxHeadColor.Name = "comboBoxHeadColor";
-            comboBoxHeadColor.Size = new Size(143, 25);
-            comboBoxHeadColor.TabIndex = 38;
-            comboBoxHeadColor.Text = "Select Head Color";
-            // 
-            // comboBoxBreastColor
-            // 
-            comboBoxBreastColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxBreastColor.FormattingEnabled = true;
-            comboBoxBreastColor.Items.AddRange(new object[] { "Purple", "Lilac", "White" });
-            comboBoxBreastColor.Location = new Point(204, 287);
-            comboBoxBreastColor.Margin = new Padding(3, 2, 3, 2);
-            comboBoxBreastColor.Name = "comboBoxBreastColor";
-            comboBoxBreastColor.Size = new Size(143, 25);
-            comboBoxBreastColor.TabIndex = 39;
-            comboBoxBreastColor.Text = "Select Breast Color";
-            // 
-            // comboBoxBodyColor
-            // 
-            comboBoxBodyColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            comboBoxBodyColor.FormattingEnabled = true;
-            comboBoxBodyColor.Items.AddRange(new object[] { "Green", "Yellow", "Blue", "Silver", "Diluted", "Pastel" });
-            comboBoxBodyColor.Location = new Point(374, 288);
-            comboBoxBodyColor.Margin = new Padding(3, 2, 3, 2);
-            comboBoxBodyColor.Name = "comboBoxBodyColor";
-            comboBoxBodyColor.Size = new Size(143, 25);
-            comboBoxBodyColor.TabIndex = 40;
-            comboBoxBodyColor.Text = "Select Body Color";
             // 
             // Home
             // 
