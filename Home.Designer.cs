@@ -165,11 +165,12 @@ namespace Birds_Mangmeant
             label28 = new Label();
             label29 = new Label();
             textBoxSearchCageIndex = new TextBox();
-<<<<<<<<< Temporary merge branch 1
-            label26 = new Label();
-            pictureBox1 = new PictureBox();
-=========
->>>>>>>>> Temporary merge branch 2
+            label32 = new Label();
+            label33 = new Label();
+            label34 = new Label();
+            comboBoxHeadColor = new ComboBox();
+            comboBoxBreastColor = new ComboBox();
+            comboBoxBodyColor = new ComboBox();
             toolStrip1.SuspendLayout();
             PanelAddBird.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxAddNewOffspring).BeginInit();
@@ -205,10 +206,6 @@ namespace Birds_Mangmeant
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             panelSearchCages.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).BeginInit();
-<<<<<<<<< Temporary merge branch 1
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-=========
->>>>>>>>> Temporary merge branch 2
             SuspendLayout();
             // 
             // toolStrip1
@@ -1638,35 +1635,81 @@ namespace Birds_Mangmeant
             textBoxSearchCageIndex.Size = new Size(159, 27);
             textBoxSearchCageIndex.TabIndex = 0;
             // 
-<<<<<<<<< Temporary merge branch 1
-            // label26
+            // label32
             // 
-            label26.AutoSize = true;
-            label26.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label26.Location = new Point(72, 446);
-            label26.Name = "label26";
-            label26.Size = new Size(226, 23);
-            label26.TabIndex = 28;
-            label26.Text = "Add OffSprings To Bird:";
+            label32.AutoSize = true;
+            label32.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label32.Location = new Point(23, 265);
+            label32.Name = "label32";
+            label32.Size = new Size(102, 21);
+            label32.TabIndex = 35;
+            label32.Text = "Head Color:";
             // 
-            // pictureBox1
+            // label33
             // 
-            pictureBox1.Image = Properties.Resources.icons8_incubator_80;
-            pictureBox1.Location = new Point(407, 505);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(94, 70);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 29;
-            pictureBox1.TabStop = false;
+            label33.AutoSize = true;
+            label33.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label33.Location = new Point(204, 265);
+            label33.Name = "label33";
+            label33.Size = new Size(107, 21);
+            label33.TabIndex = 36;
+            label33.Text = "Breast Color:";
+            // 
+            // label34
+            // 
+            label34.AutoSize = true;
+            label34.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label34.Location = new Point(373, 265);
+            label34.Name = "label34";
+            label34.Size = new Size(97, 21);
+            label34.TabIndex = 37;
+            label34.Text = "Body Color:";
+            // 
+            // comboBoxHeadColor
+            // 
+            comboBoxHeadColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxHeadColor.FormattingEnabled = true;
+            comboBoxHeadColor.Items.AddRange(new object[] { "Red ", "Yellow", "Black" });
+            comboBoxHeadColor.Location = new Point(27, 287);
+            comboBoxHeadColor.Margin = new Padding(3, 2, 3, 2);
+            comboBoxHeadColor.Name = "comboBoxHeadColor";
+            comboBoxHeadColor.Size = new Size(143, 25);
+            comboBoxHeadColor.TabIndex = 38;
+            comboBoxHeadColor.Text = "Select Head Color";
+            // 
+            // comboBoxBreastColor
+            // 
+            comboBoxBreastColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxBreastColor.FormattingEnabled = true;
+            comboBoxBreastColor.Items.AddRange(new object[] { "Purple", "Lilac", "White" });
+            comboBoxBreastColor.Location = new Point(204, 287);
+            comboBoxBreastColor.Margin = new Padding(3, 2, 3, 2);
+            comboBoxBreastColor.Name = "comboBoxBreastColor";
+            comboBoxBreastColor.Size = new Size(143, 25);
+            comboBoxBreastColor.TabIndex = 39;
+            comboBoxBreastColor.Text = "Select Breast Color";
+            // 
+            // comboBoxBodyColor
+            // 
+            comboBoxBodyColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxBodyColor.FormattingEnabled = true;
+            comboBoxBodyColor.Items.AddRange(new object[] { "Green", "Yellow", "Blue", "Silver", "Diluted", "Pastel" });
+            comboBoxBodyColor.Location = new Point(374, 288);
+            comboBoxBodyColor.Margin = new Padding(3, 2, 3, 2);
+            comboBoxBodyColor.Name = "comboBoxBodyColor";
+            comboBoxBodyColor.Size = new Size(143, 25);
+            comboBoxBodyColor.TabIndex = 40;
+            comboBoxBodyColor.Text = "Select Body Color";
             // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 73);
-            ClientSize = new Size(1282, 753);
+            ClientSize = new Size(1122, 565);
             Controls.Add(PanelAddBird);
+            Controls.Add(panelUser);
+            Controls.Add(panelHome);
             Controls.Add(panelAddCage);
             Controls.Add(panelSearchCages);
             Controls.Add(panelSearch);
@@ -1723,10 +1766,6 @@ namespace Birds_Mangmeant
             panelSearchCages.ResumeLayout(false);
             panelSearchCages.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxSearchCages).EndInit();
-<<<<<<<<< Temporary merge branch 1
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-=========
->>>>>>>>> Temporary merge branch 2
             ResumeLayout(false);
             PerformLayout();
         }
