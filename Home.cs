@@ -2918,10 +2918,7 @@ namespace Birds_Mangmeant
                     offspringColor = "/blue";
                 }
             }
-            else
-            {
-                return "Invalid Option";
-            }
+            
             return offspringColor;
 
         }
