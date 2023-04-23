@@ -2,11 +2,6 @@
 using FireSharp.Config;
 using FireSharp.Response;
 using FireSharp.Interfaces;
-using Firebase.Auth.Requests;
-using FirebaseAdmin.Auth;
-using Firebase.Auth;
-using Firebase.Auth.Providers;
-using Firebase.Auth.Repository;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 using FireSharp;
 

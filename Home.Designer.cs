@@ -372,7 +372,7 @@ namespace Birds_Mangmeant
             // 
             comboBoxBodyColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxBodyColor.FormattingEnabled = true;
-            comboBoxBodyColor.Items.AddRange(new object[] { "Green", "Yellow", "Blue", "Silver", "Diluted", "Pastel" });
+            comboBoxBodyColor.Items.AddRange(new object[] { "Green", "Yellow", "Blue", "Silver", "Diluted", "Pastel", "DF-blue", "DFYB", "SFYB", "SF-blue", "/blue" });
             comboBoxBodyColor.Location = new Point(374, 288);
             comboBoxBodyColor.Margin = new Padding(3, 2, 3, 2);
             comboBoxBodyColor.Name = "comboBoxBodyColor";
@@ -384,7 +384,7 @@ namespace Birds_Mangmeant
             // 
             comboBoxBreastColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxBreastColor.FormattingEnabled = true;
-            comboBoxBreastColor.Items.AddRange(new object[] { "Purple", "Lilac", "White" });
+            comboBoxBreastColor.Items.AddRange(new object[] { "Purple", "Lilac", "White", "Purple breasted \"split\" for lilac breast", "Purple breasted \"split\" for white breast", "Lilac breasted \"split\" for white breast" });
             comboBoxBreastColor.Location = new Point(204, 287);
             comboBoxBreastColor.Margin = new Padding(3, 2, 3, 2);
             comboBoxBreastColor.Name = "comboBoxBreastColor";
@@ -396,7 +396,7 @@ namespace Birds_Mangmeant
             // 
             comboBoxHeadColor.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxHeadColor.FormattingEnabled = true;
-            comboBoxHeadColor.Items.AddRange(new object[] { "Red ", "Yellow", "Black" });
+            comboBoxHeadColor.Items.AddRange(new object[] { "Red DF", "Red SF", "Yellow", "Yellow DF", "Yellow SF /YH", "Black DF", "Black SF" });
             comboBoxHeadColor.Location = new Point(27, 287);
             comboBoxHeadColor.Margin = new Padding(3, 2, 3, 2);
             comboBoxHeadColor.Name = "comboBoxHeadColor";
@@ -460,7 +460,7 @@ namespace Birds_Mangmeant
             comboBoxChooceBirdToMate.Location = new Point(12, 427);
             comboBoxChooceBirdToMate.Margin = new Padding(3, 2, 3, 2);
             comboBoxChooceBirdToMate.Name = "comboBoxChooceBirdToMate";
-            comboBoxChooceBirdToMate.Size = new Size(410, 24);
+            comboBoxChooceBirdToMate.Size = new Size(549, 24);
             comboBoxChooceBirdToMate.TabIndex = 32;
             comboBoxChooceBirdToMate.Text = "Select Bird To Mate";
             // 
@@ -487,7 +487,7 @@ namespace Birds_Mangmeant
             // pictureBoxAddNewOffspring
             // 
             pictureBoxAddNewOffspring.Image = Properties.Resources.icons8_incubator_80;
-            pictureBoxAddNewOffspring.Location = new Point(479, 414);
+            pictureBoxAddNewOffspring.Location = new Point(286, 482);
             pictureBoxAddNewOffspring.Margin = new Padding(3, 2, 3, 2);
             pictureBoxAddNewOffspring.Name = "pictureBoxAddNewOffspring";
             pictureBoxAddNewOffspring.Size = new Size(82, 52);
@@ -753,7 +753,7 @@ namespace Birds_Mangmeant
             // pictureBoxAnim
             // 
             pictureBoxAnim.BackColor = Color.FromArgb(46, 51, 73);
-            pictureBoxAnim.Location = new Point(4, 286);
+            pictureBoxAnim.Location = new Point(8, 286);
             pictureBoxAnim.Margin = new Padding(3, 2, 3, 2);
             pictureBoxAnim.Name = "pictureBoxAnim";
             pictureBoxAnim.Size = new Size(166, 143);
@@ -1707,9 +1707,9 @@ namespace Birds_Mangmeant
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 73);
             ClientSize = new Size(1122, 565);
-            Controls.Add(PanelAddBird);
-            Controls.Add(panelUser);
             Controls.Add(panelHome);
+            Controls.Add(panelUser);
+            Controls.Add(PanelAddBird);
             Controls.Add(panelAddCage);
             Controls.Add(panelSearchCages);
             Controls.Add(panelSearch);

@@ -1,37 +1,14 @@
-﻿using FireSharp.Interfaces;
+﻿
 using FireSharp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 using FireSharp.Exceptions;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Net.Mime.MediaTypeNames;
 using Birds_Mangmeant.Properties;
-using System.Net;
 using Image = System.Drawing.Image;
 using FireSharp.Response;
 using System.Text.RegularExpressions;
-using System.Configuration;
-using System.Runtime.Intrinsics.X86;
-using Google.Apis.Util;
-using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Linq;
 using NPlot;
-using RestSharp.Extensions;
-using System.Collections;
-using System.Timers;
-using System.Diagnostics;
 using Newtonsoft.Json;
 using FireSharp.Config;
-using System.Reflection;
+
 
 namespace Birds_Mangmeant
 {
@@ -729,9 +706,9 @@ namespace Birds_Mangmeant
                     string indexMother = birdTuple.Value.Item6;
                     string indexFather = birdTuple.Value.Item7;
                     string gender = birdTuple.Value.Rest.Item1.Item1;
-                    string headcolor = birdTuple.Value.Rest.Item1.Item1;
-                    string breastcolor = birdTuple.Value.Rest.Item1.Item2;
-                    string bodycolor = birdTuple.Value.Rest.Item1.Item3;
+                    string headcolor = birdTuple.Value.Rest.Item1.Item2;
+                    string breastcolor = birdTuple.Value.Rest.Item1.Item3;
+                    string bodycolor = birdTuple.Value.Rest.Item1.Item4;
                     // Do something with the birdTuple items...
 
 
@@ -1136,6 +1113,10 @@ namespace Birds_Mangmeant
                 textBoxIndexMotherofBird.Text = BirdList.ElementAt(index).Value.Item6;
                 textBoxIndexFatherofBird.Text = BirdList.ElementAt(index).Value.Item7;
 
+                comboBoxHeadColor.Text = BirdList.ElementAt(index).Value.Rest.Item1.Item2;
+                comboBoxBreastColor.Text = BirdList.ElementAt(index).Value.Rest.Item1.Item3;
+                comboBoxBodyColor.Text = BirdList.ElementAt(index).Value.Rest.Item1.Item4;
+
                 if (BirdList.ElementAt(index).Value.Rest.Item1.Item1 == "Male")
                 {
                     checkBoxMale.Checked = true;
@@ -1160,6 +1141,7 @@ namespace Birds_Mangmeant
             ShowBirdsListToMate();
 
         }
+
 
 
 
@@ -1476,6 +1458,7 @@ namespace Birds_Mangmeant
         private void pictureBoxAddBird_Click(object sender, EventArgs e)
         {
             bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
+
             bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
             bool isNumeric3 = Regex.IsMatch(textBoxIndexMotherofBird.Text, @"^\d+$");
 
@@ -1506,8 +1489,17 @@ namespace Birds_Mangmeant
                 MessageBox.Show("Index Cage should contain numbers and letters.");
 
             }
+            else if (comboBoxHeadColor.Text == "Red DF" && checkBoxFemale.Checked == true)
+            {
 
+                MessageBox.Show("Red DF is only for Male Birds.");
+            }
 
+            else if (comboBoxHeadColor.Text == "Black DF" && checkBoxFemale.Checked == true)
+            {
+                MessageBox.Show("Black DF is only for Male Birds.");
+
+            }
             else if (comboBoxBreed.Text == "American gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "Australian Center" || comboBoxSubspecies.Text == "Australian City Beaches"))
             {
                 MessageBox.Show("Breed and Subspecies Dont match.");
@@ -1573,61 +1565,76 @@ namespace Birds_Mangmeant
 
 
 
+                FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Birds");
+                Dictionary<string, Bird> birds = birdsResponse.ResultAs<Dictionary<string, Bird>>();
 
-
-                var Bird = new Bird
+                // Check if bird with the same index number already exists in the list
+                if (birds != null && birds.Any(x => x.Value.IndexNumber == textBoxIndexNumber.Text))
                 {
-                    IndexNumber = textBoxIndexNumber.Text,
-                    Breed_of_Bird = comboBoxBreed.Text,
-                    Subspecies = comboBoxSubspecies.Text,
-                    HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
-                    IndexCage = ContainerBoxIndexCage.Text,
-                    IndexMother = textBoxIndexMotherofBird.Text,
-                    IndexFather = textBoxIndexFatherofBird.Text,
-                    Gender = maleorfemale,
-                    ColorBody = comboBoxBodyColor.Text,
-                    ColorBreast = comboBoxBreastColor.Text,
-                    ColorHead = comboBoxHeadColor.Text
+                    MessageBox.Show("Bird with the same index number already exists");
+                }
 
-                };
-
-
-                try
+                else
                 {
-
-                    string birdId = Guid.NewGuid().ToString();
-                    Bird.IndexKey = birdId;
-
-                    var selectedItem = ContainerBoxIndexCage.Items
-                          .Cast<ContainerBoxItem>()
-                           .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
-
-
-                    if (selectedItem != null)
+                    var Bird = new Bird
                     {
-                        string hiddenValue = selectedItem.HiddenValue;
+                        IndexNumber = textBoxIndexNumber.Text,
+                        Breed_of_Bird = comboBoxBreed.Text,
+                        Subspecies = comboBoxSubspecies.Text,
+                        HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
+                        IndexCage = ContainerBoxIndexCage.Text,
+                        IndexMother = textBoxIndexMotherofBird.Text,
+                        IndexFather = textBoxIndexFatherofBird.Text,
+                        Gender = maleorfemale,
+                        ColorBody = comboBoxBodyColor.Text,
+                        ColorBreast = comboBoxBreastColor.Text,
+                        ColorHead = comboBoxHeadColor.Text
 
-                        client.Set("users/" + Login.currentusername + "/Birds/" + birdId, Bird);
-                        client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, Bird);
-                        MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
-                        loadBirdsList();
-                    }
-                    else
+                    };
+
+
+                    try
                     {
-                        MessageBox.Show("Cage not found");
+
+                        string birdId = Guid.NewGuid().ToString();
+                        Bird.IndexKey = birdId;
+
+                        var selectedItem = ContainerBoxIndexCage.Items
+                              .Cast<ContainerBoxItem>()
+                               .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
+
+
+                        if (selectedItem != null)
+                        {
+                            string hiddenValue = selectedItem.HiddenValue;
+
+                            client.Set("users/" + Login.currentusername + "/Birds/" + birdId, Bird);
+                            client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, Bird);
+                            MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
+                            loadBirdsList();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cage not found");
+                        }
+
+
+
+
+
+
+
                     }
-
-
-
-
-
-
+                    catch (FirebaseException)
+                    {
+                        // handle failure ...
+                    }
 
                 }
-                catch (FirebaseException)
-                {
-                    // handle failure ...
-                }
+
+
+
+
 
             }
         }
@@ -1751,9 +1758,9 @@ namespace Birds_Mangmeant
                     string indexMother = birdTuple.Item6;
                     string indexFather = birdTuple.Item7;
                     string gender = birdTuple.Rest.Item1.Item1;
-                    string headcolor = birdTuple.Rest.Item1.Item1;
-                    string breastcolor = birdTuple.Rest.Item1.Item2;
-                    string bodycolor = birdTuple.Rest.Item1.Item3;
+                    string headcolor = birdTuple.Rest.Item1.Item2;
+                    string breastcolor = birdTuple.Rest.Item1.Item3;
+                    string bodycolor = birdTuple.Rest.Item1.Item4;
                     // Do something with the birdTuple items...
 
 
@@ -1871,32 +1878,45 @@ namespace Birds_Mangmeant
 
 
 
-                //IFirebaseClient client = new FirebaseClient(config);
-                var Cage = new Cage
+                FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Cages");
+                Dictionary<string, Cage> Cages = birdsResponse.ResultAs<Dictionary<string, Cage>>();
+
+                // Check if bird with the same index number already exists in the list
+                if (Cages != null && Cages.Any(x => x.Value.IndexNumber == enter_index_cage.Text))
                 {
-                    IndexNumber = enter_index_cage.Text,
-                    Length = enter_length.Text,
-                    Width = enter_width.Text,
-                    Height = enter_height.Text,
-                    Material = material_cage_list.Text,
-                    BirdsOfCage = new Dictionary<string, Bird>(),
-                };
-
-
-
-
-                try
-                {
-                    string cageId = Guid.NewGuid().ToString();
-                    Cage.IndexKey = cageId;
-                    client.Set("users/" + Login.currentusername + "/Cages/" + cageId, Cage);
-                    MessageBox.Show("You Add Succefully Cage Number Index: " + enter_index_cage.Text);
-                    loadCagesList();
-
+                    MessageBox.Show("Cage with the same index number already exists");
                 }
-                catch (FirebaseException)
+                else
                 {
-                    // handle failure ...
+
+                    //IFirebaseClient client = new FirebaseClient(config);
+                    var Cage = new Cage
+                    {
+                        IndexNumber = enter_index_cage.Text,
+                        Length = enter_length.Text,
+                        Width = enter_width.Text,
+                        Height = enter_height.Text,
+                        Material = material_cage_list.Text,
+                        BirdsOfCage = new Dictionary<string, Bird>(),
+                    };
+
+
+
+
+                    try
+                    {
+                        string cageId = Guid.NewGuid().ToString();
+                        Cage.IndexKey = cageId;
+                        client.Set("users/" + Login.currentusername + "/Cages/" + cageId, Cage);
+                        MessageBox.Show("You Add Succefully Cage Number Index: " + enter_index_cage.Text);
+                        loadCagesList();
+
+                    }
+                    catch (FirebaseException)
+                    {
+                        // handle failure ...
+                    }
+
                 }
 
             }
@@ -2185,7 +2205,17 @@ namespace Birds_Mangmeant
                 MessageBox.Show("Index Cage should contain numbers and letters.");
 
             }
+            else if (comboBoxHeadColor.Text == "Red DF" && checkBoxFemale.Checked == true)
+            {
 
+                MessageBox.Show("Red DF is only for Male Birds.");
+            }
+
+            else if (comboBoxHeadColor.Text == "Black DF" && checkBoxFemale.Checked == true)
+            {
+                MessageBox.Show("Black DF is only for Male Birds.");
+
+            }
 
             else if (comboBoxBreed.Text == "American gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "Australian Center" || comboBoxSubspecies.Text == "Australian City Beaches"))
             {
@@ -2236,75 +2266,94 @@ namespace Birds_Mangmeant
                 }
 
 
+                int index2 = listViewBirds.FocusedItem.Index;
+                string birdId2 = BirdList.ElementAt(index2).Key;
+                client.Delete("users/" + Login.currentusername + "/Birds/" + birdId2);
 
+                FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Birds");
+                Dictionary<string, Bird> birds = birdsResponse.ResultAs<Dictionary<string, Bird>>();
 
-
-                var Bird = new Bird
+                // Check if bird with the same index number already exists in the list
+                if (birds != null && birds.Any(x => x.Value.IndexNumber == textBoxIndexNumber.Text))
                 {
-                    IndexNumber = textBoxIndexNumber.Text,
-                    Breed_of_Bird = comboBoxBreed.Text,
-                    Subspecies = comboBoxSubspecies.Text,
-                    HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
-                    IndexCage = ContainerBoxIndexCage.Text,
-                    IndexMother = textBoxIndexMotherofBird.Text,
-                    IndexFather = textBoxIndexFatherofBird.Text,
-                    Gender = maleorfemale,
+                    MessageBox.Show("Bird with the same index number already exists");
+                }
 
-                };
-
-
-                try
+                else
                 {
 
-                    if (listViewBirds.FocusedItem != null && listViewBirds.FocusedItem.Focused)
+                    var Bird = new Bird
                     {
-                        // The focused item is currently focused
-                        int index = listViewBirds.FocusedItem.Index;
+                        IndexNumber = textBoxIndexNumber.Text,
+                        Breed_of_Bird = comboBoxBreed.Text,
+                        Subspecies = comboBoxSubspecies.Text,
+                        HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
+                        IndexCage = ContainerBoxIndexCage.Text,
+                        IndexMother = textBoxIndexMotherofBird.Text,
+                        IndexFather = textBoxIndexFatherofBird.Text,
+                        Gender = maleorfemale,
+                        ColorBody = comboBoxBodyColor.Text,
+                        ColorBreast = comboBoxBreastColor.Text,
+                        ColorHead = comboBoxHeadColor.Text
 
-                        string birdId = BirdList.ElementAt(index).Key;
+                    };
 
 
-                        Bird.IndexKey = birdId;
+                    try
+                    {
 
-                        var selectedItem = ContainerBoxIndexCage.Items
-                              .Cast<ContainerBoxItem>()
-                               .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
-
-
-                        if (selectedItem != null)
+                        if (listViewBirds.FocusedItem != null && listViewBirds.FocusedItem.Focused)
                         {
-                            string hiddenValue = selectedItem.HiddenValue;
+                            // The focused item is currently focused
+                            int index = listViewBirds.FocusedItem.Index;
 
-                            client.Set("users/" + Login.currentusername + "/Birds/" + birdId, Bird);
-                            client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, Bird);
-                            MessageBox.Show("You Edit Succefully Bird Number Index: " + textBoxIndexNumber.Text);
-                            loadBirdsList();
+                            string birdId = BirdList.ElementAt(index).Key;
+
+
+                            Bird.IndexKey = birdId;
+
+                            var selectedItem = ContainerBoxIndexCage.Items
+                                  .Cast<ContainerBoxItem>()
+                                   .FirstOrDefault(item => item.DisplayText == ContainerBoxIndexCage.Text);
+
+
+                            if (selectedItem != null)
+                            {
+                                string hiddenValue = selectedItem.HiddenValue;
+
+                                client.Set("users/" + Login.currentusername + "/Birds/" + birdId, Bird);
+                                client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, Bird);
+                                MessageBox.Show("You Edit Succefully Bird Number Index: " + textBoxIndexNumber.Text);
+                                loadBirdsList();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cage not found");
+                            }
+
+
                         }
                         else
                         {
-                            MessageBox.Show("Cage not found");
+                            MessageBox.Show("Chooce Bird to Edit.");
                         }
 
 
+
+
+
+
+
+
+
                     }
-                    else
+                    catch (FirebaseException)
                     {
-                        MessageBox.Show("Chooce Bird to Edit.");
+                        // handle failure ...
                     }
 
-
-
-
-
-
-
-
-
                 }
-                catch (FirebaseException)
-                {
-                    // handle failure ...
-                }
+
 
             }
         }
@@ -2370,50 +2419,65 @@ namespace Birds_Mangmeant
             else
             {
 
+                int index2 = cage_listview.FocusedItem.Index;
+                string cageid2 = CageList.ElementAt(index2).Rest.Item1;
 
+                client.Delete("users/" + Login.currentusername + "/Cages/" + cageid2);
+                FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Cages");
+                Dictionary<string, Cage> Cages = birdsResponse.ResultAs<Dictionary<string, Cage>>();
 
-
-                //IFirebaseClient client = new FirebaseClient(config);
-                var Cage = new Cage
+                // Check if bird with the same index number already exists in the list
+                if (Cages != null && Cages.Any(x => x.Value.IndexNumber == enter_index_cage.Text))
                 {
-                    IndexNumber = enter_index_cage.Text,
-                    Length = enter_length.Text,
-                    Width = enter_width.Text,
-                    Height = enter_height.Text,
-                    Material = material_cage_list.Text,
-                };
-
-
-
-
-
-                if (cage_listview.FocusedItem != null && cage_listview.FocusedItem.Focused)
-                {
-                    // The focused item is currently focused
-                    int index = cage_listview.FocusedItem.Index;
-
-                    string cageid = CageList.ElementAt(index).Rest.Item1;
-
-
-                    Cage.IndexKey = cageid;
-                    Cage.BirdsOfCage = CageList.ElementAt(index).Item7;
-
-
-
-
-
-
-                    client.Set("users/" + Login.currentusername + "/Cages/" + cageid, Cage);
-                    MessageBox.Show("You Edit Succefully Cage Number Index: " + enter_index_cage.Text);
-                    loadCagesList();
-
-
-
+                    MessageBox.Show("Cage with the same index number already exists");
                 }
+
                 else
                 {
-                    MessageBox.Show("Chooce Cage to Edit.");
+
+                    var Cage = new Cage
+                    {
+                        IndexNumber = enter_index_cage.Text,
+                        Length = enter_length.Text,
+                        Width = enter_width.Text,
+                        Height = enter_height.Text,
+                        Material = material_cage_list.Text,
+                    };
+
+
+
+
+
+                    if (cage_listview.FocusedItem != null && cage_listview.FocusedItem.Focused)
+                    {
+                        // The focused item is currently focused
+                        int index = cage_listview.FocusedItem.Index;
+
+                        string cageid = CageList.ElementAt(index).Rest.Item1;
+
+
+                        Cage.IndexKey = cageid;
+                        Cage.BirdsOfCage = CageList.ElementAt(index).Item7;
+
+
+
+
+
+
+                        client.Set("users/" + Login.currentusername + "/Cages/" + cageid, Cage);
+                        MessageBox.Show("You Edit Succefully Cage Number Index: " + enter_index_cage.Text);
+                        loadCagesList();
+
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chooce Cage to Edit.");
+                    }
+
                 }
+
 
 
 
@@ -2481,7 +2545,12 @@ namespace Birds_Mangmeant
                             get.Value.IndexCage!,
                             get.Value.IndexMother!,
                             get.Value.IndexFather!,
-                            get.Value.Gender!
+                            Tuple.Create(get.Value.Gender!,
+                            get.Value.ColorHead!,
+                            get.Value.ColorBreast,
+                            get.Value.ColorBody)
+
+
                         );
 
                         comboBoxChooceBirdToMate.Items.Add(valuesToAdd);
@@ -2501,62 +2570,137 @@ namespace Birds_Mangmeant
         private void pictureBoxAddNewOffspring_Click(object sender, EventArgs e)
         {
 
-            string maleorfemale = "Male";
+            string maleorfemale;
             string indexOfFirstParent;
             string today = DateTime.Now.ToString("yyyy-MM-dd");
             string indexOfSecondParent;
+            // Create a random number generator
+            Random random = new Random();
+
+            // Generate a random number between 0 and 1
+            double randomNumber = random.NextDouble();
+
+            // Set maleorfemale based on the random number
+            if (randomNumber < 0.5)
+            {
+                maleorfemale = "Male";
+            }
+            else
+            {
+                maleorfemale = "Female";
+            }
+
+
+
+
+            string HeadColorParentMother;
+            string HeadColorParentFather;
+
+            string BreastColorParentMother;
+            string BreastColorParentFather;
+
+            string BodyColorParentMother;
+            string BodyColorParentFather;
+
+            string searchIndexNumber = textBoxIndexNumberOffSpring.Text;
+            bool exists = false;
+
+            foreach (KeyValuePair<string, Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>>>> entry in BirdList)
+            {
+                if (entry.Value.Item1 == searchIndexNumber)
+                {
+                    exists = true;
+                    break;
+                }
+            }
+
             // Get the selected item index
             int selectedIndex = comboBoxChooceBirdToMate.FindStringExact(comboBoxChooceBirdToMate.Text);
-
-            if (selectedIndex != -1)
+            bool isNumeric = Regex.IsMatch(textBoxIndexNumberOffSpring.Text, @"^\d+$");
+            if (!isNumeric)
             {
-                // Get the selected item tuple
-                var selectedItem = (Tuple<string, string, string, string, string, string, string, Tuple<string>>)comboBoxChooceBirdToMate.Items[selectedIndex];
+                MessageBox.Show("Index Number of Bird can only contain numbers.");
+            }
+            else if (exists)
+            {
+                MessageBox.Show("Index Number of Bird already exists.");
+            }
+            else
+            {
 
-
-
-                if (checkBoxMale.Checked == true && checkBoxFemale.Checked == false)
+                if (selectedIndex != -1)
                 {
-                    // Get the index of the mother
-                    indexOfSecondParent = selectedItem.Item1;
-                    maleorfemale = "Male";
-                    indexOfFirstParent = textBoxIndexNumber.Text;
-                    var Bird = new Bird
-                    {
-                        IndexNumber = textBoxIndexNumberOffSpring.Text,
-                        Breed_of_Bird = comboBoxBreed.Text,
-                        Subspecies = comboBoxSubspecies.Text,
-                        HatchDate = today,
-                        IndexCage = ContainerBoxIndexCage.Text,
-                        IndexMother = indexOfSecondParent,
-                        IndexFather = indexOfFirstParent,
-                        Gender = maleorfemale
+                    // Get the selected item tuple
+                    var selectedItem = (Tuple<string, string, string, string, string, string, string, Tuple<Tuple<string, string, string, string>>>)comboBoxChooceBirdToMate.Items[selectedIndex];
 
-                    };
-                    addBird(Bird);
-                    loadBirdsList();
-                }
-                else if (checkBoxFemale.Checked == true && checkBoxMale.Checked == false)
-                {
-                    maleorfemale = "Female";
-                    indexOfFirstParent = textBoxIndexNumber.Text;
-                    // Get the index of the father
-                    indexOfSecondParent = selectedItem.Item1;
-                    var Bird = new Bird
-                    {
-                        IndexNumber = textBoxIndexNumberOffSpring.Text,
-                        Breed_of_Bird = comboBoxBreed.Text,
-                        Subspecies = comboBoxSubspecies.Text,
-                        HatchDate = today,
-                        IndexCage = ContainerBoxIndexCage.Text,
-                        IndexMother = indexOfFirstParent,
-                        IndexFather = indexOfSecondParent,
-                        Gender = maleorfemale
 
-                    };
-                    addBird(Bird);
-                    loadBirdsList();
+
+                    if (checkBoxMale.Checked == true && checkBoxFemale.Checked == false)
+                    {
+                        // Get the index of the mother
+                        HeadColorParentMother = selectedItem.Rest.Item1.Item2;
+                        BreastColorParentMother = selectedItem.Rest.Item1.Item3;
+                        BodyColorParentMother = selectedItem.Rest.Item1.Item4;
+
+                        HeadColorParentFather = comboBoxHeadColor.Text;
+                        BreastColorParentFather = comboBoxBreastColor.Text;
+                        BodyColorParentFather = comboBoxBodyColor.Text;
+
+                        indexOfSecondParent = selectedItem.Item1;
+                        indexOfFirstParent = textBoxIndexNumber.Text;
+                        var Bird = new Bird
+                        {
+                            IndexNumber = textBoxIndexNumberOffSpring.Text,
+                            Breed_of_Bird = comboBoxBreed.Text,
+                            Subspecies = comboBoxSubspecies.Text,
+                            HatchDate = today,
+                            IndexCage = ContainerBoxIndexCage.Text,
+                            IndexMother = indexOfSecondParent,
+                            IndexFather = indexOfFirstParent,
+                            Gender = maleorfemale,
+                            ColorHead = GetOffspringColorHead(HeadColorParentFather, HeadColorParentMother, maleorfemale),
+                            ColorBreast = GetOffspringColorBreast(BreastColorParentFather, BreastColorParentMother, maleorfemale),
+                            ColorBody = GetOffspringColorBody(BodyColorParentFather, HeadColorParentMother, BodyColorParentMother)
+
+
+                        };
+                        addBird(Bird);
+                        loadBirdsList();
+                    }
+                    else if (checkBoxFemale.Checked == true && checkBoxMale.Checked == false)
+                    {
+
+                        HeadColorParentFather = selectedItem.Rest.Item1.Item2;
+                        BreastColorParentFather = selectedItem.Rest.Item1.Item3;
+                        BodyColorParentFather = selectedItem.Rest.Item1.Item4;
+
+                        HeadColorParentMother = comboBoxHeadColor.Text;
+                        BreastColorParentMother = comboBoxBreastColor.Text;
+                        BodyColorParentMother = comboBoxBodyColor.Text;
+
+                        indexOfFirstParent = textBoxIndexNumber.Text;
+                        // Get the index of the father
+                        indexOfSecondParent = selectedItem.Item1;
+                        var Bird = new Bird
+                        {
+                            IndexNumber = textBoxIndexNumberOffSpring.Text,
+                            Breed_of_Bird = comboBoxBreed.Text,
+                            Subspecies = comboBoxSubspecies.Text,
+                            HatchDate = today,
+                            IndexCage = ContainerBoxIndexCage.Text,
+                            IndexMother = indexOfFirstParent,
+                            IndexFather = indexOfSecondParent,
+                            Gender = maleorfemale,
+                            ColorHead = GetOffspringColorHead(HeadColorParentFather, HeadColorParentMother, maleorfemale),
+                            ColorBreast = GetOffspringColorBreast(BreastColorParentFather, BreastColorParentMother, maleorfemale),
+                            ColorBody = GetOffspringColorBody(BodyColorParentFather, HeadColorParentMother, BodyColorParentMother)
+
+                        };
+                        addBird(Bird);
+                        loadBirdsList();
+                    }
                 }
+
 
             }
 
@@ -2571,6 +2715,786 @@ namespace Birds_Mangmeant
 
 
         }
+
+        public static string GetOffspringColorBody(string fatherColor, string motherColor, string offspringGender)
+        {
+            string offspringColor = "";
+            Random random = new Random();
+
+            if (fatherColor == "Green" && motherColor == "Green")
+            {
+                offspringColor = "Green";
+            }
+            else if (fatherColor == "SFYB" && motherColor == "Green")
+            {
+                if (offspringGender == "Male")
+                {
+                    if (random.Next(2) == 0)
+                    {
+                        offspringColor = "Green";
+                    }
+                    else
+                    {
+                        offspringColor = "SFYB";
+                    }
+                }
+                else
+                {
+                    if (random.Next(2) == 0)
+                    {
+                        offspringColor = "Green";
+                    }
+                    else
+                    {
+                        offspringColor = "Yellow";
+                    }
+                }
+            }
+            else if (fatherColor == "DFYB" && motherColor == "Green")
+            {
+                if (offspringGender == "Male")
+                {
+                    offspringColor = "SFYB";
+                }
+                else
+                {
+                    offspringColor = "Yellow";
+                }
+            }
+            else if (fatherColor == "Green" && motherColor == "Yellow")
+            {
+                if (offspringGender == "Male")
+                {
+                    offspringColor = "SFYB";
+                }
+                else
+                {
+                    offspringColor = "Green";
+                }
+            }
+            else if (fatherColor == "SFYB" && motherColor == "Yellow")
+            {
+                if (offspringGender == "Male")
+                {
+                    if (random.Next(2) == 0)
+                    {
+                        offspringColor = "SFYB";
+                    }
+                    else
+                    {
+                        offspringColor = "DFYB";
+                    }
+                }
+                else
+                {
+                    if (random.Next(2) == 0)
+                    {
+                        offspringColor = "Green";
+                    }
+                    else
+                    {
+                        offspringColor = "Yellow";
+                    }
+                }
+            }
+            else if (fatherColor == "DFYB" && motherColor == "Yellow")
+            {
+                if (offspringGender == "Male")
+                {
+                    offspringColor = "DFYB";
+
+                }
+                else
+                {
+                    offspringColor = "Yellow";
+
+                }
+            }
+            else if (fatherColor == "DF-blue" && motherColor == "DF-blue")
+            {
+                offspringColor = "DF-blue";
+            }
+            else if ((fatherColor == "DF-blue" && (motherColor == "SF-blue" || motherColor == "/blue")) || ((fatherColor == "SF-blue" || fatherColor == "/blue") && motherColor == "DF-blue"))
+            {
+                if (random.Next(2) == 0)
+                {
+                    offspringColor = "DF-blue";
+                }
+                else
+                {
+                    offspringColor = "SF-blue";
+                }
+            }
+            else if ((fatherColor == "SF-blue" || fatherColor == "/blue") && (motherColor == "SF-blue" || motherColor == "/blue"))
+            {
+                if (random.Next(4) == 0)
+                {
+                    offspringColor = "DF-blue";
+                }
+                else if (random.Next(4) == 1)
+                {
+                    offspringColor = "non-blue";
+                }
+                else
+                {
+                    offspringColor = "SF-blue";
+                }
+            }
+            else if ((fatherColor == "DF-blue" || fatherColor == "/blue") && motherColor == "non-blue" || (motherColor == "DF-blue" || motherColor == "/blue") && fatherColor == "non-blue")
+            {
+                if (random.Next(2) == 0)
+                {
+                    offspringColor = "SF-blue";
+                }
+                else
+                {
+                    offspringColor = "non-blue";
+                }
+            }
+            else if (fatherColor == "DF-blue" && motherColor == "non-blue" || motherColor == "DF-blue" && fatherColor == "non-blue")
+            {
+                if (random.Next(2) == 0)
+                {
+                    offspringColor = "SF-blue";
+                }
+                else
+                {
+                    offspringColor = "/blue";
+                }
+            }
+            else
+            {
+                return "Invalid Option";
+            }
+            return offspringColor;
+
+        }
+
+        public static string GetOffspringColorBreast(string fatherColor, string motherColor, string offspringGender)
+        {
+
+            //options : 
+            // DFPB(Purple breasted)
+            //DFLB(Lilac breasted)
+            //DFWB (White breasted)
+            //SFPB SFLB(Purple breasted "split" for lilac breast)
+            // SFPB SFWB(Purple breasted "split" for white breast)
+            // SFLB SFWB(Lilac breasted "split" for white breast)
+            Random random = new Random();
+            double chance = random.NextDouble();
+
+            if (fatherColor == "Purple" && motherColor == "Purple")
+            {
+                return "Purple";
+            }
+            else if (fatherColor == "Lilac" && motherColor == "Lilac")
+            {
+                return "Lilac";
+            }
+            else if (fatherColor == "White" && motherColor == "White")
+            {
+                return "White";
+            }
+            else if ((fatherColor == "Purple" && motherColor == "Lilac") || (fatherColor == "Lilac" && motherColor == "Purple"))
+            {
+                return "Purple breasted \"split\" for lilac breast";
+            }
+            else if ((fatherColor == "Purple" && motherColor == "White") || (fatherColor == "White" && motherColor == "Purple"))
+            {
+                if (chance < 0.5)
+                {
+                    return "Purple breasted \"split\" for white breast";
+                }
+                else
+                {
+                    return "White";
+                }
+            }
+            //options : 
+            // DFPB(Purple breasted)
+            //DFLB(Lilac breasted)
+            //DFWB (White breasted)
+            //SFPB SFLB(Purple breasted "split" for lilac breast)
+            // SFPB SFWB(Purple breasted "split" for white breast)
+            // SFLB SFWB(Lilac breasted "split" for white breast)
+            else if ((fatherColor == "Purple" || fatherColor == "White" && motherColor == "White") || (fatherColor == "White" && motherColor == "Purple" || motherColor == "White"))
+            {
+                if (chance < 0.5)
+                {
+                    return "Purple breasted \"split\" for white breast";
+                }
+                else
+                {
+                    return "White";
+                }
+            }
+            else if ((fatherColor == "Lilac" && motherColor == "White") || (fatherColor == "White" && motherColor == "Lilac"))
+            {
+                return "Lilac breasted \"split\" for white breast";
+            }
+            else if ((fatherColor == "Lilac/White" || fatherColor == "Lilac/White" && motherColor == "White") || (fatherColor == "White" && motherColor == "White" || motherColor == "Lilac"))
+            {
+                if (chance < 0.5)
+                {
+                    return "Lilac breasted \"split\" for white breast";
+                }
+                else
+                {
+                    return "White";
+                }
+            }
+            //options : 
+            // DFPB(Purple breasted)
+            //DFLB(Lilac breasted)
+            //DFWB (White breasted)
+            //SFPB SFLB(Purple breasted "split" for lilac breast)
+            // SFPB SFWB(Purple breasted "split" for white breast)
+            // SFLB SFWB(Lilac breasted "split" for white breast)
+            else if (fatherColor == "Lilac" || fatherColor == "White" && motherColor == "Lilac" || motherColor == "White")
+            {
+                if (chance < 0.25)
+                {
+                    return "Lilac";
+                }
+                else if (chance >= 0.25 && chance < 0.75)
+                {
+                    return "Lilac breasted \"split\" for white breast";
+                }
+                else
+                {
+                    return "White";
+                }
+            }
+            else if ((fatherColor == "Purple" && (motherColor == "Purple" || motherColor == "Lilac")) || ((fatherColor == "Purple" || fatherColor == "Lilac") && motherColor == "Purple"))
+            {
+                if (chance < 0.5)
+                {
+                    return "Purple";
+                }
+                else
+                {
+                    return "Purple breasted \"split\" for lilac breast";
+                }
+            }
+
+            else if ((fatherColor == "Lilac" && (motherColor == "Purple" || motherColor == "Lilac")) || ((fatherColor == "Purple" || fatherColor == "Lilac") && motherColor == "Lilac"))
+            {
+                if (chance < 0.5)
+                {
+                    return "Lilac";
+                }
+                else
+                {
+                    return "Purple breasted \"split\" for lilac breast";
+                }
+            }
+
+            else if ((fatherColor == "Purple" && (motherColor == "Purple" || motherColor == "White")) || ((fatherColor == "Purple" || fatherColor == "White") && motherColor == "Purple"))
+            {
+                if (chance < 0.5)
+                {
+                    return "Purple";
+                }
+                else
+                {
+                    return "Purple breasted \"split\" for white breast";
+                }
+            }
+            else if ((fatherColor == "Purple" || fatherColor == "White") && (motherColor == "Purple" || motherColor == "White"))
+            {
+                if (chance < 0.25)
+                {
+                    return "Purple";
+                }
+                else if (chance >= 0.25 && chance < 0.75)
+                {
+                    return "Purple breasted \"split\" for white breast";
+                }
+                else
+                {
+                    return "White";
+                }
+            }
+            else if ((fatherColor == "Purple" || fatherColor == "Lilac") && (motherColor == "Purple" || motherColor == "White") || (motherColor == "Purple" || motherColor == "Lilac") && (fatherColor == "Purple" || fatherColor == "White"))
+            {
+                if (chance < 0.25)
+                {
+                    return "Purple";
+                }
+                else if (chance >= 0.25 && chance < 0.50)
+                {
+                    return "Purple breasted \"split\" for lilac breasted";
+                }
+                else if (chance >= 0.50 && chance < 0.75)
+                {
+                    return "Purple breasted \"split\" for white breasted";
+                }
+                else
+                {
+                    return "Lilac breasted \"split\" for white breasted";
+                }
+            }
+
+            //options : 
+            // DFPB(Purple breasted)
+            //DFLB(Lilac breasted)
+            //DFWB (White breasted)
+            //SFPB SFLB(Purple breasted "split" for lilac breast)
+            // SFPB SFWB(Purple breasted "split" for white breast)
+            // SFLB SFWB(Lilac breasted "split" for white breast)
+
+            //PB /LB cock × PB /LB hen /////////////////////////////////////////////////////////////////////////////////////////////
+            else if ((fatherColor == "Purple" || fatherColor == "Lilac") && (motherColor == "Purple" || motherColor == "Lilac"))
+            {
+
+                if (chance < 0.25)
+                {
+                    return "Purple";
+                }
+                else if (chance >= 0.25 && chance < 0.75)
+                {
+                    return "Purple breasted \"split\" for lilac breast";
+                }
+                else
+                {
+                    return "Lilac";
+                }
+            }
+            //PB /WB cock × LB /WB hen (or vise versa)
+            else if ((fatherColor == "Purple" || fatherColor == "White") && (motherColor == "Lilac" || motherColor == "White") || (motherColor == "Purple" || motherColor == "White") && (fatherColor == "Lilac" || fatherColor == "White"))
+
+            {
+                if (chance < 0.25)
+                {
+                    return "Purple breasted \"split\" for lilac breasted";
+                }
+                else if (chance >= 0.25 && chance < 0.50)
+                {
+                    return "Lilac breasted \"split\" for white breasted";
+                }
+                else if (chance >= 0.50 && chance < 0.75)
+                {
+                    return "Purple breasted \"split\" for white breasted";
+                }
+                else
+                {
+                    return "White";
+                }
+            }
+            //LB cock × PB /WB hen (or vise versa)
+            else if ((fatherColor == "Lilac" && (motherColor == "Purple" || motherColor == "White") || (motherColor == "Lilac") && (fatherColor == "Purple" || fatherColor == "White")))
+
+            {
+                if (chance < 0.5)
+                {
+                    return "Purple breasted \"split\" for lilac breasted";
+                }
+                else
+                {
+                    return "Lilac breasted \"split\" for white breasted";
+                }
+            }
+
+            //PB cock × LB /WB hen (or vise versa)
+            else if ((fatherColor == "Purple" && (motherColor == "Lilac" || motherColor == "White") || (motherColor == "Purple") && (fatherColor == "Lilac" || fatherColor == "White")))
+            {
+                if (chance < 0.5)
+                {
+                    return "Purple breasted \"split\" for lilac breasted";
+                }
+                else
+                {
+                    return "Purple breasted \"split\" for white breast";
+                }
+            }
+
+            //PB /LB cock × WB hen (or vise versa)
+            else if ((fatherColor == "White" && (motherColor == "Lilac" || motherColor == "Purple") || (motherColor == "White") && (fatherColor == "Purple" || fatherColor == "Lilac")))
+
+            {
+                if (chance < 0.5)
+                {
+                    return "Purple breasted \"split\" for white breast";
+                }
+                else
+                {
+                    return "Lilac breasted \"split\" for white breasted";
+                }
+            }
+            //PB /LB cock × LB /WB hen (or vise versa)
+            else if ((fatherColor == "Purple" || fatherColor == "Lilac") && (motherColor == "Lilac" || motherColor == "White") || (motherColor == "Purple" || motherColor == "Lilac") && (fatherColor == "Lilac" || fatherColor == "White"))
+            {
+                if (chance < 0.25)
+                {
+                    return "Purple breasted \"split\" for lilac breasted";
+                }
+                else if (chance >= 0.25 && chance < 0.50)
+                {
+                    return "Purple breasted \"split\" for white breasted";
+                }
+                else if (chance >= 0.50 && chance < 0.75)
+                {
+                    return "Lilac";
+                }
+                else
+                {
+                    return "Lilac breasted \"split\" for white breasted";
+                }
+            }
+
+            //LB cock × LB /WB hen (or vise versa)
+            else if ((fatherColor == "Lilac" && (motherColor == "Lilac" || motherColor == "White") || (motherColor == "Lilac") && (fatherColor == "Lilac" || fatherColor == "White")))
+            {
+
+                if (chance < 0.5)
+                {
+                    return "Lilac";
+                }
+                else
+                {
+                    return "lilac breasted \"split\" for white breasted";
+                }
+            }
+
+
+            else
+            {
+                return "Invalid Option";
+            }
+        }
+
+
+        public static string GetOffspringColorHead(string fatherColor, string motherColor, string offspringGender)
+        {
+
+            if (fatherColor == "Red DF" && motherColor == "Red SF")
+            {
+                if (offspringGender == "Male")
+                {
+                    return "Red DF";
+                }
+                else
+                {
+                    return "Red SF";
+                }
+            }
+            else if (fatherColor == "Red SF" && motherColor == "Red SF")
+            {
+
+                // Create a random number generator
+                Random random = new Random();
+
+                // Generate a random number between 0 and 1
+                double randomNumber = random.NextDouble();
+
+
+
+                if (offspringGender == "Male")
+                {
+                    // Set maleorfemale based on the random number
+                    if (randomNumber < 0.5)
+                    {
+                        return "Red DF";
+                    }
+                    else
+                    {
+                        return "Red SF";
+                    }
+
+
+                }
+                else
+                {
+                    // Set maleorfemale based on the random number
+                    if (randomNumber < 0.5)
+                    {
+                        return "Red SF";
+                    }
+                    else
+                    {
+                        return "Black SF";
+                    }
+
+                }
+            }
+
+            else if (fatherColor == "Black SF" && motherColor == "Red SF")
+            {
+
+                if (offspringGender == "Male")
+                {
+                    return "Red SF";
+                }
+                else
+                {
+                    return "Black SF";
+                }
+            }
+
+            else if (fatherColor == "Red DF" && motherColor == "Black SF")
+            {
+
+                if (offspringGender == "Male")
+                {
+                    return "Red SF";
+                }
+                else
+                {
+                    return "Red SF";
+                }
+            }
+
+            else if (fatherColor == "Red SF" && motherColor == "Black SF")
+            {
+
+                // Create a random number generator
+                Random random = new Random();
+
+                // Generate a random number between 0 and 1
+                double randomNumber = random.NextDouble();
+
+
+
+                if (offspringGender == "Male")
+                {
+                    // Set maleorfemale based on the random number
+                    if (randomNumber < 0.5)
+                    {
+                        return "Red SF";
+                    }
+                    else
+                    {
+                        return "Black SF";
+                    }
+
+
+                }
+                else
+                {
+                    // Set maleorfemale based on the random number
+                    if (randomNumber < 0.5)
+                    {
+                        return "Red SF";
+                    }
+                    else
+                    {
+                        return "Black SF";
+                    }
+
+                }
+            }
+
+            else if (fatherColor == "Black SF" && motherColor == "Black SF")
+            {
+
+                return "Black SF";
+            }
+            else if (fatherColor == "Yellow" && motherColor == "Yellow")
+            {
+                return "Yellow DF";
+            }
+
+
+            else if (fatherColor == "Yellow" && motherColor == "Yellow SF /YH" || motherColor == "Yellow DF" && fatherColor == "Yellow SF /YH")
+            {
+                Random random = new Random();
+                double randomNumber = random.NextDouble();
+                if (randomNumber < 0.5)
+                {
+                    return "Yellow DF";
+                }
+                else
+                {
+                    return "Yellow /YH";
+                }
+            }
+
+            else if (fatherColor == "Yellow SF /YH" && motherColor == "Yellow SF /YH")
+            {
+                Random random = new Random();
+                double randomNumber = random.NextDouble();
+                if (randomNumber < 0.25)
+                {
+                    return "Yellow DF";
+                }
+                else if (randomNumber >= 0.25 && randomNumber < 0.5)
+                {
+                    Random random2 = new Random();
+                    double randomNumber2 = random.NextDouble();
+                    if (randomNumber2 < 0.5)
+                    {
+                        if (offspringGender == "Male")
+                        {
+                            if (randomNumber2 <= 0.25)
+                            {
+                                return "Black DF";
+
+                            }
+                            else
+                            {
+                                return "Black SF";
+                            }
+
+                        }
+                        else
+                        {
+                            return "Black SF";
+                        }
+
+                    }
+
+                    else
+                    {
+
+                        if (offspringGender == "Male")
+                        {
+                            if (randomNumber2 <= 0.25)
+                            {
+                                return "Red DF";
+
+                            }
+                            else
+                            {
+                                return "Red SF";
+                            }
+
+                        }
+                        else
+                        {
+                            return "Red SF";
+                        }
+                    }
+
+
+                }
+
+                else
+                {
+                    return "Yellow SF /YH";
+                }
+            }
+
+            else if ((fatherColor == "Yellow SF /YH" && ((motherColor == "Red SF") || (motherColor == "Black SF"))) || (motherColor == "Yellow SF /YH" && ((fatherColor == "Red SF") || (fatherColor == "Black SF") || (fatherColor == "Red DF") || (fatherColor == "Black DF"))))
+            {
+                Random random = new Random();
+                double randomNumber = random.NextDouble();
+                if (randomNumber < 0.50)
+                {
+                    return "Yellow DF";
+                }
+                else
+                {
+
+
+                    Random random2 = new Random();
+                    double randomNumber2 = random.NextDouble();
+                    if (randomNumber2 < 0.5)
+                    {
+                        if (offspringGender == "Male")
+                        {
+                            if (randomNumber2 <= 0.25)
+                            {
+                                return "Black DF";
+
+                            }
+                            else
+                            {
+                                return "Black SF";
+                            }
+
+                        }
+                        else
+                        {
+                            return "Black SF";
+                        }
+
+                    }
+
+                    else
+                    {
+
+                        if (offspringGender == "Male")
+                        {
+                            if (randomNumber2 <= 0.25)
+                            {
+                                return "Red DF";
+
+                            }
+                            else
+                            {
+                                return "Red SF";
+                            }
+
+                        }
+                        else
+                        {
+                            return "Red SF";
+                        }
+                    }
+                }
+
+
+            }
+            else if ((fatherColor == "Yellow" && ((motherColor == "Red SF") || (motherColor == "Black SF"))) || (motherColor == "Yellow" && ((fatherColor == "Red SF") || (fatherColor == "Black SF") || (fatherColor == "Red DF") || (fatherColor == "Black DF"))))
+            {
+
+
+                return "Yellow SF /YH";
+            }
+
+            else
+            {
+                Random random = new Random();
+                double randomNumber = random.NextDouble();
+                Random random2 = new Random();
+                double randomNumber2 = random.NextDouble();
+                if (randomNumber2 < 0.5)
+                {
+                    if (offspringGender == "Male")
+                    {
+                        if (randomNumber2 <= 0.25)
+                        {
+                            return "Black DF";
+
+                        }
+                        else
+                        {
+                            return "Black SF";
+                        }
+
+                    }
+                    else
+                    {
+                        return "Black SF";
+                    }
+
+                }
+
+                else
+                {
+
+                    if (offspringGender == "Male")
+                    {
+                        if (randomNumber2 <= 0.25)
+                        {
+                            return "Red DF";
+
+                        }
+                        else
+                        {
+                            return "Red SF";
+                        }
+
+                    }
+                    else
+                    {
+                        return "Red SF";
+                    }
+                }
+            }
+        }
+
+
 
         public void addBird(Bird bird)
         {
@@ -2591,7 +3515,7 @@ namespace Birds_Mangmeant
 
                     client.Set("users/" + Login.currentusername + "/Birds/" + birdId, bird);
                     client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, bird);
-                    MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumber.Text);
+                    MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumberOffSpring.Text);
                     loadBirdsList();
                 }
                 else
