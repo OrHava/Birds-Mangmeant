@@ -788,7 +788,7 @@ namespace Birds_Mangmeant
             // 
             labelId.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold, GraphicsUnit.Point);
             labelId.ForeColor = Color.White;
-            labelId.Location = new Point(0, 130);
+            labelId.Location = new Point(0, 136);
             labelId.Name = "labelId";
             labelId.Size = new Size(183, 41);
             labelId.TabIndex = 2;

@@ -222,7 +222,8 @@ namespace Birds_Mangmeant
 
             try
             {
-                if (client!=null) {
+                if (client != null)
+                {
                     FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
                     Dictionary<string, Bird> data = response2.ResultAs<Dictionary<string, Bird>>();
 
@@ -306,7 +307,7 @@ namespace Birds_Mangmeant
 
                 }
             }
-                
+
             catch (Exception ex)
             {
                 Console.Write(ex);
@@ -321,7 +322,7 @@ namespace Birds_Mangmeant
 
         public string UserId()
         {
-         
+
 
             if (client != null)
             {
@@ -330,10 +331,11 @@ namespace Birds_Mangmeant
                 string id = response2.ResultAs<string>();
                 return id;
             }
-            else {
+            else
+            {
                 return "";
             }
-           
+
 
         }
 
@@ -349,18 +351,20 @@ namespace Birds_Mangmeant
                 return Email;
 
             }
-            else {
+            else
+            {
                 return "";
             }
 
-            
+
         }
 
         public string getChores()
         {
 
             string chores = "";
-            if (client!=null) {
+            if (client != null)
+            {
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Chores");
                 if (response2 != null && response2.ResultAs<string>() != null)
                 {
@@ -371,7 +375,7 @@ namespace Birds_Mangmeant
                 }
             }
 
-           
+
 
 
 
@@ -383,7 +387,8 @@ namespace Birds_Mangmeant
         {
             int childCount = 0;
 
-            if (client!=null) {
+            if (client != null)
+            {
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds/");
 
                 if (!string.IsNullOrEmpty(response2.Body))
@@ -434,7 +439,8 @@ namespace Birds_Mangmeant
         {
             int childCount = 0;
 
-            if (client!=null) {
+            if (client != null)
+            {
                 try
                 {
                     FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
@@ -479,7 +485,8 @@ namespace Birds_Mangmeant
         {
             int childCount = 0;
 
-            if (client !=null) {
+            if (client != null)
+            {
                 try
                 {
                     //client = new FireSharp.FirebaseClient(config);
@@ -499,7 +506,7 @@ namespace Birds_Mangmeant
                     MessageBox.Show(ex.Message + "Check Your connection!");
                 }
             }
-           
+
 
             return childCount;
 
@@ -616,7 +623,8 @@ namespace Birds_Mangmeant
             BirdList.Clear();
 
 
-            if (client!=null) {
+            if (client != null)
+            {
 
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
 
@@ -798,7 +806,8 @@ namespace Birds_Mangmeant
             ContainerBoxIndexCage.Items.Clear();
 
 
-            if (client!=null) {
+            if (client != null)
+            {
 
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
                 Dictionary<string, Bird> result2;
@@ -903,7 +912,8 @@ namespace Birds_Mangmeant
 
 
 
-            if (client!=null) {
+            if (client != null)
+            {
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages/");
 
 
@@ -1359,14 +1369,15 @@ namespace Birds_Mangmeant
 
             {
 
-                if (client!=null) {
+                if (client != null)
+                {
                     client.Set("users/" + Login.currentusername + "/Chores", textBoxListOfChores.Text);
                     MessageBox.Show("You saved Succefully Chores.");
 
                     this.ActiveControl = null;
                 }
 
-                
+
             }
             catch (FirebaseException)
             {
@@ -1380,7 +1391,8 @@ namespace Birds_Mangmeant
             try
             {
 
-                if (client!=null) {
+                if (client != null)
+                {
                     string timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff"); // generate a unique timestamp
                     client.Set("QuestionsFromUsers/" + Login.currentusername + "/" + timestamp, textBoxQuestion.Text); // use the timestamp as part of the key
                     MessageBox.Show("You submit Succefully a question: " + textBoxQuestion.Text);
@@ -1388,7 +1400,7 @@ namespace Birds_Mangmeant
                     this.ActiveControl = null;
                     textBoxQuestion.Clear();
                 }
-               
+
             }
             catch (FirebaseException)
             {
@@ -1578,7 +1590,8 @@ namespace Birds_Mangmeant
                 }
 
 
-                if (client!=null) {
+                if (client != null)
+                {
                     FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Birds");
                     Dictionary<string, Bird> birds = birdsResponse.ResultAs<Dictionary<string, Bird>>();
 
@@ -1648,7 +1661,7 @@ namespace Birds_Mangmeant
                 }
 
 
-                
+
 
 
 
@@ -1662,7 +1675,8 @@ namespace Birds_Mangmeant
             listViewSearch.Clear();
             BirdListSearch.Clear();
 
-            if (client!=null) {
+            if (client != null)
+            {
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
                 Dictionary<string, Bird> result2;
                 try
@@ -1896,7 +1910,8 @@ namespace Birds_Mangmeant
             {
 
 
-                if (client!=null) {
+                if (client != null)
+                {
 
                     FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Cages");
                     Dictionary<string, Cage> Cages = birdsResponse.ResultAs<Dictionary<string, Cage>>();
@@ -2009,7 +2024,8 @@ namespace Birds_Mangmeant
             CageListSearch.Clear();
 
 
-            if (client!=null) {
+            if (client != null)
+            {
 
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Cages");
                 Dictionary<string, Cage> result2;
@@ -2295,7 +2311,8 @@ namespace Birds_Mangmeant
                 string birdId2 = BirdList.ElementAt(index2).Key;
 
 
-                if (client!=null) {
+                if (client != null)
+                {
                     client.Delete("users/" + Login.currentusername + "/Birds/" + birdId2);
 
                     FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Birds");
@@ -2452,7 +2469,8 @@ namespace Birds_Mangmeant
 
                 int index2 = cage_listview.FocusedItem.Index;
                 string cageid2 = CageList.ElementAt(index2).Rest.Item1;
-                if (client!=null) {
+                if (client != null)
+                {
 
                     client.Delete("users/" + Login.currentusername + "/Cages/" + cageid2);
                     FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Cages");
@@ -2525,7 +2543,8 @@ namespace Birds_Mangmeant
 
             comboBoxChooceBirdToMate.Items.Clear();
 
-            if (client!=null) {
+            if (client != null)
+            {
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
                 Dictionary<string, Bird> result2;
                 try
@@ -3550,7 +3569,7 @@ namespace Birds_Mangmeant
                 {
                     string hiddenValue = selectedItem.HiddenValue;
 
-                   
+
                     client.Set("users/" + Login.currentusername + "/Birds/" + birdId, bird);
                     client.Set("users/" + Login.currentusername + "/Cages/" + hiddenValue + "/BirdsOfCage/" + birdId, bird);
                     MessageBox.Show("You Add Succefully Bird Number Index: " + textBoxIndexNumberOffSpring.Text);
