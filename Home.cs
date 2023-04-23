@@ -1510,6 +1510,20 @@ namespace Birds_Mangmeant
                 MessageBox.Show("Index Number of Mother of Bird can only contain numbers.");
             }
 
+            else if (textBoxIndexNumber.Text.Count() > 9)
+            {
+                MessageBox.Show("Index Number is too Large.");
+            }
+            else if (textBoxIndexFatherofBird.Text.Count() > 9)
+            {
+                MessageBox.Show("Index Number of Father is too Large.");
+            }
+            else if (textBoxIndexMotherofBird.Text.Count() > 9)
+            {
+                MessageBox.Show("Index Number of Mother is too Large.");
+            }
+
+
             else if (containsOnlyLetters || !isAlphanumeric || containsOnlyNumbers)
             {
                 MessageBox.Show("Index Cage should contain numbers and letters.");
@@ -2251,6 +2265,19 @@ namespace Birds_Mangmeant
 
                 MessageBox.Show("Red DF is only for Male Birds.");
             }
+            else if (textBoxIndexNumber.Text.Count() > 9)
+            {
+                MessageBox.Show("Index Number is too Large.");
+            }
+            else if (textBoxIndexFatherofBird.Text.Count() > 9)
+            {
+                MessageBox.Show("Index Number of Father is too Large.");
+            }
+            else if (textBoxIndexMotherofBird.Text.Count() > 9)
+            {
+                MessageBox.Show("Index Number of Mother is too Large.");
+            }
+
 
             else if (comboBoxHeadColor.Text == "Black DF" && checkBoxFemale.Checked == true)
             {
@@ -2749,7 +2776,7 @@ namespace Birds_Mangmeant
                             Gender = maleorfemale,
                             ColorHead = GetOffspringColorHead(HeadColorParentFather, HeadColorParentMother, maleorfemale),
                             ColorBreast = GetOffspringColorBreast(BreastColorParentFather, BreastColorParentMother, maleorfemale),
-                            ColorBody = GetOffspringColorBody(BodyColorParentFather, BodyColorParentMother, maleorfemale)
+                            ColorBody = GetOffspringColorBody(BodyColorParentFather, HeadColorParentMother, BodyColorParentMother)
 
                         };
                         addBird(Bird);
