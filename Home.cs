@@ -2716,7 +2716,7 @@ namespace Birds_Mangmeant
                             Gender = maleorfemale,
                             ColorHead = GetOffspringColorHead(HeadColorParentFather, HeadColorParentMother, maleorfemale),
                             ColorBreast = GetOffspringColorBreast(BreastColorParentFather, BreastColorParentMother, maleorfemale),
-                            ColorBody = GetOffspringColorBody(BodyColorParentFather, HeadColorParentMother, BodyColorParentMother)
+                            ColorBody = GetOffspringColorBody(BodyColorParentFather, BodyColorParentMother, maleorfemale)
 
 
                         };
@@ -2749,7 +2749,7 @@ namespace Birds_Mangmeant
                             Gender = maleorfemale,
                             ColorHead = GetOffspringColorHead(HeadColorParentFather, HeadColorParentMother, maleorfemale),
                             ColorBreast = GetOffspringColorBreast(BreastColorParentFather, BreastColorParentMother, maleorfemale),
-                            ColorBody = GetOffspringColorBody(BodyColorParentFather, HeadColorParentMother, BodyColorParentMother)
+                            ColorBody = GetOffspringColorBody(BodyColorParentFather, BodyColorParentMother, maleorfemale)
 
                         };
                         addBird(Bird);
