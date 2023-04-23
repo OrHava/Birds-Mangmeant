@@ -500,8 +500,10 @@ namespace Birds_Mangmeant
                     foreach (var get in result2)
                     {
 
-
-                        usernameres.Add(Tuple.Create(get.Value.Name, get.Value.Password));
+                        if (get.Value!=null) {
+                            usernameres.Add(Tuple.Create(get.Value.Name ?? "", get.Value.Password ?? "" ));
+                        }
+                        
 
                     }
 
@@ -561,8 +563,11 @@ namespace Birds_Mangmeant
                         foreach (var get in result)
                         {
 
+                            if (get.Value!=null) {
+                                usernameres.Add(Tuple.Create(get.Value.Name ?? "", get.Value.Password ?? ""));
+                            }
 
-                            usernameres.Add(Tuple.Create(get.Value.Name, get.Value.Password));
+                         
 
                         }
                     }
