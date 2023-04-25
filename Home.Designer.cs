@@ -1707,9 +1707,9 @@ namespace Birds_Mangmeant
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 73);
             ClientSize = new Size(1122, 565);
-            Controls.Add(PanelAddBird);
-            Controls.Add(panelHome);
             Controls.Add(panelUser);
+            Controls.Add(panelHome);
+            Controls.Add(PanelAddBird);
             Controls.Add(panelAddCage);
             Controls.Add(panelSearchCages);
             Controls.Add(panelSearch);
