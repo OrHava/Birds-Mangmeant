@@ -2945,7 +2945,7 @@ namespace Birds_Mangmeant
                     offspringColor = "/blue";
                 }
             }
-            
+
             return offspringColor;
 
         }
