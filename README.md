@@ -20,6 +20,7 @@ Please note that this project was built as a team, and if anyone would like to c
 
 
 ------------
-![image](https://user-images.githubusercontent.com/81467919/212494505-2b2fd625-db0a-4feb-a14b-e3daa5232447.png)
+![BeFunky-collage (1)](https://user-images.githubusercontent.com/116579286/235275402-90fa184c-6e74-42c9-bd57-2617440b8ddc.jpg)
+
 
 
