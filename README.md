@@ -1,4 +1,5 @@
-# **Birds-Mangmeant** 
+# **Birds-Mangmeant** ![bird](https://user-images.githubusercontent.com/116579286/235273844-2f4bb08f-827d-4c1c-8571-b842f0711417.png)
+
 ## Overview 
 This project is designed to help bird enthusiasts manage their Gouldian birds in a more efficient way. The system allows users to keep track of their birds' information, such as their species, gender, hatch date, and other details. Additionally, users can create cages and assign birds to them, making it easy to manage their living arrangements.
 ## Features
