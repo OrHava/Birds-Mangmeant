@@ -1,5 +1,5 @@
-# **FindJob** ![Logo](https://github.com/OrHava/Birds-Mangmeant/issues/2#issue-1689287156)
-## Overview
+# **Birds-Mangmeant** 
+## Overview 
 This project is designed to help bird enthusiasts manage their Gouldian birds in a more efficient way. The system allows users to keep track of their birds' information, such as their species, gender, hatch date, and other details. Additionally, users can create cages and assign birds to them, making it easy to manage their living arrangements.
 ## Features
 - User registration and login system.
