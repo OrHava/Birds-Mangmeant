@@ -15,7 +15,7 @@ namespace Birds_Mangmeant
         public ShowBirds(string message)
         {
             InitializeComponent();
-
+            this.MaximizeBox = false;
             // Set the text and read-only properties of the RichTextBox
             richTextBox1.Text = message;
             richTextBox1.ReadOnly = true;

@@ -35,7 +35,7 @@ namespace Birds_Mangmeant
             InitializeComponent();
 
 
-
+            this.MaximizeBox = false;
             // Initialize Firebase client
             var config = new FirebaseConfig
             {

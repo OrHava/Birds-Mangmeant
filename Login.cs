@@ -21,7 +21,10 @@ namespace Birds_Mangmeant
 
         public Login()
         {
+
+
             InitializeComponent();
+            this.MaximizeBox = false;
             PanelRegister.Height = 0;
             PanelLoginSave.Location = new Point(300, 0);
 
