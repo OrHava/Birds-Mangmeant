@@ -57,6 +57,8 @@ namespace Birds_Mangmeant
             ButtonSignOut = new ToolStripButton();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             PanelAddBird = new Panel();
+            label37 = new Label();
+            label36 = new Label();
             comboBoxBodyColor = new ComboBox();
             comboBoxBreastColor = new ComboBox();
             comboBoxHeadColor = new ComboBox();
@@ -124,6 +126,7 @@ namespace Birds_Mangmeant
             label12 = new Label();
             labelTypeOfBirds = new Label();
             panelAddCage = new Panel();
+            label38 = new Label();
             pictureBoxEditCage = new PictureBox();
             pictureBoxAddCage = new PictureBox();
             label19 = new Label();
@@ -162,6 +165,7 @@ namespace Birds_Mangmeant
             pictureBox7 = new PictureBox();
             labelSubmitHelp = new Label();
             panelSearchCages = new Panel();
+            label35 = new Label();
             pictureBoxSearchCages = new PictureBox();
             comboBoxSearchCageMaterial = new ComboBox();
             label25 = new Label();
@@ -328,6 +332,8 @@ namespace Birds_Mangmeant
             // PanelAddBird
             // 
             PanelAddBird.BackColor = Color.FromArgb(46, 51, 73);
+            PanelAddBird.Controls.Add(label37);
+            PanelAddBird.Controls.Add(label36);
             PanelAddBird.Controls.Add(comboBoxBodyColor);
             PanelAddBird.Controls.Add(comboBoxBreastColor);
             PanelAddBird.Controls.Add(comboBoxHeadColor);
@@ -366,6 +372,30 @@ namespace Birds_Mangmeant
             PanelAddBird.Name = "PanelAddBird";
             PanelAddBird.Size = new Size(1282, 724);
             PanelAddBird.TabIndex = 2;
+            // 
+            // label37
+            // 
+            label37.AutoSize = true;
+            label37.BackColor = Color.FromArgb(46, 51, 73);
+            label37.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label37.ForeColor = Color.White;
+            label37.Location = new Point(669, 19);
+            label37.Name = "label37";
+            label37.Size = new Size(235, 19);
+            label37.TabIndex = 42;
+            label37.Text = "* Click one time on bird to edit it.";
+            // 
+            // label36
+            // 
+            label36.AutoSize = true;
+            label36.BackColor = Color.FromArgb(46, 51, 73);
+            label36.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label36.ForeColor = Color.White;
+            label36.Location = new Point(669, 38);
+            label36.Name = "label36";
+            label36.Size = new Size(257, 19);
+            label36.TabIndex = 41;
+            label36.Text = "* Click two times on bird to delete it.";
             // 
             // comboBoxBodyColor
             // 
@@ -609,6 +639,7 @@ namespace Birds_Mangmeant
             textBoxIndexFatherofBird.Name = "textBoxIndexFatherofBird";
             textBoxIndexFatherofBird.Size = new Size(175, 32);
             textBoxIndexFatherofBird.TabIndex = 16;
+            textBoxIndexFatherofBird.Text = "Unknown";
             // 
             // textBoxIndexMotherofBird
             // 
@@ -617,6 +648,7 @@ namespace Birds_Mangmeant
             textBoxIndexMotherofBird.Name = "textBoxIndexMotherofBird";
             textBoxIndexMotherofBird.Size = new Size(175, 32);
             textBoxIndexMotherofBird.TabIndex = 15;
+            textBoxIndexMotherofBird.Text = "Unknown";
             // 
             // label9
             // 
@@ -1083,6 +1115,7 @@ namespace Birds_Mangmeant
             // panelAddCage
             // 
             panelAddCage.BackColor = Color.FromArgb(46, 51, 73);
+            panelAddCage.Controls.Add(label38);
             panelAddCage.Controls.Add(pictureBoxEditCage);
             panelAddCage.Controls.Add(pictureBoxAddCage);
             panelAddCage.Controls.Add(label19);
@@ -1100,6 +1133,18 @@ namespace Birds_Mangmeant
             panelAddCage.Name = "panelAddCage";
             panelAddCage.Size = new Size(1282, 723);
             panelAddCage.TabIndex = 1;
+            // 
+            // label38
+            // 
+            label38.AutoSize = true;
+            label38.BackColor = Color.FromArgb(46, 51, 73);
+            label38.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label38.ForeColor = Color.White;
+            label38.Location = new Point(654, 17);
+            label38.Name = "label38";
+            label38.Size = new Size(245, 19);
+            label38.TabIndex = 43;
+            label38.Text = "* Click one time on cage to edit it.";
             // 
             // pictureBoxEditCage
             // 
@@ -1516,6 +1561,7 @@ namespace Birds_Mangmeant
             // panelSearchCages
             // 
             panelSearchCages.BackColor = Color.FromArgb(46, 51, 73);
+            panelSearchCages.Controls.Add(label35);
             panelSearchCages.Controls.Add(pictureBoxSearchCages);
             panelSearchCages.Controls.Add(comboBoxSearchCageMaterial);
             panelSearchCages.Controls.Add(label25);
@@ -1529,6 +1575,18 @@ namespace Birds_Mangmeant
             panelSearchCages.Name = "panelSearchCages";
             panelSearchCages.Size = new Size(1282, 723);
             panelSearchCages.TabIndex = 3;
+            // 
+            // label35
+            // 
+            label35.AutoSize = true;
+            label35.BackColor = Color.FromArgb(46, 51, 73);
+            label35.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            label35.ForeColor = Color.White;
+            label35.Location = new Point(507, 19);
+            label35.Name = "label35";
+            label35.Size = new Size(302, 19);
+            label35.TabIndex = 38;
+            label35.Text = "Click two times on a cage to see birds info.";
             // 
             // pictureBoxSearchCages
             // 
@@ -1837,5 +1895,9 @@ namespace Birds_Mangmeant
         private Label label34;
         private Label label33;
         private Label label32;
+        private Label label37;
+        private Label label36;
+        private Label label38;
+        private Label label35;
     }
 }

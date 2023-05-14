@@ -15,7 +15,9 @@ namespace Birds_Mangmeant
     public partial class Login : Form
     {
 
+#pragma warning disable CS8603 // Possible null reference return.
         public static string currentusername { get => currentusername1; set => currentusername1 = value; }
+#pragma warning restore CS8603 // Possible null reference return.
         static string currentuserpassword = "";
 
 

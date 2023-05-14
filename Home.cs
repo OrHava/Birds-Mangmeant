@@ -8,6 +8,8 @@ using System.Text.RegularExpressions;
 using NPlot;
 using Newtonsoft.Json;
 using FireSharp.Config;
+using Microsoft.VisualStudio.OLE.Interop;
+using System.Windows.Forms;
 
 
 namespace Birds_Mangmeant
@@ -47,25 +49,6 @@ namespace Birds_Mangmeant
             client = new FirebaseClient(config);
 
 
-            //// Set up the timer for bird gif but make code very slow in the start
-            //timer1 = new System.Timers.Timer();
-            //timer1.Interval = 50; // Change this value to adjust the speed of the animation
-            //timer1.Elapsed += Timer1_Elapsed;
-
-            //// Start the timer
-            //timer1.Start();
-
-
-
-
-
-
-
-
-
-
-
-
 
             // start the timer for birds image
             timer.Interval = 1000; // update every 100ms
@@ -99,41 +82,6 @@ namespace Birds_Mangmeant
 
 
 
-
-        //private void Timer1_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
-        //{
-        //    // Move the bird to the left by changing its X coordinate
-        //    x -= 5; // Change this value to adjust the distance the bird moves each tick
-
-        //    // If the bird goes off the left edge of the screen, wrap it around to the right edge
-        //    if (x + pictureBoxBirdFly.Width < 0)
-        //    {
-        //        if (pictureBoxBirdFly.Parent == panelUser) // Check if pictureBoxBirdFly is on panelUser
-        //        {
-        //            x = panelUser.Width - pictureBoxBirdFly.Width; // Set x to the right edge of panelUser
-        //        }
-        //        else // If pictureBoxBirdFly is not on panelUser, wrap it around to the right edge of the form
-        //        {
-        //            x = this.ClientSize.Width;
-        //        }
-        //    }
-
-        //    // Update the bird's position on the UI thread
-        //    Task.Run(() =>
-        //    {
-        //        if (pictureBoxBirdFly.InvokeRequired)
-        //        {
-        //            pictureBoxBirdFly.Invoke(new Action(() =>
-        //            {
-        //                pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
-        //            }));
-        //        }
-        //        else
-        //        {
-        //            pictureBoxBirdFly.Location = new Point(x, pictureBoxBirdFly.Location.Y);
-        //        }
-        //    });
-        //}
 
 
         private void Timer_Elapsed(object? sender, System.Timers.ElapsedEventArgs e)
@@ -629,20 +577,28 @@ namespace Birds_Mangmeant
                 FirebaseResponse response2 = client.Get("users/" + Login.currentusername + "/Birds");
 
 
-
-
-
-
                 string json = response2.Body;
 
                 if (!string.IsNullOrEmpty(json) && json != null)
                 {
                     Dictionary<string, Bird>? result2 = JsonConvert.DeserializeObject<Dictionary<string, Bird>>(json);
 
+
                     // rest of the code
+                    if (result2 == null)
+                    {
+                        textBoxIndexNumber.Text = "1";
+                        textBoxIndexNumberOffSpring.Text = "1";
+
+                    }
 
                     if (result2 != null)
                     {
+                        textBoxIndexNumber.Text = (result2.Count + 1).ToString();
+                        textBoxIndexNumberOffSpring.Text = (result2.Count + 1).ToString();
+
+
+
                         foreach (var get in result2)
                         {
 
@@ -703,7 +659,7 @@ namespace Birds_Mangmeant
 
                 if (BirdList != null)
                 {
-                    foreach (var birdTuple in BirdList)
+                    foreach (var birdTuple in BirdList.OrderBy(b => int.Parse(b.Value.Item1)))
                     {
                         string indexNumber = birdTuple.Value.Item1;
                         string breedOfBird = birdTuple.Value.Item2;
@@ -863,6 +819,9 @@ namespace Birds_Mangmeant
 
 
         }
+
+
+
         public class ContainerBoxItem
         {
             public string DisplayText { get; set; } = "";
@@ -1483,8 +1442,6 @@ namespace Birds_Mangmeant
 
         private void pictureBoxAddBird_Click(object sender, EventArgs e)
         {
-            bool isNumeric = Regex.IsMatch(textBoxIndexNumber.Text, @"^\d+$");
-
             bool isNumeric2 = Regex.IsMatch(textBoxIndexFatherofBird.Text, @"^\d+$");
             bool isNumeric3 = Regex.IsMatch(textBoxIndexMotherofBird.Text, @"^\d+$");
 
@@ -1496,21 +1453,18 @@ namespace Birds_Mangmeant
 
 
 
-            if (!isNumeric)
-            {
-                MessageBox.Show("Index Number of Bird can only contain numbers.");
-            }
 
-            else if (!isNumeric2)
+
+            if (!isNumeric2 && textBoxIndexFatherofBird.Text != "Unknown")
             {
                 MessageBox.Show("Index Number of Father of Bird can only contain numbers.");
             }
-            else if (!isNumeric3)
+            else if (!isNumeric3 && textBoxIndexMotherofBird.Text != "Unknown")
             {
                 MessageBox.Show("Index Number of Mother of Bird can only contain numbers.");
             }
 
-            else if (textBoxIndexNumber.Text.Count() > 9)
+            if (textBoxIndexNumber.Text.Count() > 9)
             {
                 MessageBox.Show("Index Number is too Large.");
             }
@@ -1521,6 +1475,16 @@ namespace Birds_Mangmeant
             else if (textBoxIndexMotherofBird.Text.Count() > 9)
             {
                 MessageBox.Show("Index Number of Mother is too Large.");
+            }
+            else if (!(textBoxIndexFatherofBird.Text== "Unknown" && textBoxIndexMotherofBird.Text == "Unknown"))
+            {
+                if (textBoxIndexMotherofBird.Text == textBoxIndexFatherofBird.Text)
+                {
+                    MessageBox.Show("Indexs of parents cant be the same.");
+
+                }
+
+
             }
 
 
@@ -1540,6 +1504,21 @@ namespace Birds_Mangmeant
                 MessageBox.Show("Black DF is only for Male Birds.");
 
             }
+
+            else if (comboBoxBodyColor.Text == "Diluted" && checkBoxFemale.Checked == true)
+            {
+                MessageBox.Show("Diluted is only for Male Birds.");
+
+            }
+
+            else if (comboBoxBodyColor.Text == "Pastel" && checkBoxFemale.Checked == true)
+            {
+                MessageBox.Show("Pastel is only for Male Birds.");
+
+            }
+
+
+
             else if (comboBoxBreed.Text == "American gouldian" && (comboBoxSubspecies.Text == "Eastren Europe" || comboBoxSubspecies.Text == "Western Europe" || comboBoxSubspecies.Text == "Australian Center" || comboBoxSubspecies.Text == "Australian City Beaches"))
             {
                 MessageBox.Show("Breed and Subspecies Dont match.");
@@ -1615,11 +1594,24 @@ namespace Birds_Mangmeant
                         MessageBox.Show("Bird with the same index number already exists");
                     }
 
+
                     else
                     {
+                        string IndexNumberString;
+                        if (birds == null)
+                        {
+                            textBoxIndexNumber.Text = "1";
+                            IndexNumberString = "1";
+                        }
+                        else
+                        {
+                            textBoxIndexNumber.Text = (birds.Count + 1).ToString();
+                            IndexNumberString = (birds.Count + 1).ToString();
+                        }
+
                         var Bird = new Bird
                         {
-                            IndexNumber = textBoxIndexNumber.Text,
+                            IndexNumber = IndexNumberString,
                             Breed_of_Bird = comboBoxBreed.Text,
                             Subspecies = comboBoxSubspecies.Text,
                             HatchDate = dateTimePicker1.Value.ToString("yyyy-MM-dd"),
@@ -1752,7 +1744,7 @@ namespace Birds_Mangmeant
                                     )
 
                              ));
-                            //BirdListSearch.Add(valuesToAdd);
+                            
                         }
                     }
 
@@ -2207,7 +2199,6 @@ namespace Birds_Mangmeant
             {
                 string BirdInfo = sortedList[index].Item7;
 
-                // DialogResult result = MessageBox.Show(BirdInfo, title);
 
                 // Show a custom MessageBox
                 ShowBirds messageBox = new ShowBirds(BirdInfo);
@@ -2946,6 +2937,23 @@ namespace Birds_Mangmeant
                 }
             }
 
+            else
+            {
+
+
+                if (offspringGender == "Male")
+                {
+
+                    offspringColor = fatherColor;
+                }
+                else
+                {
+
+                    offspringColor = motherColor;
+
+                }
+            }
+
             return offspringColor;
 
         }
@@ -2990,13 +2998,7 @@ namespace Birds_Mangmeant
                     return "White";
                 }
             }
-            //options : 
-            // DFPB(Purple breasted)
-            //DFLB(Lilac breasted)
-            //DFWB (White breasted)
-            //SFPB SFLB(Purple breasted "split" for lilac breast)
-            // SFPB SFWB(Purple breasted "split" for white breast)
-            // SFLB SFWB(Lilac breasted "split" for white breast)
+
             else if ((fatherColor == "Purple" || fatherColor == "White" && motherColor == "White") || (fatherColor == "White" && motherColor == "Purple" || motherColor == "White"))
             {
                 if (chance < 0.5)
