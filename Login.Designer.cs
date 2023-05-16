@@ -118,6 +118,7 @@ namespace Birds_Mangmeant
             txtLoginUserName = new TextBox();
             pictureBoxSave = new PictureBox();
             labelLogin1Save = new Label();
+            label2 = new Label();
             PanelWelcomeSave.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBirdSave).BeginInit();
             PanelRegister.SuspendLayout();
@@ -146,6 +147,7 @@ namespace Birds_Mangmeant
             // PanelWelcomeSave
             // 
             PanelWelcomeSave.BackColor = Color.FromArgb(46, 51, 73);
+            PanelWelcomeSave.Controls.Add(label2);
             PanelWelcomeSave.Controls.Add(labelDevs3Save);
             PanelWelcomeSave.Controls.Add(labelDevs4Save);
             PanelWelcomeSave.Controls.Add(labelDevs2Save);
@@ -165,7 +167,7 @@ namespace Birds_Mangmeant
             labelDevs3Save.AutoSize = true;
             labelDevs3Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs3Save.ForeColor = Color.White;
-            labelDevs3Save.Location = new Point(217, 492);
+            labelDevs3Save.Location = new Point(220, 475);
             labelDevs3Save.Name = "labelDevs3Save";
             labelDevs3Save.Size = new Size(73, 17);
             labelDevs3Save.TabIndex = 7;
@@ -176,7 +178,7 @@ namespace Birds_Mangmeant
             labelDevs4Save.AutoSize = true;
             labelDevs4Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs4Save.ForeColor = Color.White;
-            labelDevs4Save.Location = new Point(217, 509);
+            labelDevs4Save.Location = new Point(220, 492);
             labelDevs4Save.Name = "labelDevs4Save";
             labelDevs4Save.Size = new Size(77, 17);
             labelDevs4Save.TabIndex = 6;
@@ -187,7 +189,7 @@ namespace Birds_Mangmeant
             labelDevs2Save.AutoSize = true;
             labelDevs2Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs2Save.ForeColor = Color.White;
-            labelDevs2Save.Location = new Point(217, 475);
+            labelDevs2Save.Location = new Point(220, 458);
             labelDevs2Save.Name = "labelDevs2Save";
             labelDevs2Save.Size = new Size(62, 17);
             labelDevs2Save.TabIndex = 5;
@@ -198,7 +200,7 @@ namespace Birds_Mangmeant
             labelDevs1Save.AutoSize = true;
             labelDevs1Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs1Save.ForeColor = Color.White;
-            labelDevs1Save.Location = new Point(214, 457);
+            labelDevs1Save.Location = new Point(217, 440);
             labelDevs1Save.Name = "labelDevs1Save";
             labelDevs1Save.Size = new Size(80, 17);
             labelDevs1Save.TabIndex = 4;
@@ -866,6 +868,17 @@ namespace Birds_Mangmeant
             labelLogin1Save.TabIndex = 2;
             labelLogin1Save.Text = "Login to your account";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(220, 509);
+            label2.Name = "label2";
+            label2.Size = new Size(41, 17);
+            label2.TabIndex = 8;
+            label2.Text = "Na'el";
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -995,5 +1008,6 @@ namespace Birds_Mangmeant
         private PictureBox pictureBox9;
         private CheckBox checkBoxRememberMe;
         private PictureBox pictureBox10;
+        private Label label2;
     }
 }

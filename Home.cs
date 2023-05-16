@@ -659,7 +659,9 @@ namespace Birds_Mangmeant
 
                 if (BirdList != null)
                 {
-                    foreach (var birdTuple in BirdList.OrderBy(b => int.Parse(b.Value.Item1)))
+                    BirdList = BirdList.OrderBy(b => int.Parse(b.Value.Item1)).ToDictionary(k => k.Key, v => v.Value);
+
+                    foreach (var birdTuple in BirdList)
                     {
                         string indexNumber = birdTuple.Value.Item1;
                         string breedOfBird = birdTuple.Value.Item2;
@@ -1476,7 +1478,7 @@ namespace Birds_Mangmeant
             {
                 MessageBox.Show("Index Number of Mother is too Large.");
             }
-            else if (!(textBoxIndexFatherofBird.Text== "Unknown" && textBoxIndexMotherofBird.Text == "Unknown"))
+            else if (!(textBoxIndexFatherofBird.Text == "Unknown" && textBoxIndexMotherofBird.Text == "Unknown"))
             {
                 if (textBoxIndexMotherofBird.Text == textBoxIndexFatherofBird.Text)
                 {
@@ -1484,6 +1486,7 @@ namespace Birds_Mangmeant
 
                 }
 
+                MessageBox.Show("Please Use 'Add OffSpring To Bird' to have new bird with existed parents.");
 
             }
 
@@ -1744,7 +1747,7 @@ namespace Birds_Mangmeant
                                     )
 
                              ));
-                            
+
                         }
                     }
 

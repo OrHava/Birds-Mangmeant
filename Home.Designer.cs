@@ -57,6 +57,8 @@ namespace Birds_Mangmeant
             ButtonSignOut = new ToolStripButton();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             PanelAddBird = new Panel();
+            textBoxIndexFatherofBird = new ComboBox();
+            textBoxIndexMotherofBird = new ComboBox();
             label37 = new Label();
             label36 = new Label();
             comboBoxBodyColor = new ComboBox();
@@ -81,8 +83,6 @@ namespace Birds_Mangmeant
             checkBoxMale = new CheckBox();
             dateTimePicker1 = new DateTimePicker();
             pictureBoxAddBird = new PictureBox();
-            textBoxIndexFatherofBird = new TextBox();
-            textBoxIndexMotherofBird = new TextBox();
             label9 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -220,7 +220,7 @@ namespace Birds_Mangmeant
             toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripSeparator1, ButtonHome, toolStripSeparator5, ButtonAddBird, toolStripSeparator6, ButtonAddCage, toolStripSeparator2, ButtonSearch, toolStripSeparator7, toolStripButtonSearchCages, toolStripSeparator3, ButtonHelp, toolStripSeparator4, ButtonSignOut });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1282, 27);
+            toolStrip1.Size = new Size(1782, 27);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -332,6 +332,8 @@ namespace Birds_Mangmeant
             // PanelAddBird
             // 
             PanelAddBird.BackColor = Color.FromArgb(46, 51, 73);
+            PanelAddBird.Controls.Add(textBoxIndexFatherofBird);
+            PanelAddBird.Controls.Add(textBoxIndexMotherofBird);
             PanelAddBird.Controls.Add(label37);
             PanelAddBird.Controls.Add(label36);
             PanelAddBird.Controls.Add(comboBoxBodyColor);
@@ -356,8 +358,6 @@ namespace Birds_Mangmeant
             PanelAddBird.Controls.Add(checkBoxMale);
             PanelAddBird.Controls.Add(dateTimePicker1);
             PanelAddBird.Controls.Add(pictureBoxAddBird);
-            PanelAddBird.Controls.Add(textBoxIndexFatherofBird);
-            PanelAddBird.Controls.Add(textBoxIndexMotherofBird);
             PanelAddBird.Controls.Add(label9);
             PanelAddBird.Controls.Add(label7);
             PanelAddBird.Controls.Add(label6);
@@ -370,8 +370,30 @@ namespace Birds_Mangmeant
             PanelAddBird.ForeColor = Color.Cornsilk;
             PanelAddBird.Location = new Point(0, 29);
             PanelAddBird.Name = "PanelAddBird";
-            PanelAddBird.Size = new Size(1282, 724);
+            PanelAddBird.Size = new Size(1782, 825);
             PanelAddBird.TabIndex = 2;
+            // 
+            // textBoxIndexFatherofBird
+            // 
+            textBoxIndexFatherofBird.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxIndexFatherofBird.FormattingEnabled = true;
+            textBoxIndexFatherofBird.Items.AddRange(new object[] { "Unknown" });
+            textBoxIndexFatherofBird.Location = new Point(257, 315);
+            textBoxIndexFatherofBird.Name = "textBoxIndexFatherofBird";
+            textBoxIndexFatherofBird.Size = new Size(175, 31);
+            textBoxIndexFatherofBird.TabIndex = 44;
+            textBoxIndexFatherofBird.Text = "Unknown";
+            // 
+            // textBoxIndexMotherofBird
+            // 
+            textBoxIndexMotherofBird.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            textBoxIndexMotherofBird.FormattingEnabled = true;
+            textBoxIndexMotherofBird.Items.AddRange(new object[] { "Unknown" });
+            textBoxIndexMotherofBird.Location = new Point(257, 258);
+            textBoxIndexMotherofBird.Name = "textBoxIndexMotherofBird";
+            textBoxIndexMotherofBird.Size = new Size(175, 31);
+            textBoxIndexMotherofBird.TabIndex = 43;
+            textBoxIndexMotherofBird.Text = "Unknown";
             // 
             // label37
             // 
@@ -379,7 +401,7 @@ namespace Birds_Mangmeant
             label37.BackColor = Color.FromArgb(46, 51, 73);
             label37.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label37.ForeColor = Color.White;
-            label37.Location = new Point(669, 19);
+            label37.Location = new Point(849, 18);
             label37.Name = "label37";
             label37.Size = new Size(235, 19);
             label37.TabIndex = 42;
@@ -391,7 +413,7 @@ namespace Birds_Mangmeant
             label36.BackColor = Color.FromArgb(46, 51, 73);
             label36.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
             label36.ForeColor = Color.White;
-            label36.Location = new Point(669, 38);
+            label36.Location = new Point(849, 37);
             label36.Name = "label36";
             label36.Size = new Size(257, 19);
             label36.TabIndex = 41;
@@ -463,7 +485,7 @@ namespace Birds_Mangmeant
             // textBoxIndexNumberOffSpring
             // 
             textBoxIndexNumberOffSpring.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexNumberOffSpring.Location = new Point(24, 667);
+            textBoxIndexNumberOffSpring.Location = new Point(29, 748);
             textBoxIndexNumberOffSpring.Name = "textBoxIndexNumberOffSpring";
             textBoxIndexNumberOffSpring.Size = new Size(175, 32);
             textBoxIndexNumberOffSpring.TabIndex = 34;
@@ -472,7 +494,7 @@ namespace Birds_Mangmeant
             // 
             label31.AutoSize = true;
             label31.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label31.Location = new Point(15, 632);
+            label31.Location = new Point(20, 713);
             label31.Name = "label31";
             label31.Size = new Size(282, 23);
             label31.TabIndex = 33;
@@ -480,11 +502,11 @@ namespace Birds_Mangmeant
             // 
             // comboBoxChooceBirdToMate
             // 
-            comboBoxChooceBirdToMate.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
+            comboBoxChooceBirdToMate.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             comboBoxChooceBirdToMate.FormattingEnabled = true;
-            comboBoxChooceBirdToMate.Location = new Point(14, 569);
+            comboBoxChooceBirdToMate.Location = new Point(20, 654);
             comboBoxChooceBirdToMate.Name = "comboBoxChooceBirdToMate";
-            comboBoxChooceBirdToMate.Size = new Size(627, 25);
+            comboBoxChooceBirdToMate.Size = new Size(963, 25);
             comboBoxChooceBirdToMate.TabIndex = 32;
             comboBoxChooceBirdToMate.Text = "Select Bird To Mate";
             // 
@@ -502,7 +524,7 @@ namespace Birds_Mangmeant
             // 
             label27.AutoSize = true;
             label27.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label27.Location = new Point(14, 503);
+            label27.Location = new Point(19, 584);
             label27.Name = "label27";
             label27.Size = new Size(279, 23);
             label27.TabIndex = 30;
@@ -511,7 +533,7 @@ namespace Birds_Mangmeant
             // pictureBoxAddNewOffspring
             // 
             pictureBoxAddNewOffspring.Image = Properties.Resources.icons8_incubator_80;
-            pictureBoxAddNewOffspring.Location = new Point(327, 643);
+            pictureBoxAddNewOffspring.Location = new Point(332, 724);
             pictureBoxAddNewOffspring.Name = "pictureBoxAddNewOffspring";
             pictureBoxAddNewOffspring.Size = new Size(94, 69);
             pictureBoxAddNewOffspring.SizeMode = PictureBoxSizeMode.Zoom;
@@ -523,7 +545,7 @@ namespace Birds_Mangmeant
             // 
             label26.AutoSize = true;
             label26.Font = new Font("Century Gothic", 16F, FontStyle.Regular, GraphicsUnit.Point);
-            label26.Location = new Point(15, 444);
+            label26.Location = new Point(20, 525);
             label26.Name = "label26";
             label26.Size = new Size(306, 33);
             label26.TabIndex = 28;
@@ -555,9 +577,9 @@ namespace Birds_Mangmeant
             listViewBirds.BackColor = Color.FromArgb(37, 42, 64);
             listViewBirds.BorderStyle = BorderStyle.None;
             listViewBirds.ForeColor = Color.White;
-            listViewBirds.Location = new Point(669, 64);
+            listViewBirds.Location = new Point(849, 63);
             listViewBirds.Name = "listViewBirds";
-            listViewBirds.Size = new Size(600, 557);
+            listViewBirds.Size = new Size(921, 557);
             listViewBirds.TabIndex = 23;
             listViewBirds.UseCompatibleStateImageBehavior = false;
             listViewBirds.View = View.SmallIcon;
@@ -631,24 +653,6 @@ namespace Birds_Mangmeant
             pictureBoxAddBird.TabIndex = 19;
             pictureBoxAddBird.TabStop = false;
             pictureBoxAddBird.Click += pictureBoxAddBird_Click;
-            // 
-            // textBoxIndexFatherofBird
-            // 
-            textBoxIndexFatherofBird.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexFatherofBird.Location = new Point(258, 312);
-            textBoxIndexFatherofBird.Name = "textBoxIndexFatherofBird";
-            textBoxIndexFatherofBird.Size = new Size(175, 32);
-            textBoxIndexFatherofBird.TabIndex = 16;
-            textBoxIndexFatherofBird.Text = "Unknown";
-            // 
-            // textBoxIndexMotherofBird
-            // 
-            textBoxIndexMotherofBird.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBoxIndexMotherofBird.Location = new Point(258, 253);
-            textBoxIndexMotherofBird.Name = "textBoxIndexMotherofBird";
-            textBoxIndexMotherofBird.Size = new Size(175, 32);
-            textBoxIndexMotherofBird.TabIndex = 15;
-            textBoxIndexMotherofBird.Text = "Unknown";
             // 
             // label9
             // 
@@ -749,14 +753,14 @@ namespace Birds_Mangmeant
             panelUser.Controls.Add(labelUserName);
             panelUser.Location = new Point(0, 31);
             panelUser.Name = "panelUser";
-            panelUser.Size = new Size(209, 725);
+            panelUser.Size = new Size(209, 823);
             panelUser.TabIndex = 1;
             // 
             // labelBirdAnim
             // 
             labelBirdAnim.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold, GraphicsUnit.Point);
             labelBirdAnim.ForeColor = Color.White;
-            labelBirdAnim.Location = new Point(3, 325);
+            labelBirdAnim.Location = new Point(-1, 425);
             labelBirdAnim.Name = "labelBirdAnim";
             labelBirdAnim.Size = new Size(199, 43);
             labelBirdAnim.TabIndex = 5;
@@ -765,7 +769,7 @@ namespace Birds_Mangmeant
             // pictureBoxAnim
             // 
             pictureBoxAnim.BackColor = Color.FromArgb(46, 51, 73);
-            pictureBoxAnim.Location = new Point(9, 381);
+            pictureBoxAnim.Location = new Point(5, 481);
             pictureBoxAnim.Name = "pictureBoxAnim";
             pictureBoxAnim.Size = new Size(190, 191);
             pictureBoxAnim.SizeMode = PictureBoxSizeMode.Zoom;
@@ -776,7 +780,7 @@ namespace Birds_Mangmeant
             // 
             labelEmail.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold, GraphicsUnit.Point);
             labelEmail.ForeColor = Color.White;
-            labelEmail.Location = new Point(5, 236);
+            labelEmail.Location = new Point(5, 284);
             labelEmail.Name = "labelEmail";
             labelEmail.Size = new Size(203, 51);
             labelEmail.TabIndex = 3;
@@ -798,7 +802,7 @@ namespace Birds_Mangmeant
             // 
             labelId.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold, GraphicsUnit.Point);
             labelId.ForeColor = Color.White;
-            labelId.Location = new Point(0, 181);
+            labelId.Location = new Point(0, 212);
             labelId.Name = "labelId";
             labelId.Size = new Size(209, 55);
             labelId.TabIndex = 2;
@@ -809,7 +813,7 @@ namespace Birds_Mangmeant
             // 
             labelUserName.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             labelUserName.ForeColor = Color.FromArgb(0, 156, 249);
-            labelUserName.Location = new Point(0, 140);
+            labelUserName.Location = new Point(-2, 153);
             labelUserName.Name = "labelUserName";
             labelUserName.Size = new Size(206, 35);
             labelUserName.TabIndex = 1;
@@ -829,7 +833,7 @@ namespace Birds_Mangmeant
             panelHome.Controls.Add(panel1);
             panelHome.Location = new Point(208, 31);
             panelHome.Name = "panelHome";
-            panelHome.Size = new Size(1074, 725);
+            panelHome.Size = new Size(1574, 823);
             panelHome.TabIndex = 0;
             // 
             // plotSurface2d1
@@ -840,11 +844,11 @@ namespace Birds_Mangmeant
             plotSurface2d1.DateTimeToolTip = false;
             plotSurface2d1.Legend = null;
             plotSurface2d1.LegendZOrder = -1;
-            plotSurface2d1.Location = new Point(530, 281);
+            plotSurface2d1.Location = new Point(804, 325);
             plotSurface2d1.Name = "plotSurface2d1";
             plotSurface2d1.RightMenu = null;
             plotSurface2d1.ShowCoordinates = true;
-            plotSurface2d1.Size = new Size(418, 307);
+            plotSurface2d1.Size = new Size(600, 400);
             plotSurface2d1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
             plotSurface2d1.TabIndex = 10;
             plotSurface2d1.Text = "plotSurface2d1";
@@ -858,7 +862,7 @@ namespace Birds_Mangmeant
             // pictureBoxBirdFly
             // 
             pictureBoxBirdFly.Image = Properties.Resources.giphy;
-            pictureBoxBirdFly.Location = new Point(1000, 17);
+            pictureBoxBirdFly.Location = new Point(1515, 7);
             pictureBoxBirdFly.Name = "pictureBoxBirdFly";
             pictureBoxBirdFly.Size = new Size(47, 29);
             pictureBoxBirdFly.SizeMode = PictureBoxSizeMode.Zoom;
@@ -869,18 +873,18 @@ namespace Birds_Mangmeant
             // 
             panel7.BackColor = Color.FromArgb(37, 42, 64);
             panel7.Controls.Add(label11);
-            panel7.Location = new Point(530, 589);
+            panel7.Location = new Point(804, 721);
             panel7.Name = "panel7";
-            panel7.Size = new Size(418, 77);
+            panel7.Size = new Size(600, 77);
             panel7.TabIndex = 8;
             // 
             // label11
             // 
             label11.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label11.ForeColor = Color.White;
-            label11.Location = new Point(0, 0);
+            label11.Location = new Point(0, 7);
             label11.Name = "label11";
-            label11.Size = new Size(418, 69);
+            label11.Size = new Size(600, 69);
             label11.TabIndex = 4;
             label11.Text = "1: North America 2: Center America 3: South America 4: Eastren Europe 5: Western Europe 6: Australian Center 7: Australian City Beaches";
             // 
@@ -890,9 +894,9 @@ namespace Birds_Mangmeant
             panel6.Controls.Add(pictureBoxRefresh);
             panel6.Controls.Add(label14);
             panel6.Controls.Add(pictureBox6);
-            panel6.Location = new Point(530, 237);
+            panel6.Location = new Point(804, 285);
             panel6.Name = "panel6";
-            panel6.Size = new Size(418, 41);
+            panel6.Size = new Size(600, 41);
             panel6.TabIndex = 7;
             // 
             // pictureBoxRefresh
@@ -911,7 +915,7 @@ namespace Birds_Mangmeant
             label14.AutoSize = true;
             label14.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label14.ForeColor = Color.White;
-            label14.Location = new Point(90, 9);
+            label14.Location = new Point(197, 13);
             label14.Name = "label14";
             label14.Size = new Size(207, 20);
             label14.TabIndex = 9;
@@ -920,7 +924,7 @@ namespace Birds_Mangmeant
             // pictureBox6
             // 
             pictureBox6.Image = Properties.Resources.icons8_combo_chart_24;
-            pictureBox6.Location = new Point(387, 0);
+            pictureBox6.Location = new Point(566, 0);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(31, 25);
             pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
@@ -933,15 +937,15 @@ namespace Birds_Mangmeant
             panel4.Controls.Add(pictureBox5);
             panel4.Controls.Add(label8);
             panel4.Controls.Add(labelAmountUsers);
-            panel4.Location = new Point(698, 61);
+            panel4.Location = new Point(1086, 61);
             panel4.Name = "panel4";
-            panel4.Size = new Size(250, 131);
+            panel4.Size = new Size(350, 170);
             panel4.TabIndex = 5;
             // 
             // pictureBox5
             // 
             pictureBox5.Image = Properties.Resources.icons8_users_64;
-            pictureBox5.Location = new Point(216, 1);
+            pictureBox5.Location = new Point(316, 0);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(31, 25);
             pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
@@ -953,7 +957,7 @@ namespace Birds_Mangmeant
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label8.ForeColor = Color.White;
-            label8.Location = new Point(39, 13);
+            label8.Location = new Point(88, 13);
             label8.Name = "label8";
             label8.Size = new Size(150, 20);
             label8.TabIndex = 3;
@@ -963,9 +967,9 @@ namespace Birds_Mangmeant
             // 
             labelAmountUsers.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
             labelAmountUsers.ForeColor = Color.FromArgb(0, 156, 249);
-            labelAmountUsers.Location = new Point(0, -3);
+            labelAmountUsers.Location = new Point(0, 0);
             labelAmountUsers.Name = "labelAmountUsers";
-            labelAmountUsers.Size = new Size(250, 131);
+            labelAmountUsers.Size = new Size(350, 170);
             labelAmountUsers.TabIndex = 2;
             labelAmountUsers.Text = "Number";
             labelAmountUsers.TextAlign = ContentAlignment.MiddleCenter;
@@ -977,9 +981,9 @@ namespace Birds_Mangmeant
             panel3.Controls.Add(pictureBoxSaveList);
             panel3.Controls.Add(pictureBox4);
             panel3.Controls.Add(label15);
-            panel3.Location = new Point(95, 261);
+            panel3.Location = new Point(169, 298);
             panel3.Name = "panel3";
-            panel3.Size = new Size(299, 400);
+            panel3.Size = new Size(400, 500);
             panel3.TabIndex = 4;
             // 
             // textBoxListOfChores
@@ -988,16 +992,16 @@ namespace Birds_Mangmeant
             textBoxListOfChores.BorderStyle = BorderStyle.None;
             textBoxListOfChores.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Regular, GraphicsUnit.Point);
             textBoxListOfChores.ForeColor = Color.White;
-            textBoxListOfChores.Location = new Point(37, 61);
+            textBoxListOfChores.Location = new Point(50, 73);
             textBoxListOfChores.Multiline = true;
             textBoxListOfChores.Name = "textBoxListOfChores";
-            textBoxListOfChores.Size = new Size(213, 276);
+            textBoxListOfChores.Size = new Size(300, 350);
             textBoxListOfChores.TabIndex = 7;
             // 
             // pictureBoxSaveList
             // 
             pictureBoxSaveList.Image = Properties.Resources.icons8_save_50;
-            pictureBoxSaveList.Location = new Point(125, 355);
+            pictureBoxSaveList.Location = new Point(170, 455);
             pictureBoxSaveList.Name = "pictureBoxSaveList";
             pictureBoxSaveList.Size = new Size(43, 29);
             pictureBoxSaveList.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1008,7 +1012,7 @@ namespace Birds_Mangmeant
             // pictureBox4
             // 
             pictureBox4.Image = Properties.Resources.icons8_notes_64;
-            pictureBox4.Location = new Point(266, 3);
+            pictureBox4.Location = new Point(366, 3);
             pictureBox4.Name = "pictureBox4";
             pictureBox4.Size = new Size(31, 25);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1020,7 +1024,7 @@ namespace Birds_Mangmeant
             label15.AutoSize = true;
             label15.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label15.ForeColor = Color.White;
-            label15.Location = new Point(88, 25);
+            label15.Location = new Point(135, 21);
             label15.Name = "label15";
             label15.Size = new Size(129, 20);
             label15.TabIndex = 3;
@@ -1032,15 +1036,15 @@ namespace Birds_Mangmeant
             panel2.Controls.Add(pictureBox2);
             panel2.Controls.Add(label13);
             panel2.Controls.Add(labelNumCages);
-            panel2.Location = new Point(397, 61);
+            panel2.Location = new Point(608, 61);
             panel2.Name = "panel2";
-            panel2.Size = new Size(250, 131);
+            panel2.Size = new Size(350, 170);
             panel2.TabIndex = 3;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.icons8_cage_of_a_bird_50__1_;
-            pictureBox2.Location = new Point(219, 3);
+            pictureBox2.Location = new Point(319, 1);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(31, 25);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1052,7 +1056,7 @@ namespace Birds_Mangmeant
             label13.AutoSize = true;
             label13.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(39, 13);
+            label13.Location = new Point(100, 13);
             label13.Name = "label13";
             label13.Size = new Size(153, 20);
             label13.TabIndex = 3;
@@ -1062,7 +1066,7 @@ namespace Birds_Mangmeant
             // 
             labelNumCages.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
             labelNumCages.ForeColor = Color.FromArgb(0, 156, 249);
-            labelNumCages.Location = new Point(49, 40);
+            labelNumCages.Location = new Point(111, 69);
             labelNumCages.Name = "labelNumCages";
             labelNumCages.Size = new Size(157, 47);
             labelNumCages.TabIndex = 2;
@@ -1075,15 +1079,15 @@ namespace Birds_Mangmeant
             panel1.Controls.Add(pictureBox3);
             panel1.Controls.Add(label12);
             panel1.Controls.Add(labelTypeOfBirds);
-            panel1.Location = new Point(95, 61);
+            panel1.Location = new Point(169, 61);
             panel1.Name = "panel1";
-            panel1.Size = new Size(250, 131);
+            panel1.Size = new Size(350, 170);
             panel1.TabIndex = 2;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.icons8_quail_50;
-            pictureBox3.Location = new Point(219, 0);
+            pictureBox3.Location = new Point(319, 3);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(31, 25);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -1095,7 +1099,7 @@ namespace Birds_Mangmeant
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
             label12.ForeColor = Color.White;
-            label12.Location = new Point(38, 13);
+            label12.Location = new Point(105, 13);
             label12.Name = "label12";
             label12.Size = new Size(145, 20);
             label12.TabIndex = 3;
@@ -1105,9 +1109,9 @@ namespace Birds_Mangmeant
             // 
             labelTypeOfBirds.Font = new Font("Microsoft Sans Serif", 16.2F, FontStyle.Bold, GraphicsUnit.Point);
             labelTypeOfBirds.ForeColor = Color.FromArgb(0, 156, 249);
-            labelTypeOfBirds.Location = new Point(0, -3);
+            labelTypeOfBirds.Location = new Point(0, 3);
             labelTypeOfBirds.Name = "labelTypeOfBirds";
-            labelTypeOfBirds.Size = new Size(250, 131);
+            labelTypeOfBirds.Size = new Size(350, 170);
             labelTypeOfBirds.TabIndex = 2;
             labelTypeOfBirds.Text = "Number";
             labelTypeOfBirds.TextAlign = ContentAlignment.MiddleCenter;
@@ -1131,7 +1135,7 @@ namespace Birds_Mangmeant
             panelAddCage.Controls.Add(cage_listview);
             panelAddCage.Location = new Point(0, 31);
             panelAddCage.Name = "panelAddCage";
-            panelAddCage.Size = new Size(1282, 723);
+            panelAddCage.Size = new Size(1782, 820);
             panelAddCage.TabIndex = 1;
             // 
             // label38
@@ -1273,7 +1277,7 @@ namespace Birds_Mangmeant
             cage_listview.ForeColor = Color.White;
             cage_listview.Location = new Point(654, 45);
             cage_listview.Name = "cage_listview";
-            cage_listview.Size = new Size(585, 509);
+            cage_listview.Size = new Size(1103, 627);
             cage_listview.TabIndex = 24;
             cage_listview.UseCompatibleStateImageBehavior = false;
             cage_listview.View = View.SmallIcon;
@@ -1301,7 +1305,7 @@ namespace Birds_Mangmeant
             panelSearch.Controls.Add(textBoxIndexSearch);
             panelSearch.Location = new Point(0, 33);
             panelSearch.Name = "panelSearch";
-            panelSearch.Size = new Size(1282, 723);
+            panelSearch.Size = new Size(1782, 821);
             panelSearch.TabIndex = 2;
             // 
             // checkBoxSearchMale
@@ -1396,7 +1400,7 @@ namespace Birds_Mangmeant
             listViewSearch.ForeColor = Color.White;
             listViewSearch.Location = new Point(507, 44);
             listViewSearch.Name = "listViewSearch";
-            listViewSearch.Size = new Size(719, 589);
+            listViewSearch.Size = new Size(1250, 637);
             listViewSearch.TabIndex = 27;
             listViewSearch.UseCompatibleStateImageBehavior = false;
             listViewSearch.View = View.SmallIcon;
@@ -1485,7 +1489,7 @@ namespace Birds_Mangmeant
             panelHelp.Controls.Add(panel5);
             panelHelp.Location = new Point(0, 29);
             panelHelp.Name = "panelHelp";
-            panelHelp.Size = new Size(1282, 725);
+            panelHelp.Size = new Size(1782, 825);
             panelHelp.TabIndex = 1;
             // 
             // dataGridViewQA
@@ -1494,12 +1498,12 @@ namespace Birds_Mangmeant
             dataGridViewQA.AllowUserToDeleteRows = false;
             dataGridViewQA.BackgroundColor = Color.FromArgb(37, 42, 64);
             dataGridViewQA.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewQA.Location = new Point(471, 0);
+            dataGridViewQA.Location = new Point(785, 0);
             dataGridViewQA.Name = "dataGridViewQA";
             dataGridViewQA.ReadOnly = true;
             dataGridViewQA.RowHeadersWidth = 51;
             dataGridViewQA.RowTemplate.Height = 29;
-            dataGridViewQA.Size = new Size(811, 727);
+            dataGridViewQA.Size = new Size(997, 825);
             dataGridViewQA.TabIndex = 6;
             // 
             // panel5
@@ -1509,7 +1513,7 @@ namespace Birds_Mangmeant
             panel5.Controls.Add(pictureBoxSubmitQuestion);
             panel5.Controls.Add(pictureBox7);
             panel5.Controls.Add(labelSubmitHelp);
-            panel5.Location = new Point(31, 117);
+            panel5.Location = new Point(149, 124);
             panel5.Name = "panel5";
             panel5.Size = new Size(410, 520);
             panel5.TabIndex = 5;
@@ -1573,7 +1577,7 @@ namespace Birds_Mangmeant
             panelSearchCages.Controls.Add(textBoxSearchCageIndex);
             panelSearchCages.Location = new Point(0, 29);
             panelSearchCages.Name = "panelSearchCages";
-            panelSearchCages.Size = new Size(1282, 723);
+            panelSearchCages.Size = new Size(1782, 825);
             panelSearchCages.TabIndex = 3;
             // 
             // label35
@@ -1647,7 +1651,7 @@ namespace Birds_Mangmeant
             listViewSearchCages.ForeColor = Color.White;
             listViewSearchCages.Location = new Point(507, 44);
             listViewSearchCages.Name = "listViewSearchCages";
-            listViewSearchCages.Size = new Size(719, 589);
+            listViewSearchCages.Size = new Size(1250, 655);
             listViewSearchCages.TabIndex = 27;
             listViewSearchCages.UseCompatibleStateImageBehavior = false;
             listViewSearchCages.View = View.SmallIcon;
@@ -1691,14 +1695,14 @@ namespace Birds_Mangmeant
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(46, 51, 73);
-            ClientSize = new Size(1282, 753);
+            ClientSize = new Size(1782, 853);
             Controls.Add(panelUser);
             Controls.Add(panelHome);
             Controls.Add(PanelAddBird);
-            Controls.Add(panelAddCage);
-            Controls.Add(panelSearchCages);
-            Controls.Add(panelSearch);
             Controls.Add(panelHelp);
+            Controls.Add(panelSearch);
+            Controls.Add(panelSearchCages);
+            Controls.Add(panelAddCage);
             Controls.Add(toolStrip1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
@@ -1781,8 +1785,6 @@ namespace Birds_Mangmeant
         private Label label2;
         private Label label1;
         private TextBox textBoxIndexNumber;
-        private TextBox textBoxIndexFatherofBird;
-        private TextBox textBoxIndexMotherofBird;
         private DateTimePicker dateTimePicker1;
         private PictureBox pictureBoxAddBird;
         private CheckBox checkBoxFemale;
@@ -1899,5 +1901,7 @@ namespace Birds_Mangmeant
         private Label label36;
         private Label label38;
         private Label label35;
+        private ComboBox textBoxIndexFatherofBird;
+        private ComboBox textBoxIndexMotherofBird;
     }
 }
