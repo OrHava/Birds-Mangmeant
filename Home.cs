@@ -32,6 +32,9 @@ namespace Birds_Mangmeant
         //private int x;
         private static FirebaseClient? client;
 
+
+
+
         public Home()
         {
             InitializeComponent();
@@ -47,6 +50,8 @@ namespace Birds_Mangmeant
             };
 
             client = new FirebaseClient(config);
+
+          
 
 
 

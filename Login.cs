@@ -20,9 +20,16 @@ namespace Birds_Mangmeant
 #pragma warning restore CS8603 // Possible null reference return.
         static string currentuserpassword = "";
 
+        private System.Windows.Forms.ToolTip toolTip1;
 
         public Login()
         {
+
+
+            this.toolTip1 = new System.Windows.Forms.ToolTip();
+            this.toolTip1.IsBalloon = true; // set the IsBalloon property to true
+
+
 
 
             InitializeComponent();
@@ -505,10 +512,11 @@ namespace Birds_Mangmeant
                     foreach (var get in result2)
                     {
 
-                        if (get.Value!=null) {
-                            usernameres.Add(Tuple.Create(get.Value.Name ?? "", get.Value.Password ?? "" ));
+                        if (get.Value != null)
+                        {
+                            usernameres.Add(Tuple.Create(get.Value.Name ?? "", get.Value.Password ?? ""));
                         }
-                        
+
 
                     }
 
@@ -554,7 +562,7 @@ namespace Birds_Mangmeant
                 //string usernameres = null;
                 List<Tuple<string, string>> usernameres = new List<Tuple<string, string>>();
                 FirebaseResponse response = client.Get("users/");
-              //  Dictionary<string, register> result = response.ResultAs<Dictionary<string, register>>();
+                //  Dictionary<string, register> result = response.ResultAs<Dictionary<string, register>>();
                 Dictionary<string, register> result;
 
                 if (response.Body != null)
@@ -568,11 +576,12 @@ namespace Birds_Mangmeant
                         foreach (var get in result)
                         {
 
-                            if (get.Value!=null) {
+                            if (get.Value != null)
+                            {
                                 usernameres.Add(Tuple.Create(get.Value.Name ?? "", get.Value.Password ?? ""));
                             }
 
-                         
+
 
                         }
                     }
@@ -780,6 +789,35 @@ namespace Birds_Mangmeant
 
             PanelLoginSave.Location = new Point(300, 0);
 
+        }
+
+        private void pictureBox3_MouseHover(object sender, EventArgs e)
+        {
+
+            this.toolTip1.SetToolTip(this.pictureBox3, "Enter a valid Username of 6 to 8 letters in english, which can include the most 2 numbers."); 
+
+        }
+
+        private void pictureBox2_MouseHover(object sender, EventArgs e)
+        {
+            this.toolTip1.SetToolTip(this.pictureBox2, "Enter a valid Email in this format user@Email.com .");
+
+
+        }
+
+        private void pictureBox1_MouseHover(object sender, EventArgs e)
+        {
+            this.toolTip1.SetToolTip(this.pictureBox1, "Enter a valid Password of 8 to 10 letters that most include at least one number, one special letter and one letter in english only.");
+        }
+
+        private void pictureBox8_MouseHover(object sender, EventArgs e)
+        {
+            this.toolTip1.SetToolTip(this.pictureBox8, "Enter the same password.");
+        }
+
+        private void pictureBox9_MouseHover(object sender, EventArgs e)
+        {
+            this.toolTip1.SetToolTip(this.pictureBox9, "Enter a valid ID.");
         }
     }
 }

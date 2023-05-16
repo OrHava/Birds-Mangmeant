@@ -46,6 +46,7 @@ namespace Birds_Mangmeant
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             PanelWelcomeSave = new Panel();
+            label2 = new Label();
             labelDevs3Save = new Label();
             labelDevs4Save = new Label();
             labelDevs2Save = new Label();
@@ -118,7 +119,6 @@ namespace Birds_Mangmeant
             txtLoginUserName = new TextBox();
             pictureBoxSave = new PictureBox();
             labelLogin1Save = new Label();
-            label2 = new Label();
             PanelWelcomeSave.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxBirdSave).BeginInit();
             PanelRegister.SuspendLayout();
@@ -161,6 +161,17 @@ namespace Birds_Mangmeant
             PanelWelcomeSave.Name = "PanelWelcomeSave";
             PanelWelcomeSave.Size = new Size(299, 531);
             PanelWelcomeSave.TabIndex = 0;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(220, 509);
+            label2.Name = "label2";
+            label2.Size = new Size(41, 17);
+            label2.TabIndex = 8;
+            label2.Text = "Na'el";
             // 
             // labelDevs3Save
             // 
@@ -307,6 +318,7 @@ namespace Birds_Mangmeant
             pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox9.TabIndex = 2;
             pictureBox9.TabStop = false;
+            pictureBox9.MouseHover += pictureBox9_MouseHover;
             // 
             // panelRePassword
             // 
@@ -340,6 +352,7 @@ namespace Birds_Mangmeant
             pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox8.TabIndex = 2;
             pictureBox8.TabStop = false;
+            pictureBox8.MouseHover += pictureBox8_MouseHover;
             // 
             // panelUsername
             // 
@@ -374,6 +387,7 @@ namespace Birds_Mangmeant
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 1;
             pictureBox3.TabStop = false;
+            pictureBox3.MouseHover += pictureBox3_MouseHover;
             // 
             // button3
             // 
@@ -421,6 +435,7 @@ namespace Birds_Mangmeant
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
+            pictureBox1.MouseHover += pictureBox1_MouseHover;
             // 
             // panelEmail
             // 
@@ -454,6 +469,7 @@ namespace Birds_Mangmeant
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
+            pictureBox2.MouseHover += pictureBox2_MouseHover;
             // 
             // label1
             // 
@@ -867,17 +883,6 @@ namespace Birds_Mangmeant
             labelLogin1Save.Size = new Size(260, 27);
             labelLogin1Save.TabIndex = 2;
             labelLogin1Save.Text = "Login to your account";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(220, 509);
-            label2.Name = "label2";
-            label2.Size = new Size(41, 17);
-            label2.TabIndex = 8;
-            label2.Text = "Na'el";
             // 
             // Login
             // 
