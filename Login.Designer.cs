@@ -158,8 +158,9 @@ namespace Birds_Mangmeant
             PanelWelcomeSave.Controls.Add(pictureBoxBirdSave);
             PanelWelcomeSave.Dock = DockStyle.Left;
             PanelWelcomeSave.Location = new Point(0, 0);
+            PanelWelcomeSave.Margin = new Padding(3, 2, 3, 2);
             PanelWelcomeSave.Name = "PanelWelcomeSave";
-            PanelWelcomeSave.Size = new Size(299, 531);
+            PanelWelcomeSave.Size = new Size(262, 398);
             PanelWelcomeSave.TabIndex = 0;
             // 
             // label2
@@ -167,9 +168,9 @@ namespace Birds_Mangmeant
             label2.AutoSize = true;
             label2.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(220, 509);
+            label2.Location = new Point(192, 382);
             label2.Name = "label2";
-            label2.Size = new Size(41, 17);
+            label2.Size = new Size(34, 16);
             label2.TabIndex = 8;
             label2.Text = "Na'el";
             // 
@@ -178,9 +179,9 @@ namespace Birds_Mangmeant
             labelDevs3Save.AutoSize = true;
             labelDevs3Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs3Save.ForeColor = Color.White;
-            labelDevs3Save.Location = new Point(220, 475);
+            labelDevs3Save.Location = new Point(192, 356);
             labelDevs3Save.Name = "labelDevs3Save";
-            labelDevs3Save.Size = new Size(73, 17);
+            labelDevs3Save.Size = new Size(61, 16);
             labelDevs3Save.TabIndex = 7;
             labelDevs3Save.Text = "Gil Cohen";
             // 
@@ -189,9 +190,9 @@ namespace Birds_Mangmeant
             labelDevs4Save.AutoSize = true;
             labelDevs4Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs4Save.ForeColor = Color.White;
-            labelDevs4Save.Location = new Point(220, 492);
+            labelDevs4Save.Location = new Point(192, 369);
             labelDevs4Save.Name = "labelDevs4Save";
-            labelDevs4Save.Size = new Size(77, 17);
+            labelDevs4Save.Size = new Size(67, 16);
             labelDevs4Save.TabIndex = 6;
             labelDevs4Save.Text = "Omer Shay";
             // 
@@ -200,9 +201,9 @@ namespace Birds_Mangmeant
             labelDevs2Save.AutoSize = true;
             labelDevs2Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs2Save.ForeColor = Color.White;
-            labelDevs2Save.Location = new Point(220, 458);
+            labelDevs2Save.Location = new Point(192, 344);
             labelDevs2Save.Name = "labelDevs2Save";
-            labelDevs2Save.Size = new Size(62, 17);
+            labelDevs2Save.Size = new Size(55, 16);
             labelDevs2Save.TabIndex = 5;
             labelDevs2Save.Text = "Or Hava";
             // 
@@ -211,9 +212,9 @@ namespace Birds_Mangmeant
             labelDevs1Save.AutoSize = true;
             labelDevs1Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelDevs1Save.ForeColor = Color.White;
-            labelDevs1Save.Location = new Point(217, 440);
+            labelDevs1Save.Location = new Point(190, 330);
             labelDevs1Save.Name = "labelDevs1Save";
-            labelDevs1Save.Size = new Size(80, 17);
+            labelDevs1Save.Size = new Size(69, 16);
             labelDevs1Save.TabIndex = 4;
             labelDevs1Save.Text = "Develop By";
             // 
@@ -222,9 +223,9 @@ namespace Birds_Mangmeant
             labelWelcomeSave3.AutoSize = true;
             labelWelcomeSave3.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelWelcomeSave3.ForeColor = Color.White;
-            labelWelcomeSave3.Location = new Point(209, 229);
+            labelWelcomeSave3.Location = new Point(183, 172);
             labelWelcomeSave3.Name = "labelWelcomeSave3";
-            labelWelcomeSave3.Size = new Size(90, 27);
+            labelWelcomeSave3.Size = new Size(73, 22);
             labelWelcomeSave3.TabIndex = 3;
             labelWelcomeSave3.Text = "System";
             // 
@@ -233,9 +234,9 @@ namespace Birds_Mangmeant
             labelWelcomeSave2.AutoSize = true;
             labelWelcomeSave2.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelWelcomeSave2.ForeColor = Color.White;
-            labelWelcomeSave2.Location = new Point(84, 198);
+            labelWelcomeSave2.Location = new Point(74, 148);
             labelWelcomeSave2.Name = "labelWelcomeSave2";
-            labelWelcomeSave2.Size = new Size(218, 27);
+            labelWelcomeSave2.Size = new Size(176, 22);
             labelWelcomeSave2.TabIndex = 2;
             labelWelcomeSave2.Text = "Bird Management";
             // 
@@ -244,18 +245,19 @@ namespace Birds_Mangmeant
             labelWelcomeSave1.AutoSize = true;
             labelWelcomeSave1.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelWelcomeSave1.ForeColor = Color.White;
-            labelWelcomeSave1.Location = new Point(107, 167);
+            labelWelcomeSave1.Location = new Point(94, 125);
             labelWelcomeSave1.Name = "labelWelcomeSave1";
-            labelWelcomeSave1.Size = new Size(195, 27);
+            labelWelcomeSave1.Size = new Size(155, 22);
             labelWelcomeSave1.TabIndex = 1;
             labelWelcomeSave1.Text = "Welcome to the";
             // 
             // pictureBoxBirdSave
             // 
             pictureBoxBirdSave.Image = Properties.Resources.icons8_swiftui_100;
-            pictureBoxBirdSave.Location = new Point(82, 48);
+            pictureBoxBirdSave.Location = new Point(72, 36);
+            pictureBoxBirdSave.Margin = new Padding(3, 2, 3, 2);
             pictureBoxBirdSave.Name = "pictureBoxBirdSave";
-            pictureBoxBirdSave.Size = new Size(125, 61);
+            pictureBoxBirdSave.Size = new Size(109, 46);
             pictureBoxBirdSave.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxBirdSave.TabIndex = 0;
             pictureBoxBirdSave.TabStop = false;
@@ -272,16 +274,18 @@ namespace Birds_Mangmeant
             PanelRegister.Controls.Add(panelEmail);
             PanelRegister.Controls.Add(label1);
             PanelRegister.Location = new Point(0, 0);
+            PanelRegister.Margin = new Padding(3, 2, 3, 2);
             PanelRegister.Name = "PanelRegister";
-            PanelRegister.Size = new Size(450, 531);
+            PanelRegister.Size = new Size(394, 398);
             PanelRegister.TabIndex = 13;
             // 
             // pictureBox10
             // 
             pictureBox10.Image = Properties.Resources.icons8_close_48;
-            pictureBox10.Location = new Point(397, 3);
+            pictureBox10.Location = new Point(304, 2);
+            pictureBox10.Margin = new Padding(3, 2, 3, 2);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(50, 61);
+            pictureBox10.Size = new Size(46, 45);
             pictureBox10.TabIndex = 21;
             pictureBox10.TabStop = false;
             pictureBox10.Click += pictureBox10_Click;
@@ -291,9 +295,10 @@ namespace Birds_Mangmeant
             panelID.BackColor = SystemColors.Control;
             panelID.Controls.Add(txtRegId);
             panelID.Controls.Add(pictureBox9);
-            panelID.Location = new Point(0, 347);
+            panelID.Location = new Point(0, 260);
+            panelID.Margin = new Padding(3, 2, 3, 2);
             panelID.Name = "panelID";
-            panelID.Size = new Size(450, 51);
+            panelID.Size = new Size(394, 38);
             panelID.TabIndex = 20;
             // 
             // txtRegId
@@ -302,9 +307,10 @@ namespace Birds_Mangmeant
             txtRegId.BorderStyle = BorderStyle.None;
             txtRegId.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txtRegId.ForeColor = Color.FromArgb(46, 51, 73);
-            txtRegId.Location = new Point(55, 15);
+            txtRegId.Location = new Point(48, 11);
+            txtRegId.Margin = new Padding(3, 2, 3, 2);
             txtRegId.Name = "txtRegId";
-            txtRegId.Size = new Size(370, 21);
+            txtRegId.Size = new Size(324, 17);
             txtRegId.TabIndex = 3;
             txtRegId.Text = "Enter ID";
             txtRegId.Click += txtRegId_Click;
@@ -312,9 +318,10 @@ namespace Birds_Mangmeant
             // pictureBox9
             // 
             pictureBox9.Image = Properties.Resources.icons8_identification_documents_241;
-            pictureBox9.Location = new Point(15, 15);
+            pictureBox9.Location = new Point(13, 11);
+            pictureBox9.Margin = new Padding(3, 2, 3, 2);
             pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(24, 24);
+            pictureBox9.Size = new Size(21, 18);
             pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox9.TabIndex = 2;
             pictureBox9.TabStop = false;
@@ -325,9 +332,10 @@ namespace Birds_Mangmeant
             panelRePassword.BackColor = SystemColors.Control;
             panelRePassword.Controls.Add(txtRegRePassword);
             panelRePassword.Controls.Add(pictureBox8);
-            panelRePassword.Location = new Point(0, 291);
+            panelRePassword.Location = new Point(0, 218);
+            panelRePassword.Margin = new Padding(3, 2, 3, 2);
             panelRePassword.Name = "panelRePassword";
-            panelRePassword.Size = new Size(450, 51);
+            panelRePassword.Size = new Size(394, 38);
             panelRePassword.TabIndex = 19;
             // 
             // txtRegRePassword
@@ -336,9 +344,10 @@ namespace Birds_Mangmeant
             txtRegRePassword.BorderStyle = BorderStyle.None;
             txtRegRePassword.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txtRegRePassword.ForeColor = Color.FromArgb(46, 51, 73);
-            txtRegRePassword.Location = new Point(55, 15);
+            txtRegRePassword.Location = new Point(48, 11);
+            txtRegRePassword.Margin = new Padding(3, 2, 3, 2);
             txtRegRePassword.Name = "txtRegRePassword";
-            txtRegRePassword.Size = new Size(370, 21);
+            txtRegRePassword.Size = new Size(324, 17);
             txtRegRePassword.TabIndex = 3;
             txtRegRePassword.Text = "Re - Enter Password";
             txtRegRePassword.Click += textBox8_Click;
@@ -346,9 +355,10 @@ namespace Birds_Mangmeant
             // pictureBox8
             // 
             pictureBox8.Image = Properties.Resources.icons8_secure_24;
-            pictureBox8.Location = new Point(15, 15);
+            pictureBox8.Location = new Point(13, 11);
+            pictureBox8.Margin = new Padding(3, 2, 3, 2);
             pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(24, 24);
+            pictureBox8.Size = new Size(21, 18);
             pictureBox8.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox8.TabIndex = 2;
             pictureBox8.TabStop = false;
@@ -359,9 +369,10 @@ namespace Birds_Mangmeant
             panelUsername.BackColor = SystemColors.Control;
             panelUsername.Controls.Add(txtRegName);
             panelUsername.Controls.Add(pictureBox3);
-            panelUsername.Location = new Point(0, 113);
+            panelUsername.Location = new Point(0, 85);
+            panelUsername.Margin = new Padding(3, 2, 3, 2);
             panelUsername.Name = "panelUsername";
-            panelUsername.Size = new Size(450, 52);
+            panelUsername.Size = new Size(394, 39);
             panelUsername.TabIndex = 18;
             // 
             // txtRegName
@@ -370,9 +381,10 @@ namespace Birds_Mangmeant
             txtRegName.BorderStyle = BorderStyle.None;
             txtRegName.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txtRegName.ForeColor = Color.FromArgb(46, 51, 73);
-            txtRegName.Location = new Point(55, 15);
+            txtRegName.Location = new Point(48, 11);
+            txtRegName.Margin = new Padding(3, 2, 3, 2);
             txtRegName.Name = "txtRegName";
-            txtRegName.Size = new Size(370, 21);
+            txtRegName.Size = new Size(324, 17);
             txtRegName.TabIndex = 2;
             txtRegName.Text = "Enter UserName";
             txtRegName.Click += textBox7_Click;
@@ -381,9 +393,10 @@ namespace Birds_Mangmeant
             // 
             pictureBox3.BackColor = SystemColors.Control;
             pictureBox3.Image = Properties.Resources.icons8_name_24;
-            pictureBox3.Location = new Point(15, 15);
+            pictureBox3.Location = new Point(13, 11);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(24, 24);
+            pictureBox3.Size = new Size(21, 18);
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 1;
             pictureBox3.TabStop = false;
@@ -395,9 +408,10 @@ namespace Birds_Mangmeant
             button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             button3.ForeColor = Color.White;
-            button3.Location = new Point(15, 419);
+            button3.Location = new Point(13, 314);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(149, 35);
+            button3.Size = new Size(130, 26);
             button3.TabIndex = 15;
             button3.Text = "Sign Up";
             button3.UseVisualStyleBackColor = false;
@@ -408,9 +422,10 @@ namespace Birds_Mangmeant
             panelPassword.BackColor = SystemColors.Control;
             panelPassword.Controls.Add(txtRegPassword);
             panelPassword.Controls.Add(pictureBox1);
-            panelPassword.Location = new Point(0, 229);
+            panelPassword.Location = new Point(0, 172);
+            panelPassword.Margin = new Padding(3, 2, 3, 2);
             panelPassword.Name = "panelPassword";
-            panelPassword.Size = new Size(450, 51);
+            panelPassword.Size = new Size(394, 38);
             panelPassword.TabIndex = 14;
             // 
             // txtRegPassword
@@ -419,9 +434,10 @@ namespace Birds_Mangmeant
             txtRegPassword.BorderStyle = BorderStyle.None;
             txtRegPassword.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txtRegPassword.ForeColor = Color.FromArgb(46, 51, 73);
-            txtRegPassword.Location = new Point(55, 15);
+            txtRegPassword.Location = new Point(48, 11);
+            txtRegPassword.Margin = new Padding(3, 2, 3, 2);
             txtRegPassword.Name = "txtRegPassword";
-            txtRegPassword.Size = new Size(370, 21);
+            txtRegPassword.Size = new Size(324, 17);
             txtRegPassword.TabIndex = 3;
             txtRegPassword.Text = "Enter Password";
             txtRegPassword.Click += textBox1_Click_1;
@@ -429,9 +445,10 @@ namespace Birds_Mangmeant
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.icons8_password_24;
-            pictureBox1.Location = new Point(15, 15);
+            pictureBox1.Location = new Point(13, 11);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(24, 24);
+            pictureBox1.Size = new Size(21, 18);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -442,9 +459,10 @@ namespace Birds_Mangmeant
             panelEmail.BackColor = SystemColors.Control;
             panelEmail.Controls.Add(TxtRegEmail);
             panelEmail.Controls.Add(pictureBox2);
-            panelEmail.Location = new Point(0, 171);
+            panelEmail.Location = new Point(0, 128);
+            panelEmail.Margin = new Padding(3, 2, 3, 2);
             panelEmail.Name = "panelEmail";
-            panelEmail.Size = new Size(450, 52);
+            panelEmail.Size = new Size(394, 39);
             panelEmail.TabIndex = 13;
             // 
             // TxtRegEmail
@@ -453,9 +471,10 @@ namespace Birds_Mangmeant
             TxtRegEmail.BorderStyle = BorderStyle.None;
             TxtRegEmail.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             TxtRegEmail.ForeColor = Color.FromArgb(46, 51, 73);
-            TxtRegEmail.Location = new Point(55, 15);
+            TxtRegEmail.Location = new Point(48, 11);
+            TxtRegEmail.Margin = new Padding(3, 2, 3, 2);
             TxtRegEmail.Name = "TxtRegEmail";
-            TxtRegEmail.Size = new Size(370, 21);
+            TxtRegEmail.Size = new Size(324, 17);
             TxtRegEmail.TabIndex = 2;
             TxtRegEmail.Text = "Enter Email";
             TxtRegEmail.Click += textBox2_Click_1;
@@ -463,9 +482,10 @@ namespace Birds_Mangmeant
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.icons8_mail_24;
-            pictureBox2.Location = new Point(15, 15);
+            pictureBox2.Location = new Point(13, 11);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(24, 24);
+            pictureBox2.Size = new Size(21, 18);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -476,9 +496,9 @@ namespace Birds_Mangmeant
             label1.AutoSize = true;
             label1.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.FromArgb(46, 51, 73);
-            label1.Location = new Point(38, 48);
+            label1.Location = new Point(33, 36);
             label1.Name = "label1";
-            label1.Size = new Size(254, 27);
+            label1.Size = new Size(209, 22);
             label1.TabIndex = 12;
             label1.Text = "Create New Account";
             // 
@@ -542,7 +562,7 @@ namespace Birds_Mangmeant
             // 
             textBox5.Location = new Point(0, 0);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(100, 27);
+            textBox5.Size = new Size(100, 23);
             textBox5.TabIndex = 0;
             // 
             // pictureBox6
@@ -564,7 +584,7 @@ namespace Birds_Mangmeant
             // 
             textBox6.Location = new Point(0, 0);
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(100, 27);
+            textBox6.Size = new Size(100, 23);
             textBox6.TabIndex = 0;
             // 
             // pictureBox7
@@ -642,7 +662,7 @@ namespace Birds_Mangmeant
             // 
             textBox3.Location = new Point(0, 0);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 27);
+            textBox3.Size = new Size(100, 23);
             textBox3.TabIndex = 0;
             // 
             // pictureBox4
@@ -664,7 +684,7 @@ namespace Birds_Mangmeant
             // 
             textBox4.Location = new Point(0, 0);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 27);
+            textBox4.Size = new Size(100, 23);
             textBox4.TabIndex = 0;
             // 
             // pictureBox5
@@ -703,17 +723,19 @@ namespace Birds_Mangmeant
             PanelLoginSave.Controls.Add(panel4Save);
             PanelLoginSave.Controls.Add(panel3Save);
             PanelLoginSave.Controls.Add(labelLogin1Save);
-            PanelLoginSave.Location = new Point(299, 0);
+            PanelLoginSave.Location = new Point(262, 0);
+            PanelLoginSave.Margin = new Padding(3, 2, 3, 2);
             PanelLoginSave.Name = "PanelLoginSave";
-            PanelLoginSave.Size = new Size(450, 531);
+            PanelLoginSave.Size = new Size(394, 398);
             PanelLoginSave.TabIndex = 1;
             // 
             // checkBoxRememberMe
             // 
             checkBoxRememberMe.AutoSize = true;
-            checkBoxRememberMe.Location = new Point(15, 300);
+            checkBoxRememberMe.Location = new Point(13, 225);
+            checkBoxRememberMe.Margin = new Padding(3, 2, 3, 2);
             checkBoxRememberMe.Name = "checkBoxRememberMe";
-            checkBoxRememberMe.Size = new Size(129, 24);
+            checkBoxRememberMe.Size = new Size(104, 19);
             checkBoxRememberMe.TabIndex = 14;
             checkBoxRememberMe.Text = "Remember me";
             checkBoxRememberMe.UseVisualStyleBackColor = true;
@@ -725,9 +747,10 @@ namespace Birds_Mangmeant
             btnRegisterSave.FlatStyle = FlatStyle.Flat;
             btnRegisterSave.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
             btnRegisterSave.ForeColor = Color.FromArgb(46, 51, 73);
-            btnRegisterSave.Location = new Point(94, 388);
+            btnRegisterSave.Location = new Point(82, 291);
+            btnRegisterSave.Margin = new Padding(3, 2, 3, 2);
             btnRegisterSave.Name = "btnRegisterSave";
-            btnRegisterSave.Size = new Size(130, 35);
+            btnRegisterSave.Size = new Size(114, 26);
             btnRegisterSave.TabIndex = 11;
             btnRegisterSave.Text = "Register";
             btnRegisterSave.UseVisualStyleBackColor = false;
@@ -738,9 +761,9 @@ namespace Birds_Mangmeant
             linkLabel1Save.AutoSize = true;
             linkLabel1Save.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             linkLabel1Save.LinkColor = Color.FromArgb(46, 51, 73);
-            linkLabel1Save.Location = new Point(234, 491);
+            linkLabel1Save.Location = new Point(205, 368);
             linkLabel1Save.Name = "linkLabel1Save";
-            linkLabel1Save.Size = new Size(121, 17);
+            linkLabel1Save.Size = new Size(105, 13);
             linkLabel1Save.TabIndex = 10;
             linkLabel1Save.TabStop = true;
             linkLabel1Save.Text = "or6562@gmail.com";
@@ -750,9 +773,9 @@ namespace Birds_Mangmeant
             label11Save.AutoSize = true;
             label11Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             label11Save.ForeColor = Color.Silver;
-            label11Save.Location = new Point(38, 491);
+            label11Save.Location = new Point(33, 368);
             label11Save.Name = "label11Save";
-            label11Save.Size = new Size(199, 17);
+            label11Save.Size = new Size(162, 16);
             label11Save.TabIndex = 9;
             label11Save.Text = "submit an email message to: ";
             // 
@@ -761,9 +784,9 @@ namespace Birds_Mangmeant
             label10Save.AutoSize = true;
             label10Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             label10Save.ForeColor = Color.Silver;
-            label10Save.Location = new Point(38, 475);
+            label10Save.Location = new Point(33, 356);
             label10Save.Name = "label10Save";
-            label10Save.Size = new Size(349, 17);
+            label10Save.Size = new Size(289, 16);
             label10Save.TabIndex = 8;
             label10Save.Text = "to obtain access to this app or any qiestions about it";
             // 
@@ -772,9 +795,9 @@ namespace Birds_Mangmeant
             label9Save.AutoSize = true;
             label9Save.Font = new Font("Century Gothic", 7.8F, FontStyle.Regular, GraphicsUnit.Point);
             label9Save.ForeColor = Color.Silver;
-            label9Save.Location = new Point(38, 457);
+            label9Save.Location = new Point(33, 343);
             label9Save.Name = "label9Save";
-            label9Save.Size = new Size(58, 17);
+            label9Save.Size = new Size(50, 16);
             label9Save.TabIndex = 7;
             label9Save.Text = "Support";
             // 
@@ -785,9 +808,10 @@ namespace Birds_Mangmeant
             button2Save.FlatStyle = FlatStyle.Flat;
             button2Save.Font = new Font("Century Gothic", 8F, FontStyle.Regular, GraphicsUnit.Point);
             button2Save.ForeColor = Color.FromArgb(46, 51, 73);
-            button2Save.Location = new Point(182, 331);
+            button2Save.Location = new Point(159, 248);
+            button2Save.Margin = new Padding(3, 2, 3, 2);
             button2Save.Name = "button2Save";
-            button2Save.Size = new Size(130, 35);
+            button2Save.Size = new Size(114, 26);
             button2Save.TabIndex = 6;
             button2Save.Text = "Forget password ?";
             button2Save.UseVisualStyleBackColor = false;
@@ -799,9 +823,10 @@ namespace Birds_Mangmeant
             button1Save.FlatStyle = FlatStyle.Flat;
             button1Save.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             button1Save.ForeColor = Color.White;
-            button1Save.Location = new Point(15, 331);
+            button1Save.Location = new Point(13, 248);
+            button1Save.Margin = new Padding(3, 2, 3, 2);
             button1Save.Name = "button1Save";
-            button1Save.Size = new Size(149, 35);
+            button1Save.Size = new Size(130, 26);
             button1Save.TabIndex = 5;
             button1Save.Text = "LOGIN";
             button1Save.UseVisualStyleBackColor = false;
@@ -812,9 +837,10 @@ namespace Birds_Mangmeant
             panel4Save.BackColor = SystemColors.Control;
             panel4Save.Controls.Add(txtLoginPassword);
             panel4Save.Controls.Add(pictureBox3Save);
-            panel4Save.Location = new Point(0, 243);
+            panel4Save.Location = new Point(0, 182);
+            panel4Save.Margin = new Padding(3, 2, 3, 2);
             panel4Save.Name = "panel4Save";
-            panel4Save.Size = new Size(450, 51);
+            panel4Save.Size = new Size(394, 38);
             panel4Save.TabIndex = 4;
             // 
             // txtLoginPassword
@@ -823,9 +849,10 @@ namespace Birds_Mangmeant
             txtLoginPassword.BorderStyle = BorderStyle.None;
             txtLoginPassword.Font = new Font("Century Gothic", 10F, FontStyle.Regular, GraphicsUnit.Point);
             txtLoginPassword.ForeColor = Color.FromArgb(46, 51, 73);
-            txtLoginPassword.Location = new Point(55, 15);
+            txtLoginPassword.Location = new Point(48, 11);
+            txtLoginPassword.Margin = new Padding(3, 2, 3, 2);
             txtLoginPassword.Name = "txtLoginPassword";
-            txtLoginPassword.Size = new Size(370, 21);
+            txtLoginPassword.Size = new Size(324, 17);
             txtLoginPassword.TabIndex = 3;
             txtLoginPassword.UseSystemPasswordChar = true;
             txtLoginPassword.Click += textBox2_Click;
@@ -833,9 +860,10 @@ namespace Birds_Mangmeant
             // pictureBox3Save
             // 
             pictureBox3Save.Image = Properties.Resources.icons8_password_24;
-            pictureBox3Save.Location = new Point(15, 15);
+            pictureBox3Save.Location = new Point(13, 11);
+            pictureBox3Save.Margin = new Padding(3, 2, 3, 2);
             pictureBox3Save.Name = "pictureBox3Save";
-            pictureBox3Save.Size = new Size(24, 24);
+            pictureBox3Save.Size = new Size(21, 18);
             pictureBox3Save.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3Save.TabIndex = 2;
             pictureBox3Save.TabStop = false;
@@ -847,9 +875,10 @@ namespace Birds_Mangmeant
             panel3Save.BackColor = Color.White;
             panel3Save.Controls.Add(txtLoginUserName);
             panel3Save.Controls.Add(pictureBoxSave);
-            panel3Save.Location = new Point(0, 185);
+            panel3Save.Location = new Point(0, 139);
+            panel3Save.Margin = new Padding(3, 2, 3, 2);
             panel3Save.Name = "panel3Save";
-            panel3Save.Size = new Size(450, 52);
+            panel3Save.Size = new Size(394, 39);
             panel3Save.TabIndex = 3;
             // 
             // txtLoginUserName
@@ -857,18 +886,20 @@ namespace Birds_Mangmeant
             txtLoginUserName.BorderStyle = BorderStyle.None;
             txtLoginUserName.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtLoginUserName.ForeColor = Color.FromArgb(46, 51, 73);
-            txtLoginUserName.Location = new Point(55, 15);
+            txtLoginUserName.Location = new Point(48, 11);
+            txtLoginUserName.Margin = new Padding(3, 2, 3, 2);
             txtLoginUserName.Name = "txtLoginUserName";
-            txtLoginUserName.Size = new Size(370, 25);
+            txtLoginUserName.Size = new Size(324, 20);
             txtLoginUserName.TabIndex = 2;
             txtLoginUserName.Click += textBox1_Click;
             // 
             // pictureBoxSave
             // 
             pictureBoxSave.Image = Properties.Resources.icons8_name_24;
-            pictureBoxSave.Location = new Point(15, 15);
+            pictureBoxSave.Location = new Point(13, 11);
+            pictureBoxSave.Margin = new Padding(3, 2, 3, 2);
             pictureBoxSave.Name = "pictureBoxSave";
-            pictureBoxSave.Size = new Size(24, 24);
+            pictureBoxSave.Size = new Size(21, 18);
             pictureBoxSave.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBoxSave.TabIndex = 1;
             pictureBoxSave.TabStop = false;
@@ -878,21 +909,22 @@ namespace Birds_Mangmeant
             labelLogin1Save.AutoSize = true;
             labelLogin1Save.Font = new Font("Century Gothic", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             labelLogin1Save.ForeColor = Color.FromArgb(46, 51, 73);
-            labelLogin1Save.Location = new Point(38, 135);
+            labelLogin1Save.Location = new Point(33, 101);
             labelLogin1Save.Name = "labelLogin1Save";
-            labelLogin1Save.Size = new Size(260, 27);
+            labelLogin1Save.Size = new Size(214, 22);
             labelLogin1Save.TabIndex = 2;
             labelLogin1Save.Text = "Login to your account";
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 531);
+            ClientSize = new Size(656, 398);
             Controls.Add(PanelLoginSave);
             Controls.Add(PanelWelcomeSave);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";

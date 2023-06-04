@@ -794,7 +794,7 @@ namespace Birds_Mangmeant
         private void pictureBox3_MouseHover(object sender, EventArgs e)
         {
 
-            this.toolTip1.SetToolTip(this.pictureBox3, "Enter a valid Username of 6 to 8 letters in english, which can include the most 2 numbers."); 
+            this.toolTip1.SetToolTip(this.pictureBox3, "Enter a valid Username of 6 to 8 letters in english, which can include the most 2 numbers.");
 
         }
 
