@@ -2333,12 +2333,15 @@ namespace Birds_Mangmeant
                 }
 
 
-                int index2 = listViewBirds.FocusedItem.Index;
-                string birdId2 = BirdList.ElementAt(index2).Key;
+
+               
 
 
-                if (client != null)
+                if (client != null && listViewBirds.FocusedItem != null)
                 {
+                    int index2 = listViewBirds.FocusedItem.Index;
+                    string birdId2 = BirdList.ElementAt(index2).Key;
+
                     client.Delete("users/" + Login.currentusername + "/Birds/" + birdId2);
 
                     FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Birds");
@@ -2493,10 +2496,11 @@ namespace Birds_Mangmeant
             else
             {
 
-                int index2 = cage_listview.FocusedItem.Index;
-                string cageid2 = CageList.ElementAt(index2).Rest.Item1;
-                if (client != null)
+              
+                if (client != null && cage_listview.FocusedItem!=null)
                 {
+                    int index2 = cage_listview.FocusedItem.Index;
+                    string cageid2 = CageList.ElementAt(index2).Rest.Item1;
 
                     client.Delete("users/" + Login.currentusername + "/Cages/" + cageid2);
                     FirebaseResponse birdsResponse = client.Get("users/" + Login.currentusername + "/Cages");
