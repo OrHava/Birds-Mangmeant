@@ -2245,11 +2245,11 @@ namespace Birds_Mangmeant
                 MessageBox.Show("Index Number of Bird can only contain numbers.");
             }
 
-            else if (!isNumeric2)
+            else if (!isNumeric2 && textBoxIndexFatherofBird.Text != "Unknown")
             {
                 MessageBox.Show("Index Number of Father of Bird can only contain numbers.");
             }
-            else if (!isNumeric3)
+            else if (!isNumeric3 && textBoxIndexMotherofBird.Text != "Unknown")
             {
                 MessageBox.Show("Index Number of Mother of Bird can only contain numbers.");
             }
